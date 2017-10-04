@@ -1,0 +1,12 @@
+dominio\Departamento.class
+dominio\EntidadeNegocio.class
+dominio\EntidadeNegocio_.class
+dominio\Atividade.class
+dominio\Responsavel.class
+dominio\Atividade_.class
+dominio\Departamento_.class
+dominio\Responsavel_.class
+dominio\Processo_.class
+dominio\SituacaoAtividade.class
+dominio\Processo.class
+Run\Run.class
