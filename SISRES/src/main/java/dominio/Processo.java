@@ -15,19 +15,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Natália
- */
-
 @Entity
 public class Processo extends EntidadeNegocio implements Serializable {
-   
+
     @NotNull
     @Size(min = 2, max = 40)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "")
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+")
     private String nome;
-    
+
     @NotNull
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
@@ -46,7 +41,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataDeFim;
     
-    @NotNull(message = "{preenchimento_nao_informado}")
+    @NotNull
     private int duracaoMaximaEmDias;
 
     public Processo()

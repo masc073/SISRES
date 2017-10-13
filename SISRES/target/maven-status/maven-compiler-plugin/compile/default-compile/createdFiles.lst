@@ -1,6 +1,7 @@
 dominio\Departamento.class
 dominio\EntidadeNegocio.class
 dominio\EntidadeNegocio_.class
+step_definitions\Steps_responsavel.class
 dominio\Atividade.class
 dominio\Responsavel.class
 dominio\Atividade_.class
@@ -9,4 +10,3 @@ dominio\Responsavel_.class
 dominio\Processo_.class
 dominio\SituacaoAtividade.class
 dominio\Processo.class
-Run\Run.class
