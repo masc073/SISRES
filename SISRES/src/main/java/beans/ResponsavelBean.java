@@ -20,7 +20,7 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
 @ManagedBean(name = "responsavelBean")
-@ViewScoped
+@SessionScoped
 public class ResponsavelBean implements Serializable
 {
     @EJB
@@ -69,9 +69,8 @@ public class ResponsavelBean implements Serializable
     }
  
     
-    public void editar(RowEditEvent event)
+    public void editar(Responsavel responsavel)
     {
-        responsavel = (Responsavel) event.getObject();
         listar(); 
        
         try
@@ -93,19 +92,7 @@ public class ResponsavelBean implements Serializable
             }
         }
     }
-    
-    public void cancelar(RowEditEvent event) 
-    {
-       
-    }
-    
-     public void redireciona() {
-        Map<String,Object> options = new HashMap<>();
-        options.put("resizable", false);
-        RequestContext.getCurrentInstance().openDialog("alteraResponsavel", options, null);
-    }
-    
-
+   
     public void remover(Responsavel responsavel)
     {
         try

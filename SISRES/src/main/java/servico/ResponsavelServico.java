@@ -45,8 +45,8 @@ public class ResponsavelServico extends Servico {
     
     public void remover(Responsavel responsavel) 
     {
-//            Responsavel r = (Buffet) em.find(Buffet.class, buffet.getId());       
-            em.remove(responsavel);
+            Responsavel r = (Responsavel) em.find(Responsavel.class, responsavel.getId());       
+            em.remove(r);
       
     }
     
