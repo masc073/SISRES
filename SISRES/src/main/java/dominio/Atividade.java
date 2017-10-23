@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Atividade extends EntidadeNegocio implements Serializable {
@@ -27,6 +28,10 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
     private Departamento departamento;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_processo", referencedColumnName = "id")
+    protected Processo processo;
 
     // Anexos?
    
@@ -62,6 +67,13 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     public void setSituacao(SituacaoAtividade situacao) {
         this.situacao = situacao;
     }
+    
+    public Processo getProcesso() {
+        return processo;
+    }
 
+    public void setProcesso(Processo processo) {
+        this.processo = processo;
+    }
 }
 
