@@ -57,4 +57,12 @@ public class FeriadoServico extends Servico
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_INEXISTENTE);
         }
     }
+    
+     
+    public void remover(Feriado feriado) 
+    {
+            Feriado f = (Feriado) em.find(Feriado.class, feriado.getId());       
+            em.remove(f);
+      
+    }
 }

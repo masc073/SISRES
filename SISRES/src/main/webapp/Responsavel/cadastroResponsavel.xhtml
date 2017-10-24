@@ -28,7 +28,6 @@
 
     <h:form id="responsavel">
         <p:fieldset legend="Cadastro de Responsável" style="margin-left: 3px; width: 1000px;" >
-
             <h:panelGrid columns="3" >
 
                 <p:outputLabel value="Nome:" id="output_nome" />
@@ -50,40 +49,33 @@
             </h:panelGrid>    
             <br/>
 
+            <p:messages id="messagesEdicao" severity="error" autoUpdate="true" closable="true"/>
             <p:dataTable id="table_responsavel" var="responsavel" value="#{responsavelBean.responsaveis}"  paginator="true" rows="5"
                          emptyMessage="Nenhum responsável cadastrado" editable="true" style="margin-bottom:20px">
 
                 <f:facet name="header">Responsáveis</f:facet>
-                <!--<p:ajax event="rowEdit" listener="#{responsavelBean.editar}"  />-->
-
                 <p:column headerText="Nome">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{responsavel.nome}" /></f:facet>
                         <f:facet name="input"><p:inputText id="modelInput" value="#{responsavel.nome}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <!--                <p:column style="width:32px">
-                                    <p:rowEditor />
-                                </p:column>-->
                 <p:column>
-                    <p:commandLink styleClass="ui-icon ui-icon-pencil" process="@this" >
+                    <p:commandLink styleClass="ui-icon ui-icon-pencil"  action="#{responsavelBean.editar(responsavel)}" process="@this" >
                         <p:confirm header="Editar" icon="ui-icon-alert" />
                     </p:commandLink>
                     <p:dialog showEffect="fade" hideEffect="fade">
-                                
-                        <p:outputLabel value="Nome:" id="output_nome_1" />
                        
-
-                        <p:commandButton value="Sim" type="button"  action="#{responsavelBean.editar(responsavel)}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Sim" type="button"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:dialog>
                 </p:column> 
                 <p:column>
-                    <p:commandLink styleClass="ui-icon ui-icon-trash" action="#{responsavelBean.remover(responsavel)}" process="@this" >
+                    <p:commandLink styleClass="ui-icon ui-icon-trash" update="table_responsavel" action="#{responsavelBean.remover(responsavel)}" process="@this" >
                         <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
                     </p:commandLink>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
                         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog>
                 </p:column> 

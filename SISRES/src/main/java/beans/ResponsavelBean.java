@@ -16,11 +16,9 @@ import javax.validation.ConstraintViolationException;
 import servico.ResponsavelServico;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.RowEditEvent;
 
 @ManagedBean(name = "responsavelBean")
-@SessionScoped
+@ViewScoped
 public class ResponsavelBean implements Serializable
 {
     @EJB

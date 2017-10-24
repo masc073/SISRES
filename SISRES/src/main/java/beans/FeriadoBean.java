@@ -80,6 +80,25 @@ public class FeriadoBean implements Serializable
             }
         }
      }
+   
+        public void remover(Feriado feriado )
+    {
+        try
+        {
+            feriadoServico.remover(feriado);
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Removido com sucesso!");
+        }  
+        catch (EJBException ex)
+        {
+            if (ex.getCause() instanceof ConstraintViolationException)
+            {
+                MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
+                adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
+            }
+        }
+    }
+
+
     
     public void listar()
     {
