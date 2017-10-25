@@ -47,8 +47,6 @@ public class FeriadoServico extends Servico<Feriado>
     }
 
 
-
-
 //    public void salvar(Feriado feriado) throws ExcecaoNegocio
 //    {
 //        if (chegaExistencia(feriado) == false)

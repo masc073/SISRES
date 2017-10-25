@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import servico.ResponsavelServico;
-import servico.Servico;
 
 @ManagedBean(name = "responsavelBean")
 @ViewScoped
@@ -14,12 +13,13 @@ public class ResponsavelBean extends Bean<Responsavel> implements Serializable
 {
 
     @EJB
-    private ResponsavelServico servico;
+    private ResponsavelServico responsavelServico;
 
     @Override
-    public Servico instanciaServico()
+    public void setServico()
     {
-        return new ResponsavelServico();
+
+        super.servico = responsavelServico;
     }
 
 }

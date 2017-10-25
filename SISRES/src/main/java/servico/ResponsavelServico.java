@@ -10,7 +10,7 @@ import javax.ejb.TransactionManagementType;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ResponsavelServico extends Servico {
-
+    
     @Override
     public Class getClasse()
     {
@@ -34,7 +34,6 @@ public class ResponsavelServico extends Servico {
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
  
     
 //    public void salvar(Responsavel responsavel) throws ExcecaoNegocio

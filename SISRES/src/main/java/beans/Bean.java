@@ -17,16 +17,15 @@ import servico.Servico;
 public abstract class Bean<T extends EntidadeNegocio> implements Serializable
 {
 
-    private Servico<T> servico;
+    protected Servico<T> servico;
 
     protected List<T> entidades = new ArrayList<>();
 
     protected T entidade;
     
     @PostConstruct
-    public void inicializar() {
-        
-        servico = getServico();
+    public void inicializar() {   
+        setServico();
         getEntidadeNegocio();
     }
 
@@ -105,18 +104,7 @@ public abstract class Bean<T extends EntidadeNegocio> implements Serializable
         }
     }
 
-    public Servico<T> getServico()
-    {
-        if(servico == null)
-            servico = instanciaServico();
-        
-        return servico;
-    }
-
-    public void setServico(Servico<T> servico)
-    {
-        this.servico = servico;
-    }
+    public abstract void setServico();
 
     public List<T> getEntidades()
     {  
@@ -144,6 +132,5 @@ public abstract class Bean<T extends EntidadeNegocio> implements Serializable
         FacesMessage message = new FacesMessage(severity, mensagem, "");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
-     public abstract Servico instanciaServico();
+   
 }
