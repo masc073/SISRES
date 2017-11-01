@@ -27,16 +27,12 @@
                 text-align: center;
                 font-size: 150%;
             }
-
-            #insert { 
-                margin-left: 40%;
-            }
         </style>
     </h:head>
     <h:body>
         <p:panel id="panel" header="Sistema de Requerimento Estudantil" style="margin-bottom:20px">
             <h:form>  
-                <p:growl id="messages" showDetail="false"/>
+                <p:growl id="messages" showDetail="false" autoUpdate="true" />
                 <p:menu class="menu">
                     <p:submenu class="submenu" icon="ui-icon-home" label="Início">
                         <p:menuitem value="Meus Processos"  actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
@@ -52,7 +48,7 @@
                     </p:submenu>
                 </p:menu>
             </h:form>
-            <ui:insert id="insert" >
+            <ui:insert id="conteudo" >
             </ui:insert>
         </p:panel>
     </h:body>

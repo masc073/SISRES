@@ -9,8 +9,6 @@ dominio\Atividade_.class
 dominio\Departamento_.class
 dominio\Feriado_.class
 dominio\Processo_.class
-beans\Bean.class
-beans\ResponsavelBean.class
 dominio\Feriado.class
 dominio\EntidadeNegocio.class
 dominio\EntidadeNegocio_.class
@@ -18,7 +16,7 @@ step_definitions\ResponsavelSteps.class
 util\LeitorPropriedades.class
 dominio\Responsavel_.class
 servico\Servico.class
-servico\ResponsavelServico.class
+step_definitions\FeriadoSteps.class
 excecao\ExcecaoSistema.class
 dominio\SituacaoAtividade.class
 dominio\Processo.class

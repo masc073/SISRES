@@ -16,7 +16,7 @@
     
     <dependencies>
         <!-- NOVAS DEPENDÊNCIAS - INÍCIO  -->
-                <dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
             <version>3.6.0</version>
@@ -35,6 +35,11 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
             <version>3.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1</version>
         </dependency>
         <!-- NOVAS DEPENDÊNCIAS - FIM  -->        
         <dependency>
@@ -55,11 +60,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>6.1</version>
@@ -78,7 +78,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>16.0.1</version>
+            <version>23.0</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

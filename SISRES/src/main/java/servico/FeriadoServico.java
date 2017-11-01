@@ -3,6 +3,7 @@ package servico;
 
 
 import dominio.Feriado;
+import excecao.ExcecaoNegocio;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -14,88 +15,57 @@ import javax.persistence.TypedQuery;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class FeriadoServico extends Servico<Feriado>
+public class FeriadoServico extends Servico
 {
-
-    @Override
-    public Class<Feriado> getClasse()
+    public void salvar(Feriado feriado) throws ExcecaoNegocio
     {
-        return Feriado.class;
+        if (chegaExistencia(feriado) == false)
+        {
+            em.persist(feriado);
+        } 
+        else
+        {
+            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
+        }
+    }
+    
+   public List<Feriado> listar()
+    {
+        em.flush();
+        return em.createQuery("select f from Feriado f", Feriado.class).getResultList();
     }
 
-    @Override
-    public Feriado getEntidade()
-    {
-       return new Feriado();
-    }
-
-    @Override
-    public Boolean checarExistencia(Feriado entidade)
+    public boolean chegaExistencia(Feriado feriado) 
     {
         TypedQuery<Feriado> query;
-        query = em.createQuery("select f from Feriado f where f.data_do_feriado = ?1", Feriado.class);
-        query.setParameter(1, entidade.getData_do_feriado());
+        query = em.createQuery("select f from Feriado f where f.data_do_feriado = ?1 or f.nome = ?2", Feriado.class);
+        query.setParameter(1, feriado.getData_do_feriado());
+        query.setParameter(2, feriado.getNome());
         List<Feriado> responsaveis = query.getResultList(); 
 
         return !responsaveis.isEmpty();
     }
-
-    @Override
-    public Boolean checarAssociacao(Feriado entidade)
+    
+    public void atualizar(Feriado feriado) throws ExcecaoNegocio
     {
-        return false;
+        em.flush();
+
+        if (chegaExistencia(feriado) == true)
+        {
+            em.merge(feriado);
+            
+        } else
+        {
+            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_INEXISTENTE);
+        }
     }
-
-
-//    public void salvar(Feriado feriado) throws ExcecaoNegocio
-//    {
-//        if (chegaExistencia(feriado) == false)
-//        {
-//            em.persist(feriado);
-//        } 
-//        else
-//        {
-//            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
-//        }
-//    }
-//    
-//   public List<Feriado> listar()
-//    {
-//        em.flush();
-//        return em.createQuery("select f from Feriado f", Feriado.class).getResultList();
-//    }
-//
-//    public boolean chegaExistencia(Feriado feriado) 
-//    {
-//        TypedQuery<Feriado> query;
-//        query = em.createQuery("select f from Feriado f where f.data_do_feriado = ?1", Feriado.class);
-//        query.setParameter(1, feriado.getData_do_feriado());
-//        List<Feriado> responsaveis = query.getResultList(); 
-//
-//        return !responsaveis.isEmpty();
-//    }
-//    
-//    public void atualizar(Feriado feriado) throws ExcecaoNegocio
-//    {
-//        em.flush();
-//
-//        if (chegaExistencia(feriado) == true)
-//        {
-//            em.merge(feriado);
-//            
-//        } else
-//        {
-//            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_INEXISTENTE);
-//        }
-//    }
-//    
-//     
-//    public void remover(Feriado feriado) 
-//    {
-//            Feriado f = (Feriado) em.find(Feriado.class, feriado.getId());       
-//            em.remove(f);
-//      
-//    }
+    
+     
+    public void remover(Feriado feriado) 
+    {
+            Feriado f = (Feriado) em.find(Feriado.class, feriado.getId());       
+            em.remove(f);
+    }
 
    
 }

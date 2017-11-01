@@ -13,14 +13,16 @@ public class Feriado extends EntidadeNegocio
 {
     @NotNull
     @Size(min = 2, max = 40)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+")
+    @Pattern(regexp = "[A-Za-z ]+", message = "{dominio.Feriado.nome}")     
     private String nome;
     
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date data_do_feriado;
 
     public Feriado()
     {
+        
     }
 
     public Feriado(String nome, Date data_do_feriado)
