@@ -11,7 +11,7 @@ public class Responsavel extends EntidadeNegocio implements Serializable {
   
     @NotNull
     @Size(min = 2, max = 40)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{dominio.Responsavel.nome}")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "{dominio.Responsavel.nome}")
     private String nome;
     
     @NotNull

@@ -17,7 +17,7 @@ public class Atividade extends EntidadeNegocio implements Serializable {
 
     @NotNull
     @Size(min = 2, max = 60)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
     private String nome;
     
     @NotNull

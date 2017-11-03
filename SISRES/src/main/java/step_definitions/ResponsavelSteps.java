@@ -1,85 +1,144 @@
 package step_definitions;
+
 import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import junit.framework.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import static step_definitions.BrowserManager.driver;
 
-public class ResponsavelSteps {
-
-    @Dado("^o responsavel com nome \"(.*?)\" ainda nao cadastrado$")
-    public void o_reponsavel_ainda_nao_cadastrado(String nome) throws Throwable
+public class ResponsavelSteps
+{
+    WebElement input_nome, button_check;
+ 
+    @Dado("^a tela inicial do responsavel aberta$")
+    public void a_tela_inicial_do_responsavel_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/Responsavel/cadastroResponsavel.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/responsavel/responsavel.xhtml");
     }
 
-    @Quando("^o usuario informar o \"(.*?)\" e a senha \"(.*?)\" do responsavel$")
-    public void o_usuario_informar_o_nome_e_a_senha_do_responsavel(String nome, String senha) throws Throwable 
+    @Quando("^o administrador informar o \"([^\"]*)\" e a senha \"([^\"]*)\" do responsavel$")
+    public void o_administrador_informar_o_e_a_senha_do_responsavel(String nome, String senha) throws Throwable
     {
-        BrowserManager.driver.findElement(By.id("responsavel:value_nome_input")).sendKeys("Natália Amâncio");        
-        BrowserManager.driver.findElement(By.id("responsavel:value_senha")).sendKeys("ABC1234");
+        BrowserManager.driver.findElement(By.id("responsavel:value_nome")).sendKeys(nome);
+        BrowserManager.driver.findElement(By.id("responsavel:value_senha")).sendKeys(senha);
     }
 
-    @E("^confirmar a senha \"(.*?)\"$")
-    public void confirmar_a_senha(String senha) throws Throwable 
+    @Quando("^o administrador selecionar o \"([^\"]*)\" que deseja alterar$")
+    public void o_administrador_selecionar_o_responsavel_que_deseja_alterar(String responsavel) throws Throwable
     {
-        BrowserManager.driver.findElement(By.id("responsavel:value_confirmacao")).sendKeys("ABC1234");
+        WebElement button_edit = null;
+
+        WebElement table = driver.findElement(By.id("responsavel:table_responsavel_data"));
+
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows)
+        {
+            List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
+
+            for (WebElement column : columns)
+            {
+                if (column.getText().equals(responsavel))
+                {
+                    button_edit = row.findElement(By.className("ui-row-editor-pencil"));
+                    button_edit.click();
+
+                    WebElement link_check = row.findElement(By.className("ui-row-editor-check"));
+                    button_check = link_check.findElement(By.tagName("span"));
+
+                    WebElement div_nome = column.findElement(By.className("ui-cell-editor-input"));
+                    input_nome = div_nome.findElement(By.tagName("input"));
+
+                } 
+            }
+        }
     }
 
-    @Entao("^deve ser exibida a mensagem \"(.*?)\"$")
-    public void deve_ser_exibida_a_mensagem(String mensagem) throws Throwable 
+    @Quando("^o administrador selecionar o \"([^\"]*)\" que deseja remover$")
+    public void o_administrador_selecionar_o_responsavel_que_deseja_remover(String responsavel) throws Throwable
     {
+        int contador = 0;
+        String id, text_column;
+        boolean removeu = false;
+
+        WebElement table = driver.findElement(By.id("responsavel:table_responsavel"));
+
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows)
+        {
+            List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
+
+            for (WebElement column : columns)
+            {
+                text_column = column.getText();
+                if (text_column.equals(responsavel))
+                {
+                    id = "responsavel:table_responsavel:" + contador + ":j_idt27";
+                    WebElement link_remove = row.findElement(By.id(id));
+                    link_remove.click();
+                    List<WebElement> buttons = driver.findElements(By.tagName("button"));
+
+                    for (WebElement button : buttons)
+                    {
+                        if (button.getText().equals("Sim"))
+                        {
+                            button.click();
+                            removeu = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            if (removeu == true)
+            {
+                break;
+            }
+            if(!columns.isEmpty())
+            ++contador;
+        }
+    }
+
+    @Quando("^confirmar a senha \"([^\"]*)\"$")
+    public void confirmar_a_senha(String senha) throws Throwable
+    {
+        BrowserManager.driver.findElement(By.id("responsavel:value_confirmacao")).sendKeys(senha);
         BrowserManager.driver.findElement(By.id("responsavel:button_salvar")).click();
-        
-        // Validar a mensagem que deve ser exibida.
     }
 
-    @E("^o registro deve ser inserido no banco de dados$")
-    public void o_registro_deve_ser_inserido_no_banco_de_dados() throws Throwable {
+    @Entao("^deve ser exibida a mensagem \"([^\"]*)\"$")
+    public void deve_ser_exibida_a_mensagem(String mensagemEsperada) throws Throwable
+    {
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
-    }
+        WebElement message_container = driver.findElement(By.className("ui-growl-title"));
 
-    @Dado("^o responsavel ja cadastrado no sistema$")
-    public void o_responsavel_ja_cadastrado_no_sistema() throws Throwable {
-
-    }
-
-    @Quando("^o usuario selecionadar o <responsavel> que deseja alterar$")
-    public void o_usuario_selecionadar_o_responsavel_que_deseja_alterar() throws Throwable {
-
+        Assert.assertEquals(message_container.getText(), mensagemEsperada);
     }
 
     @Quando("^alterar o seu \"([^\"]*)\"$")
-    public void alterar_o_seu(String arg1) throws Throwable {
+    public void alterar_o_seu(String nome) throws Throwable
+    {
+        input_nome.clear();
+        input_nome.sendKeys(nome);
 
-    }
-
-    @Entao("^o registro deve ser alterado no banco de dados$")
-    public void o_registro_deve_ser_alterado_no_banco_de_dados() throws Throwable {
-
-    }
-
-    @Quando("^o usuario selecionar o <responsavel> que deseja alterar$")
-    public void o_usuario_selecionar_o_responsavel_que_deseja_alterar() throws Throwable {
+        button_check.click();
     }
 
     @Quando("^informar a sua \"([^\"]*)\" atual$")
-    public void informar_a_sua_atual(String arg1) throws Throwable {
+    public void informar_a_sua_atual(String arg1) throws Throwable
+    {
 
     }
 
     @Quando("^informar a sua nova \"([^\"]*)\" e confirmá-la$")
-    public void informar_a_sua_nova_e_confirmá_la(String arg1) throws Throwable {
-
-    }
-
-    @Quando("^o usuario selecionar o <responsavel> que deseja remover$")
-    public void o_usuario_selecionar_o_responsavel_que_deseja_remover() throws Throwable {
-
-    }
-
-    @Entao("^o registro deve ser removido do banco de dados$")
-    public void o_registro_deve_ser_removido_do_banco_de_dados() throws Throwable {
+    public void informar_a_sua_nova_e_confirma_la(String arg1) throws Throwable
+    {
 
     }
 

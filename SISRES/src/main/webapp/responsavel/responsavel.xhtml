@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../template.xhtml">
+    <h:form id="responsavel">
+<!--        <p:tabView>
+            <p:tab title="Godfather Part I">-->
+                <p:fieldset legend="Cadastro de Responsável" style=" width: 1050px; left: 90%;" >
+                <h:panelGrid columns="3" >
+
+                    <p:outputLabel value="Nome:" id="output_nome" />
+                    <p:inputText id="value_nome" value="#{responsavelBean.responsavel.nome}" />
+                    <p:message for="output_nome" id="messageNome" severity="error"/>
+
+                    <p:outputLabel value="Senha:" id="output_senha" />
+                    <p:password id="value_senha" value="#{responsavelBean.responsavel.senhaDigital}" />
+                    <p:message for="output_senha" id="messageSenha" severity="error"/>
+
+                    <p:outputLabel value="Confirmação:" id="output_confirmacao" />
+                    <p:password id="value_confirmacao" value="#{responsavelBean.senhaConfirmacao}"  feedback="true" />
+                    <p:message for="output_confirmacao" id="messageConfirmacao" severity="error"/>
+
+                    <p:toolbarGroup>
+                        <p:commandButton value="Salvar" action="#{responsavelBean.salvar}" id="button_salvar" 
+                                         ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+                    </p:toolbarGroup>
+                </h:panelGrid>    
+                <br/>
+
+                <p:messages id="messagesEdicao" severity="error" autoUpdate="true" closable="true"/>
+                <p:dataTable id="table_responsavel" var="responsavel" value="#{responsavelBean.responsaveis}"  paginator="true" rows="5"
+                             emptyMessage="Nenhum responsável cadastrado" editable="true" style="margin-bottom:20px">
+
+                    <p:ajax event="rowEdit" update="table_responsavel" listener="#{responsavelBean.editar}" />
+                    <f:facet name="header">Responsáveis</f:facet>
+                    <p:column headerText="Nome">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{responsavel.nome}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{responsavel.nome}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width:20px">
+                        <p:rowEditor />
+                    </p:column>
+                    <p:column id="delete" style="width:20px">
+                        <p:commandLink styleClass="ui-icon ui-icon-trash" update="table_responsavel" action="#{responsavelBean.remover(responsavel)}" process="@this" >
+                            <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                        </p:commandLink>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </p:column> 
+                </p:dataTable>
+<!--            </p:tab>
+        </p:tabView>-->
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

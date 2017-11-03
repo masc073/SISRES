@@ -41,7 +41,13 @@
             <artifactId>jsf-api</artifactId>
             <version>2.1</version>
         </dependency>
-        <!-- NOVAS DEPENDÊNCIAS - FIM  -->        
+        <!-- NOVAS DEPENDÊNCIAS - FIM  -->      
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.5.4</version>
+            <type>jar</type>
+        </dependency>  
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>

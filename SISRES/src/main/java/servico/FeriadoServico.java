@@ -41,22 +41,26 @@ public class FeriadoServico extends Servico
         query = em.createQuery("select f from Feriado f where f.data_do_feriado = ?1 or f.nome = ?2", Feriado.class);
         query.setParameter(1, feriado.getData_do_feriado());
         query.setParameter(2, feriado.getNome());
-        List<Feriado> responsaveis = query.getResultList(); 
-
-        return !responsaveis.isEmpty();
+        List<Feriado> feriados = query.getResultList(); 
+        
+        if(feriados.isEmpty())
+            return false;
+        else 
+            return true;
     }
     
     public void atualizar(Feriado feriado) throws ExcecaoNegocio
     {
         em.flush();
 
-        if (chegaExistencia(feriado) == true)
+        if (chegaExistencia(feriado) == false)
         {
             em.merge(feriado);
             
-        } else
+        } 
+        else
         {
-            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_INEXISTENTE);
+            throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
     

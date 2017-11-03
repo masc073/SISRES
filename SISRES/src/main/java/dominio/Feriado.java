@@ -12,8 +12,8 @@ import javax.validation.constraints.Size;
 public class Feriado extends EntidadeNegocio
 {
     @NotNull
-    @Size(min = 2, max = 40)
-    @Pattern(regexp = "[A-Za-z ]+", message = "{dominio.Feriado.nome}")     
+    @Size(min = 2, max = 40, message= "{dominio.Feriado.tamanho}")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "{dominio.Feriado.nome}")     
     private String nome;
     
     @NotNull

@@ -12,13 +12,13 @@ import javax.persistence.OneToOne;
 @Entity
 public class Departamento extends EntidadeNegocio implements Serializable  {
  
-    @NotNull
+//    @NotNull
     @Size(min = 2, max = 40)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
     private String nome;
     
     @Size(min = 2, max = 6)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
     private String sigla;
     
     @NotNull

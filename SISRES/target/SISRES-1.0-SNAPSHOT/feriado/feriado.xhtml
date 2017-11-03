@@ -7,8 +7,6 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 
              template="../template.xhtml">
-    <!--    <p:tabView id="abas">
-            <p:tab title="Cadastro">-->
     <h:form id="feriado">
         <p:fieldset legend="Cadastro de Feriados" style="margin-left: 3px; width: 1000px;" >
             <h:panelGrid columns="3" >
@@ -46,10 +44,10 @@
                         <f:facet name="input"><p:calendar id="data_output" pattern="dd/MM/yyy"  value="#{feriado.data_do_feriado}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column style="width:32px">
+                <p:column style="width:20px">
                     <p:rowEditor />
                 </p:column>
-                <p:column>
+                <p:column style="width:20px">
                     <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_feriado" action="#{feriadoBean.remover(feriado)}" process="@this" >
                         <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
                     </p:commandLink>
@@ -61,6 +59,4 @@
             </p:dataTable>
         </p:fieldset>
     </h:form>
-    <!--        </p:tab>
-        </p:tabView>-->
 </ui:decorate>

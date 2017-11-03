@@ -4,8 +4,4 @@
     <Scope Scope="Project"/>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
-<!--<application>
-    <message-bundle>
-        ValidationMessages_pt_Br
-    </message-bundle>
-</application>-->
+

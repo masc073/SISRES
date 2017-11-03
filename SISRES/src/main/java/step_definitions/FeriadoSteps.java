@@ -9,7 +9,6 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
-import dominio.Feriado;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
