@@ -18,14 +18,14 @@ public class DepartamentoSteps
     
     public DepartamentoSteps()
     {
-       
+        DbUnitUtil.inserirDados();
     }
  
 
     @Dado("^os responsaveis cadastrados no sistema$")
     public void os_responsaveis_cadastrados_no_sistema(DataTable responsaveis) throws Throwable
     {
-        DbUnitUtil.inserirDados();
+       
         Responsavel responsavel;
         this.campos = responsaveis.raw();
 

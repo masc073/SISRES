@@ -1,6 +1,5 @@
 package step_definitions;
 
-import com.mysql.cj.jdbc.MysqlDataSourceFactory;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,11 +24,13 @@ public class DbUnitUtil
     {
         Connection conn = null;
         IDatabaseConnection db_conn = null;
+        String schema;
         try
         {
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/sisres?serverTimezone=UTC", "root", "root");
+                    "jdbc:mysql://localhost:3306/sisres", "root", "root");
             db_conn = new DatabaseConnection(conn);
+            schema = db_conn.getSchema();
             
              DatabaseConfig dbConfig = db_conn.getConfig();
              dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory() );
@@ -38,6 +39,7 @@ public class DbUnitUtil
             builder.setColumnSensing(true);
             IDataSet dataSet = builder.build(new File(XML_FILE));
             DatabaseOperation.CLEAN_INSERT.execute(db_conn, dataSet);
+
         } catch (Exception ex)
         {
             throw new RuntimeException(ex.getMessage(), ex);

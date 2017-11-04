@@ -36,8 +36,9 @@ public class DepartamentoServico extends Servico
     public boolean chegaExistencia(Departamento departamento) 
     {
         TypedQuery<Departamento> query;
-        query = em.createQuery("select d from Departamento d where d.sigla = ?1", Departamento.class);
+        query = em.createQuery("select d from Departamento d where d.sigla = ?1 and d.id != ?2", Departamento.class);
         query.setParameter(1, departamento.getSigla());
+        query.setParameter(2, departamento.getId());
         List<Departamento> responsaveis = query.getResultList(); 
 
         if(responsaveis.isEmpty())

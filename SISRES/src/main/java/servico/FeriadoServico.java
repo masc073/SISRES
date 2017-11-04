@@ -38,9 +38,9 @@ public class FeriadoServico extends Servico
     public boolean chegaExistencia(Feriado feriado) 
     {
         TypedQuery<Feriado> query;
-        query = em.createQuery("select f from Feriado f where f.data_do_feriado = ?1 or f.nome = ?2", Feriado.class);
-        query.setParameter(1, feriado.getData_do_feriado());
-        query.setParameter(2, feriado.getNome());
+        query = em.createQuery("select f from Feriado f where f.nome = ?1 and f.id != ?2", Feriado.class);
+        query.setParameter(1, feriado.getNome());        
+        query.setParameter(2, feriado.getId());
         List<Feriado> feriados = query.getResultList(); 
         
         if(feriados.isEmpty())

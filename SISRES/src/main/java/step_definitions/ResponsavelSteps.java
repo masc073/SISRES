@@ -78,7 +78,7 @@ public class ResponsavelSteps
                 text_column = column.getText();
                 if (text_column.equals(responsavel))
                 {
-                    id = "responsavel:table_responsavel:" + contador + ":j_idt27";
+                    id = "responsavel:table_responsavel:" + contador + ":j_idt28";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
