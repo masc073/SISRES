@@ -1,0 +1,8 @@
+#surefire
+#Sat Nov 04 16:52:05 BRST 2017
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Nat\u00E1lia\\Desktop\\SISRES
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Nat\u00E1lia\\.m2\\repository
+basedir=C\:\\Users\\Nat\u00E1lia\\Desktop\\SISRES
+test=RunTests

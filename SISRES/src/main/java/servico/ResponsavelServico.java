@@ -36,9 +36,17 @@ public class ResponsavelServico extends Servico
     public boolean chegaExistencia(Responsavel responsavel)
     {
         TypedQuery<Responsavel> query;
-        query = em.createQuery("select r from Responsavel r where r.nome = ?1 and r.id != ?2", Responsavel.class);
-        query.setParameter(1, responsavel.getNome());        
-        query.setParameter(2, responsavel.getId());
+
+        if (responsavel.getId() == null)
+        {
+            query = em.createQuery("select r from Responsavel r where r.nome = ?1", Responsavel.class);
+            query.setParameter(1, responsavel.getNome());
+        } else
+        {
+            query = em.createQuery("select r from Responsavel r where r.nome = ?1 and r.id != ?2", Responsavel.class);
+            query.setParameter(1, responsavel.getNome());
+            query.setParameter(2, responsavel.getId());
+        }
 
         List<Responsavel> responsaveis = query.getResultList();
 
@@ -57,8 +65,7 @@ public class ResponsavelServico extends Servico
         if (chegaExistencia(responsavel) == false)
         {
             em.merge(responsavel);
-        } 
-        else
+        } else
         {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }

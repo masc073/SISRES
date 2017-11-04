@@ -8,7 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-02T16:22:38")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-04T16:19:58")
 @StaticMetamodel(Processo.class)
 public class Processo_ extends EntidadeNegocio_ {
 

@@ -1,4 +1,178 @@
 -------------------------------------------------------------------------------
 Test set: RunTests
 -------------------------------------------------------------------------------
-Tests run: 42, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 133.388 sec
+Tests run: 42, Failures: 0, Errors: 12, Skipped: 3, Time elapsed: 38.691 sec <<< FAILURE!
+E alterar o seu \"Marcia Cavalcanti\"(| \"Renata Macia\" | \"Marcia Cavalcanti\" |)  Time elapsed: 0.015 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Marcia Cavalcanti"(src/main/java/features/Responsavel.feature:20)
+| \"Renata Macia\" | \"Marcia Cavalcanti\" |  Time elapsed: 0.015 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Marcia Cavalcanti"(src/main/java/features/Responsavel.feature:20)
+E alterar o seu \"Fabio Martins\"(| \"Joaquim Nunes\" | \"Fabio Martins\" |)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Fabio Martins"(src/main/java/features/Responsavel.feature:20)
+| \"Joaquim Nunes\" | \"Fabio Martins\" |  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Fabio Martins"(src/main/java/features/Responsavel.feature:20)
+E alterar o seu \"Ant\u00F4nio Vitor\"(| \"Carlos Macedo\" | \"Ant\u00F4nio Vitor\" |)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Antônio Vitor"(src/main/java/features/Responsavel.feature:20)
+| \"Carlos Macedo\" | \"Ant\u00F4nio Vitor\" |  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ResponsavelSteps.alterar_o_seu(ResponsavelSteps.java:139)
+	at ?.E alterar o seu "Antônio Vitor"(src/main/java/features/Responsavel.feature:20)
+Entao deve ser exibida a mensagem \"Respons\u00E1vel removido com Sucesso!\"(| \"Marcia Cavalcanti\" |)  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)
+| \"Marcia Cavalcanti\" |  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)
+Entao deve ser exibida a mensagem \"Respons\u00E1vel removido com Sucesso!\"(| \"Fabio Martins\" |)  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)
+| \"Fabio Martins\" |  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)
+Entao deve ser exibida a mensagem \"Respons\u00E1vel removido com Sucesso!\"(| \"Ant\u00F4nio Vitor\" |)  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)
+| \"Ant\u00F4nio Vitor\" |  Time elapsed: 0.031 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.h4LRBvH8iOGH, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=56.0.2, platformVersion=6.3, moz:processID=4928, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: e66a60ee-306c-4cd8-94b1-361b7dc3aefb
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ResponsavelSteps.deve_ser_exibida_a_mensagem(ResponsavelSteps.java:131)
+	at ?.Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"(src/main/java/features/Responsavel.feature:32)

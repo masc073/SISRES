@@ -68,6 +68,10 @@ public class FeriadoBean implements Serializable
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Feriado alterado com Sucesso!");
             listar();
         } 
+        catch (ExcecaoNegocio ex)
+        {
+            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+        } 
         catch (EJBException ex)
         {
             if (ex.getCause() instanceof ConstraintViolationException)

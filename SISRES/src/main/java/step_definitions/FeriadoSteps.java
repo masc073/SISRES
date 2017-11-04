@@ -23,6 +23,15 @@ import static step_definitions.BrowserManager.driver;
 public class FeriadoSteps
 {
 
+    public FeriadoSteps()
+    {
+        if (DbUnitUtil.ultimo_executado != Dataset.Vazio)
+        {
+            DbUnitUtil.selecionaDataset(Dataset.Vazio);
+            DbUnitUtil.inserirDados();
+        }
+    }
+
     WebElement input_nome, input_data, button_check;
 
     @Dado("^a tela inicial de feriados aberta$")
@@ -115,7 +124,7 @@ public class FeriadoSteps
         int contador = 0;
         String id, text_column;
         boolean removeu = false;
-        
+
         WebElement table = driver.findElement(By.id("feriado:table_feriado_data"));
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
@@ -132,10 +141,10 @@ public class FeriadoSteps
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
-                    
-                    for(WebElement button : buttons)
+
+                    for (WebElement button : buttons)
                     {
-                        if(button.getText().equals("Sim"))
+                        if (button.getText().equals("Sim"))
                         {
                             button.click();
                             removeu = true;
@@ -145,8 +154,10 @@ public class FeriadoSteps
                     break;
                 }
             }
-            if(removeu == true)
+            if (removeu == true)
+            {
                 break;
+            }
             ++contador;
         }
     }

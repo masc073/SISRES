@@ -74,7 +74,12 @@ public class ResponsavelBean implements Serializable
             responsavelServico.atualizar(responsavel);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável alterado com Sucesso!");
             listar();
-        } catch (EJBException ex)
+        }
+        catch (ExcecaoNegocio ex)
+        {
+            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+        } 
+        catch (EJBException ex)
         {
             if (ex.getCause() instanceof ConstraintViolationException)
             {

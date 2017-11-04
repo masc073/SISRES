@@ -15,38 +15,51 @@ import javax.persistence.TypedQuery;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class DepartamentoServico extends Servico
 {
+
     public void salvar(Departamento departamento) throws ExcecaoNegocio
     {
         if (chegaExistencia(departamento) == false)
         {
             em.persist(departamento);
-        } 
-        else
+        } else
         {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-   public List<Departamento> listar()
+
+    public List<Departamento> listar()
     {
         em.flush();
         return em.createQuery("select d from Departamento d", Departamento.class).getResultList();
     }
 
-    public boolean chegaExistencia(Departamento departamento) 
+    public boolean chegaExistencia(Departamento departamento)
     {
         TypedQuery<Departamento> query;
-        query = em.createQuery("select d from Departamento d where d.sigla = ?1 and d.id != ?2", Departamento.class);
-        query.setParameter(1, departamento.getSigla());
-        query.setParameter(2, departamento.getId());
-        List<Departamento> responsaveis = query.getResultList(); 
 
-        if(responsaveis.isEmpty())
+        if (departamento.getId() == null) // Inserir
+        {
+            query = em.createQuery("select d from Departamento d where d.sigla = ?1", Departamento.class);
+            query.setParameter(1, departamento.getSigla());
+        } 
+        else // Atualizar
+        {
+            query = em.createQuery("select d from Departamento d where d.sigla = ?1 and d.id != ?2", Departamento.class);
+            query.setParameter(1, departamento.getSigla());
+            query.setParameter(2, departamento.getId());
+        }
+
+        List<Departamento> responsaveis = query.getResultList();
+
+        if (responsaveis.isEmpty())
+        {
             return false;
-        else
+        } else
+        {
             return true;
+        }
     }
-    
+
     public void atualizar(Departamento departamento) throws ExcecaoNegocio
     {
         em.flush();
@@ -54,16 +67,15 @@ public class DepartamentoServico extends Servico
         if (chegaExistencia(departamento) == false)
         {
             em.merge(departamento);
-        } 
-        else
+        } else
         {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-    public void remover(Departamento departamento) 
+
+    public void remover(Departamento departamento)
     {
-            Departamento d = (Departamento) em.find(Departamento.class, departamento.getId());       
-            em.remove(d);
+        Departamento d = (Departamento) em.find(Departamento.class, departamento.getId());
+        em.remove(d);
     }
 }

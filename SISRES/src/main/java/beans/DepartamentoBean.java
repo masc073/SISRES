@@ -70,7 +70,12 @@ public class DepartamentoBean implements Serializable
             departamentoServico.atualizar(departamento);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento alterado com Sucesso!");
             listar();
-        } catch (EJBException ex)
+        } 
+        catch (ExcecaoNegocio ex)
+        {
+            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+        } 
+        catch (EJBException ex)
         {
             if (ex.getCause() instanceof ConstraintViolationException)
             {

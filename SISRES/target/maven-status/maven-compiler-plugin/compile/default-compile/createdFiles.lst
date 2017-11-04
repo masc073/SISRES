@@ -13,6 +13,7 @@ dominio\Departamento_.class
 dominio\Feriado_.class
 step_definitions\DepartamentoSteps.class
 dominio\Processo_.class
+step_definitions\Dataset.class
 beans\ResponsavelBean.class
 dominio\Feriado.class
 dominio\EntidadeNegocio.class
@@ -25,6 +26,7 @@ servico\Servico.class
 step_definitions\FeriadoSteps.class
 servico\ResponsavelServico.class
 excecao\ExcecaoSistema.class
+step_definitions\DbUnitUtil$1.class
 dominio\SituacaoAtividade.class
 dominio\Processo.class
 beans\FeriadoBean.class

@@ -12,8 +12,18 @@ import static step_definitions.BrowserManager.driver;
 
 public class ResponsavelSteps
 {
+
+    public ResponsavelSteps()
+    {
+        if (DbUnitUtil.ultimo_executado != Dataset.Vazio)
+        {
+            DbUnitUtil.selecionaDataset(Dataset.Vazio);
+            DbUnitUtil.inserirDados();
+        }
+    }
+
     WebElement input_nome, button_check;
- 
+
     @Dado("^a tela inicial do responsavel aberta$")
     public void a_tela_inicial_do_responsavel_aberta() throws Throwable
     {
@@ -53,7 +63,7 @@ public class ResponsavelSteps
                     WebElement div_nome = column.findElement(By.className("ui-cell-editor-input"));
                     input_nome = div_nome.findElement(By.tagName("input"));
 
-                } 
+                }
             }
         }
     }
@@ -99,8 +109,10 @@ public class ResponsavelSteps
             {
                 break;
             }
-            if(!columns.isEmpty())
-            ++contador;
+            if (!columns.isEmpty())
+            {
+                ++contador;
+            }
         }
     }
 
@@ -129,17 +141,4 @@ public class ResponsavelSteps
 
         button_check.click();
     }
-
-    @Quando("^informar a sua \"([^\"]*)\" atual$")
-    public void informar_a_sua_atual(String arg1) throws Throwable
-    {
-
-    }
-
-    @Quando("^informar a sua nova \"([^\"]*)\" e confirmá-la$")
-    public void informar_a_sua_nova_e_confirma_la(String arg1) throws Throwable
-    {
-
-    }
-
 }

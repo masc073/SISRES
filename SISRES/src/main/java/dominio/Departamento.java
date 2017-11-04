@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 public class Departamento extends EntidadeNegocio implements Serializable  {
  
     @NotNull(message = "O nome deve ser preenchido.")
-    @Size(min = 2, max = 40, message = "O nome deve conter entre 2 à 40 caracteres.")
+    @Size(min = 2, max = 60 , message = "O nome deve conter entre 2 à 60 caracteres.")
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve possuir apenas letras.")
     private String nome;
     

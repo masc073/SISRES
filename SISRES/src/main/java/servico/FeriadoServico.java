@@ -1,6 +1,4 @@
-
 package servico;
-
 
 import dominio.Feriado;
 import excecao.ExcecaoNegocio;
@@ -17,38 +15,51 @@ import javax.persistence.TypedQuery;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class FeriadoServico extends Servico
 {
+
     public void salvar(Feriado feriado) throws ExcecaoNegocio
     {
         if (chegaExistencia(feriado) == false)
         {
             em.persist(feriado);
-        } 
-        else
+        } else
         {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-   public List<Feriado> listar()
+
+    public List<Feriado> listar()
     {
         em.flush();
         return em.createQuery("select f from Feriado f", Feriado.class).getResultList();
     }
 
-    public boolean chegaExistencia(Feriado feriado) 
+    public boolean chegaExistencia(Feriado feriado)
     {
         TypedQuery<Feriado> query;
-        query = em.createQuery("select f from Feriado f where f.nome = ?1 and f.id != ?2", Feriado.class);
-        query.setParameter(1, feriado.getNome());        
-        query.setParameter(2, feriado.getId());
-        List<Feriado> feriados = query.getResultList(); 
-        
-        if(feriados.isEmpty())
+
+        if (feriado.getId() == null) // Inserir
+        {
+            query = em.createQuery("select f from Feriado f where f.nome = ?1", Feriado.class);
+            query.setParameter(1, feriado.getNome());
+        } 
+        else // Atualizar
+        {
+            query = em.createQuery("select f from Feriado f where f.nome = ?1 and f.id != ?2", Feriado.class);
+            query.setParameter(1, feriado.getNome());
+            query.setParameter(2, feriado.getId());
+        }
+
+        List<Feriado> feriados = query.getResultList();
+
+        if (feriados.isEmpty())
+        {
             return false;
-        else 
+        } else
+        {
             return true;
+        }
     }
-    
+
     public void atualizar(Feriado feriado) throws ExcecaoNegocio
     {
         em.flush();
@@ -56,20 +67,17 @@ public class FeriadoServico extends Servico
         if (chegaExistencia(feriado) == false)
         {
             em.merge(feriado);
-            
-        } 
-        else
+
+        } else
         {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-     
-    public void remover(Feriado feriado) 
+
+    public void remover(Feriado feriado)
     {
-            Feriado f = (Feriado) em.find(Feriado.class, feriado.getId());       
-            em.remove(f);
+        Feriado f = (Feriado) em.find(Feriado.class, feriado.getId());
+        em.remove(f);
     }
 
-   
 }

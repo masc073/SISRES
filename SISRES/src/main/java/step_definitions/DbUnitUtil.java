@@ -11,14 +11,31 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
-/**
- *
- * @author Natália
- */
+
 public class DbUnitUtil
 {
-    private static final String XML_FILE = "dbUnitData/dataset.xml";
+    private static String XML_FILE = "dbUnitData/dataset_vazio.xml";
+    public static Dataset ultimo_executado;
 
+    public static void selecionaDataset(Dataset dataset)
+    {
+        switch(dataset)
+        {
+            case Departamento:
+                XML_FILE = "dbUnitData/dataset_departamento.xml";
+                ultimo_executado = Dataset.Departamento;
+                break;
+            case Vazio:
+                XML_FILE = "dbUnitData/dataset_vazio.xml";
+                ultimo_executado = Dataset.Vazio;
+                break;
+            case Processo:
+                XML_FILE = "dbUnitData/dataset_processo.xml";
+                ultimo_executado = Dataset.Processo;
+                break;     
+        }
+    }
+    
     @SuppressWarnings("UseSpecificCatch")
     public static void inserirDados()
     {
