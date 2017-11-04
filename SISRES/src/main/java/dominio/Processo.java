@@ -18,12 +18,12 @@ import javax.validation.constraints.Size;
 @Entity
 public class Processo extends EntidadeNegocio implements Serializable {
 
-    @NotNull
-    @Size(min = 2, max = 40)
-    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
+    @NotNull(message = "O nome deve ser preenchido.")
+    @Size(min = 2, max = 40, message= "O nome deve conter entre 2 à 40 caracteres.")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve conter apenas letras.")
     private String nome;
 
-    @NotNull
+    @NotNull(message = "O responsável deve ser preenchido.")
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;
@@ -31,7 +31,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataDeCriacao;
 
-    @NotNull
+    @NotNull(message = "O processo deve conter atividades.")
     @OneToMany(mappedBy = "processo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<Atividade> atividades;
     

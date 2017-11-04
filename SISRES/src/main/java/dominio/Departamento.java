@@ -12,16 +12,16 @@ import javax.persistence.OneToOne;
 @Entity
 public class Departamento extends EntidadeNegocio implements Serializable  {
  
-//    @NotNull
-    @Size(min = 2, max = 40)
-    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
+    @NotNull(message = "O nome deve ser preenchido.")
+    @Size(min = 2, max = 40, message = "O nome deve conter entre 2 à 40 caracteres.")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve possuir apenas letras.")
     private String nome;
     
-    @Size(min = 2, max = 6)
-    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+")
+    @Size(min = 2, max = 6, message = "A sigla deve conter entre 2 à 6 caracteres.")
+    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "A sigla deve possuir apenas letras.")
     private String sigla;
     
-    @NotNull
+    @NotNull(message = "Um responsável deve ser selecionado.")
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;
