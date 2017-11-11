@@ -43,15 +43,17 @@ public class Processo extends EntidadeNegocio implements Serializable {
     
     @NotNull
     private int duracaoMaximaEmDias;
-
+    
     public Processo()
     {
+        System.out.println("NOVO PROCESSO!");
         atividades = new ArrayList<>();
     }
     
     public Processo(String nome, Responsavel criador, Date dataDeCriacao, ArrayList<Atividade> atividades, 
             Date dataDeInicio, Date dataDeFim, int duracaoMaximaEmDias)
     {
+        System.out.println("Estou no construtor do processo!");
        this.nome = nome;
        this.responsavel = criador;
        this.dataDeCriacao = dataDeCriacao;
@@ -82,14 +84,23 @@ public class Processo extends EntidadeNegocio implements Serializable {
     }
 
     public void setResponsavel(Responsavel responsavel) {
+        
         this.responsavel = responsavel;
     }
 
     public ArrayList<Atividade> getAtividades() {
+        
+        for(Atividade atv : atividades)
+        {
+            System.out.println("Atividade: " +  atv.getNome());
+            
+        }
+        System.out.println("\blaaaaaaaaa");
         return atividades;
     }
 
     public void setAtividades(ArrayList<Atividade> atividades) {
+        System.out.println("Passei no set lista do processo");
         this.atividades = atividades;
     }
     
@@ -113,7 +124,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
         return duracaoMaximaEmDias;
     }
 
-    public void setDuracaoMaximaEmDias(int duracaoMaxima) {
+    public void setDuracaoMaximaEmDias(int duracaoMaximaEmDias) {
         this.duracaoMaximaEmDias = duracaoMaximaEmDias;
     }
 }

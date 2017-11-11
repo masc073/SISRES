@@ -1,7 +1,9 @@
 C:\Users\Natália\Desktop\SISRES\src\main\java\excecao\ExcecaoNegocio.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\util\LeitorPropriedades.java
+C:\Users\Natália\Desktop\SISRES\src\main\java\beans\AtividadeBean.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\servico\ResponsavelServico.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\EntidadeNegocio.java
+C:\Users\Natália\Desktop\SISRES\src\main\java\servico\AtividadeServico.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\SituacaoAtividade.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\beans\FeriadoBean.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\converter\EntidadeConverter.java
@@ -13,9 +15,11 @@ C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\Responsavel.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\Departamento.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\Atividade.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\servico\DepartamentoServico.java
+C:\Users\Natália\Desktop\SISRES\src\main\java\servico\ProcessoServico.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\dominio\Processo.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\servico\Servico.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\step_definitions\Dataset.java
+C:\Users\Natália\Desktop\SISRES\src\main\java\beans\ProcessoBean.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\servico\FeriadoServico.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\step_definitions\ResponsavelSteps.java
 C:\Users\Natália\Desktop\SISRES\src\main\java\step_definitions\BrowserManager.java

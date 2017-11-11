@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../template.xhtml">
+    <h:form>
+        <p:tabView>
+            <p:tab id="processo" title="Criar Processo" >
+                <!--<h:form id="form_processo">-->
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                    <h:outputText value="Nome: " />
+                    <p:inputText value="#{processoBean.processo.nome}" label="nome" required="true" requiredMessage="As informações do processo devem ser preenchidas."/>
+
+                    <h:outputText value="Duração em dias: " />
+                    <p:spinner value="#{processoBean.processo.duracaoMaximaEmDias}"/>
+
+                    <p:outputLabel for="responsavel_processo" value="Responsável :"/>
+                    <p:selectOneMenu id="responsavel_processo" converter="entidadeConverter" value="#{processoBean.processo.responsavel}">
+                        <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+                <!--</h:form>-->
+            </p:tab>
+
+            <p:tab id="atividades" title="Adicionar Atividades">
+                <h:form id="form_atividades">
+                    <h:panelGrid id="panel_grid" columns="2" columnClasses="label, value">
+
+                        <p:outputLabel value="Nome:" id="output_nome" />
+                        <p:inputText id="value_nome" value="#{processoBean.atividade.nome}" />
+
+                        <p:outputLabel for="departamento" value="Departamento :"/>
+                        <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
+                            <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                        </p:selectOneMenu>
+
+                        <p:commandButton value="Salvar" action="#{processoBean.adicionarAtividadeNoProcesso()}" id="button_salvar" 
+                                         ajax="false" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+                    </h:panelGrid>
+                    <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.processo.atividades}">
+
+                        <f:facet name="header">Atividades</f:facet>
+                        <p:ajax event="rowEdit" update="table_atividade" listener="#{processoBean.editarAtividadeLista(atividade)}" />
+                        <p:column headerText="Nome">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{atividade.nome}" /></f:facet>
+                                <f:facet name="input"><p:inputText id="nome_output" value="#{atividade.nome}" style="width:100%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Departamento">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{atividade.departamento.nome}" /></f:facet>
+                                <f:facet name="input">
+                                    <p:selectOneMenu converter="entidadeConverter" value="#{atividade.departamento}">
+                                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                                    </p:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+
+                        <p:column style="width:20px">
+                            <p:rowEditor />
+                        </p:column>
+                        <p:column style="width:20px">
+                            <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" action="#{processoBean.removerAtividadeDoProcesso(atividade)}" process="@this" >
+                                <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                            </p:commandLink>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </p:column> 
+                    </p:dataTable>
+
+                </h:form>
+            </p:tab>
+            <p:tab title="Fluxo de atividades">
+                <h:form>
+                    <p:orderList value="#{processoBean.processo.atividades}" var="atividade" itemValue="#{atividade.nome}" converter="entidadeConverter" controlsLocation="left" responsive="true">
+
+                        <p:ajax event="select" listener="#{processoBean.onSelect}" />
+                        <p:ajax event="unselect" listener="#{processoBean.onUnselect}" />
+                        <p:ajax event="reorder" listener="#{processoBean.onReorder}" />
+                        <f:facet name="caption">Atividades</f:facet>
+
+                        <p:column>
+                            <h:outputText value="#{atividade.nome} - #{atividade.departamento.nome}" />
+                        </p:column>
+                    </p:orderList>
+<!--                    <p:commandButton value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()" style="margin-top:5px" />
+                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="themesDialog" header="Themes" width="200" id="dlgThemes">
+                        <h:panelGrid id="displayThemes">
+                            <ui:repeat value="#{processoBean.processo.atividades}" var="theme">
+                                <h:outputText value="#{theme.nome}" style="margin-right:5px" />
+                            </ui:repeat>
+                        </h:panelGrid>
+                    </p:dialog>-->
+                </h:form>
+
+            </p:tab>
+            <p:tab id="confirm" title="Confirmação">
+                <p:fieldset legend="Processo" >
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputText value="Nome:  " />
+                        <h:outputText value="#{processoBean.processo.nome}" />
+
+                        <h:outputText value="Duração em dias:  " />
+                        <h:outputText value="#{processoBean.processo.duracaoMaximaEmDias}" />
+
+                        <p:outputLabel value="Responsável: "/>
+                        <p:outputLabel value="#{processoBean.processo.responsavel.nome}"/>
+
+                    </h:panelGrid>
+                </p:fieldset>
+                <br/>
+                <p:fieldset legend="Atividades">
+                    <p:dataTable id="table" editable="true"  var="atividade" value="#{processoBean.processo.atividades}">
+
+                        <f:facet name="header">Atividades</f:facet>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{atividade.nome}" />
+                        </p:column>
+                        <p:column headerText="Departamento">
+                            <h:outputText value="#{atividade.departamento.nome}" />
+                        </p:column> 
+                    </p:dataTable>
+                </p:fieldset>
+                <br/>
+                <p:commandButton value="Salvar" actionListener="#{processoBean.salvar}" process="@this"/>
+            </p:tab>
+        </p:tabView>
+    </h:form>
+</ui:decorate>

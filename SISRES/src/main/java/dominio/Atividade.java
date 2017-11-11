@@ -20,7 +20,7 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve conter apenas letras.")
     private String nome;
     
-    @NotNull(message = "A situação deve ser selecionada.")
+//    @NotNull(message = "A situação deve ser selecionada.")
     @Enumerated(EnumType.STRING)
     private SituacaoAtividade situacao;
     
@@ -29,7 +29,7 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
     private Departamento departamento;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_processo", referencedColumnName = "id")
     protected Processo processo;
 
