@@ -41,6 +41,7 @@ public class ProcessoBean implements Serializable
     
     private List<Atividade> atividades = new ArrayList<>();
 
+
     public ProcessoBean()
     {
         System.out.println("Criei um novo processo no construtor");
@@ -53,6 +54,7 @@ public class ProcessoBean implements Serializable
     {
         try
         {
+            processo.setAtividades(atividades);
             ProcessoServico.salvar(processo);
             
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
@@ -163,21 +165,22 @@ public class ProcessoBean implements Serializable
     public void adicionarAtividadeNoProcesso()
     {
         boolean encontrou = false;
+        atividades.add(atividade);
 
-        for (Atividade atividade_atual : processo.getAtividades())
-        {
-            if (atividade_atual.getNome().equals(this.atividade.getNome()))
-            {
-                encontrou = true;
-                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
-                break;
-            }
-        }
-
-        if (encontrou == false)
-        {
-            processo.getAtividades().add(atividade);
-        }
+//        for (Atividade atividade_atual : processo.getAtividades())
+//        {
+//            if (atividade_atual.getNome().equals(this.atividade.getNome()))
+//            {
+//                encontrou = true;
+//                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
+//                break;
+//            }
+//        }
+//
+//        if (encontrou == false)
+//        {
+//            processo.getAtividades().add(atividade);
+//        }
         atividade = new Atividade();
     }
 
@@ -246,6 +249,16 @@ public class ProcessoBean implements Serializable
     {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
+    }
+    
+    public List<Atividade> getAtividades()
+    {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades)
+    {
+        this.atividades = atividades;
     }
 
 }

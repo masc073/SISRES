@@ -20,7 +20,6 @@ public class ProcessoServico extends Servico
     {
         if (chegaExistencia(processo) == false)
         {
-            System.out.println("Cheguei!");
             em.persist(processo);
         } else
         {

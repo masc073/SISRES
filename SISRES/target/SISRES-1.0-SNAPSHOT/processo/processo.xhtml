@@ -43,7 +43,7 @@
                         <p:commandButton value="Salvar" action="#{processoBean.adicionarAtividadeNoProcesso()}" id="button_salvar" 
                                          ajax="false" title="Salvar" icon="ui-icon-check" validateClient="true"/>
                     </h:panelGrid>
-                    <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.processo.atividades}">
+                    <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.atividades}">
 
                         <f:facet name="header">Atividades</f:facet>
                         <p:ajax event="rowEdit" update="table_atividade" listener="#{processoBean.editarAtividadeLista(atividade)}" />
@@ -82,25 +82,15 @@
             </p:tab>
             <p:tab title="Fluxo de atividades">
                 <h:form>
-                    <p:orderList value="#{processoBean.processo.atividades}" var="atividade" itemValue="#{atividade.nome}" converter="entidadeConverter" controlsLocation="left" responsive="true">
-
-                        <p:ajax event="select" listener="#{processoBean.onSelect}" />
-                        <p:ajax event="unselect" listener="#{processoBean.onUnselect}" />
-                        <p:ajax event="reorder" listener="#{processoBean.onReorder}" />
+                    <p:orderList value="#{processoBean.atividades}" var="atividade" itemValue="#{atividade.nome}" converter="entidadeConverter" controlsLocation="left" responsive="true">
+                       
                         <f:facet name="caption">Atividades</f:facet>
 
                         <p:column>
                             <h:outputText value="#{atividade.nome} - #{atividade.departamento.nome}" />
                         </p:column>
                     </p:orderList>
-<!--                    <p:commandButton value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()" style="margin-top:5px" />
-                    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="themesDialog" header="Themes" width="200" id="dlgThemes">
-                        <h:panelGrid id="displayThemes">
-                            <ui:repeat value="#{processoBean.processo.atividades}" var="theme">
-                                <h:outputText value="#{theme.nome}" style="margin-right:5px" />
-                            </ui:repeat>
-                        </h:panelGrid>
-                    </p:dialog>-->
+
                 </h:form>
 
             </p:tab>
@@ -121,7 +111,7 @@
                 </p:fieldset>
                 <br/>
                 <p:fieldset legend="Atividades">
-                    <p:dataTable id="table" editable="true"  var="atividade" value="#{processoBean.processo.atividades}">
+                    <p:dataTable id="table" editable="true"  var="atividade" value="#{processoBean.atividades}">
 
                         <f:facet name="header">Atividades</f:facet>
                         <p:column headerText="Nome">

@@ -3,6 +3,7 @@ package dominio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
 
     @NotNull(message = "O processo deve conter atividades.")
     @OneToMany(mappedBy = "processo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Atividade> atividades;
+    private List<Atividade> atividades;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataDeInicio;
@@ -46,21 +47,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
     
     public Processo()
     {
-        System.out.println("NOVO PROCESSO!");
         atividades = new ArrayList<>();
-    }
-    
-    public Processo(String nome, Responsavel criador, Date dataDeCriacao, ArrayList<Atividade> atividades, 
-            Date dataDeInicio, Date dataDeFim, int duracaoMaximaEmDias)
-    {
-        System.out.println("Estou no construtor do processo!");
-       this.nome = nome;
-       this.responsavel = criador;
-       this.dataDeCriacao = dataDeCriacao;
-       this.atividades = atividades;
-       this.dataDeInicio = dataDeInicio;
-       this.dataDeFim = dataDeFim;
-       this.duracaoMaximaEmDias = duracaoMaximaEmDias;
     }
     
     public Date getDataDeCriacao() {
@@ -88,20 +75,23 @@ public class Processo extends EntidadeNegocio implements Serializable {
         this.responsavel = responsavel;
     }
 
-    public ArrayList<Atividade> getAtividades() {
-        
-        for(Atividade atv : atividades)
-        {
-            System.out.println("Atividade: " +  atv.getNome());
-            
-        }
-        System.out.println("\blaaaaaaaaa");
+    public List<Atividade> getAtividades() {
+      
         return atividades;
     }
 
-    public void setAtividades(ArrayList<Atividade> atividades) {
-        System.out.println("Passei no set lista do processo");
-        this.atividades = atividades;
+    public void addAtividade(Atividade atividade)
+    {
+        atividade.setProcesso(this);
+        atividades.add(atividade);
+    }
+    
+    public void setAtividades(List<Atividade> atividades) 
+    {
+        for (Atividade atividade_atual : atividades)
+        {
+            addAtividade(atividade_atual);
+        }
     }
     
     public Date getDataDeInicio() {
