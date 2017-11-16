@@ -57,7 +57,7 @@ public class FeriadoSteps
     @Entao("^deve ser exibida a mensagem para o feriado \"([^\"]*)\"$")
     public void deve_ser_exibida_a_mensagem(String mensagemEsperada)
     {
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         WebElement message_container = driver.findElement(By.className("ui-growl-title"));
 

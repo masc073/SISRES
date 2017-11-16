@@ -88,7 +88,7 @@ public class ResponsavelSteps
                 text_column = column.getText();
                 if (text_column.equals(responsavel))
                 {
-                    id = "responsavel:table_responsavel:" + contador + ":j_idt28";
+                    id = "responsavel:table_responsavel:" + contador + ":j_idt30";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
@@ -126,7 +126,7 @@ public class ResponsavelSteps
     @Entao("^deve ser exibida a mensagem \"([^\"]*)\"$")
     public void deve_ser_exibida_a_mensagem(String mensagemEsperada) throws Throwable
     {
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         WebElement message_container = driver.findElement(By.className("ui-growl-title"));
 

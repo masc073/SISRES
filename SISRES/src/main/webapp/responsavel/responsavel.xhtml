@@ -10,7 +10,7 @@
     <h:form id="responsavel">
 <!--        <p:tabView>
             <p:tab title="Godfather Part I">-->
-                <p:fieldset legend="Cadastro de Responsável" style=" width: 1050px; left: 90%;" >
+                <p:fieldset legend="Cadastro de Responsável" style="margin-left: 3px; width: 1000px;" >
                 <h:panelGrid columns="3" >
 
                     <p:outputLabel value="Nome:" id="output_nome" />
@@ -41,7 +41,7 @@
                     <p:column headerText="Nome">
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{responsavel.nome}" /></f:facet>
-                            <f:facet name="input"><p:inputText id="modelInput" value="#{responsavel.nome}" style="width:100%"/></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{responsavel.nome}"/></f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column style="width:20px">

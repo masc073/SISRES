@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -14,12 +15,13 @@ import org.dbunit.operation.DatabaseOperation;
 
 public class DbUnitUtil
 {
+
     private static String XML_FILE = "dbUnitData/dataset_vazio.xml";
     public static Dataset ultimo_executado;
 
     public static void selecionaDataset(Dataset dataset)
     {
-        switch(dataset)
+        switch (dataset)
         {
             case Departamento:
                 XML_FILE = "dbUnitData/dataset_departamento.xml";
@@ -32,10 +34,34 @@ public class DbUnitUtil
             case Processo:
                 XML_FILE = "dbUnitData/dataset_processo.xml";
                 ultimo_executado = Dataset.Processo;
-                break;     
+                break;
         }
     }
-    
+
+    public static void limpaBase(Connection connection)
+    {
+        try
+        {
+            Statement stmt = connection.createStatement();
+
+            String sql = "DELETE FROM responsavel";
+            stmt.executeUpdate(sql);
+            sql = "DELETE FROM departamento";
+            stmt.executeUpdate(sql);
+            sql = "DELETE FROM feriado";
+            stmt.executeUpdate(sql);
+            sql = "DELETE FROM processo";
+            stmt.executeUpdate(sql); 
+            sql = "DELETE FROM requerimento";
+            stmt.executeUpdate(sql);
+            sql = "DELETE FROM atividade";
+            stmt.executeUpdate(sql);
+            
+        } catch (SQLException e)
+        {
+        }
+    }
+
     @SuppressWarnings("UseSpecificCatch")
     public static void inserirDados()
     {
@@ -47,11 +73,12 @@ public class DbUnitUtil
             conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/sisres", "root", "root");
             db_conn = new DatabaseConnection(conn);
+            limpaBase(conn);
             schema = db_conn.getSchema();
-            
-             DatabaseConfig dbConfig = db_conn.getConfig();
-             dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory() );
-            
+
+            DatabaseConfig dbConfig = db_conn.getConfig();
+            dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
+
             FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
             builder.setColumnSensing(true);
             IDataSet dataSet = builder.build(new File(XML_FILE));
