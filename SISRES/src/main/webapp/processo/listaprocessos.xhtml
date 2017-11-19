@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../template.xhtml">
+    <h:form id="processo">
+        <p:fieldset legend="Processos" style="margin-left: 3px; width: 1000px;" >
+
+            <p:dataTable id="table_processo" editable="true"   var="processo" value="#{processoBean.processos}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
+
+                <f:facet name="header">Processos</f:facet>
+                <p:ajax event="rowEdit" listener="#{processoBean.redireciona_para_editar}" />
+                <p:column headerText="Nome">
+                    <h:outputText value="#{processo.nome}" />
+                </p:column>
+                <p:column headerText="Responsável">
+                    <h:outputText  value="#{processo.responsavel.nome}" />
+                </p:column>
+                <p:column headerText="Duração em dias">
+                    <h:outputText  value="#{processo.duracaoMaximaEmDias}" />
+                </p:column>
+                <p:column style="width:20px">
+                    <p:rowEditor  />
+                </p:column>
+                <p:column style="width:20px">
+                    <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_processo" action="#{processoBean.remover(processo)}" process="@this" >
+                        <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                    </p:commandLink>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

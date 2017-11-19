@@ -25,7 +25,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
     private String nome;
 
     @NotNull(message = "O responsável deve ser preenchido.")
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;
     

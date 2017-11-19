@@ -29,7 +29,7 @@ public class ProcessoBean implements Serializable
 
     @EJB
     private ProcessoServico ProcessoServico;
-    
+
     @EJB
     private AtividadeServico atividadeServico;
 
@@ -38,9 +38,8 @@ public class ProcessoBean implements Serializable
     protected Processo processo;
 
     protected Atividade atividade;
-    
-    private List<Atividade> atividades = new ArrayList<>();
 
+    private List<Atividade> atividades = new ArrayList<>();
 
     public ProcessoBean()
     {
@@ -56,7 +55,7 @@ public class ProcessoBean implements Serializable
         {
             processo.setAtividades(atividades);
             ProcessoServico.salvar(processo);
-            
+
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
         } catch (ExcecaoNegocio ex)
         {
@@ -250,7 +249,7 @@ public class ProcessoBean implements Serializable
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
     }
-    
+
     public List<Atividade> getAtividades()
     {
         return atividades;
@@ -261,4 +260,16 @@ public class ProcessoBean implements Serializable
         this.atividades = atividades;
     }
 
+    public void redireciona_para_editar(RowEditEvent event) throws ExcecaoNegocio
+    {
+        processo = (Processo) event.getObject();
+        try
+        {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("editarprocesso.xhtml");
+
+        } catch (Exception e)
+        {
+        }
+
+    }
 }

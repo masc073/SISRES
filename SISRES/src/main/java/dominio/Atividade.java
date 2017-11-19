@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +26,7 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     private SituacaoAtividade situacao;
     
     @NotNull(message = "O departamento deve ser selecionado.")
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
     private Departamento departamento;
 

@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,7 +23,7 @@ public class Departamento extends EntidadeNegocio implements Serializable  {
     private String sigla;
     
     @NotNull(message = "Um responsável deve ser selecionado.")
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;
 

@@ -1,3 +1,4 @@
+step_definitions\ProcessoSteps.class
 dominio\Departamento.class
 servico\FeriadoServico.class
 step_definitions\DbUnitUtil.class
