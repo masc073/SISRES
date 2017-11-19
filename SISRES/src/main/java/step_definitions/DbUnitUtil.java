@@ -44,14 +44,14 @@ public class DbUnitUtil
         {
             Statement stmt = connection.createStatement();
 
-            String sql = "DELETE FROM responsavel";
+            String sql = "DELETE FROM processo";
             stmt.executeUpdate(sql);
             sql = "DELETE FROM departamento";
             stmt.executeUpdate(sql);
+            sql = "DELETE FROM responsavel";
+            stmt.executeUpdate(sql);
             sql = "DELETE FROM feriado";
             stmt.executeUpdate(sql);
-            sql = "DELETE FROM processo";
-            stmt.executeUpdate(sql); 
             sql = "DELETE FROM requerimento";
             stmt.executeUpdate(sql);
             sql = "DELETE FROM atividade";

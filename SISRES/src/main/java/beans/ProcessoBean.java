@@ -165,32 +165,32 @@ public class ProcessoBean implements Serializable
     public void adicionarAtividadeNoProcesso()
     {
         boolean encontrou = false;
-        atividades.add(atividade);
+//        atividades.add(atividade);
 
-//        for (Atividade atividade_atual : processo.getAtividades())
-//        {
-//            if (atividade_atual.getNome().equals(this.atividade.getNome()))
-//            {
-//                encontrou = true;
-//                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
-//                break;
-//            }
-//        }
-//
-//        if (encontrou == false)
-//        {
-//            processo.getAtividades().add(atividade);
-//        }
+        for (Atividade atividade_atual : this.atividades)
+        {
+            if (atividade_atual.getNome().equals(this.atividade.getNome()))
+            {
+                encontrou = true;
+                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
+                break;
+            }
+        }
+
+        if (encontrou == false)
+        {
+            this.atividades.add(atividade);
+        }
         atividade = new Atividade();
     }
 
     public void removerAtividadeDoProcesso(Atividade atividade)
     {
-        for (int i = 0; i < processo.getAtividades().size(); i++)
+        for (int i = 0; i < this.atividades.size(); i++)
         {
-            if (processo.getAtividades().get(i).getNome().equals(atividade.getNome()))
+            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
             {
-                processo.getAtividades().remove(i);
+                this.atividades.remove(i);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade removida com Sucesso!");
                 break;
             }
@@ -210,12 +210,12 @@ public class ProcessoBean implements Serializable
 
     public void editarAtividadeLista(Atividade atividade)
     {
-        for (int i = 0; i < processo.getAtividades().size(); i++)
+        for (int i = 0; i < this.atividades.size(); i++)
         {
-            if (processo.getAtividades().get(i).getNome().equals(atividade.getNome()))
+            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
             {
-                processo.getAtividades().get(i).setNome(atividade.getNome());
-                processo.getAtividades().get(i).setDepartamento(atividade.getDepartamento());
+                this.atividades.get(i).setNome(atividade.getNome());
+                this.atividades.get(i).setDepartamento(atividade.getDepartamento());
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade alterada com Sucesso!");
                 break;

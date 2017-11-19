@@ -14,10 +14,10 @@
                 <h:panelGrid columns="2" columnClasses="label, value">
 
                     <h:outputText value="Nome: " />
-                    <p:inputText value="#{processoBean.processo.nome}" label="nome" required="true" requiredMessage="As informações do processo devem ser preenchidas."/>
+                    <p:inputText id="value_nome" value="#{processoBean.processo.nome}" label="nome" required="true" requiredMessage="As informações do processo devem ser preenchidas."/>
 
                     <h:outputText value="Duração em dias: " />
-                    <p:spinner value="#{processoBean.processo.duracaoMaximaEmDias}"/>
+                    <p:spinner id="value_duracao_input" value="#{processoBean.processo.duracaoMaximaEmDias}"/>
 
                     <p:outputLabel for="responsavel_processo" value="Responsável :"/>
                     <p:selectOneMenu id="responsavel_processo" converter="entidadeConverter" value="#{processoBean.processo.responsavel}">
@@ -33,7 +33,7 @@
                     <h:panelGrid id="panel_grid" columns="2" columnClasses="label, value">
 
                         <p:outputLabel value="Nome:" id="output_nome" />
-                        <p:inputText id="value_nome" value="#{processoBean.atividade.nome}" />
+                        <p:inputText id="value_nome_atividade" value="#{processoBean.atividade.nome}" />
 
                         <p:outputLabel for="departamento" value="Departamento :"/>
                         <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
@@ -68,7 +68,7 @@
                             <p:rowEditor />
                         </p:column>
                         <p:column style="width:20px">
-                            <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" action="#{processoBean.removerAtividadeDoProcesso(atividade)}" process="@this" >
+                            <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_atividade" action="#{processoBean.removerAtividadeDoProcesso(atividade)}" process="@this" >
                                 <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
                             </p:commandLink>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -123,7 +123,7 @@
                     </p:dataTable>
                 </p:fieldset>
                 <br/>
-                <p:commandButton value="Salvar" actionListener="#{processoBean.salvar}" process="@this"/>
+                <p:commandButton value="Salvar" id="salvar" actionListener="#{processoBean.salvar}" process="@this"/>
             </p:tab>
         </p:tabView>
     </h:form>

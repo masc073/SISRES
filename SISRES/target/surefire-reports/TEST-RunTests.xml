@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="42" failures="0" name="RunTests" time="75.896" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="RunTests" time="29.75" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -64,46 +64,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0.003"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" name="Quando o administrador informar o \&quot;Carlos Macedo\&quot; e a senha \&quot;C2345M\&quot; do responsavel" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" name="E confirmar a senha \&quot;C2345M\&quot;" time="0.001"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel cadastrado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" name="| \&quot;Carlos Macedo\&quot; | \&quot;C2345M\&quot; |" time="0.001"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" name="Quando o administrador informar o \&quot;Renata Macia\&quot; e a senha \&quot;Ren9845\&quot; do responsavel" time="0.001"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" name="E confirmar a senha \&quot;Ren9845\&quot;" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel cadastrado com Sucesso!\&quot;" time="0.001"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" name="| \&quot;Renata Macia\&quot; | \&quot;Ren9845\&quot; |" time="0.001"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" name="Quando o administrador informar o \&quot;Joaquim Nunes\&quot; e a senha \&quot;1221JM\&quot; do responsavel" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" name="E confirmar a senha \&quot;1221JM\&quot;" time="0.001"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel cadastrado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" name="| \&quot;Joaquim Nunes\&quot; | \&quot;1221JM\&quot; |" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" name="Quando o administrador selecionar o \&quot;Renata Macia\&quot; que deseja alterar" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" name="E alterar o seu \&quot;Marcia Cavalcanti\&quot;" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel alterado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" name="| \&quot;Renata Macia\&quot; | \&quot;Marcia Cavalcanti\&quot; |" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0.001"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" name="Quando o administrador selecionar o \&quot;Joaquim Nunes\&quot; que deseja alterar" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" name="E alterar o seu \&quot;Fabio Martins\&quot;" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel alterado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" name="| \&quot;Joaquim Nunes\&quot; | \&quot;Fabio Martins\&quot; |" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" name="Quando o administrador selecionar o \&quot;Carlos Macedo\&quot; que deseja alterar" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" name="E alterar o seu \&quot;Ant\u00F4nio Vitor\&quot;" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel alterado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" name="| \&quot;Carlos Macedo\&quot; | \&quot;Ant\u00F4nio Vitor\&quot; |" time="0"/>
-  <testcase classname="| \&quot;Marcia Cavalcanti\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Marcia Cavalcanti\&quot; |" name="Quando o administrador selecionar o \&quot;Marcia Cavalcanti\&quot; que deseja remover" time="0"/>
-  <testcase classname="| \&quot;Marcia Cavalcanti\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel removido com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Marcia Cavalcanti\&quot; |" name="| \&quot;Marcia Cavalcanti\&quot; |" time="0.005"/>
-  <testcase classname="| \&quot;Fabio Martins\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Fabio Martins\&quot; |" name="Quando o administrador selecionar o \&quot;Fabio Martins\&quot; que deseja remover" time="0"/>
-  <testcase classname="| \&quot;Fabio Martins\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel removido com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Fabio Martins\&quot; |" name="| \&quot;Fabio Martins\&quot; |" time="0.001"/>
-  <testcase classname="| \&quot;Ant\u00F4nio Vitor\&quot; |" name="Dado a tela inicial do responsavel aberta" time="0"/>
-  <testcase classname="| \&quot;Ant\u00F4nio Vitor\&quot; |" name="Quando o administrador selecionar o \&quot;Ant\u00F4nio Vitor\&quot; que deseja remover" time="0"/>
-  <testcase classname="| \&quot;Ant\u00F4nio Vitor\&quot; |" name="Entao deve ser exibida a mensagem \&quot;Respons\u00E1vel removido com Sucesso!\&quot;" time="0.001"/>
-  <testcase classname="| \&quot;Ant\u00F4nio Vitor\&quot; |" name="| \&quot;Ant\u00F4nio Vitor\&quot; |" time="0.001"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="Dado a tela inicial cadastro de processos aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="Quando o administrador informar o nome \&quot;Comprovante de matricula\&quot; a dura\u00E7\u00E3o em dias \&quot;2\&quot; e o responsavel \&quot;Nicole Goncalves Castro\&quot;" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="E ir para aba de atividades e adicionar as seguintes atividades:" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="E ir para a aba confirma\u00E7\u00E3o e salvar." time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="Entao deve ser exibida a seguinte mensagem : \&quot;Processo cadastrado com Sucesso!\&quot;" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" name="| \&quot;Comprovante de matricula\&quot; | \&quot;2\&quot; | \&quot;Nicole Goncalves Castro\&quot; |" time="0"/>
 </testsuite>
