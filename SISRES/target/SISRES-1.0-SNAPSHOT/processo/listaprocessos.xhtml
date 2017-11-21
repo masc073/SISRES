@@ -20,6 +20,12 @@
                         <f:facet name="input"><p:inputText id="nome_output" value="#{processo.nome}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
+                 <p:column headerText="Duração em dias">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{processo.duracaoMaximaEmDias}" /></f:facet>
+                        <f:facet name="input"><p:spinner id="value_duracao_input" min="1" value="#{processo.duracaoMaximaEmDias}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
                 <p:column headerText="Responsável">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{processo.responsavel.nome}" /></f:facet>
@@ -28,12 +34,6 @@
                                 <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
                             </p:selectOneMenu>
                         </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column headerText="Duração em dias">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{processo.duracaoMaximaEmDias}" /></f:facet>
-                        <f:facet name="input"><p:spinner id="value_duracao_input" min="1" value="#{processo.duracaoMaximaEmDias}"/></f:facet>
                     </p:cellEditor>
                 </p:column>
                 <p:column style="width:20px">

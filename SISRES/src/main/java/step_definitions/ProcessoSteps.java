@@ -202,6 +202,7 @@ public class ProcessoSteps
 
                     WebElement div_nome = column.findElement(By.className("ui-cell-editor-input"));
                     input_nome = div_nome.findElement(By.tagName("input"));
+                    edit_duracao = true;
 
                 } else if (edit_duracao == true)
                 {
@@ -212,9 +213,8 @@ public class ProcessoSteps
                 } else if (edit_responsavel == true)
                 {
                     WebElement div_data = column.findElement(By.className("ui-cell-editor-input"));
-                    input_responsavel = div_data.findElement(By.tagName("input"));
-                    edit_duracao = false;
-                    edit_responsavel = true;
+                    input_responsavel = div_data.findElement(By.tagName("div"));
+                    edit_responsavel = false;
                     break;
                 }
             }
@@ -228,27 +228,60 @@ public class ProcessoSteps
         input_nome.sendKeys(nome);
 
         input_duracao.clear();
-        input_duracao.sendKeys(nome);
+        input_duracao.sendKeys(duracao);
 
-        input_responsavel.clear();
-        input_responsavel.sendKeys(nome);
+        WebElement exibir_lista = input_responsavel.findElement(By.tagName("span"));
+        exibir_lista.click();
+
+        List<WebElement> options = driver.findElements(By.tagName("li"));
+
+        for (WebElement option : options)
+        {
+            if (option.getText().equals(responsavel))
+            {
+                option.click();
+            }
+        }
 
         button_check.click();
     }
 
-    @Quando("^ir para aba de atividades e alterar as seguintes atividades:$")
-    public void ir_para_aba_de_atividades_e_alterar_as_seguintes_atividades(DataTable atividades) throws Throwable
+    @Quando("^o administrador selecionar o processo \"([^\"]*)\" que deve alterar$")
+    public void o_administrador_selecionar_o_processo_que_deve_alterar(String registro) throws Throwable
     {
-        List<WebElement> abas = BrowserManager.driver.findElements(By.tagName("a"));
+        int contador = 0;
+        String id;
+        boolean removeu = false;
 
-        for (WebElement aba : abas)
+        WebElement table = driver.findElement(By.id("processo:table_processo_data"));
+
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows)
         {
-            if (aba.getText().equals("Adicionar Atividades"))
-            {
-                aba.click();
-            }
-        }
+            List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
+            for (WebElement column : columns)
+            {
+                if (column.getText().equals(registro))
+                {
+                    id = "processo:table_processo:" + contador + ":j_idt36";
+                    WebElement link_remove = row.findElement(By.id(id));
+                    link_remove.click();
+                    break;
+                }
+            }
+            if (removeu == true)
+            {
+                break;
+            }
+            ++contador;
+        }
+    }
+
+    @Quando("^alterar as seguintes atividades:$")
+    public void alterar_as_seguintes_atividades(DataTable atividades) throws Throwable
+    {
         List<List<String>> atividades_processo;
 
         atividades_processo = atividades.raw();
@@ -256,6 +289,24 @@ public class ProcessoSteps
         for (List<String> atividade_atual : atividades_processo)
         {
 
+            BrowserManager.driver.findElement(By.id("form_atividades:value_nome_atividade")).sendKeys(atividade_atual.get(0));
+
+            WebElement div_departamento = BrowserManager.driver.findElement(By.id("form_atividades:departamento"));
+            WebElement exibir_lista = div_departamento.findElement(By.tagName("span"));
+            exibir_lista.click();
+
+            List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
+
+            for (WebElement option : options)
+            {
+                if (option.getText().equals(atividade_atual.get(1)))
+                {
+                    option.click();
+                }
+            }
+
+            BrowserManager.driver.findElement(By.id("form_atividades:button_adicionar")).click();
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         }
     }
 }
