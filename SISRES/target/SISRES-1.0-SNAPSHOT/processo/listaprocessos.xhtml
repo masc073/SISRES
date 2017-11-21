@@ -13,18 +13,34 @@
             <p:dataTable id="table_processo" editable="true"   var="processo" value="#{processoBean.processos}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
 
                 <f:facet name="header">Processos</f:facet>
-                <p:ajax event="rowEdit" listener="#{processoBean.redireciona_para_editar}" />
+                <p:ajax event="rowEdit" listener="#{processoBean.editar}" />
                 <p:column headerText="Nome">
-                    <h:outputText value="#{processo.nome}" />
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{processo.nome}" /></f:facet>
+                        <f:facet name="input"><p:inputText id="nome_output" value="#{processo.nome}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
                 <p:column headerText="Responsável">
-                    <h:outputText  value="#{processo.responsavel.nome}" />
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{processo.responsavel.nome}" /></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu converter="entidadeConverter" value="#{processo.responsavel}">
+                                <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
                 </p:column>
                 <p:column headerText="Duração em dias">
-                    <h:outputText  value="#{processo.duracaoMaximaEmDias}" />
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{processo.duracaoMaximaEmDias}" /></f:facet>
+                        <f:facet name="input"><p:spinner id="value_duracao_input" min="1" value="#{processo.duracaoMaximaEmDias}"/></f:facet>
+                    </p:cellEditor>
                 </p:column>
                 <p:column style="width:20px">
                     <p:rowEditor  />
+                </p:column>
+                <p:column style="width:40px">
+                    <p:commandButton icon="ui-icon-bookmark"  action="#{processoBean.redireciona_para_editar_atividades(processo)}"/> 
                 </p:column>
                 <p:column style="width:20px">
                     <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_processo" action="#{processoBean.remover(processo)}" process="@this" >

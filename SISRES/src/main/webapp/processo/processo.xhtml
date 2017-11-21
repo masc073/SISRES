@@ -7,17 +7,77 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 
              template="../template.xhtml">
-    <h:form>
-        <p:tabView>
-            <p:tab id="processo" title="Criar Processo" >
-                <!--<h:form id="form_processo">-->
+
+
+    <p:fieldset legend="Novo Processo">
+        <br/>
+        <h:form id="form_atividades">
+            <p:fieldset legend="Fluxo do Processo" >
+
+                <h:panelGrid id="panel_grid" columns="2" columnClasses="label, value">
+
+                    <p:outputLabel value="Nome:" id="output_nome" />
+                    <p:inputText id="value_nome_atividade" value="#{processoBean.atividade.nome}" />
+
+                    <p:outputLabel for="departamento" value="Departamento :"/>
+                    <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
+                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:commandButton value="Adicionar" process="@this" action="#{processoBean.adicionarAtividadeNoProcesso()}" id="button_adicionar" 
+                                 ajax="false" title="Adicionar" icon="ui-icon-check" validateClient="form_atividades"/>
+                <br/>
+                <br/>
+                <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.atividades}">
+
+                    <f:facet name="header">Atividades</f:facet>
+                    <p:ajax event="rowEdit" update="table_atividade" listener="#{processoBean.editarAtividadeLista(atividade)}" />
+                    <p:column headerText="Nome">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{atividade.nome}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="nome_output" value="#{atividade.nome}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Departamento">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{atividade.departamento.nome}" /></f:facet>
+                            <f:facet name="input">
+                                <p:selectOneMenu converter="entidadeConverter" value="#{atividade.departamento}">
+                                    <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                                </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column> 
+
+                    <p:column style="width:20px">
+                        <p:rowEditor />
+                    </p:column>
+                    <p:column style="width:20px">
+                        <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_atividade" action="#{processoBean.removerAtividadeDoProcesso(atividade)}" process="@this" >
+                            <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                        </p:commandLink>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </p:column> 
+                </p:dataTable>
+
+            </p:fieldset>
+            <br/>
+            <br/>
+        </h:form>
+        <h:form id="processo">
+            <p:fieldset legend="Informações do Processo">
+
                 <h:panelGrid columns="2" columnClasses="label, value">
 
                     <h:outputText value="Nome: " />
-                    <p:inputText id="value_nome" value="#{processoBean.processo.nome}" label="nome" required="true" requiredMessage="As informações do processo devem ser preenchidas."/>
+                    <p:inputText id="value_nome" value="#{processoBean.processo.nome}" label="nome"/>
 
                     <h:outputText value="Duração em dias: " />
-                    <p:spinner id="value_duracao_input" value="#{processoBean.processo.duracaoMaximaEmDias}"/>
+                    <p:spinner id="value_duracao_input" min="1" value="#{processoBean.processo.duracaoMaximaEmDias}"/>
 
                     <p:outputLabel for="responsavel_processo" value="Responsável :"/>
                     <p:selectOneMenu id="responsavel_processo" converter="entidadeConverter" value="#{processoBean.processo.responsavel}">
@@ -25,106 +85,10 @@
                     </p:selectOneMenu>
 
                 </h:panelGrid>
-                <!--</h:form>-->
-            </p:tab>
-
-            <p:tab id="atividades" title="Adicionar Atividades">
-                <h:form id="form_atividades">
-                    <h:panelGrid id="panel_grid" columns="2" columnClasses="label, value">
-
-                        <p:outputLabel value="Nome:" id="output_nome" />
-                        <p:inputText id="value_nome_atividade" value="#{processoBean.atividade.nome}" />
-
-                        <p:outputLabel for="departamento" value="Departamento :"/>
-                        <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
-                            <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
-                        </p:selectOneMenu>
-
-                        <p:commandButton value="Salvar" action="#{processoBean.adicionarAtividadeNoProcesso()}" id="button_salvar" 
-                                         ajax="false" title="Salvar" icon="ui-icon-check" validateClient="true"/>
-                    </h:panelGrid>
-                    <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.atividades}">
-
-                        <f:facet name="header">Atividades</f:facet>
-                        <p:ajax event="rowEdit" update="table_atividade" listener="#{processoBean.editarAtividadeLista(atividade)}" />
-                        <p:column headerText="Nome">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{atividade.nome}" /></f:facet>
-                                <f:facet name="input"><p:inputText id="nome_output" value="#{atividade.nome}" style="width:100%"/></f:facet>
-                            </p:cellEditor>
-                        </p:column>
-                        <p:column headerText="Departamento">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{atividade.departamento.nome}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:selectOneMenu converter="entidadeConverter" value="#{atividade.departamento}">
-                                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
-                                    </p:selectOneMenu>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column> 
-
-                        <p:column style="width:20px">
-                            <p:rowEditor />
-                        </p:column>
-                        <p:column style="width:20px">
-                            <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_atividade" action="#{processoBean.removerAtividadeDoProcesso(atividade)}" process="@this" >
-                                <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
-                            </p:commandLink>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
-                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                            </p:confirmDialog>
-                        </p:column> 
-                    </p:dataTable>
-
-                </h:form>
-            </p:tab>
-            <p:tab title="Fluxo de atividades">
-                <h:form>
-                    <p:orderList value="#{processoBean.atividades}" var="atividade" itemValue="#{atividade.nome}" converter="entidadeConverter" controlsLocation="left" responsive="true">
-                       
-                        <f:facet name="caption">Atividades</f:facet>
-
-                        <p:column>
-                            <h:outputText value="#{atividade.nome} - #{atividade.departamento.nome}" />
-                        </p:column>
-                    </p:orderList>
-
-                </h:form>
-
-            </p:tab>
-            <p:tab id="confirm" title="Confirmação">
-                <p:fieldset legend="Processo" >
-                    <h:panelGrid columns="2" cellpadding="5">
-
-                        <h:outputText value="Nome:  " />
-                        <h:outputText value="#{processoBean.processo.nome}" />
-
-                        <h:outputText value="Duração em dias:  " />
-                        <h:outputText value="#{processoBean.processo.duracaoMaximaEmDias}" />
-
-                        <p:outputLabel value="Responsável: "/>
-                        <p:outputLabel value="#{processoBean.processo.responsavel.nome}"/>
-
-                    </h:panelGrid>
-                </p:fieldset>
                 <br/>
-                <p:fieldset legend="Atividades">
-                    <p:dataTable id="table" editable="true"  var="atividade" value="#{processoBean.atividades}">
-
-                        <f:facet name="header">Atividades</f:facet>
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{atividade.nome}" />
-                        </p:column>
-                        <p:column headerText="Departamento">
-                            <h:outputText value="#{atividade.departamento.nome}" />
-                        </p:column> 
-                    </p:dataTable>
-                </p:fieldset>
-                <br/>
-                <p:commandButton value="Salvar" id="salvar" actionListener="#{processoBean.salvar}" process="@this"/>
-            </p:tab>
-        </p:tabView>
-    </h:form>
+                <p:commandButton value="Salvar" process="@this" action="#{processoBean.salvar()}" id="button_salvar" 
+                                 ajax="false" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+            </p:fieldset>
+        </h:form>
+    </p:fieldset>
 </ui:decorate>

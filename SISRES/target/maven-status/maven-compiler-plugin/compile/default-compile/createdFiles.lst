@@ -21,6 +21,7 @@ servico\ProcessoServico.class
 beans\ResponsavelBean.class
 dominio\Feriado.class
 dominio\EntidadeNegocio.class
+beans\ProcessoEditarBean.class
 dominio\EntidadeNegocio_.class
 step_definitions\ResponsavelSteps.class
 util\LeitorPropriedades.class
