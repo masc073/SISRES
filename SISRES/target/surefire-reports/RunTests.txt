@@ -1,0 +1,62 @@
+-------------------------------------------------------------------------------
+Test set: RunTests
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 4, Skipped: 1, Time elapsed: 158.371 sec <<< FAILURE!
+Entao deve ser exibida a seguinte mensagem : \"Processo cadastrado com Sucesso!\"(| \"Comprovante de matricula\" | \"2\" | \"Nicole Goncalves Castro\" |)  Time elapsed: 0.017 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.Mqei5D13DalO, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0, platformVersion=6.3, moz:processID=8156, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: 1d4c4ba8-1ed4-4b28-8c31-04d0a1712e7a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ProcessoSteps.deve_ser_exibida_a_seguinte_mensagem(ProcessoSteps.java:71)
+	at ?.Entao deve ser exibida a seguinte mensagem : "Processo cadastrado com Sucesso!"(src/main/java/features/Processo.feature:22)
+| \"Comprovante de matricula\" | \"2\" | \"Nicole Goncalves Castro\" |  Time elapsed: 0.018 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'NATÁLIA', ip: '192.168.99.1', os.name: 'Windows 8.1', os.arch: 'amd64', os.version: '6.3', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\Natália\AppData\Local\Temp\rust_mozprofile.Mqei5D13DalO, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0, platformVersion=6.3, moz:processID=8156, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: 1d4c4ba8-1ed4-4b28-8c31-04d0a1712e7a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ProcessoSteps.deve_ser_exibida_a_seguinte_mensagem(ProcessoSteps.java:71)
+	at ?.Entao deve ser exibida a seguinte mensagem : "Processo cadastrado com Sucesso!"(src/main/java/features/Processo.feature:22)
+E informar o \"Solicitacao de Comprovante de matricula\" a duracao \"2\" e o \"Nicole Goncalves Castro\" para atualiza\u00E7\u00E3o(| \"Comprovante de matricula\" | \"Solicitacao de Comprovante de matricula\" | \"2\" | \"Nicole Goncalves Castro\" |)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ProcessoSteps.informar_o_a_duracao_e_o_para_atualização(ProcessoSteps.java:227)
+	at ?.E informar o "Solicitacao de Comprovante de matricula" a duracao "2" e o "Nicole Goncalves Castro" para atualização(src/main/java/features/Processo.feature:32)
+| \"Comprovante de matricula\" | \"Solicitacao de Comprovante de matricula\" | \"2\" | \"Nicole Goncalves Castro\" |  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at step_definitions.ProcessoSteps.informar_o_a_duracao_e_o_para_atualização(ProcessoSteps.java:227)
+	at ?.E informar o "Solicitacao de Comprovante de matricula" a duracao "2" e o "Nicole Goncalves Castro" para atualização(src/main/java/features/Processo.feature:32)
