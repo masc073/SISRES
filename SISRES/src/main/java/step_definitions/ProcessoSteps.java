@@ -286,7 +286,9 @@ public class ProcessoSteps
         List<List<String>> atividades_processo;
 
         atividades_processo = atividades.raw();
-
+        
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        
         WebElement table = driver.findElement(By.id("form_atividades:table_atividade_data"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
