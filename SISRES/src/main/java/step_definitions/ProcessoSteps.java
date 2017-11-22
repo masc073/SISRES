@@ -282,31 +282,58 @@ public class ProcessoSteps
     @Quando("^alterar as seguintes atividades:$")
     public void alterar_as_seguintes_atividades(DataTable atividades) throws Throwable
     {
+        boolean edit_nome = false, edit_responsavel = false;
         List<List<String>> atividades_processo;
 
         atividades_processo = atividades.raw();
 
+        WebElement table = driver.findElement(By.id("form_atividades:table_atividade_data"));
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
         for (List<String> atividade_atual : atividades_processo)
         {
-
-            BrowserManager.driver.findElement(By.id("form_atividades:value_nome_atividade")).sendKeys(atividade_atual.get(0));
-
-            WebElement div_departamento = BrowserManager.driver.findElement(By.id("form_atividades:departamento"));
-            WebElement exibir_lista = div_departamento.findElement(By.tagName("span"));
-            exibir_lista.click();
-
-            List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
-
-            for (WebElement option : options)
+            for (WebElement row : rows)
             {
-                if (option.getText().equals(atividade_atual.get(1)))
+                List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
+
+                for (WebElement column : columns)
                 {
-                    option.click();
+                    if (column.getText().equals(atividade_atual.get(0)))
+                    {
+                        edit_responsavel = true;
+                        row.findElement(By.className("ui-row-editor-pencil")).click();
+
+                        WebElement link_check = row.findElement(By.className("ui-row-editor-check"));
+                        button_check = link_check.findElement(By.tagName("span"));
+
+                        WebElement div_nome = column.findElement(By.className("ui-cell-editor-input"));
+                        input_nome = div_nome.findElement(By.tagName("input"));
+                        input_nome.clear();
+                        input_nome.sendKeys(atividade_atual.get(1));
+
+                    } else if (edit_responsavel == true)
+                    {
+                        WebElement exibir_lista = column.findElement(By.tagName("span"));
+                        exibir_lista.click();
+
+                        List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
+
+                        for (WebElement option : options)
+                        {
+                            if (option.getText().equals(atividade_atual.get(2)))
+                            {
+                                option.click();
+                            }
+                        }
+                        button_check.click();
+                        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+                        edit_responsavel = false;
+                        break;
+                    }
                 }
             }
-
-            BrowserManager.driver.findElement(By.id("form_atividades:button_adicionar")).click();
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         }
+          driver.findElement(By.id("j_idt39:button_salvar")).click();
     }
 }

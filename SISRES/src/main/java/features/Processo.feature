@@ -36,25 +36,23 @@ Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
     | registro                   | nome                                      | duracao | responsavel               |
     | "Comprovante de matricula" | "Solicitacao de Comprovante de matricula" | "5"     | "Alex Santos Sousa"       |
 
-#
-#  Esquema do Cenario: Remover processo
-#    Dado a tela de listagem de processos aberta
-#    Quando o administrador selecionar o registro <registro> que deseja remover 
-#    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
-#
-#    Exemplos: 
-#      | registro                                  | 
-#      | "Solicitacao de Comprovante de matricula" | 
-
-
   Esquema do Cenario: Alterar atividades do processo
     Dado a tela de listagem de processos aberta
     Quando o administrador selecionar o processo <nome_atual> que deve alterar 
     E alterar as seguintes atividades:
-    | Valida informacoes   | Validacao das informacoes   | Validar as informacoes | Setor de registro escolar do DASE |
-    | Gera documento       | liberacao do documento      | Gera o comprovante     | Setor de registro escolar do DASE |
+    | Valida informacoes                | Validacao das informacoes   | Setor de registro escolar do DASE |
     Entao deve ser exibida a seguinte mensagem : "Fluxo do processo alterado com Sucesso!"
 
     Exemplos: 
     | nome_atual                                | 
     | "Solicitacao de Comprovante de matricula" | 
+
+
+  Esquema do Cenario: Remover processo
+    Dado a tela de listagem de processos aberta
+    Quando o administrador selecionar o registro <registro> que deseja remover 
+    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
+
+    Exemplos: 
+      | registro                                  | 
+      | "Solicitacao de Comprovante de matricula" | 
