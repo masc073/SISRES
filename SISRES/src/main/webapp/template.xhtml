@@ -13,7 +13,7 @@
             }
             .menu
             {
-                float: left; width: 15%;  margin-top: 20px; margin-right: 10px;
+                float: left; width: 25%;  margin-top: 20px; margin-right: 10px;
             }
             #panel
             {
@@ -33,15 +33,16 @@
         <p:panel id="panel" header="Sistema de Requerimento Estudantil">
 
             <p:layout>
-                <p:layoutUnit position="west" size="230" style="border: none;">
+                <p:layoutUnit position="west" size="240" style="border: none;">
                     <h:form>  
                         <p:growl id="messages" showDetail="false" autoUpdate="true" />
 
-                        <p:menu class="menu" style="width: 200px">
+                        <p:menu class="menu" style="width: 220px">
                             <p:submenu class="submenu" icon="ui-icon-home" label="Início">
                                 <p:menuitem value="Meus Processos"  actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
                             </p:submenu>
                             <p:submenu class="submenu" label="Cadastros" icon="ui-icon-pencil" >
+                                <p:menuitem value="Novo Requerimento" url="/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
                                 <p:menuitem value="Novo Processo" url="/processo/processo.xhtml" update="messages" icon="ui-icon-plusthick" />
                                 <p:menuitem value="Processos" url="/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
                                 <p:menuitem value="Responsáveis" url="/responsavel/responsavel.xhtml" icon="ui-icon-person"/>

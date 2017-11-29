@@ -16,10 +16,12 @@ dominio\Departamento_.class
 dominio\Feriado_.class
 step_definitions\DepartamentoSteps.class
 dominio\Processo_.class
+servico\RequerimentoServico.class
 step_definitions\Dataset.class
 servico\ProcessoServico.class
 beans\ResponsavelBean.class
 dominio\Feriado.class
+beans\RequerimentoBean.class
 dominio\EntidadeNegocio.class
 beans\ProcessoEditarBean.class
 dominio\EntidadeNegocio_.class
@@ -27,6 +29,7 @@ step_definitions\ResponsavelSteps.class
 util\LeitorPropriedades.class
 beans\ProcessoBean.class
 beans\DepartamentoBean.class
+dominio\Requerimento.class
 dominio\Responsavel_.class
 servico\Servico.class
 step_definitions\FeriadoSteps.class

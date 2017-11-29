@@ -1,6 +1,7 @@
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\FeriadoBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\dominio\SituacaoAtividade.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\dominio\Feriado.java
+C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\servico\RequerimentoServico.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\dominio\EntidadeNegocio.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\AtividadeBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\step_definitions\BrowserManager.java
@@ -14,6 +15,7 @@ C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\mai
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\excecao\MensagemExcecao.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\step_definitions\ResponsavelSteps.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\util\LeitorPropriedades.java
+C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\RequerimentoBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\ProcessoEditarBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\servico\ProcessoServico.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\step_definitions\FeriadoSteps.java
@@ -26,6 +28,7 @@ C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\mai
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\ProcessoBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\dominio\Atividade.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\excecao\ExcecaoSistema.java
+C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\dominio\Requerimento.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\servico\Servico.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\beans\DepartamentoBean.java
 C:\Users\Natália\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES\src\main\java\servico\FeriadoServico.java

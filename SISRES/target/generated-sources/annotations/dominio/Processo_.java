@@ -8,16 +8,14 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-20T16:37:34")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-28T23:44:02")
 @StaticMetamodel(Processo.class)
 public class Processo_ extends EntidadeNegocio_ {
 
     public static volatile ListAttribute<Processo, Atividade> atividades;
     public static volatile SingularAttribute<Processo, Integer> duracaoMaximaEmDias;
-    public static volatile SingularAttribute<Processo, Date> dataDeInicio;
     public static volatile SingularAttribute<Processo, Date> dataDeCriacao;
     public static volatile SingularAttribute<Processo, String> nome;
-    public static volatile SingularAttribute<Processo, Date> dataDeFim;
     public static volatile SingularAttribute<Processo, Responsavel> responsavel;
 
 }

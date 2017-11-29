@@ -36,12 +36,6 @@ public class Processo extends EntidadeNegocio implements Serializable {
     @OneToMany(mappedBy = "processo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Atividade> atividades;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataDeInicio;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataDeFim;
-    
     @NotNull
     private int duracaoMaximaEmDias;
     
@@ -94,21 +88,21 @@ public class Processo extends EntidadeNegocio implements Serializable {
         }
     }
     
-    public Date getDataDeInicio() {
-        return dataDeInicio;
-    }
-
-    public void setDataDeInicio(Date dataDeInicio) {
-        this.dataDeInicio = dataDeInicio;
-    }
-
-    public Date getDataDeFim() {
-        return dataDeFim;
-    }
-
-    public void setDataDeFim(Date dataDeFim) {
-        this.dataDeFim = dataDeFim;
-    }
+//    public Date getDataDeInicio() {
+//        return dataDeInicio;
+//    }
+//
+//    public void setDataDeInicio(Date dataDeInicio) {
+//        this.dataDeInicio = dataDeInicio;
+//    }
+//
+//    public Date getDataDeFim() {
+//        return dataDeFim;
+//    }
+//
+//    public void setDataDeFim(Date dataDeFim) {
+//        this.dataDeFim = dataDeFim;
+//    }
 
     public int getDuracaoMaximaEmDias() {
         return duracaoMaximaEmDias;
