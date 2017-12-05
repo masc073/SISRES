@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="RunTests" time="44.512" errors="0" skipped="0">
+<testsuite tests="16" failures="0" name="RunTests" time="103.656" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_144\jre\bin"/>
@@ -75,5 +75,9 @@
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja visualizar" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser redirecionado para outra tela com as informacoes do requerimento" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja encerrar" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento encerrado com Sucesso!\&quot;" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0"/>
 </testsuite>

@@ -94,7 +94,7 @@ public class RequerimentoBean implements Serializable
         try
         {
             RequerimentoServico.remover(requerimento);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Requerimento cancelado com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Requerimento encerrado com Sucesso!");
 
         } catch (EJBException ex)
         {

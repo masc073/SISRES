@@ -63,9 +63,8 @@ public class RequerimentoSteps
     public void o_aluno_selecionar_o_que_deseja_visualizar(String requerimento) throws Throwable
     {
         int count = 0;
-        String id; 
-        
-        
+        String id;
+
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement table = driver.findElement(By.id("requerimento:table_requerimento_data"));
 
@@ -74,8 +73,8 @@ public class RequerimentoSteps
         for (WebElement row : rows)
         {
             List<WebElement> columns = row.findElements(By.tagName("td"));
-            
-            id= "requerimento:table_requerimento:" + count + ":consultar";
+
+            id = "requerimento:table_requerimento:" + count + ":consultar";
 
             for (WebElement column : columns)
             {
@@ -92,7 +91,51 @@ public class RequerimentoSteps
     @Entao("^deve ser redirecionado para outra tela com as informacoes do requerimento$")
     public void deve_ser_redirecionado_para_outra_tela_com_as_informacoes_do_requerimento() throws Throwable
     {
-        
+
+    }
+
+    @Quando("^o aluno selecionar o \"([^\"]*)\" que deseja encerrar$")
+    public void o_aluno_selecionar_o_que_deseja_encerrar(String requerimento) throws Throwable
+    {
+         int contador = 0;
+        String id;
+        boolean removeu = false;
+
+        WebElement table = driver.findElement(By.id("requerimento:table_requerimento_data"));
+
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows)
+        {
+            List<WebElement> columns = row.findElements(By.tagName("td"));
+
+            for (WebElement column : columns)
+            {
+                if (column.getText().equals(requerimento))
+                {
+                    id = "requerimento:table_requerimento:" + contador + ":delete";
+                    WebElement link_remove = row.findElement(By.id(id));
+                    link_remove.click();
+                    List<WebElement> buttons = driver.findElements(By.tagName("button"));
+
+                    for (WebElement button : buttons)
+                    {
+                        if (button.getText().equals("Sim"))
+                        {
+                            button.click();
+                            removeu = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            if (removeu == true)
+            {
+                break;
+            }
+            ++contador;
+        }
     }
 
 }

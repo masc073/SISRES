@@ -29,6 +29,16 @@ Funcionalidade: Testar as operacoes basicas do Requerimento
       | requerimento                | 
       | "Comprovante de matricula"  |
 
+  Esquema do Cenario: Encerrar requerimento
+    Dado a tela inicial de requerimento aberta
+    Quando o aluno selecionar o <requerimento> que deseja encerrar
+    Entao deve ser exibida a mensagem sobre o requerimento "Requerimento encerrado com Sucesso!"
+
+    Exemplos: 
+      | requerimento                | 
+      | "Comprovante de matricula"  |
+
+
 #  Esquema do Cenario: Remover responsavel
 #    Dado a tela inicial do responsavel aberta
 #    Quando o administrador selecionar o <responsavel> que deseja remover
