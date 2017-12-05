@@ -37,20 +37,20 @@ public class RequerimentoServico extends Servico
     public boolean chegaExistencia(Requerimento Requerimento)
     {
         TypedQuery<Requerimento> query;
-
+        
+        // Quando adicionar a autorização checar o usuário também.
+        
         if (Requerimento.getId() == null) // Inserir
         {
-            query = em.createQuery("select f from Requerimento f where f.solicitante = ?1 and f.processo = ?2", Requerimento.class);
-            query.setParameter(1, Requerimento.getSolicitante());
-            query.setParameter(2, Requerimento.getProcesso());
+            query = em.createQuery("select f from Requerimento f where f.processo = ?1", Requerimento.class);
+            query.setParameter(1, Requerimento.getProcesso());
 
         } 
         else // Atualizar
         {
-            query = em.createQuery("select f from Requerimento f where f.solicitante = ?1 and f.processo = ?2 and f.id != ?3", Requerimento.class);
-            query.setParameter(1, Requerimento.getSolicitante());
-            query.setParameter(2, Requerimento.getProcesso());
-            query.setParameter(3, Requerimento.getId());
+            query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.id != ?2", Requerimento.class);
+            query.setParameter(1, Requerimento.getProcesso());
+            query.setParameter(2, Requerimento.getId());
         }
 
         List<Requerimento> Requerimentos = query.getResultList();

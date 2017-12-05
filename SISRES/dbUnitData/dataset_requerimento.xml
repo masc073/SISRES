@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    
+     <!-- RESPONSÁVEIS -->
+    <responsavel id="1" nome="Lavinia Barbosa Goncalves" senhadigital="eixai2Taech" />
+    <responsavel id="2" nome="Nicole Goncalves Castro" senhadigital="oJieng1ee" />
+    <responsavel id="3" nome="Beatrice Araujo Gomes" senhadigital="Choh5Ou5ue" />
+    <responsavel id="4" nome="Murilo Carvalho Barros" senhadigital="pheiL7wee2O" />
+    <responsavel id="5" nome="André Costa Azevedo" senhadigital="Ookaechie2" />
+    <responsavel id="6" nome="Livia Costa Carvalho" senhadigital="Oughh8ux" />
+    <responsavel id="7" nome="Erick Lima Barros" senhadigital="ONgu9eiZ8" />
+    <responsavel id="8" nome="Alex Santos Sousa" senhadigital="Oowai4Hoyai" />
+    
+    <!-- DEPARTAMENTOS -->
+     <departamento id="1" nome="Departamento de gestão de tecnologia da informação" sigla="DGTI" id_responsavel="1" />    
+     <departamento id="2" nome="Diretoria de extensão" sigla="DEX" id_responsavel="2"  />
+     <departamento id="3" nome="Diretoria de ensino" sigla="DEN" id_responsavel="3"  />    
+     <departamento id="4" nome="Assessoria de Comunicação" sigla="ASCOM" id_responsavel="4"  />
+     <departamento id="5" nome="Setor de registro escolar do DASE" sigla="DASE" id_responsavel="5"  />    
+     <departamento id="6" nome="Serviço Social - Psicologia" sigla="PSCICOL" id_responsavel="6"  />    
+     <departamento id="7" nome="Biblioteca" sigla="CBIBLIO" id_responsavel="7"  />
+     
+     <!-- PROCESSO -->
+     <processo id="1" nome="Comprovante de matricula" duracaomaximaemdias="2" id_responsavel="2" />
+     
+     <!-- ATIVIDADES -->
+     <atividade id="1" nome="Valida informacoes" id_processo="1"  id_departamento="5"/>
+     <atividade id="2" nome="Requisita aprovacao da biblioteca" id_processo="1" id_departamento="7"/>
+     <atividade id="3" nome="Gera documento" id_processo="1" id_departamento="5"/>
+  
+</dataset>

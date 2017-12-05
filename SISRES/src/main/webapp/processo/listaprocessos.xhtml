@@ -40,7 +40,7 @@
                     <p:rowEditor  />
                 </p:column>
                 <p:column style="width:40px">
-                    <p:commandButton icon="ui-icon-bookmark"  action="#{processoBean.redireciona_para_editar_atividades(processo)}"/> 
+                    <p:commandButton icon="ui-icon-bookmark" id="atividades_processo" action="#{processoBean.redireciona_para_editar_atividades(processo)}"/> 
                 </p:column>
                 <p:column style="width:20px">
                     <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_processo" action="#{processoBean.remover(processo)}" process="@this" >

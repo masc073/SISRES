@@ -48,7 +48,7 @@
                         <p:rowEditor />
                     </p:column>
                     <p:column id="delete" style="width:20px">
-                        <p:commandLink styleClass="ui-icon ui-icon-trash" update="table_responsavel" action="#{responsavelBean.remover(responsavel)}" process="@this" >
+                        <p:commandLink styleClass="ui-icon ui-icon-trash" id="remove" update="table_responsavel" action="#{responsavelBean.remover(responsavel)}" process="@this" >
                             <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
                         </p:commandLink>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

@@ -4,5 +4,6 @@ public enum Dataset
 {
     Departamento,
     Vazio,
-    Processo
+    Processo,
+    Requerimento
 }

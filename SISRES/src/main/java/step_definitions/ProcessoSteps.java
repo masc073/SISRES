@@ -100,7 +100,7 @@ public class ProcessoSteps
             }
 
             BrowserManager.driver.findElement(By.id("form_atividades:button_adicionar")).click();
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         }
     }
 
@@ -265,7 +265,7 @@ public class ProcessoSteps
             {
                 if (column.getText().equals(registro))
                 {
-                    id = "processo:table_processo:" + contador + ":j_idt36";
+                    id = "processo:table_processo:" + contador + ":atividades_processo";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     break;
@@ -277,6 +277,7 @@ public class ProcessoSteps
             }
             ++contador;
         }
+         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @Quando("^alterar as seguintes atividades:$")
@@ -336,6 +337,6 @@ public class ProcessoSteps
                 }
             }
         }
-          driver.findElement(By.id("j_idt39:button_salvar")).click();
+          driver.findElement(By.id("j_idt40:button_salvar")).click();
     }
 }

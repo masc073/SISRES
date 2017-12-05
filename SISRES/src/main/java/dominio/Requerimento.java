@@ -1,6 +1,8 @@
 package dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,13 +39,13 @@ public class Requerimento extends EntidadeNegocio implements Serializable
 
     @Column
     private boolean finalizado;
-    
+
     @Column
     private String matriculaAluno;
-    
+
     public Requerimento()
     {
-    
+
     }
 
     public Processo getProcesso()
@@ -54,6 +56,15 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     public void setProcesso(Processo processo)
     {
         this.processo = processo;
+    }
+
+    public String getDataDeInicioFormatada() throws ParseException
+    {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        if(dataDeInicio != null)
+            return fmt.format(dataDeInicio);
+        else
+            return "Data de início não informada"; 
     }
 
     public Date getDataDeInicio()
@@ -105,7 +116,7 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     {
         this.finalizado = finalizado;
     }
-    
+
     public String getMatriculaAluno()
     {
         return matriculaAluno;
