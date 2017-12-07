@@ -38,14 +38,3 @@ Funcionalidade: Testar as operacoes basicas do Requerimento
       | requerimento                | 
       | "Comprovante de matricula"  |
 
-
-#  Esquema do Cenario: Remover responsavel
-#    Dado a tela inicial do responsavel aberta
-#    Quando o administrador selecionar o <responsavel> que deseja remover
-#    Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"
-#
-#    Exemplos: 
-#      | responsavel         |
-#      | "Marcia Cavalcanti" |
-#      | "Fabio Martins"     |
-#      | "Antônio Vitor"     |

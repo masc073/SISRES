@@ -32,6 +32,8 @@ public class ProcessoServico extends Servico
         em.flush();
         return em.createQuery("select p from Processo p", Processo.class).getResultList();
     }
+    
+    
 
     public boolean chegaExistencia(Processo processo)
     {

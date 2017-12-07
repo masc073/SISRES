@@ -19,6 +19,9 @@
                     <p:outputLabel value="Nome:" id="output_nome" />
                     <p:inputText id="value_nome_atividade" value="#{processoBean.atividade.nome}" />
 
+                    <p:outputLabel value="Anexar Arquivo:" id="output_anexarArquivo" />
+                    <p:selectBooleanCheckbox value="#{processoBean.atividade.anexarArquivo}" />
+
                     <p:outputLabel for="departamento" value="Departamento :"/>
                     <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
                         <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
@@ -37,6 +40,12 @@
                         <p:cellEditor>
                             <f:facet name="output"><h:outputText value="#{atividade.nome}" /></f:facet>
                             <f:facet name="input"><p:inputText id="nome_output" value="#{atividade.nome}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Anexar Arquivo">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{processoBean.atividade.anexarArquivo}" /></f:facet>
+                            <f:facet name="input"><p:selectBooleanCheckbox disabled="false" value="#{processoBean.atividade.anexarArquivo}" /></f:facet>
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Departamento">

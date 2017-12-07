@@ -167,7 +167,7 @@ public class FeriadoSteps
         int ano, ano_atual;
         String mes_atual, dia_atual;
 
-        WebElement btnPrevious = driver.findElement(By.xpath("//a[@title=\"Previous\"]"));
+        WebElement btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
         WebElement btnNext = driver.findElement(By.xpath("//a[@title=\"Next\"]"));
         WebElement lblYear = driver.findElement(By.className("ui-datepicker-year"));
         WebElement lblMonth = driver.findElement(By.className("ui-datepicker-month"));
@@ -232,7 +232,7 @@ public class FeriadoSteps
         {
             btnPrevious.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
-            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Previous\"]"));
+            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
             mes_atual = lblMonth.getText();
         }
 

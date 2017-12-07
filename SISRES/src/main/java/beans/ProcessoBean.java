@@ -42,7 +42,6 @@ public class ProcessoBean implements Serializable
     {
         atividade = new Atividade();
         processo = new Processo();
-
     }
 
     public void salvar()
@@ -211,7 +210,7 @@ public class ProcessoBean implements Serializable
             }
         }
     }
-
+    
     public Atividade getAtividade()
     {
         return atividade;

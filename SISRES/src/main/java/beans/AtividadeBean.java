@@ -44,13 +44,6 @@ public class AtividadeBean implements Serializable
         } catch (ExcecaoNegocio ex)
         {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
-                MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
-                adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
-            }
         }
 
         atividade = new Atividade();

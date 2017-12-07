@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,14 +18,14 @@ import javax.persistence.ManyToOne;
 public class Atividade extends EntidadeNegocio implements Serializable {
 
     @NotNull(message = "O nome deve ser preenchido.")
-    @Size(min = 2, max = 60, message= "O nome deve conter entre 2 à 60 caracteres.")
+    @Size(min = 2, max = 60, message = "O nome deve conter entre 2 à 60 caracteres.")
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve conter apenas letras.")
     private String nome;
-    
+
 //    @NotNull(message = "A situação deve ser selecionada.")
     @Enumerated(EnumType.STRING)
     private SituacaoAtividade situacao;
-    
+
     @NotNull(message = "O departamento deve ser selecionado.")
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
@@ -34,17 +35,21 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     @JoinColumn(name = "id_processo", referencedColumnName = "id")
     protected Processo processo;
 
-    // Anexos?
-   
-    public Atividade() { }
-    
-    public Atividade(String nome, SituacaoAtividade situacao, Departamento departamento, Atividade proximaAtividade)
-    {
+    private boolean anexarArquivo;
+
+    private String descricao;
+
+    private Arquivo arquivo;
+
+    public Atividade() {
+    }
+
+    public Atividade(String nome, SituacaoAtividade situacao, Departamento departamento, Atividade proximaAtividade) {
         this.nome = nome;
         this.situacao = situacao;
         this.departamento = departamento;
     }
-   
+
     public String getNome() {
         return nome;
     }
@@ -68,7 +73,7 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     public void setSituacao(SituacaoAtividade situacao) {
         this.situacao = situacao;
     }
-    
+
     public Processo getProcesso() {
         return processo;
     }
@@ -76,5 +81,34 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     public void setProcesso(Processo processo) {
         this.processo = processo;
     }
-}
 
+    public boolean isAnexarArquivo() {
+        return anexarArquivo;
+    }
+
+    public void setAnexarArquivo(boolean anexarArquivo) {
+        this.anexarArquivo = anexarArquivo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    public Arquivo getArquivo()
+    {
+        return arquivo;
+    }
+
+    public void setArquivo(Arquivo arquivo)
+    {
+        this.arquivo = arquivo;
+    }
+    
+    public Arquivo criarArquivo() {
+        return new Arquivo();
+    }
+}

@@ -337,6 +337,6 @@ public class ProcessoSteps
                 }
             }
         }
-          driver.findElement(By.id("j_idt40:button_salvar")).click();
+          driver.findElement(By.id("form_editar:button_salvar")).click();
     }
 }

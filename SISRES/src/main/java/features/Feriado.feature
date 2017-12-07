@@ -24,15 +24,6 @@ Funcionalidade: Cadastrar, alterar e remover feriados no sistema.
       | "Dia do Trabalhador" | "2/06/2017" | "Dia do Trabalhador" |
       | "Finados"            | "2/11/2017" | "Dia de Finados"     |
 
-#  Esquema do Cenario: Inserir feriado com mesmo nome
-#    Dado a tela inicial de feriados aberta
-#    Quando o administrador informar a <data> e o <nome> do feriado
-#    Entao deve ser exibida a mensagem para o departamento "Registro já cadastrado no sistema, tente outro."
-#
-#    Exemplos: 
-#     | data         | nome                 |
-#     | "24/12/2017" | "Natal"              |
-
   Esquema do Cenario: Remoção de feriados
     Dado a tela inicial de feriados aberta
     Quando o administrador deve selecionar o registro <registro> que deseja remover
