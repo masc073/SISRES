@@ -1,6 +1,7 @@
 package beans;
 
 import dominio.Departamento;
+import dominio.Responsavel;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
 import java.io.Serializable;
@@ -23,6 +24,10 @@ public class DepartamentoBean implements Serializable
 
     @EJB
     private DepartamentoServico departamentoServico;
+    
+    private List<Responsavel> participantes;
+
+//    private Responsavel responsavel_lider;
 
     private List<Departamento> departamentos = new ArrayList<>();
 
@@ -31,12 +36,16 @@ public class DepartamentoBean implements Serializable
     public DepartamentoBean()
     {
         departamento = new Departamento();
+//        responsavel_lider = new Responsavel();
     }
 
     public void salvar()
     {
         try
         {
+//            responsavel_lider.setLider(true);
+//            participantes.add(responsavel_lider);
+//            departamento.setParticipantes(participantes);
             departamentoServico.salvar(departamento);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento cadastrado com Sucesso!");
         } catch (ExcecaoNegocio ex)
@@ -143,4 +152,24 @@ public class DepartamentoBean implements Serializable
     {
         this.departamento = departamento;
     }
+    
+    public List<Responsavel> getParticipantes()
+    {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Responsavel> participantes)
+    {
+        this.participantes = participantes;
+    }
+
+//    public Responsavel getResponsavel_lider()
+//    {
+//        return responsavel_lider;
+//    }
+//
+//    public void setResponsavel_lider(Responsavel responsavel_lider)
+//    {
+//        this.responsavel_lider = responsavel_lider;
+//    }
 }

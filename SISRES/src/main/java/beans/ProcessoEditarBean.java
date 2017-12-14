@@ -1,21 +1,18 @@
 package beans;
 
-import dominio.Atividade;
+import dominio.AtividadeModelo;
 import dominio.Processo;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.PostLoad;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.ProcessoServico;
@@ -32,32 +29,32 @@ public class ProcessoEditarBean implements Serializable
 
     protected Processo processo;
 
-    protected Atividade atividade;
+    protected AtividadeModelo atividade;
 
-    private List<Atividade> atividades = new ArrayList<>();
+    protected String anexarArquivo;
+
+    private List<AtividadeModelo> atividades = new ArrayList<>();
 
     public ProcessoEditarBean()
     {
-        atividade = new Atividade();
+        atividade = new AtividadeModelo();
         processo = new Processo();
 
     }
 
     public void salvar()
     {
-        try
-        {
+        try {
             processo.setAtividades(atividades);
             ProcessoServico.salvar(processo);
 
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
-        } catch (ExcecaoNegocio ex)
-        {
+        }
+        catch (ExcecaoNegocio ex) {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -68,26 +65,23 @@ public class ProcessoEditarBean implements Serializable
 
     public void editarAtividades() throws ExcecaoNegocio
     {
-        if (!processo.getAtividades().isEmpty())
-        {
-            try
-            {
+        if (!processo.getAtividades().isEmpty()) {
+            try {
                 ProcessoServico.atualizar(processo);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Fluxo do processo alterado com Sucesso!");
                 listar();
-            } catch (ExcecaoNegocio ex)
-            {
+            }
+            catch (ExcecaoNegocio ex) {
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-            } catch (EJBException ex)
-            {
-                if (ex.getCause() instanceof ConstraintViolationException)
-                {
+            }
+            catch (EJBException ex) {
+                if (ex.getCause() instanceof ConstraintViolationException) {
                     MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
-        } else
-        {
+        }
+        else {
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Devem ser adicionadas atividades ao processo!");
         }
         listar();
@@ -98,18 +92,16 @@ public class ProcessoEditarBean implements Serializable
         processo = (Processo) event.getObject();
         listar();
 
-        try
-        {
+        try {
             ProcessoServico.atualizar(processo);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo alterado com Sucesso!");
             listar();
-        } catch (ExcecaoNegocio ex)
-        {
+        }
+        catch (ExcecaoNegocio ex) {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -119,15 +111,13 @@ public class ProcessoEditarBean implements Serializable
 
     public void remover(Processo processo)
     {
-        try
-        {
+        try {
             ProcessoServico.remover(processo);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo removido com Sucesso!");
 
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -162,8 +152,7 @@ public class ProcessoEditarBean implements Serializable
 
     public Processo getProcesso()
     {
-        if (processo.getAtividades() == null || processo.getAtividades().isEmpty())
-        {
+        if (processo.getAtividades() == null || processo.getAtividades().isEmpty()) {
             processo = (Processo) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("processo_atualizar");
             setAtividades(processo.getAtividades());
         }
@@ -185,29 +174,24 @@ public class ProcessoEditarBean implements Serializable
     {
         boolean encontrou = false;
 
-        for (Atividade atividade_atual : this.atividades)
-        {
-            if (atividade_atual.getNome().equals(this.atividade.getNome()))
-            {
+        for (AtividadeModelo atividade_atual : this.atividades) {
+            if (atividade_atual.getNome().equals(this.atividade.getNome())) {
                 encontrou = true;
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
                 break;
             }
         }
-
-        if (encontrou == false)
-        {
+        atividade.setAnexarArquivo(return_anexarAquivo());
+        if (encontrou == false) {
             this.atividades.add(atividade);
         }
-        atividade = new Atividade();
+        atividade = new AtividadeModelo();
     }
 
-    public void removerAtividadeDoProcesso(Atividade atividade)
+    public void removerAtividadeDoProcesso(AtividadeModelo atividade)
     {
-        for (int i = 0; i < this.atividades.size(); i++)
-        {
-            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
-            {
+        for (int i = 0; i < this.atividades.size(); i++) {
+            if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.remove(i);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade removida com Sucesso!");
                 break;
@@ -215,14 +199,14 @@ public class ProcessoEditarBean implements Serializable
         }
     }
 
-    public void editarAtividadeLista(Atividade atividade)
-    {
-        for (int i = 0; i < this.atividades.size(); i++)
-        {
-            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
-            {
+    public void editarAtividadeLista(AtividadeModelo atividade)
+    {   
+        atividade.setAnexarArquivo(return_anexarAquivo());
+        for (int i = 0; i < this.atividades.size(); i++) {
+            if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.get(i).setNome(atividade.getNome());
                 this.atividades.get(i).setDepartamento(atividade.getDepartamento());
+                this.atividades.get(i).setAnexarArquivo(atividade.isAnexarArquivo());
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade alterada com Sucesso!");
                 break;
@@ -230,23 +214,22 @@ public class ProcessoEditarBean implements Serializable
         }
     }
 
-    public Atividade getAtividade()
+    public AtividadeModelo getAtividade()
     {
         return atividade;
     }
 
-    public void setAtividade(Atividade atividade)
+    public void setAtividade(AtividadeModelo atividade)
     {
         this.atividade = atividade;
     }
 
-    public List<Atividade> getAtividades()
+    public List<AtividadeModelo> getAtividades()
     {
         Processo processo_aux;
 
         processo_aux = (Processo) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("processo_atualizar");
-        if (processo_aux != null)
-        {
+        if (processo_aux != null) {
             processo = processo_aux;
             atividades = processo.getAtividades();
         }
@@ -254,9 +237,38 @@ public class ProcessoEditarBean implements Serializable
         return atividades;
     }
 
-    public void setAtividades(List<Atividade> atividades)
+    public void setAtividades(List<AtividadeModelo> atividades)
     {
         this.atividades = atividades;
     }
 
+    public boolean return_anexarAquivo()
+    {
+        if (anexarArquivo.equals("sim")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public String visualizar_anexarAquivo(AtividadeModelo atividade_atual)
+    {
+        if (atividade_atual.isAnexarArquivo()) {
+            return "Sim";
+        }
+        else {
+            return "Não";
+        }
+    }
+   
+    public String getAnexarArquivo()
+    {
+        return anexarArquivo;
+    }
+
+    public void setAnexarArquivo(String anexarArquivo)
+    {
+        this.anexarArquivo = anexarArquivo;
+    }
 }

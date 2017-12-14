@@ -83,5 +83,14 @@ public class RequerimentoServico extends Servico
         Requerimento f = (Requerimento) em.find(Requerimento.class, Requerimento.getId());
         em.remove(f);
     }
+    
+    public Requerimento getRequerimento(Long id)
+    {
+        TypedQuery<Requerimento> query;
+        query = em.createQuery("select f from Requerimento f where f.id = ?1", Requerimento.class);
+        query.setParameter(1, id);
+        
+        return query.getSingleResult();
+    }
 
 }

@@ -3,18 +3,23 @@ package dominio;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@SequenceGenerator(name = "REQUERIMENTO_SEQUENCE", sequenceName = "REQUERIMENTO_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class Requerimento extends EntidadeNegocio implements Serializable
 {
 
@@ -36,6 +41,9 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_solicitante", referencedColumnName = "id")
     private Responsavel solicitante;
+
+    @OneToMany(mappedBy = "requerimento", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Atividade> atividades;
 
     @Column
     private boolean finalizado;
@@ -61,10 +69,12 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     public String getDataDeInicioFormatada() throws ParseException
     {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        if(dataDeInicio != null)
+        if (dataDeInicio != null) {
             return fmt.format(dataDeInicio);
-        else
-            return "Data de início não informada"; 
+        }
+        else {
+            return "Data de início não informada";
+        }
     }
 
     public Date getDataDeInicio()
@@ -127,4 +137,33 @@ public class Requerimento extends EntidadeNegocio implements Serializable
         this.matriculaAluno = matriculaAluno;
     }
 
+    public List<Atividade> getAtividades()
+    {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades)
+    {
+        this.atividades = atividades;
+    }
+    
+    public void criarAtividades(List<AtividadeModelo> atividadesModelo)
+    {
+        Atividade atividade_atual;
+        atividades = new ArrayList<>();
+        
+        for (AtividadeModelo atividadeModelo_atual : atividadesModelo) 
+        {
+            atividade_atual = new Atividade();
+            atividade_atual.setSituacao(SituacaoAtividade.EmEspera);
+            atividade_atual.setAtividadeModelo(atividadeModelo_atual);
+            
+            if (atividades.isEmpty()) 
+            {
+                atividade_atual.setSituacao(SituacaoAtividade.Andamento);
+                this.estadoAtual = atividade_atual;
+            }
+            this.atividades.add(atividade_atual);
+        }
+    }
 }

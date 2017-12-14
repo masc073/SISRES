@@ -2,6 +2,7 @@ package dominio;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
+@SequenceGenerator(name = "FERIADO_SEQUENCE", sequenceName = "FERIADO_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class Feriado extends EntidadeNegocio
 {
     @NotNull(message = "O nome deve ser preenchido.")

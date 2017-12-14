@@ -4,6 +4,7 @@ import dominio.Arquivo;
 import dominio.Atividade;
 import dominio.Processo;
 import dominio.Requerimento;
+import dominio.SituacaoAtividade;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
 import java.io.Serializable;
@@ -31,7 +32,7 @@ public class RequerimentoBean implements Serializable
     private RequerimentoServico RequerimentoServico;
 
     private Atividade atividade_atual;
-
+    
     private List<Requerimento> Requerimentos = new ArrayList<>();
 
     private Requerimento Requerimento;
@@ -39,13 +40,16 @@ public class RequerimentoBean implements Serializable
     public RequerimentoBean()
     {
         Requerimento = new Requerimento();
+        atividade_atual = new Atividade();
     }
 
     public void salvar()
     {
-        try {
+        try 
+        {
+            Requerimento.criarAtividades(Requerimento.getProcesso().getAtividades());
+            atividade_atual = Requerimento.getAtividades().get(0);
             Requerimento.setDataDeInicio(new Date());
-            Requerimento.setEstadoAtual(Requerimento.getProcesso().getAtividades().get(0));
             RequerimentoServico.salvar(Requerimento);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Requerimento aberto com Sucesso!");
         }
@@ -59,7 +63,6 @@ public class RequerimentoBean implements Serializable
             }
         }
 
-        Requerimento = new Requerimento();
         listar();
     }
 
@@ -68,13 +71,11 @@ public class RequerimentoBean implements Serializable
         Requerimentos = RequerimentoServico.listar();
     }
 
-    public void editar(RowEditEvent event) throws ExcecaoNegocio
+    public void editarRequerimento(Requerimento requerimento)
     {
-        Requerimento = (Requerimento) event.getObject();
-        listar();
-
-        try {
-            RequerimentoServico.atualizar(Requerimento);
+        try 
+        {
+            RequerimentoServico.atualizar(requerimento);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Requerimento alterado com Sucesso!");
             listar();
         }
@@ -87,6 +88,14 @@ public class RequerimentoBean implements Serializable
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
         }
+
+    }
+
+    public void editar(RowEditEvent event) throws ExcecaoNegocio
+    {
+        Requerimento = (Requerimento) event.getObject();
+        listar();
+        editarRequerimento(Requerimento);
         listar();
     }
 
@@ -206,6 +215,38 @@ public class RequerimentoBean implements Serializable
         arquivoDigital.setExtensao(file.getContentType());
         arquivoDigital.setNome(file.getFileName());
         atividade_atual.setArquivo(arquivoDigital);
+    }
+
+    public void aprovarAtividade()
+    {
+        Atividade proxima_atividade;
+        int posicao;
+        
+//        Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
+        
+        posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+        atividade_atual.setSituacao(SituacaoAtividade.Finalizada);
+        ++posicao;
+        
+        proxima_atividade = Requerimento.getAtividades().get(posicao);
+        proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
+        
+        editarRequerimento(Requerimento);
+    }
+    
+     public void reprovarAtividade()
+    {
+        Atividade proxima_atividade;
+        int posicao;
+        
+        posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+        atividade_atual.setSituacao(SituacaoAtividade.Rejeitada);
+        --posicao;
+        
+        proxima_atividade = Requerimento.getAtividades().get(posicao);
+        proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
+        
+        editarRequerimento(Requerimento);
     }
 
 }

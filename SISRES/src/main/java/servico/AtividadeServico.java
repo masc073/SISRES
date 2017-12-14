@@ -40,15 +40,15 @@ public class AtividadeServico extends Servico
         if (atividade.getId() == null) // Inserir atividade já com um processo.
         {
             query = em.createQuery("select a from Atividade a where a.nome = ?1 and a.id_processo = ?2", Atividade.class);
-            query.setParameter(1, atividade.getNome());
-            query.setParameter(2, atividade.getProcesso().getId());
+//            query.setParameter(1, atividade.getNome());
+//            query.setParameter(2, atividade.getProcesso().getId());
 
         } 
         else // Atualizar
         {
             query = em.createQuery("select d from Atividade d where a.nome = ?1 and a.id_processo = ?2 and d.id != ?3", Atividade.class);
-            query.setParameter(1, atividade.getNome());
-            query.setParameter(2, atividade.getProcesso().getId());
+//            query.setParameter(1, atividade.getNome());
+//            query.setParameter(2, atividade.getProcesso().getId());
             query.setParameter(3, atividade.getId());
         }
 

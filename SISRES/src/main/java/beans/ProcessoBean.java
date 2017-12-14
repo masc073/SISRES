@@ -1,6 +1,6 @@
 package beans;
 
-import dominio.Atividade;
+import dominio.AtividadeModelo;
 import dominio.Processo;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
@@ -11,14 +11,10 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
-import servico.AtividadeServico;
 import servico.ProcessoServico;
 
 @ManagedBean(name = "processoBean")
@@ -34,13 +30,15 @@ public class ProcessoBean implements Serializable
 
     protected Processo processo;
 
-    protected Atividade atividade;
+    protected AtividadeModelo atividade;
+    
+    protected String anexarArquivo;
 
-    private List<Atividade> atividades = new ArrayList<>();
+    private List<AtividadeModelo> atividades = new ArrayList<>();
 
     public ProcessoBean()
     {
-        atividade = new Atividade();
+        atividade = new AtividadeModelo();
         processo = new Processo();
     }
 
@@ -166,7 +164,7 @@ public class ProcessoBean implements Serializable
     {
         boolean encontrou = false;
 
-        for (Atividade atividade_atual : this.atividades)
+        for (AtividadeModelo atividade_atual : this.atividades)
         {
             if (atividade_atual.getNome().equals(this.atividade.getNome()))
             {
@@ -176,14 +174,16 @@ public class ProcessoBean implements Serializable
             }
         }
 
+        atividade.setAnexarArquivo(return_anexarAquivo());
+        
         if (encontrou == false)
         {
             this.atividades.add(atividade);
         }
-        atividade = new Atividade();
+        atividade = new AtividadeModelo();
     }
 
-    public void removerAtividadeDoProcesso(Atividade atividade)
+    public void removerAtividadeDoProcesso(AtividadeModelo atividade)
     {
         for (int i = 0; i < this.atividades.size(); i++)
         {
@@ -196,14 +196,18 @@ public class ProcessoBean implements Serializable
         }
     }
 
-    public void editarAtividadeLista(Atividade atividade)
+    public void editarAtividadeLista(AtividadeModelo atividade)
     {
+        
+        atividade.setAnexarArquivo(return_anexarAquivo());
+        
         for (int i = 0; i < this.atividades.size(); i++)
         {
             if (this.atividades.get(i).getNome().equals(atividade.getNome()))
             {
                 this.atividades.get(i).setNome(atividade.getNome());
                 this.atividades.get(i).setDepartamento(atividade.getDepartamento());
+                this.atividades.get(i).setAnexarArquivo(atividade.isAnexarArquivo());
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade alterada com Sucesso!");
                 break;
@@ -211,22 +215,22 @@ public class ProcessoBean implements Serializable
         }
     }
     
-    public Atividade getAtividade()
+    public AtividadeModelo getAtividade()
     {
         return atividade;
     }
 
-    public void setAtividade(Atividade atividade)
+    public void setAtividade(AtividadeModelo atividade)
     {
         this.atividade = atividade;
     }
 
-    public List<Atividade> getAtividades()
+    public List<AtividadeModelo> getAtividades()
     {
         return atividades;
     }
 
-    public void setAtividades(List<Atividade> atividades)
+    public void setAtividades(List<AtividadeModelo> atividades)
     {
         this.atividades = atividades;
     }
@@ -243,5 +247,39 @@ public class ProcessoBean implements Serializable
         {
         }
 
+    }
+    
+    public String getAnexarArquivo()
+    {
+        return anexarArquivo;
+    }
+
+    public void setAnexarArquivo(String anexarArquivo)
+    {
+        this.anexarArquivo = anexarArquivo;
+    }
+    
+    public boolean return_anexarAquivo()
+    {
+        if (anexarArquivo.equals("sim")) 
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    
+    public String visualizar_anexarAquivo(AtividadeModelo atividade_atual)
+    {
+        if (atividade_atual.isAnexarArquivo()) 
+        {
+            return "Sim";
+        }
+        else 
+        {
+            return "Não";
+        }
     }
 }

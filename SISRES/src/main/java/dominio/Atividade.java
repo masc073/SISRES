@@ -1,103 +1,65 @@
 package dominio;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Atividade extends EntidadeNegocio implements Serializable {
+@SequenceGenerator(name = "ATIVIDADE_SEQUENCE", sequenceName = "ATIVIDADE_SEQUENCE", allocationSize = 1, initialValue = 1)
+public class Atividade extends EntidadeNegocio implements Serializable
+{
 
-    @NotNull(message = "O nome deve ser preenchido.")
-    @Size(min = 2, max = 60, message = "O nome deve conter entre 2 à 60 caracteres.")
-    @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve conter apenas letras.")
-    private String nome;
-
-//    @NotNull(message = "A situação deve ser selecionada.")
+    @NotNull(message = "A situação deve ser selecionada.")
     @Enumerated(EnumType.STRING)
     private SituacaoAtividade situacao;
 
-    @NotNull(message = "O departamento deve ser selecionado.")
-    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_departamento", referencedColumnName = "id")
-    private Departamento departamento;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_requerimento", referencedColumnName = "id")
+    protected Requerimento requerimento;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_processo", referencedColumnName = "id")
-    protected Processo processo;
-
-    private boolean anexarArquivo;
+    @JoinColumn(name = "atividademodelo", referencedColumnName = "id")
+    private AtividadeModelo atividademodelo;
 
     private String descricao;
 
     private Arquivo arquivo;
 
-    public Atividade() {
+    public Atividade()
+    {
     }
 
-    public Atividade(String nome, SituacaoAtividade situacao, Departamento departamento, Atividade proximaAtividade) {
-        this.nome = nome;
+    public Atividade(SituacaoAtividade situacao, Departamento departamento)
+    {
         this.situacao = situacao;
-        this.departamento = departamento;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
-    public SituacaoAtividade getSituacao() {
+    public SituacaoAtividade getSituacao()
+    {
         return situacao;
     }
 
-    public void setSituacao(SituacaoAtividade situacao) {
+    public void setSituacao(SituacaoAtividade situacao)
+    {
         this.situacao = situacao;
     }
 
-    public Processo getProcesso() {
-        return processo;
-    }
-
-    public void setProcesso(Processo processo) {
-        this.processo = processo;
-    }
-
-    public boolean isAnexarArquivo() {
-        return anexarArquivo;
-    }
-
-    public void setAnexarArquivo(boolean anexarArquivo) {
-        this.anexarArquivo = anexarArquivo;
-    }
-
-    public String getDescricao() {
+    public String getDescricao()
+    {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(String descricao)
+    {
         this.descricao = descricao;
     }
-    
+
     public Arquivo getArquivo()
     {
         return arquivo;
@@ -107,8 +69,30 @@ public class Atividade extends EntidadeNegocio implements Serializable {
     {
         this.arquivo = arquivo;
     }
-    
-    public Arquivo criarArquivo() {
+
+    public Arquivo criarArquivo()
+    {
         return new Arquivo();
     }
+
+    public Requerimento getRequerimento()
+    {
+        return requerimento;
+    }
+
+    public void setRequerimento(Requerimento requerimento)
+    {
+        this.requerimento = requerimento;
+    }
+
+    public AtividadeModelo getAtividadeModelo()
+    {
+        return atividademodelo;
+    }
+
+    public void setAtividadeModelo(AtividadeModelo atividadeModelo)
+    {
+        this.atividademodelo = atividadeModelo;
+    }
+
 }

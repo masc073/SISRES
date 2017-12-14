@@ -12,9 +12,12 @@ step_definitions\DepartamentoSteps.class
 dominio\Processo_.class
 step_definitions\Dataset.class
 beans\ResponsavelBean.class
+dominio\Arquivo_.class
+dominio\Arquivo.class
 dominio\EntidadeNegocio.class
 beans\ProcessoEditarBean.class
 dominio\EntidadeNegocio_.class
+dominio\AtividadeModelo.class
 servico\ResponsavelServico.class
 dominio\Processo.class
 step_definitions\ProcessoSteps.class
@@ -40,4 +43,5 @@ step_definitions\FeriadoSteps.class
 excecao\ExcecaoSistema.class
 step_definitions\DbUnitUtil$1.class
 dominio\SituacaoAtividade.class
+dominio\AtividadeModelo_.class
 beans\FeriadoBean.class

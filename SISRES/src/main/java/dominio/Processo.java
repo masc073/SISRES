@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
+@SequenceGenerator(name = "PROCESSO_SEQUENCE", sequenceName = "PROCESSO_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class Processo extends EntidadeNegocio implements Serializable {
 
     @NotNull(message = "O nome deve ser preenchido.")
@@ -34,7 +36,7 @@ public class Processo extends EntidadeNegocio implements Serializable {
 
     @NotNull(message = "O processo deve conter atividades.")
     @OneToMany(mappedBy = "processo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Atividade> atividades;
+    private List<AtividadeModelo> atividades;
     
     @NotNull
     private int duracaoMaximaEmDias;
@@ -69,40 +71,24 @@ public class Processo extends EntidadeNegocio implements Serializable {
         this.responsavel = responsavel;
     }
 
-    public List<Atividade> getAtividades() {
+    public List<AtividadeModelo> getAtividades() {
       
         return atividades;
     }
 
-    public void addAtividade(Atividade atividade)
+    public void addAtividade(AtividadeModelo atividade)
     {
         atividade.setProcesso(this);
         atividades.add(atividade);
     }
     
-    public void setAtividades(List<Atividade> atividades) 
+    public void setAtividades(List<AtividadeModelo> atividades) 
     {
-        for (Atividade atividade_atual : atividades)
+        for (AtividadeModelo atividade_atual : atividades)
         {
             addAtividade(atividade_atual);
         }
     }
-    
-//    public Date getDataDeInicio() {
-//        return dataDeInicio;
-//    }
-//
-//    public void setDataDeInicio(Date dataDeInicio) {
-//        this.dataDeInicio = dataDeInicio;
-//    }
-//
-//    public Date getDataDeFim() {
-//        return dataDeFim;
-//    }
-//
-//    public void setDataDeFim(Date dataDeFim) {
-//        this.dataDeFim = dataDeFim;
-//    }
 
     public int getDuracaoMaximaEmDias() {
         return duracaoMaximaEmDias;

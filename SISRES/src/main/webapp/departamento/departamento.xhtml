@@ -23,6 +23,10 @@
                 <p:selectOneMenu id="responsavel" converter="entidadeConverter" value="#{departamentoBean.departamento.responsavel}">
                     <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
                 </p:selectOneMenu>
+                
+                <!--<p:pickList id="input_participantes" value="#{responsavelBean.responsaveis}" var="requerimento" itemLabel="#{requerimento}" itemValue="#{requerimento}" />-->
+                
+                
                 <br/>
                 <p:toolbarGroup>
                     <p:commandButton value="Salvar" action="#{departamentoBean.salvar}" id="button_salvar" 

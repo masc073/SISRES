@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,6 +18,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 @Entity
+@SequenceGenerator(name = "ARQUIVO_SEQUENCE", sequenceName = "ARQUIVO_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class Arquivo extends EntidadeNegocio implements Serializable
 {
 

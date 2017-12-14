@@ -15,10 +15,10 @@
                 <p:outputLabel value="#{requerimentoBean.requerimento.matriculaAluno}" for="output_solicitante"/>
                 
                 <p:outputLabel value="Atividade atual:" id="output_atividade_atual"/>
-                <p:outputLabel value="#{requerimentoBean.atividade_atual.nome}" for="output_atividade_atual"/>
+                <p:outputLabel value="#{requerimento.estadoAtual.atividadeModelo.nome}" for="output_atividade_atual"/>
 
-                <p:outputLabel value="Observações:" id="output_descricao" />
-                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao}"  />
+<!--                <p:outputLabel value="Observações:" id="output_descricao" />
+                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao}"  />-->
 
                 <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />
                 <p:fileUpload id="arquivo" label="Arquivo" mode="advanced" fileLimit="1" fileLimitMessage="selecione um único arquivo"
@@ -27,9 +27,9 @@
                               dragDropSupport="true"/>
 
 
-                <p:commandButton value="Aprovar" process="@this" id="button_aprovar" 
+                <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
                                  ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
-                <p:commandButton value="Reprovar" process="@this" id="button_reprovar" 
+                <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"
                                  ajax="false" title="Reprovar" icon="ui-icon-close" />
 
             </h:panelGrid>

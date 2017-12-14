@@ -22,7 +22,7 @@
                     <h:outputText value="#{requerimento.dataDeInicioFormatada}" />
                 </p:column> 
                 <p:column headerText="Processo">
-                    <h:outputText value="#{requerimento.estadoAtual.nome}" />
+                    <h:outputText value="#{requerimento.estadoAtual.atividadeModelo.nome}" />
                 </p:column> 
                 <p:column style="width:40px">
                     <p:commandButton icon="ui-icon-pencil" id="editar" title="Editar" action="#{requerimentoBean.redireciona_para_editar_atividades(requerimento)}"/> 

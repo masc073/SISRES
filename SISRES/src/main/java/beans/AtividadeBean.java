@@ -160,8 +160,8 @@ public class AtividadeBean implements Serializable
         {
             if(atividade_atual.equals(atividade))
             {
-              atividade_atual.setDepartamento(atividade.getDepartamento());
-              atividade_atual.setNome(atividade.getNome());
+//              atividade_atual.setDepartamento(atividade.getDepartamento());
+//              atividade_atual.setNome(atividade.getNome());
             }
         }
     }
