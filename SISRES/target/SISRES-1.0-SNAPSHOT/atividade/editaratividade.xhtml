@@ -8,31 +8,29 @@
 
              template="../template.xhtml">
     <h:form id="editar_atividade">
-        <p:fieldset legend="#{requerimentoBean.requerimento.processo.nome}" style="margin-left: 3px; width: 990px;" > 
-            <h:panelGrid id="panel_grid" columns="2" columnClasses="label, value">
-                
+        <p:fieldset legend="#{requerimentoBean.requerimento.processo.nome}" style=" width: 990px;" > 
+            <h:panelGrid id="panel_grid" columns="2" >
+
                 <p:outputLabel value="Solicitante:" id="output_solicitante"/>
                 <p:outputLabel value="#{requerimentoBean.requerimento.matriculaAluno}" for="output_solicitante"/>
-                
+
                 <p:outputLabel value="Atividade atual:" id="output_atividade_atual"/>
                 <p:outputLabel value="#{requerimento.estadoAtual.atividadeModelo.nome}" for="output_atividade_atual"/>
 
-<!--                <p:outputLabel value="Observações:" id="output_descricao" />
-                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao}"  />-->
+                <p:outputLabel value="Observações:" id="output_descricao" />
+                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao}"  />
 
                 <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />
                 <p:fileUpload id="arquivo" label="Arquivo" mode="advanced" fileLimit="1" fileLimitMessage="selecione um único arquivo"
                               allowTypes="/(\.|\/)(pdf|mobi|epub)$/" invalidFileMessage="Apenas arquivos PDF"
                               sizeLimit="3145728" invalidSizeMessage="são permitidos arquivos de no máximo 3 MB"
                               dragDropSupport="true"/>
-
-
-                <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
-                                 ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
-                <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"
-                                 ajax="false" title="Reprovar" icon="ui-icon-close" />
-
             </h:panelGrid>
+            <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
+                             ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
+            <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"
+                             ajax="false" title="Reprovar" icon="ui-icon-close" />
+
         </p:fieldset>
     </h:form>
 </ui:decorate>

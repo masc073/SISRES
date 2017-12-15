@@ -191,7 +191,8 @@ public class RequerimentoBean implements Serializable
 
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
-
+       
+        setRequerimento(requerimento_atualizar);
         setAtividade_atual(requerimento_atualizar.getEstadoAtual());
 
         try {
@@ -222,14 +223,17 @@ public class RequerimentoBean implements Serializable
         Atividade proxima_atividade;
         int posicao;
         
-//        Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
+        Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
+        
         
         posicao = Requerimento.getAtividades().indexOf(atividade_atual);
-        atividade_atual.setSituacao(SituacaoAtividade.Finalizada);
+        Requerimento.getAtividades().get(posicao).setSituacao(SituacaoAtividade.Finalizada);
+        Requerimento.getAtividades().get(posicao).setDescricao(atividade_atual.getDescricao());
         ++posicao;
         
         proxima_atividade = Requerimento.getAtividades().get(posicao);
         proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
+        Requerimento.setEstadoAtual(proxima_atividade);
         
         editarRequerimento(Requerimento);
     }
@@ -245,7 +249,7 @@ public class RequerimentoBean implements Serializable
         
         proxima_atividade = Requerimento.getAtividades().get(posicao);
         proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
-        
+        Requerimento.setEstadoAtual(proxima_atividade);
         editarRequerimento(Requerimento);
     }
 

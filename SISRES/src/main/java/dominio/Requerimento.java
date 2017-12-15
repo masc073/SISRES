@@ -157,6 +157,7 @@ public class Requerimento extends EntidadeNegocio implements Serializable
             atividade_atual = new Atividade();
             atividade_atual.setSituacao(SituacaoAtividade.EmEspera);
             atividade_atual.setAtividadeModelo(atividadeModelo_atual);
+            atividade_atual.setRequerimento(this);
             
             if (atividades.isEmpty()) 
             {
