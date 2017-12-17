@@ -8,6 +8,7 @@
 
              template="../template.xhtml">
     <link type="text/css" rel="stylesheet" href="../css/stylesheet.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <h:form id="editar_atividade">
         <p:fieldset legend="#{requerimentoBean.requerimento.processo.nome}" style=" width: 990px;" > 
             <h:panelGrid id="panel_grid" columns="2" >
@@ -29,9 +30,15 @@
             </h:panelGrid>
             <div id="message_error">
                 <br/>
-                <div class="my-notify-error" value="#{requerimentoBean.mensagem_erro}"/>
+                <div id="error" class="my-notify-error" >#{requerimentoBean.mensagem_erro}</div>
                 <br/>
             </div>
+            <script>
+//                if(#{requerimentoBean.mensagem_erro})
+//                {
+//                    $("error").remove();
+//                }
+            </script>
 
             <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
                              ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>

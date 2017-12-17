@@ -38,7 +38,7 @@ public class RequerimentoBean implements Serializable
     private List<Requerimento> requerimentos_finalizados = new ArrayList<>();
 
     private Requerimento Requerimento;
-    
+
     private String mensagem_erro;
 
     public RequerimentoBean()
@@ -237,6 +237,8 @@ public class RequerimentoBean implements Serializable
         if (posicao < qtd_atividades - 1) {
             ++posicao;
             proxima_atividade = Requerimento.getAtividades().get(posicao);
+            Requerimento.getAtividades().get(posicao).setDescricao_erro("");
+            Requerimento.getAtividades().get(posicao).setDescricao_sucesso("");
             proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
             Requerimento.setEstadoAtual(proxima_atividade);
             editarRequerimento("Atividade concluída com sucesso!", Requerimento);
@@ -260,25 +262,28 @@ public class RequerimentoBean implements Serializable
         qtd_atividades = Requerimento.getAtividades().size();
         posicao = Requerimento.getAtividades().indexOf(atividade_atual);
         Requerimento.getAtividades().get(posicao).setSituacao(SituacaoAtividade.Rejeitada);
-        
-        if (posicao > 0 ) {
-            
+
+        if (posicao > 0) {
+
             Requerimento.getAtividades().get(posicao).setDescricao_erro(atividade_atual.getDescricao_sucesso());
             --posicao;
+            Requerimento.getAtividades().get(posicao).setDescricao_erro("");
+            Requerimento.getAtividades().get(posicao).setDescricao_sucesso("");
             proxima_atividade = Requerimento.getAtividades().get(posicao);
             proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
             Requerimento.setEstadoAtual(proxima_atividade);
             editarRequerimento("Atividade reprovada!", Requerimento);
         }
         else {
-           adicionarMensagem(FacesMessage.SEVERITY_INFO, "A primeira atividade não pode ser reprovada! ");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "A primeira atividade não pode ser reprovada! ");
         }
     }
 
     public List<Requerimento> getRequerimentos_finalizados()
     {
-        if(requerimentos_finalizados.isEmpty())
-           requerimentos_finalizados = RequerimentoServico.listar_finalizados();
+        if (requerimentos_finalizados.isEmpty()) {
+            requerimentos_finalizados = RequerimentoServico.listar_finalizados();
+        }
         return requerimentos_finalizados;
     }
 
@@ -286,14 +291,21 @@ public class RequerimentoBean implements Serializable
     {
         this.requerimentos_finalizados = requerimentos_finalizados;
     }
-    
+
     public String getMensagem_erro()
     {
-//        int posicao;
-//        posicao = Requerimento.getAtividades().indexOf(atividade_atual);
-//        ++posicao;
-//        mensagem_erro = Requerimento.getAtividades().get(posicao).getDescricao();
-        
+        int posicao, qtd_atividades;
+
+//        if (!Requerimento.getAtividades().isEmpty()) {
+//
+//            posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+//            qtd_atividades = Requerimento.getAtividades().size();
+//
+//            if (posicao < qtd_atividades - 2) {
+//                ++posicao;
+//                mensagem_erro = Requerimento.getAtividades().get(posicao).getDescricao_erro();
+//            }
+//        }
         return mensagem_erro;
     }
 
