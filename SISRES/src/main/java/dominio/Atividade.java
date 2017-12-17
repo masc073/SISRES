@@ -27,7 +27,9 @@ public class Atividade extends EntidadeNegocio implements Serializable
     @JoinColumn(name = "atividademodelo", referencedColumnName = "id")
     private AtividadeModelo atividademodelo;
 
-    private String descricao;
+    private String descricao_sucesso;
+    
+    private String descricao_erro;
 
     private Arquivo arquivo;
 
@@ -48,16 +50,6 @@ public class Atividade extends EntidadeNegocio implements Serializable
     public void setSituacao(SituacaoAtividade situacao)
     {
         this.situacao = situacao;
-    }
-
-    public String getDescricao()
-    {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao)
-    {
-        this.descricao = descricao;
     }
 
     public Arquivo getArquivo()
@@ -93,6 +85,35 @@ public class Atividade extends EntidadeNegocio implements Serializable
     public void setAtividadeModelo(AtividadeModelo atividadeModelo)
     {
         this.atividademodelo = atividadeModelo;
+    }
+ public AtividadeModelo getAtividademodelo()
+    {
+        return atividademodelo;
+    }
+
+    public void setAtividademodelo(AtividadeModelo atividademodelo)
+    {
+        this.atividademodelo = atividademodelo;
+    }
+
+    public String getDescricao_sucesso()
+    {
+        return descricao_sucesso;
+    }
+
+    public void setDescricao_sucesso(String descricao_sucesso)
+    {
+        this.descricao_sucesso = descricao_sucesso;
+    }
+
+    public String getDescricao_erro()
+    {
+        return descricao_erro;
+    }
+
+    public void setDescricao_erro(String descricao_erro)
+    {
+        this.descricao_erro = descricao_erro;
     }
 
 }

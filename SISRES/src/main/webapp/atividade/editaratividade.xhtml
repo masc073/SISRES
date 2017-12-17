@@ -7,6 +7,7 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 
              template="../template.xhtml">
+    <link type="text/css" rel="stylesheet" href="../css/stylesheet.css" />
     <h:form id="editar_atividade">
         <p:fieldset legend="#{requerimentoBean.requerimento.processo.nome}" style=" width: 990px;" > 
             <h:panelGrid id="panel_grid" columns="2" >
@@ -18,7 +19,7 @@
                 <p:outputLabel value="#{requerimento.estadoAtual.atividadeModelo.nome}" for="output_atividade_atual"/>
 
                 <p:outputLabel value="Observações:" id="output_descricao" />
-                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao}"  />
+                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao_sucesso}"  />
 
                 <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />
                 <p:fileUpload id="arquivo" label="Arquivo" mode="advanced" fileLimit="1" fileLimitMessage="selecione um único arquivo"
@@ -26,6 +27,12 @@
                               sizeLimit="3145728" invalidSizeMessage="são permitidos arquivos de no máximo 3 MB"
                               dragDropSupport="true"/>
             </h:panelGrid>
+            <div id="message_error">
+                <br/>
+                <div class="my-notify-error" value="#{requerimentoBean.mensagem_erro}"/>
+                <br/>
+            </div>
+
             <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
                              ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
             <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"

@@ -77,6 +77,17 @@ public class Requerimento extends EntidadeNegocio implements Serializable
         }
     }
 
+    public String getDataDeFimFormatada() throws ParseException
+    {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        if (dataDeFim != null) {
+            return fmt.format(dataDeFim);
+        }
+        else {
+            return "Data de fim não informada";
+        }
+    }
+
     public Date getDataDeInicio()
     {
         return dataDeInicio;
@@ -146,21 +157,19 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     {
         this.atividades = atividades;
     }
-    
+
     public void criarAtividades(List<AtividadeModelo> atividadesModelo)
     {
         Atividade atividade_atual;
         atividades = new ArrayList<>();
-        
-        for (AtividadeModelo atividadeModelo_atual : atividadesModelo) 
-        {
+
+        for (AtividadeModelo atividadeModelo_atual : atividadesModelo) {
             atividade_atual = new Atividade();
             atividade_atual.setSituacao(SituacaoAtividade.EmEspera);
             atividade_atual.setAtividadeModelo(atividadeModelo_atual);
             atividade_atual.setRequerimento(this);
-            
-            if (atividades.isEmpty()) 
-            {
+
+            if (atividades.isEmpty()) {
                 atividade_atual.setSituacao(SituacaoAtividade.Andamento);
                 this.estadoAtual = atividade_atual;
             }

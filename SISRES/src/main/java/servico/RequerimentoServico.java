@@ -27,11 +27,17 @@ public class RequerimentoServico extends Servico
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
+    
+    public List<Requerimento> listar_finalizados()
+    {
+        em.flush();
+        return em.createQuery("select f from Requerimento f where f.finalizado = true", Requerimento.class).getResultList();
+    }
 
     public List<Requerimento> listar()
     {
         em.flush();
-        return em.createQuery("select f from Requerimento f", Requerimento.class).getResultList();
+        return em.createQuery("select f from Requerimento f where f.finalizado = false", Requerimento.class).getResultList();
     }
 
     public boolean chegaExistencia(Requerimento Requerimento)
@@ -42,15 +48,17 @@ public class RequerimentoServico extends Servico
         
         if (Requerimento.getId() == null) // Inserir
         {
-            query = em.createQuery("select f from Requerimento f where f.processo = ?1", Requerimento.class);
+            query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.matriculaAluno = ?2 and f.finalizado = false", Requerimento.class);
             query.setParameter(1, Requerimento.getProcesso());
+            query.setParameter(2, Requerimento.getMatriculaAluno());
 
         } 
-        else // Atualizar
+        else
         {
-            query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.id != ?2", Requerimento.class);
+            query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.matriculaAluno = ?2 and f.id != ?3 and f.finalizado = false", Requerimento.class);
             query.setParameter(1, Requerimento.getProcesso());
-            query.setParameter(2, Requerimento.getId());
+            query.setParameter(2, Requerimento.getMatriculaAluno());
+            query.setParameter(3, Requerimento.getId());
         }
 
         List<Requerimento> Requerimentos = query.getResultList();

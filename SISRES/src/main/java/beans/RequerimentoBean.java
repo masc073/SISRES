@@ -32,10 +32,14 @@ public class RequerimentoBean implements Serializable
     private RequerimentoServico RequerimentoServico;
 
     private Atividade atividade_atual;
-    
+
     private List<Requerimento> Requerimentos = new ArrayList<>();
 
+    private List<Requerimento> requerimentos_finalizados = new ArrayList<>();
+
     private Requerimento Requerimento;
+    
+    private String mensagem_erro;
 
     public RequerimentoBean()
     {
@@ -45,8 +49,7 @@ public class RequerimentoBean implements Serializable
 
     public void salvar()
     {
-        try 
-        {
+        try {
             Requerimento.criarAtividades(Requerimento.getProcesso().getAtividades());
             atividade_atual = Requerimento.getAtividades().get(0);
             Requerimento.setDataDeInicio(new Date());
@@ -64,6 +67,7 @@ public class RequerimentoBean implements Serializable
         }
 
         listar();
+        Requerimento = new Requerimento();
     }
 
     public void listar()
@@ -71,12 +75,11 @@ public class RequerimentoBean implements Serializable
         Requerimentos = RequerimentoServico.listar();
     }
 
-    public void editarRequerimento(Requerimento requerimento)
+    public void editarRequerimento(String mensagem, Requerimento requerimento)
     {
-        try 
-        {
+        try {
             RequerimentoServico.atualizar(requerimento);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Requerimento alterado com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, mensagem);
             listar();
         }
         catch (ExcecaoNegocio ex) {
@@ -88,14 +91,14 @@ public class RequerimentoBean implements Serializable
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
         }
-
+        Requerimento = new Requerimento();
     }
 
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         Requerimento = (Requerimento) event.getObject();
         listar();
-        editarRequerimento(Requerimento);
+        editarRequerimento("Requerimento alterado com Sucesso!", Requerimento);
         listar();
     }
 
@@ -191,7 +194,7 @@ public class RequerimentoBean implements Serializable
 
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
-       
+
         setRequerimento(requerimento_atualizar);
         setAtividade_atual(requerimento_atualizar.getEstadoAtual());
 
@@ -221,36 +224,82 @@ public class RequerimentoBean implements Serializable
     public void aprovarAtividade()
     {
         Atividade proxima_atividade;
+        int qtd_atividades;
         int posicao;
-        
+
         Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
-        
-        
+
+        qtd_atividades = Requerimento.getAtividades().size();
         posicao = Requerimento.getAtividades().indexOf(atividade_atual);
         Requerimento.getAtividades().get(posicao).setSituacao(SituacaoAtividade.Finalizada);
-        Requerimento.getAtividades().get(posicao).setDescricao(atividade_atual.getDescricao());
-        ++posicao;
-        
-        proxima_atividade = Requerimento.getAtividades().get(posicao);
-        proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
-        Requerimento.setEstadoAtual(proxima_atividade);
-        
-        editarRequerimento(Requerimento);
+        Requerimento.getAtividades().get(posicao).setDescricao_sucesso(atividade_atual.getDescricao_sucesso());
+
+        if (posicao < qtd_atividades - 1) {
+            ++posicao;
+            proxima_atividade = Requerimento.getAtividades().get(posicao);
+            proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
+            Requerimento.setEstadoAtual(proxima_atividade);
+            editarRequerimento("Atividade concluída com sucesso!", Requerimento);
+        }
+        else {
+            Requerimento.setFinalizado(true);
+            Requerimento.setDataDeFim(new Date());
+            editarRequerimento("Processo finalizado com sucesso!", Requerimento);
+        }
+
     }
-    
-     public void reprovarAtividade()
+
+    public void reprovarAtividade()
     {
         Atividade proxima_atividade;
+        int qtd_atividades;
         int posicao;
-        
+
+        Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
+
+        qtd_atividades = Requerimento.getAtividades().size();
         posicao = Requerimento.getAtividades().indexOf(atividade_atual);
-        atividade_atual.setSituacao(SituacaoAtividade.Rejeitada);
-        --posicao;
+        Requerimento.getAtividades().get(posicao).setSituacao(SituacaoAtividade.Rejeitada);
         
-        proxima_atividade = Requerimento.getAtividades().get(posicao);
-        proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
-        Requerimento.setEstadoAtual(proxima_atividade);
-        editarRequerimento(Requerimento);
+        if (posicao > 0 ) {
+            
+            Requerimento.getAtividades().get(posicao).setDescricao_erro(atividade_atual.getDescricao_sucesso());
+            --posicao;
+            proxima_atividade = Requerimento.getAtividades().get(posicao);
+            proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
+            Requerimento.setEstadoAtual(proxima_atividade);
+            editarRequerimento("Atividade reprovada!", Requerimento);
+        }
+        else {
+           adicionarMensagem(FacesMessage.SEVERITY_INFO, "A primeira atividade não pode ser reprovada! ");
+        }
+    }
+
+    public List<Requerimento> getRequerimentos_finalizados()
+    {
+        if(requerimentos_finalizados.isEmpty())
+           requerimentos_finalizados = RequerimentoServico.listar_finalizados();
+        return requerimentos_finalizados;
+    }
+
+    public void setRequerimentos_finalizados(List<Requerimento> requerimentos_finalizados)
+    {
+        this.requerimentos_finalizados = requerimentos_finalizados;
+    }
+    
+    public String getMensagem_erro()
+    {
+//        int posicao;
+//        posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+//        ++posicao;
+//        mensagem_erro = Requerimento.getAtividades().get(posicao).getDescricao();
+        
+        return mensagem_erro;
+    }
+
+    public void setMensagem_erro(String mensagem_erro)
+    {
+        this.mensagem_erro = mensagem_erro;
     }
 
 }
