@@ -73,7 +73,7 @@ public class Arquivo extends EntidadeNegocio implements Serializable
         this.nome = nome;
     }
 
-    public StreamedContent getFile()
+    public StreamedContent retorna_arquivo()
     {
         InputStream stream = new ByteArrayInputStream(arquivo);
         return new DefaultStreamedContent(stream, extensao, nome);

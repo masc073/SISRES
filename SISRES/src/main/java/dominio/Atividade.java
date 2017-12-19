@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -31,6 +33,7 @@ public class Atividade extends EntidadeNegocio implements Serializable
     
     private String descricao_erro;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Arquivo arquivo;
 
     public Atividade()

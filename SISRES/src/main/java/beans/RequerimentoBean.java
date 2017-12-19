@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 import servico.RequerimentoServico;
 
@@ -33,6 +34,8 @@ public class RequerimentoBean implements Serializable
 
     private Atividade atividade_atual;
 
+    private Atividade atividade_anterior;
+
     private List<Requerimento> Requerimentos = new ArrayList<>();
 
     private List<Requerimento> requerimentos_finalizados = new ArrayList<>();
@@ -41,10 +44,17 @@ public class RequerimentoBean implements Serializable
 
     private String mensagem_erro;
 
+    private UploadedFile arquivo;
+
+    private Arquivo arquivo_digital;
+
+    private StreamedContent conteudo_arquivo;
+
     public RequerimentoBean()
     {
         Requerimento = new Requerimento();
         atividade_atual = new Atividade();
+        atividade_anterior = new Atividade();
     }
 
     public void salvar()
@@ -207,22 +217,21 @@ public class RequerimentoBean implements Serializable
         }
     }
 
-    public void upload(FileUploadEvent event)
-    {
-        setFile(event.getFile());
-    }
-
-    private void setFile(UploadedFile file)
+    private void adicionar_arquivo()
     {
         Arquivo arquivoDigital = atividade_atual.criarArquivo();
-        arquivoDigital.setArquivo(file.getContents());
-        arquivoDigital.setExtensao(file.getContentType());
-        arquivoDigital.setNome(file.getFileName());
+        arquivoDigital.setArquivo(arquivo.getContents());
+        arquivoDigital.setExtensao(arquivo.getContentType());
+        arquivoDigital.setNome(arquivo.getFileName());
         atividade_atual.setArquivo(arquivoDigital);
+        this.arquivo_digital = arquivoDigital;
+        setConteudo_arquivo();
+
     }
 
-    public void aprovarAtividade()
+    public void aprovando_atividade()
     {
+
         Atividade proxima_atividade;
         int qtd_atividades;
         int posicao;
@@ -233,6 +242,7 @@ public class RequerimentoBean implements Serializable
         posicao = Requerimento.getAtividades().indexOf(atividade_atual);
         Requerimento.getAtividades().get(posicao).setSituacao(SituacaoAtividade.Finalizada);
         Requerimento.getAtividades().get(posicao).setDescricao_sucesso(atividade_atual.getDescricao_sucesso());
+        Requerimento.getAtividades().get(posicao).setArquivo(atividade_atual.getArquivo());
 
         if (posicao < qtd_atividades - 1) {
             ++posicao;
@@ -249,6 +259,24 @@ public class RequerimentoBean implements Serializable
             editarRequerimento("Processo finalizado com sucesso!", Requerimento);
         }
 
+    }
+
+    public void aprovarAtividade()
+    {
+        if (atividade_atual.getAtividadeModelo().isAnexarArquivo() == true) {
+
+            if (!arquivo.getContentType().equals("application/pdf")) {
+                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Deve ser anexado um arquivo PDF! ");
+            }
+            else {
+
+                adicionar_arquivo();
+                aprovando_atividade();
+            }
+        }
+        else {
+            aprovando_atividade();
+        }
     }
 
     public void reprovarAtividade()
@@ -292,26 +320,55 @@ public class RequerimentoBean implements Serializable
         this.requerimentos_finalizados = requerimentos_finalizados;
     }
 
-    public String getMensagem_erro()
+    public UploadedFile getArquivo()
     {
-        int posicao, qtd_atividades;
-
-//        if (!Requerimento.getAtividades().isEmpty()) {
-//
-//            posicao = Requerimento.getAtividades().indexOf(atividade_atual);
-//            qtd_atividades = Requerimento.getAtividades().size();
-//
-//            if (posicao < qtd_atividades - 2) {
-//                ++posicao;
-//                mensagem_erro = Requerimento.getAtividades().get(posicao).getDescricao_erro();
-//            }
-//        }
-        return mensagem_erro;
+        return arquivo;
     }
 
-    public void setMensagem_erro(String mensagem_erro)
+    public void setArquivo(UploadedFile arquivo)
     {
-        this.mensagem_erro = mensagem_erro;
+        this.arquivo = arquivo;
     }
 
+    public Arquivo getArquivo_digital()
+    {
+        return arquivo_digital;
+    }
+
+    public void setArquivo_digital(Arquivo arquivo_digital)
+    {
+        this.arquivo_digital = arquivo_digital;
+    }
+
+    public StreamedContent getConteudo_arquivo()
+    {
+        return conteudo_arquivo;
+    }
+
+    public void setConteudo_arquivo()
+    {
+        this.conteudo_arquivo = arquivo_digital.retorna_arquivo();
+    }
+
+    public Atividade getAtividade_anterior()
+    {
+        setAtividade_anterior();
+        return atividade_anterior;
+    }
+
+    public void setAtividade_anterior()
+    {
+        if (Requerimento.getAtividades() != null) {
+            if (!Requerimento.getAtividades().isEmpty()) {
+                int posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+                if (posicao > 0) {
+                    this.atividade_anterior = Requerimento.getAtividades().get(posicao - 1);
+                }
+                else 
+                {
+                    this.atividade_anterior.setDescricao_erro("");
+                }
+            }
+        }
+    }
 }

@@ -9,7 +9,16 @@
              template="../template.xhtml">
     <link type="text/css" rel="stylesheet" href="../css/stylesheet.css" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <h:form id="editar_atividade">
+    <script type="text/javascript">
+        function start() {
+            PF('statusDialog').show();
+        }
+        function stop() {
+            PF('statusDialog').hide();
+        }
+    </script>      
+
+    <h:form id="editar_atividade" enctype="multipart/form-data">
         <p:fieldset legend="#{requerimentoBean.requerimento.processo.nome}" style=" width: 990px;" > 
             <h:panelGrid id="panel_grid" columns="2" >
 
@@ -21,25 +30,25 @@
 
                 <p:outputLabel value="Observações:" id="output_descricao" />
                 <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao_sucesso}"  />
+                <br/>
+                <ui:fragment rendered="#{requerimentoBean.atividade_atual.atividadeModelo.anexarArquivo == true}">
+                    <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />
+                    <p:fileUpload value="#{requerimentoBean.arquivo}" mode="simple" allowTypes="/(\.|\/)(pdf)$/" 
+                                  invalidFileMessage="Apenas arquivos pdf" />
+                </ui:fragment>
 
-                <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />
-                <p:fileUpload id="arquivo" label="Arquivo" mode="advanced" fileLimit="1" fileLimitMessage="selecione um único arquivo"
-                              allowTypes="/(\.|\/)(pdf|mobi|epub)$/" invalidFileMessage="Apenas arquivos PDF"
-                              sizeLimit="3145728" invalidSizeMessage="são permitidos arquivos de no máximo 3 MB"
-                              dragDropSupport="true"/>
+                <ui:fragment rendered="#{requerimentoBean.atividade_anterior.atividadeModelo.anexarArquivo == true}">
+                    <p:commandButton ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                        <p:fileDownload value="#{requerimentoBean.conteudo_arquivo}" />
+                    </p:commandButton>
+                </ui:fragment>
+
             </h:panelGrid>
-            <div id="message_error">
-                <br/>
-                <div id="error" class="my-notify-error" >#{requerimentoBean.mensagem_erro}</div>
-                <br/>
-            </div>
-            <script>
-//                if(#{requerimentoBean.mensagem_erro})
-//                {
-//                    $("error").remove();
-//                }
-            </script>
-
+            
+            <ui:fragment rendered="#{requerimentoBean.atividade_anterior.descricao_erro != ''}">
+                <div id="error" class="my-notify-error" >#{requerimentoBean.atividade_anterior.descricao_erro}</div>
+            </ui:fragment>
+          
             <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
                              ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
             <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"
