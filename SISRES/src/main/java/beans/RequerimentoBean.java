@@ -178,6 +178,18 @@ public class RequerimentoBean implements Serializable
         this.Requerimento = Requerimento;
     }
 
+    public void redireciona_para_lista_requerimento()
+    {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("atividade.xhtml");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade concluída com Sucesso! ");
+
+        }
+        catch (Exception e) {
+        }
+
+    }
+
     public void redireciona_para_exibir_requerimento(Requerimento requerimento_exibir) throws ExcecaoNegocio
     {
 
@@ -272,10 +284,12 @@ public class RequerimentoBean implements Serializable
 
                 adicionar_arquivo();
                 aprovando_atividade();
+                redireciona_para_lista_requerimento();
             }
         }
         else {
             aprovando_atividade();
+            redireciona_para_lista_requerimento();
         }
     }
 
@@ -353,6 +367,7 @@ public class RequerimentoBean implements Serializable
     public Atividade getAtividade_anterior()
     {
         setAtividade_anterior();
+        System.out.println("Atividade anterior - descrição do erro :  " + atividade_anterior.getDescricao_erro());
         return atividade_anterior;
     }
 
@@ -364,9 +379,12 @@ public class RequerimentoBean implements Serializable
                 if (posicao > 0) {
                     this.atividade_anterior = Requerimento.getAtividades().get(posicao - 1);
                 }
-                else 
-                {
-                    this.atividade_anterior.setDescricao_erro("");
+                else {
+                    this.atividade_anterior.setDescricao_erro(null);
+
+                    if (this.atividade_anterior.getAtividadeModelo() != null) {
+                        this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
+                    }
                 }
             }
         }

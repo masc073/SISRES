@@ -38,6 +38,8 @@
                 </ui:fragment>
 
                 <ui:fragment rendered="#{requerimentoBean.atividade_anterior.atividadeModelo.anexarArquivo == true}">
+                    <p:outputLabel value="Download arquivo:" id="output_download" />
+                  
                     <p:commandButton ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
                         <p:fileDownload value="#{requerimentoBean.conteudo_arquivo}" />
                     </p:commandButton>
@@ -45,7 +47,7 @@
 
             </h:panelGrid>
             
-            <ui:fragment rendered="#{requerimentoBean.atividade_anterior.descricao_erro != ''}">
+            <ui:fragment rendered="#{requerimentoBean.atividade_anterior.descricao_erro != null}">
                 <div id="error" class="my-notify-error" >#{requerimentoBean.atividade_anterior.descricao_erro}</div>
             </ui:fragment>
           
