@@ -36,21 +36,29 @@
                     <p:fileUpload value="#{requerimentoBean.arquivo}" mode="simple" allowTypes="/(\.|\/)(pdf)$/" 
                                   invalidFileMessage="Apenas arquivos pdf" />
                 </ui:fragment>
-
-                <ui:fragment rendered="#{requerimentoBean.atividade_anterior.atividadeModelo.anexarArquivo == true}">
-                    <p:outputLabel value="Download arquivo:" id="output_download" />
-                  
-                    <p:commandButton ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                        <p:fileDownload value="#{requerimentoBean.conteudo_arquivo}" />
-                    </p:commandButton>
-                </ui:fragment>
-
             </h:panelGrid>
-            
-            <ui:fragment rendered="#{requerimentoBean.atividade_anterior.descricao_erro != null}">
-                <div id="error" class="my-notify-error" >#{requerimentoBean.atividade_anterior.descricao_erro}</div>
+
+            <br/><br/>
+            <p:dataTable id="table_arquivo" var="arquivo" value="#{requerimentoBean.arquivos}"  paginator="true" rows="5"
+                         emptyMessage="Nenhum arquivo anexado." editable="true" style="margin-bottom:20px">
+
+                <f:facet name="header">Arquivos</f:facet>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{arquivo.nome_normal}" />
+                </p:column>
+                <p:column headerText="Download" style="width: 15%">
+                    <p:commandButton ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                        <p:fileDownload value="#{arquivo.stream}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != null }">
+                <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != '' }">
+                    <div id="error" class="my-notify-error" >#{requerimentoBean.atividade_proxima.descricao_erro}</div>
+                </ui:fragment>
             </ui:fragment>
-          
+
             <p:commandButton value="Aprovar" process="@this" id="button_aprovar" action="#{requerimentoBean.aprovarAtividade()}"
                              ajax="false" title="Aprovar" icon="ui-icon-check" validateClient="editar_atividade"/>
             <p:commandButton value="Reprovar" process="@this" id="button_reprovar" action="#{requerimentoBean.reprovarAtividade()}"

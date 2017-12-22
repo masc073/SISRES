@@ -36,13 +36,15 @@ public class RequerimentoBean implements Serializable
 
     private Atividade atividade_anterior;
 
+    private Atividade atividade_proxima;
+
     private List<Requerimento> Requerimentos = new ArrayList<>();
 
     private List<Requerimento> requerimentos_finalizados = new ArrayList<>();
 
-    private Requerimento Requerimento;
+    private List<Arquivo> arquivos = new ArrayList<>();
 
-    private String mensagem_erro;
+    private Requerimento Requerimento;
 
     private UploadedFile arquivo;
 
@@ -55,6 +57,7 @@ public class RequerimentoBean implements Serializable
         Requerimento = new Requerimento();
         atividade_atual = new Atividade();
         atividade_anterior = new Atividade();
+        arquivos = new ArrayList<>();
     }
 
     public void salvar()
@@ -237,8 +240,21 @@ public class RequerimentoBean implements Serializable
         arquivoDigital.setNome(arquivo.getFileName());
         atividade_atual.setArquivo(arquivoDigital);
         this.arquivo_digital = arquivoDigital;
-        setConteudo_arquivo();
+//        setConteudo_arquivo();
+        arquivos.add(arquivoDigital);
 
+    }
+    
+    private void preenche_lista_arquivos()
+    {
+        for (Atividade atividade_atual : Requerimento.getAtividades()) {
+            
+            if (atividade_atual.getArquivo() != null) {
+                arquivos.add(atividade_atual.getArquivo());
+                
+            }
+        }
+        // Pegar a lista de arquivos do banco.
     }
 
     public void aprovando_atividade()
@@ -275,6 +291,7 @@ public class RequerimentoBean implements Serializable
 
     public void aprovarAtividade()
     {
+
         if (atividade_atual.getAtividadeModelo().isAnexarArquivo() == true) {
 
             if (!arquivo.getContentType().equals("application/pdf")) {
@@ -359,15 +376,26 @@ public class RequerimentoBean implements Serializable
         return conteudo_arquivo;
     }
 
-    public void setConteudo_arquivo()
-    {
-        this.conteudo_arquivo = arquivo_digital.retorna_arquivo();
-    }
+//    public void setConteudo_arquivo()
+//    {
+//        this.conteudo_arquivo = arquivo_digital.retorna_arquivo();
+//    }
 
     public Atividade getAtividade_anterior()
     {
+        System.out.println("-------------------------------------------------------------------");
         setAtividade_anterior();
-        System.out.println("Atividade anterior - descrição do erro :  " + atividade_anterior.getDescricao_erro());
+
+//        if (atividade_anterior.getDescricao_erro() == null) {
+//            System.out.println("Descrição Nula ");
+//        }
+//        else if (atividade_anterior.getDescricao_erro().isEmpty()) {
+//            System.out.println("Descrição Vazia ");
+//        }
+//
+//        System.out.println("Descrição da atividade anterior: " + atividade_anterior.getDescricao_erro());
+//        System.out.println("Atividade anterior: " + atividade_anterior.getAtividadeModelo().getNome());
+        System.out.println("-------------------------------------------------------------------");
         return atividade_anterior;
     }
 
@@ -375,18 +403,107 @@ public class RequerimentoBean implements Serializable
     {
         if (Requerimento.getAtividades() != null) {
             if (!Requerimento.getAtividades().isEmpty()) {
+                Requerimento = RequerimentoServico.getRequerimento(Requerimento.getId());
                 int posicao = Requerimento.getAtividades().indexOf(atividade_atual);
                 if (posicao > 0) {
                     this.atividade_anterior = Requerimento.getAtividades().get(posicao - 1);
                 }
                 else {
-                    this.atividade_anterior.setDescricao_erro(null);
-
-                    if (this.atividade_anterior.getAtividadeModelo() != null) {
-                        this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
-                    }
+                    this.atividade_anterior = atividade_atual;
                 }
             }
         }
+
     }
+
+    public Atividade getAtividade_proxima()
+    {
+        System.out.println("-------------------------------------------------------------------");
+        setAtividade_proxima();
+        if (atividade_proxima.getDescricao_erro() == null) {
+            System.out.println("Descrição Nula - Próxima ");
+        }
+        else if (atividade_proxima.getDescricao_erro().isEmpty()) {
+            System.out.println("Descrição Vazia - Próxima ");
+        }
+
+        System.out.println("Descrição da atividade próxima: " + atividade_proxima.getDescricao_erro());
+        System.out.println("Atividade próxima: " + atividade_proxima.getAtividadeModelo().getNome());
+        System.out.println("-------------------------------------------------------------------");
+
+        return atividade_proxima;
+    }
+
+    public List<Arquivo> getArquivos()
+    {
+        if (arquivos.isEmpty()) {
+            preenche_lista_arquivos();
+        }
+        
+        return arquivos;
+    }
+
+    public void setArquivos(List<Arquivo> arquivos)
+    {
+        this.arquivos = arquivos;
+    }
+    
+    public void setAtividade_proxima()
+    {
+        int qtd_atividades;
+
+        if (Requerimento.getAtividades() != null) {
+            if (!Requerimento.getAtividades().isEmpty()) {
+
+                qtd_atividades = Requerimento.getAtividades().size();
+
+                int posicao = Requerimento.getAtividades().indexOf(atividade_atual);
+                if (posicao < qtd_atividades - 1) {
+                    this.atividade_proxima = Requerimento.getAtividades().get(posicao + 1);
+                    System.out.println("Posição da próxima: " + posicao + 1);
+                }
+                else {
+                    this.atividade_proxima = atividade_atual;
+                    System.out.println("Posição da próxima: " + posicao);
+//                    this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
+
+//                    if (this.atividade_anterior.getAtividadeModelo() != null) {
+//                        this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
+//                    }
+                }
+            }
+
+//        this.atividade_proxima = atividade_proxima;
+        }
+    }
+
+//    public boolean isDownlaod()
+//    {
+//        setAtividade_anterior();
+//        setDownlaod();
+//        return downlaod;
+//    }
+//
+//    public void setDownlaod()
+//    {
+//        if (atividade_anterior.getAtividadeModelo() != null) {
+//             System.out.println("Download - atividade anterior não é nula ");
+//            if (atividade_anterior.getAtividadeModelo().isAnexarArquivo() == true) {
+////                int posicao = Requerimento.getAtividades().indexOf(atividade_anterior);
+////                if (posicao == 0) {
+////                    downlaod = false;
+////                    System.out.println("download false ");
+////
+////                }
+////                else 
+////                {
+//                    downlaod = true;
+//                    System.out.println("download true ");
+//
+////                }
+//            }
+//        }
+//        System.out.println("Download : " + downlaod);
+//
+//    }
 }

@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -34,7 +35,21 @@ public class Arquivo extends EntidadeNegocio implements Serializable
     @NotBlank
     @Column(name = "TXT_NOME_ARQUIVO", nullable = true)
     private String nome;
+    
+    @Transient
+    private StreamedContent stream;
 
+    public StreamedContent getStream()
+    {
+        InputStream stream = new ByteArrayInputStream(arquivo);
+        return new DefaultStreamedContent(stream, extensao, nome);
+    }
+
+    public void setStream(StreamedContent stream)
+    {
+        this.stream = stream;
+    }
+  
     public byte[] getArquivo()
     {
         return arquivo;
@@ -55,6 +70,11 @@ public class Arquivo extends EntidadeNegocio implements Serializable
         this.extensao = extensao;
     }
 
+    public String getNome_normal()
+    {
+        return nome;
+    }
+    
     public String getNome()
     {
         String nomeCodificado = null;
@@ -73,10 +93,10 @@ public class Arquivo extends EntidadeNegocio implements Serializable
         this.nome = nome;
     }
 
-    public StreamedContent retorna_arquivo()
-    {
-        InputStream stream = new ByteArrayInputStream(arquivo);
-        return new DefaultStreamedContent(stream, extensao, nome);
-    }
+//    public StreamedContent retorna_arquivo()
+//    {
+//        InputStream stream = new ByteArrayInputStream(arquivo);
+//        return new DefaultStreamedContent(stream, extensao, nome);
+//    }
 
 }
