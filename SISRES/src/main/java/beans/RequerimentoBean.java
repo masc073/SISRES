@@ -7,6 +7,7 @@ import dominio.Requerimento;
 import dominio.SituacaoAtividade;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -88,11 +89,15 @@ public class RequerimentoBean implements Serializable
         Requerimentos = RequerimentoServico.listar();
     }
 
-    public void editarRequerimento(String mensagem, Requerimento requerimento)
+    public void editarRequerimento(String mensagem, Requerimento requerimento, boolean com_messagem)
     {
         try {
             RequerimentoServico.atualizar(requerimento);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, mensagem);
+            
+            if (com_messagem) {
+                adicionarMensagem(FacesMessage.SEVERITY_INFO, mensagem);
+            }
+            
             listar();
         }
         catch (ExcecaoNegocio ex) {
@@ -111,7 +116,7 @@ public class RequerimentoBean implements Serializable
     {
         Requerimento = (Requerimento) event.getObject();
         listar();
-        editarRequerimento("Requerimento alterado com Sucesso!", Requerimento);
+        editarRequerimento("Requerimento alterado com Sucesso!", Requerimento, true);
         listar();
     }
 
@@ -182,28 +187,27 @@ public class RequerimentoBean implements Serializable
         preenche_lista_arquivos();
     }
 
-    public void redireciona_para_lista_requerimento(String mensagem)
+    public void redireciona_para_lista_requerimento(String mensagem) throws IOException
     {
-        // Exibir mensagem ao redirecionar página.
+
+        FacesContext.getCurrentInstance().addMessage(
+                null, new FacesMessage(mensagem));
+
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash().setKeepMessages(true);
+
         try {
             
-            FacesContext.getCurrentInstance().getExternalContext().redirect("atividade.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("atividade.xhtml?faces-redirect=true");
 
         }
         catch (Exception e) {
         }
 
-//        FacesContext.getCurrentInstance().addMessage(
-//                null, new FacesMessage(mensagem));
-//
-//        FacesContext.getCurrentInstance()
-//                .getExternalContext()
-//                .getFlash().setKeepMessages(true);
-//
-//        return "/atividade/atividade.xhtml?faces-redirect=true";
     }
 
-    public void redireciona_para_exibir_requerimento(Requerimento requerimento_exibir) throws ExcecaoNegocio
+    public void redireciona_para_exibir_requerimento(Requerimento requerimento_exibir)
     {
 
         Requerimento = requerimento_exibir;
@@ -216,16 +220,16 @@ public class RequerimentoBean implements Serializable
 
     }
 
-    public float geraPercentual()
-    {
-
-        int posicao = Requerimento.getProcesso().getAtividades().indexOf(Requerimento.getEstadoAtual());
-        int totalDeAtividades = Requerimento.getProcesso().getAtividades().size();
-
-        float percentual = (posicao * 100) / totalDeAtividades;
-
-        return percentual;
-    }
+//    public float geraPercentual()
+//    {
+//
+//        int posicao = Requerimento.getProcesso().getAtividades().indexOf(Requerimento.getEstadoAtual());
+//        int totalDeAtividades = Requerimento.getProcesso().getAtividades().size();
+//
+//        float percentual = (posicao * 100) / totalDeAtividades;
+//
+//        return percentual;
+//    }
 
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
@@ -286,17 +290,17 @@ public class RequerimentoBean implements Serializable
             Requerimento.getAtividades().get(posicao).setDescricao_sucesso("");
             proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
             Requerimento.setEstadoAtual(proxima_atividade);
-            editarRequerimento("Atividade concluída com sucesso!", Requerimento);
+            editarRequerimento("Atividade concluída com sucesso!", Requerimento, false);
         }
         else {
             Requerimento.setFinalizado(true);
             Requerimento.setDataDeFim(new Date());
-            editarRequerimento("Processo finalizado com sucesso!", Requerimento);
+            editarRequerimento("Processo finalizado com sucesso!", Requerimento, false);
         }
 
     }
 
-    public void aprovarAtividade()
+    public void aprovarAtividade() throws IOException
     {
 
         if (atividade_atual.getAtividadeModelo().isAnexarArquivo() == true) {
@@ -317,7 +321,7 @@ public class RequerimentoBean implements Serializable
         }
     }
 
-    public void reprovarAtividade()
+    public void reprovarAtividade() throws IOException
     {
         Atividade proxima_atividade;
         int qtd_atividades;
@@ -339,7 +343,7 @@ public class RequerimentoBean implements Serializable
             proxima_atividade = Requerimento.getAtividades().get(posicao);
             proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
             Requerimento.setEstadoAtual(proxima_atividade);
-            editarRequerimento("Atividade reprovada!", Requerimento);
+            editarRequerimento("Atividade reprovada!", Requerimento, false);
             redireciona_para_lista_requerimento("Atividade reprovada!");
         }
         else {
