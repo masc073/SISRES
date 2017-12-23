@@ -15,9 +15,9 @@ Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
   Esquema do Cenario: Inserir processo
     Dado a tela inicial cadastro de processos aberta
     Quando o administrador definir o fluxo do processo com as seguintes  atividades:
-      | Valida informacoes                | Setor de registro escolar do DASE |
-      | Requisita aprovacao da biblioteca | Biblioteca                        |
-      | Gera documento                    | Setor de registro escolar do DASE |
+      | Valida informacoes                | Setor de registro escolar do DASE | Sim |
+      | Requisita aprovacao da biblioteca | Biblioteca                        | Nao |
+      | Gera documento                    | Setor de registro escolar do DASE | Sim |
     E o administrador informar o nome <nome> a duração em dias <duracao> o responsavel <responsavel> e salvar
     Entao deve ser exibida a seguinte mensagem : "Processo cadastrado com Sucesso!"
 
@@ -40,7 +40,7 @@ Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
     Dado a tela de listagem de processos aberta
     Quando o administrador selecionar o processo <nome_atual> que deve alterar 
     E alterar as seguintes atividades:
-    | Valida informacoes                | Validacao das informacoes   | Setor de registro escolar do DASE |
+    | Valida informacoes                | Validacao das informacoes   | Setor de registro escolar do DASE | Sim |
     Entao deve ser exibida a seguinte mensagem : "Fluxo do processo alterado com Sucesso!"
 
     Exemplos: 

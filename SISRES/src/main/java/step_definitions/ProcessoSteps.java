@@ -22,8 +22,7 @@ public class ProcessoSteps
 
     public ProcessoSteps()
     {
-        if (DbUnitUtil.ultimo_executado != Dataset.Processo)
-        {
+        if (DbUnitUtil.ultimo_executado != Dataset.Processo) {
             DbUnitUtil.selecionaDataset(Dataset.Processo);
             DbUnitUtil.inserirDados();
         }
@@ -53,10 +52,8 @@ public class ProcessoSteps
 
         List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
 
-        for (WebElement option : options)
-        {
-            if (option.getText().equals(responsavel))
-            {
+        for (WebElement option : options) {
+            if (option.getText().equals(responsavel)) {
                 option.click();
             }
         }
@@ -80,8 +77,7 @@ public class ProcessoSteps
 
         atividades_processo = atividades.raw();
 
-        for (List<String> atividade_atual : atividades_processo)
-        {
+        for (List<String> atividade_atual : atividades_processo) {
 
             BrowserManager.driver.findElement(By.id("form_atividades:value_nome_atividade")).sendKeys(atividade_atual.get(0));
 
@@ -91,12 +87,19 @@ public class ProcessoSteps
 
             List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
 
-            for (WebElement option : options)
-            {
-                if (option.getText().equals(atividade_atual.get(1)))
-                {
+            for (WebElement option : options) {
+                if (option.getText().equals(atividade_atual.get(1))) {
                     option.click();
                 }
+            }
+
+            List<WebElement> radioButtons = BrowserManager.driver.findElements(By.className(("ui-radiobutton")));
+
+            if (atividade_atual.get(2).equals("Sim")) {
+                radioButtons.get(0).click();
+            }
+            else {
+                radioButtons.get(1).click();
             }
 
             BrowserManager.driver.findElement(By.id("form_atividades:button_adicionar")).click();
@@ -117,14 +120,11 @@ public class ProcessoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("td"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(registro))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(registro)) {
                     row.findElement(By.className("ui-row-editor-pencil")).click();
                     row.findElement(By.className("ui-row-editor-check")).click();
                 }
@@ -143,23 +143,18 @@ public class ProcessoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(registro))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(registro)) {
                     id = "processo:table_processo:" + contador + ":delete";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
 
-                    for (WebElement button : buttons)
-                    {
-                        if (button.getText().equals("Sim"))
-                        {
+                    for (WebElement button : buttons) {
+                        if (button.getText().equals("Sim")) {
                             button.click();
                             removeu = true;
                             break;
@@ -168,8 +163,7 @@ public class ProcessoSteps
                     break;
                 }
             }
-            if (removeu == true)
-            {
+            if (removeu == true) {
                 break;
             }
             ++contador;
@@ -186,14 +180,11 @@ public class ProcessoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(registro))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(registro)) {
                     button_edit = row.findElement(By.className("ui-row-editor-pencil"));
                     button_edit.click();
 
@@ -204,14 +195,14 @@ public class ProcessoSteps
                     input_nome = div_nome.findElement(By.tagName("input"));
                     edit_duracao = true;
 
-                } else if (edit_duracao == true)
-                {
+                }
+                else if (edit_duracao == true) {
                     WebElement div_data = column.findElement(By.className("ui-cell-editor-input"));
                     input_duracao = div_data.findElement(By.tagName("input"));
                     edit_duracao = false;
                     edit_responsavel = true;
-                } else if (edit_responsavel == true)
-                {
+                }
+                else if (edit_responsavel == true) {
                     WebElement div_data = column.findElement(By.className("ui-cell-editor-input"));
                     input_responsavel = div_data.findElement(By.tagName("div"));
                     edit_responsavel = false;
@@ -235,10 +226,8 @@ public class ProcessoSteps
 
         List<WebElement> options = driver.findElements(By.tagName("li"));
 
-        for (WebElement option : options)
-        {
-            if (option.getText().equals(responsavel))
-            {
+        for (WebElement option : options) {
+            if (option.getText().equals(responsavel)) {
                 option.click();
             }
         }
@@ -257,52 +246,44 @@ public class ProcessoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(registro))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(registro)) {
                     id = "processo:table_processo:" + contador + ":atividades_processo";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     break;
                 }
             }
-            if (removeu == true)
-            {
+            if (removeu == true) {
                 break;
             }
             ++contador;
         }
-         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @Quando("^alterar as seguintes atividades:$")
     public void alterar_as_seguintes_atividades(DataTable atividades) throws Throwable
     {
-        boolean edit_nome = false, edit_responsavel = false;
+        boolean edit_anexar_arquivo = false, edit_responsavel = false, terminou = false;
         List<List<String>> atividades_processo;
 
         atividades_processo = atividades.raw();
-        
+
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        
+
         WebElement table = driver.findElement(By.id("form_atividades:table_atividade_data"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (List<String> atividade_atual : atividades_processo)
-        {
-            for (WebElement row : rows)
-            {
+        for (List<String> atividade_atual : atividades_processo) {
+            for (WebElement row : rows) {
                 List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-                for (WebElement column : columns)
-                {
-                    if (column.getText().equals(atividade_atual.get(0)))
-                    {
+                for (WebElement column : columns) {
+                    if (column.getText().equals(atividade_atual.get(0))) {
                         edit_responsavel = true;
                         row.findElement(By.className("ui-row-editor-pencil")).click();
 
@@ -314,17 +295,16 @@ public class ProcessoSteps
                         input_nome.clear();
                         input_nome.sendKeys(atividade_atual.get(1));
 
-                    } else if (edit_responsavel == true)
-                    {
+                    }
+                    else if (edit_responsavel == true) {
+                        edit_anexar_arquivo = true;
                         WebElement exibir_lista = column.findElement(By.tagName("span"));
                         exibir_lista.click();
 
                         List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
 
-                        for (WebElement option : options)
-                        {
-                            if (option.getText().equals(atividade_atual.get(2)))
-                            {
+                        for (WebElement option : options) {
+                            if (option.getText().equals(atividade_atual.get(2))) {
                                 option.click();
                             }
                         }
@@ -332,11 +312,26 @@ public class ProcessoSteps
                         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
                         edit_responsavel = false;
+
+                    }
+                    else if (edit_anexar_arquivo == true) {
+                        List<WebElement> radioButtons = row.findElements(By.className(("ui-radiobutton")));
+
+                        if (atividade_atual.get(3).equals("Sim")) {
+                            radioButtons.get(0).click();
+                        }
+                        else {
+                            radioButtons.get(1).click();
+                        }
+                        terminou = true;
                         break;
                     }
                 }
+                if (terminou == true) {
+                    break;
+                }
             }
         }
-          driver.findElement(By.id("form_editar:button_salvar")).click();
+        driver.findElement(By.id("form_editar:button_salvar")).click();
     }
 }
