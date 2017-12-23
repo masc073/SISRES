@@ -26,7 +26,7 @@
                 <p:outputLabel value="#{requerimentoBean.requerimento.matriculaAluno}" for="output_solicitante"/>
 
                 <p:outputLabel value="Atividade atual:" id="output_atividade_atual"/>
-                <p:outputLabel value="#{requerimento.estadoAtual.atividadeModelo.nome}" for="output_atividade_atual"/>
+                <p:outputLabel value="#{requerimentoBean.atividade_atual.atividadeModelo.nome}" for="output_atividade_atual"/>
 
                 <p:outputLabel value="Observações:" id="output_descricao" />
                 <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao_sucesso}"  />
@@ -55,7 +55,8 @@
 
             <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != null }">
                 <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != '' }">
-                    <div id="error" class="my-notify-error" >#{requerimentoBean.atividade_proxima.descricao_erro}</div>
+                    <div id="error" class="my-notify-error" style="width: 98%" >#{requerimentoBean.atividade_proxima.descricao_erro}</div>
+                    <br/>
                 </ui:fragment>
             </ui:fragment>
 

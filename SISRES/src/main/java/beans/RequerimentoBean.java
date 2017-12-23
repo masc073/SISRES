@@ -18,7 +18,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -58,6 +57,7 @@ public class RequerimentoBean implements Serializable
         atividade_atual = new Atividade();
         atividade_anterior = new Atividade();
         arquivos = new ArrayList<>();
+
     }
 
     public void salvar()
@@ -179,18 +179,28 @@ public class RequerimentoBean implements Serializable
     {
         setAtividade_atual(Requerimento.getEstadoAtual());
         this.Requerimento = Requerimento;
+        preenche_lista_arquivos();
     }
 
-    public void redireciona_para_lista_requerimento()
+    public void redireciona_para_lista_requerimento(String mensagem)
     {
+        // Exibir mensagem ao redirecionar página.
         try {
+            
             FacesContext.getCurrentInstance().getExternalContext().redirect("atividade.xhtml");
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade concluída com Sucesso! ");
 
         }
         catch (Exception e) {
         }
 
+//        FacesContext.getCurrentInstance().addMessage(
+//                null, new FacesMessage(mensagem));
+//
+//        FacesContext.getCurrentInstance()
+//                .getExternalContext()
+//                .getFlash().setKeepMessages(true);
+//
+//        return "/atividade/atividade.xhtml?faces-redirect=true";
     }
 
     public void redireciona_para_exibir_requerimento(Requerimento requerimento_exibir) throws ExcecaoNegocio
@@ -240,21 +250,18 @@ public class RequerimentoBean implements Serializable
         arquivoDigital.setNome(arquivo.getFileName());
         atividade_atual.setArquivo(arquivoDigital);
         this.arquivo_digital = arquivoDigital;
-//        setConteudo_arquivo();
-        arquivos.add(arquivoDigital);
-
     }
-    
+
     private void preenche_lista_arquivos()
     {
+        arquivos.clear();
         for (Atividade atividade_atual : Requerimento.getAtividades()) {
-            
+
             if (atividade_atual.getArquivo() != null) {
                 arquivos.add(atividade_atual.getArquivo());
-                
+
             }
         }
-        // Pegar a lista de arquivos do banco.
     }
 
     public void aprovando_atividade()
@@ -301,12 +308,12 @@ public class RequerimentoBean implements Serializable
 
                 adicionar_arquivo();
                 aprovando_atividade();
-                redireciona_para_lista_requerimento();
+                redireciona_para_lista_requerimento("Atividade concluída com sucesso!");
             }
         }
         else {
             aprovando_atividade();
-            redireciona_para_lista_requerimento();
+            redireciona_para_lista_requerimento("Atividade concluída com sucesso!");
         }
     }
 
@@ -328,10 +335,12 @@ public class RequerimentoBean implements Serializable
             --posicao;
             Requerimento.getAtividades().get(posicao).setDescricao_erro("");
             Requerimento.getAtividades().get(posicao).setDescricao_sucesso("");
+            Requerimento.getAtividades().get(posicao).setArquivo(null);
             proxima_atividade = Requerimento.getAtividades().get(posicao);
             proxima_atividade.setSituacao(SituacaoAtividade.Andamento);
             Requerimento.setEstadoAtual(proxima_atividade);
             editarRequerimento("Atividade reprovada!", Requerimento);
+            redireciona_para_lista_requerimento("Atividade reprovada!");
         }
         else {
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "A primeira atividade não pode ser reprovada! ");
@@ -376,26 +385,9 @@ public class RequerimentoBean implements Serializable
         return conteudo_arquivo;
     }
 
-//    public void setConteudo_arquivo()
-//    {
-//        this.conteudo_arquivo = arquivo_digital.retorna_arquivo();
-//    }
-
     public Atividade getAtividade_anterior()
     {
-        System.out.println("-------------------------------------------------------------------");
         setAtividade_anterior();
-
-//        if (atividade_anterior.getDescricao_erro() == null) {
-//            System.out.println("Descrição Nula ");
-//        }
-//        else if (atividade_anterior.getDescricao_erro().isEmpty()) {
-//            System.out.println("Descrição Vazia ");
-//        }
-//
-//        System.out.println("Descrição da atividade anterior: " + atividade_anterior.getDescricao_erro());
-//        System.out.println("Atividade anterior: " + atividade_anterior.getAtividadeModelo().getNome());
-        System.out.println("-------------------------------------------------------------------");
         return atividade_anterior;
     }
 
@@ -418,19 +410,7 @@ public class RequerimentoBean implements Serializable
 
     public Atividade getAtividade_proxima()
     {
-        System.out.println("-------------------------------------------------------------------");
         setAtividade_proxima();
-        if (atividade_proxima.getDescricao_erro() == null) {
-            System.out.println("Descrição Nula - Próxima ");
-        }
-        else if (atividade_proxima.getDescricao_erro().isEmpty()) {
-            System.out.println("Descrição Vazia - Próxima ");
-        }
-
-        System.out.println("Descrição da atividade próxima: " + atividade_proxima.getDescricao_erro());
-        System.out.println("Atividade próxima: " + atividade_proxima.getAtividadeModelo().getNome());
-        System.out.println("-------------------------------------------------------------------");
-
         return atividade_proxima;
     }
 
@@ -439,7 +419,7 @@ public class RequerimentoBean implements Serializable
         if (arquivos.isEmpty()) {
             preenche_lista_arquivos();
         }
-        
+
         return arquivos;
     }
 
@@ -447,7 +427,7 @@ public class RequerimentoBean implements Serializable
     {
         this.arquivos = arquivos;
     }
-    
+
     public void setAtividade_proxima()
     {
         int qtd_atividades;
@@ -465,45 +445,8 @@ public class RequerimentoBean implements Serializable
                 else {
                     this.atividade_proxima = atividade_atual;
                     System.out.println("Posição da próxima: " + posicao);
-//                    this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
-
-//                    if (this.atividade_anterior.getAtividadeModelo() != null) {
-//                        this.atividade_anterior.getAtividadeModelo().setAnexarArquivo(false);
-//                    }
                 }
             }
-
-//        this.atividade_proxima = atividade_proxima;
         }
     }
-
-//    public boolean isDownlaod()
-//    {
-//        setAtividade_anterior();
-//        setDownlaod();
-//        return downlaod;
-//    }
-//
-//    public void setDownlaod()
-//    {
-//        if (atividade_anterior.getAtividadeModelo() != null) {
-//             System.out.println("Download - atividade anterior não é nula ");
-//            if (atividade_anterior.getAtividadeModelo().isAnexarArquivo() == true) {
-////                int posicao = Requerimento.getAtividades().indexOf(atividade_anterior);
-////                if (posicao == 0) {
-////                    downlaod = false;
-////                    System.out.println("download false ");
-////
-////                }
-////                else 
-////                {
-//                    downlaod = true;
-//                    System.out.println("download true ");
-//
-////                }
-//            }
-//        }
-//        System.out.println("Download : " + downlaod);
-//
-//    }
 }
