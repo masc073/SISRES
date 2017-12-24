@@ -25,7 +25,7 @@
      
      <!-- MODELO DE ATIVIDADES -->
      <atividademodelo id="1" nome="Valida informacoes" ANEXARARQUIVO="false" id_processo="1"  id_departamento="5"/>
-     <atividademodelo id="2" nome="Requisita aprovacao da biblioteca" ANEXARARQUIVO="true" id_processo="1" id_departamento="7"/>
+     <atividademodelo id="2" nome="Requisita aprovacao da biblioteca" ANEXARARQUIVO="false" id_processo="1" id_departamento="7"/>
      <atividademodelo id="3" nome="Gera documento" ANEXARARQUIVO="false" id_processo="1" id_departamento="5"/>
   
 </dataset>

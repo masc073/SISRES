@@ -29,7 +29,7 @@
                 <p:outputLabel value="#{requerimentoBean.atividade_atual.atividadeModelo.nome}" for="output_atividade_atual"/>
 
                 <p:outputLabel value="Observações:" id="output_descricao" />
-                <p:inputTextarea rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao_sucesso}"  />
+                <p:inputTextarea id="descricao" rows="6" cols="33" value="#{requerimentoBean.atividade_atual.descricao_sucesso}"  />
                 <br/>
                 <ui:fragment rendered="#{requerimentoBean.atividade_atual.atividadeModelo.anexarArquivo == true}">
                     <p:outputLabel value="Anexar arquivo:" id="output_arquivo" />

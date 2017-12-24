@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="16" failures="0" name="RunTests" time="21.47" errors="0" skipped="0">
+<testsuite tests="41" failures="2" name="RunTests" time="30.153" errors="2" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_151\jre\bin"/>
@@ -62,20 +62,125 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0.001"/>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno informar a matricula \&quot;20141Y6-RC0331\&quot; o processo \&quot;Comprovante de matricula\&quot; e salvar" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento aberto com Sucesso!\&quot;" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
-  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno informar a matricula \&quot;20141Y6-RC0331\&quot; o processo \&quot;Comprovante de matricula\&quot; e salvar" time="0.001"/>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno informar a matricula \&quot;20141Y6-RC0331\&quot; o processo \&quot;Comprovante de matricula\&quot; e salvar" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Registro j\u00E1 cadastrado no sistema\u002C tente outro.\&quot;" time="0"/>
   <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
-  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja visualizar" time="0.001"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja visualizar" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser redirecionado para outra tela com as informacoes do requerimento" time="0"/>
-  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0.001"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Informa\u00E7\u00F5es corretas\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="E informar os seus dados da \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Reprovar\&quot;" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade reprovada!\&quot;" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;D\u00E9bito quitado\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Comprovante de matr\u00EDcula gerado\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Comprovante recebido\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot;" time="0.006">
+    <failure message="expected:&lt;[Atividade concluída] com sucesso!&gt; but was:&lt;[Requerimento concluído] com sucesso!&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: expected:&lt;[Atividade concluída] com sucesso!&gt; but was:&lt;[Requerimento concluído] com sucesso!&gt;
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:121)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento concluído com sucesso!&quot;(src/main/java/features/Requerimento.feature:36)
+</failure>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" name="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Requerimento conclu\u00EDdo com sucesso!\&quot; |" time="0.006">
+    <failure message="expected:&lt;[Atividade concluída] com sucesso!&gt; but was:&lt;[Requerimento concluído] com sucesso!&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: expected:&lt;[Atividade concluída] com sucesso!&gt; but was:&lt;[Requerimento concluído] com sucesso!&gt;
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:121)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento concluído com sucesso!&quot;(src/main/java/features/Requerimento.feature:36)
+</failure>
+  </testcase>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
   <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja encerrar" time="0"/>
-  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento encerrado com Sucesso!\&quot;" time="0"/>
-  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento encerrado com Sucesso!\&quot;" time="0.001">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento encerrado com Sucesso!&quot;(src/main/java/features/Requerimento.feature:49)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0.001">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento encerrado com Sucesso!&quot;(src/main/java/features/Requerimento.feature:49)
+</error>
+  </testcase>
 </testsuite>

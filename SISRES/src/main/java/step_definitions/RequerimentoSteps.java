@@ -1,5 +1,6 @@
 package step_definitions;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
@@ -13,12 +14,75 @@ import static step_definitions.BrowserManager.driver;
 public class RequerimentoSteps
 {
 
+    String requerimento;
+
     public RequerimentoSteps()
     {
-        if (DbUnitUtil.ultimo_executado != Dataset.Requerimento)
-        {
+        if (DbUnitUtil.ultimo_executado != Dataset.Requerimento) {
             DbUnitUtil.selecionaDataset(Dataset.Requerimento);
             DbUnitUtil.inserirDados();
+        }
+    }
+
+    @Quando("^informar os seus dados da \"([^\"]*)\" , anexar  caso necessário e realizar e clicar no botao \"([^\"]*)\"$")
+    public void informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(String descricao, String acao) throws Throwable
+    {
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(By.id("editar_atividade:descricao")).sendKeys(descricao);
+
+        if (acao.equals("Aprovar")) {
+            driver.findElement(By.id("editar_atividade:button_aprovar")).click();
+        }
+        else {
+            driver.findElement(By.id("editar_atividade:button_reprovar")).click();
+        }
+    }
+
+    @Quando("^informar os seus dados da \"([^\"]*)\" , anexar \"([^\"]*)\" caso necessário e realizar e clicar no botao \"([^\"]*)\"$")
+    public void informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(String descricao, String nome_arquivo, String acao) throws Throwable
+    {
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(By.id("editar_atividade:descricao")).sendKeys(descricao);
+
+        if (!nome_arquivo.isEmpty()) {
+
+        }
+        if (acao.equals("Aprovar")) {
+            driver.findElement(By.id("editar_atividade:button_aprovar")).click();
+        }
+        else {
+            driver.findElement(By.id("editar_atividade:button_reprovar")).click();
+        }
+
+    }
+
+    @Dado("^a tela da fila de requerimentos aberta$")
+    public void a_tela_da_fila_de_requerimentos_aberta() throws Throwable
+    {
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/atividade/atividade.xhtml");
+    }
+
+    @Quando("^o responsavel selecionar o requerimento \"([^\"]*)\" que deseja dar andamento$")
+    public void o_responsavel_selecionar_o_requerimento_que_deseja_dar_andamento(String requerimento) throws Throwable
+    {
+        int linha = 0;
+        WebElement table = driver.findElement(By.id("atividade:table_atividade_data"));
+
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+
+            List<WebElement> columns = row.findElements(By.tagName("td"));
+
+            for (WebElement column : columns) {
+                if (column.getText().equals(requerimento)) {
+                    row.findElement(By.id("atividade:table_atividade:" + linha + ":editar")).click();
+                    break;
+                }
+            }
+            ++linha;
         }
     }
 
@@ -39,10 +103,8 @@ public class RequerimentoSteps
 
         List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
 
-        for (WebElement option : options)
-        {
-            if (option.getText().equals(processo))
-            {
+        for (WebElement option : options) {
+            if (option.getText().equals(processo)) {
                 option.click();
             }
         }
@@ -70,16 +132,13 @@ public class RequerimentoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.tagName("td"));
 
             id = "requerimento:table_requerimento:" + count + ":consultar";
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(requerimento))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(requerimento)) {
                     row.findElement(By.id(id)).click();
                     break;
                 }
@@ -97,7 +156,7 @@ public class RequerimentoSteps
     @Quando("^o aluno selecionar o \"([^\"]*)\" que deseja encerrar$")
     public void o_aluno_selecionar_o_que_deseja_encerrar(String requerimento) throws Throwable
     {
-         int contador = 0;
+        int contador = 0;
         String id;
         boolean removeu = false;
 
@@ -105,23 +164,18 @@ public class RequerimentoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.tagName("td"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(requerimento))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(requerimento)) {
                     id = "requerimento:table_requerimento:" + contador + ":delete";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
 
-                    for (WebElement button : buttons)
-                    {
-                        if (button.getText().equals("Sim"))
-                        {
+                    for (WebElement button : buttons) {
+                        if (button.getText().equals("Sim")) {
                             button.click();
                             removeu = true;
                             break;
@@ -130,8 +184,7 @@ public class RequerimentoSteps
                     break;
                 }
             }
-            if (removeu == true)
-            {
+            if (removeu == true) {
                 break;
             }
             ++contador;
