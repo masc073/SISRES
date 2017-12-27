@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+       
+    </h:head>
+    <body>
+        <h:body>
+            <h:form id="login">
+                <p:fieldset legend="Login" style="  width: 300px; height: 300px;" >
+                    <h:panelGrid columns="1">
+
+                        <!--<p:outputLabel value="E-mail: " for="username" />-->
+                        <p:inputText id="username"  placeholder="Email" style="width: 240px;"/>
+
+                        <!--<p:outputLabel value="Senha: " for="senha" />-->
+                        <p:password id="senha" placeholder="Senha" style="width: 240px;"/>
+
+                        <p:commandButton value="Login" style="width: 250px;"/>
+                        <p:outputLabel value="Ainda não é cadastrado?" style="font-size: small; " />
+                        <p:link value="Cadastre-se!" style="font-size: small"/>
+                        <!--<p:commandButton action="Cadastro?faces-redirect=true" immediate="true" value="Cadastrar" />-->
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>    
+        </h:body>
+    </body>
+</html>

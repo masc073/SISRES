@@ -1,27 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: RunTests
 -------------------------------------------------------------------------------
-Tests run: 41, Failures: 2, Errors: 2, Skipped: 0, Time elapsed: 30.152 sec <<< FAILURE!
-Entao deve ser exibida a mensagem sobre o requerimento \"Requerimento conclu\u00EDdo com sucesso!\"(| \"Comprovante recebido\" |  | \"Aprovar\" | \"Requerimento conclu\u00EDdo com sucesso!\" |)  Time elapsed: 0.006 sec  <<< FAILURE!
-junit.framework.ComparisonFailure: expected:<[Atividade concluída] com sucesso!> but was:<[Requerimento concluído] com sucesso!>
-	at junit.framework.Assert.assertEquals(Assert.java:100)
-	at junit.framework.Assert.assertEquals(Assert.java:107)
-	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:121)
-	at ?.Entao deve ser exibida a mensagem sobre o requerimento "Requerimento concluído com sucesso!"(src/main/java/features/Requerimento.feature:36)
-| \"Comprovante recebido\" |  | \"Aprovar\" | \"Requerimento conclu\u00EDdo com sucesso!\" |  Time elapsed: 0.006 sec  <<< FAILURE!
-junit.framework.ComparisonFailure: expected:<[Atividade concluída] com sucesso!> but was:<[Requerimento concluído] com sucesso!>
-	at junit.framework.Assert.assertEquals(Assert.java:100)
-	at junit.framework.Assert.assertEquals(Assert.java:107)
-	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:121)
-	at ?.Entao deve ser exibida a mensagem sobre o requerimento "Requerimento concluído com sucesso!"(src/main/java/features/Requerimento.feature:36)
-Entao deve ser exibida a mensagem sobre o requerimento \"Requerimento encerrado com Sucesso!\"(| \"Comprovante de matricula\" |)  Time elapsed: 0.001 sec  <<< ERROR!
+Tests run: 41, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 28.363 sec <<< FAILURE!
+Entao deve ser exibida a mensagem sobre o requerimento \"Requerimento encerrado com Sucesso!\"(| \"Comprovante de matricula\" |)  Time elapsed: 0.003 sec  <<< ERROR!
 org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.108', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
-Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.ARQua6hu00e0, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=11444, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: c8baa0ab-7bd0-4870-bebb-55f8e3cebdc1
 *** Element info: {Using=class name, value=ui-growl-title}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
@@ -39,14 +27,14 @@ Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
 	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
 	at ?.Entao deve ser exibida a mensagem sobre o requerimento "Requerimento encerrado com Sucesso!"(src/main/java/features/Requerimento.feature:49)
-| \"Comprovante de matricula\" |  Time elapsed: 0.001 sec  <<< ERROR!
+| \"Comprovante de matricula\" |  Time elapsed: 0.003 sec  <<< ERROR!
 org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.104', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.108', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
 Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.D0WJ7hYxD2Em, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=16396, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
-Session ID: f70e4f43-fad1-4bb7-879b-6fa824de938a
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.ARQua6hu00e0, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=57.0.2, platformVersion=10.0, moz:processID=11444, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=false}]
+Session ID: c8baa0ab-7bd0-4870-bebb-55f8e3cebdc1
 *** Element info: {Using=class name, value=ui-growl-title}
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
