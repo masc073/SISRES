@@ -1,8 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -18,19 +23,70 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     private String nome;
 
     @NotNull(message = "A senha deve ser preenchida.")
-    @Size(min = 2, max = 14, message = "A senha deve conter entre 2 à 14 caracteres.")
+//    @Size(min = 2, max = 14, message = "A senha deve conter entre 2 à 14 caracteres.")
     private String senhaDigital;
-
-//    @ManyToOne( fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn( name = "id_departamento", referencedColumnName = "id")
-//    protected Departamento departamento;
     
-//    @Column
-//    private boolean lider;
+    @NotNull(message = "O Email deve ser preenchido.")
+    @Email(message = "Informar email válido!")
+    private String email;
+    
+    @ManyToOne( fetch = FetchType.EAGER, optional = false)
+    @JoinColumn( name = "id_departamento", referencedColumnName = "id")
+    private Departamento departamento;
+    
+    private boolean servidor;
 
+    private boolean aprovado;
+    
+    @Column
+    private boolean lider;
+    
+    @Column(name = "numero_numeroAleatorio")
+    private int numeroAleatorio;
+        
     public Responsavel()
     {
         
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public Departamento getDepartamento()
+    {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento)
+    {
+        this.departamento = departamento;
+    }
+
+    public boolean isAprovado()
+    {
+        return aprovado;
+    }
+
+    public void setAprovado(boolean aprovado)
+    {
+        this.aprovado = aprovado;
+    }
+
+    public boolean isLider()
+    {
+        return lider;
+    }
+
+    public void setLider(boolean lider)
+    {
+        this.lider = lider;
     }
 
     public Responsavel(String nome, String senhaDigital)
@@ -58,25 +114,25 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     {
         this.senhaDigital = senhaDigital;
     }
+    
+    public boolean isServidor()
+    {
+        return servidor;
+    }
 
-//    public Departamento getDepartamento()
-//    {
-//        return departamento;
-//    }
-//
-//    public void setDepartamento(Departamento departamento)
-//    {
-//        this.departamento = departamento;
-//    }
-//
-//    public boolean isLider()
-//    {
-//        return lider;
-//    }
-//
-//    public void setLider(boolean lider)
-//    {
-//        this.lider = lider;
-//    }
+    public void setServidor(boolean servidor)
+    {
+        this.servidor = servidor;
+    }
+    
+    public int getNumeroAleatorio()
+    {
+        return numeroAleatorio;
+    }
 
+    public void setNumeroAleatorio(int numeroAleatorio)
+    {
+        this.numeroAleatorio = numeroAleatorio;
+    }
+    
 }

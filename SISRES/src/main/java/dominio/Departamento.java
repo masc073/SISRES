@@ -27,7 +27,6 @@ public class Departamento extends EntidadeNegocio implements Serializable
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "A sigla deve possuir apenas letras.")
     private String sigla;
 
-    @NotNull(message = "Um responsável deve ser selecionado.")
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;

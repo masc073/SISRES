@@ -1,5 +1,6 @@
 package beans;
 
+import criptografia.Encripta;
 import dominio.Responsavel;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
@@ -30,28 +31,38 @@ public class ResponsavelBean implements Serializable
 
     String senhaConfirmacao;
 
+    Encripta encripta;
+
+    public ResponsavelBean()
+    {
+        responsavel = new Responsavel();
+        encripta = new Encripta();
+    }
+
     public void salvar()
     {
-        if (responsavel.getSenhaDigital().equals(senhaConfirmacao))
-        {
-            try
-            {
+        if (responsavel.getSenhaDigital().equals(senhaConfirmacao)) {
+
+            String senha = responsavel.getSenhaDigital();
+            responsavel.setNumeroAleatorio(encripta.Sorteia());
+            senha = encripta.encriptar(senha, responsavel.getNumeroAleatorio());
+            responsavel.setSenhaDigital(senha);
+
+            try {
                 responsavelServico.salvar(responsavel);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável cadastrado com Sucesso!");
-            } catch (ExcecaoNegocio ex)
-            {
+            }
+            catch (ExcecaoNegocio ex) {
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-            } catch (EJBException ex)
-            {
-                if (ex.getCause() instanceof ConstraintViolationException)
-                {
+            }
+            catch (EJBException ex) {
+                if (ex.getCause() instanceof ConstraintViolationException) {
                     MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
         }
-        else
-        {
+        else {
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Senhas diferentes!");
         }
 
@@ -69,20 +80,16 @@ public class ResponsavelBean implements Serializable
         responsavel = (Responsavel) event.getObject();
         listar();
 
-        try
-        {
+        try {
             responsavelServico.atualizar(responsavel);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável alterado com Sucesso!");
             listar();
         }
-        catch (ExcecaoNegocio ex)
-        {
+        catch (ExcecaoNegocio ex) {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } 
-        catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -92,15 +99,13 @@ public class ResponsavelBean implements Serializable
 
     public void remover(Responsavel responsavel)
     {
-        try
-        {
+        try {
             responsavelServico.remover(responsavel);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável removido com Sucesso!");
 
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -112,11 +117,6 @@ public class ResponsavelBean implements Serializable
     {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, mensagem, null));
-    }
-
-    public ResponsavelBean()
-    {
-        responsavel = new Responsavel();
     }
 
     public ResponsavelServico getResponsavelServico()
@@ -131,8 +131,7 @@ public class ResponsavelBean implements Serializable
 
     public List<Responsavel> getResponsaveis()
     {
-        if (responsaveis.isEmpty())
-        {
+        if (responsaveis.isEmpty()) {
             responsaveis = responsavelServico.listar();
         }
         return responsaveis;

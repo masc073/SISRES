@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-       
+
     </h:head>
     <h:body>
         <p:growl showDetail="false" globalOnly="true"  autoUpdate="true" />
@@ -13,26 +14,40 @@
                 <h:panelGrid columns="2">
 
                     <p:outputLabel for="primeiroNome">Nome:</p:outputLabel>
-                    <p:inputText id="primeiroNome" value="#{participanteBean.participante.nome}"/>
+                    <p:inputText id="primeiroNome" value="#{responsavelBean.responsavel.nome}"/>
 
                     <p:outputLabel for="email">E-mail:</p:outputLabel>
-                    <p:inputText id="email" value="#{participanteBean.participante.email}"/>
+                    <p:inputText id="email" value="#{responsavelBean.responsavel.email}"/>
 
                     <p:outputLabel value="Senha:" id="output_senha" />
-                    <p:password id="value_senha" value="#{participanteBean.participante.senha}" />
+                    <p:password id="value_senha" value="#{responsavelBean.responsavel.senhaDigital}" />
 
                     <p:outputLabel value="Confirmação:" id="output_confirmacao" />
-                    <p:password id="value_confirmacao" value="#{participanteBean.senhaConfirmacao}"  feedback="true" />
+                    <p:password id="value_confirmacao" value="#{responsavelBean.senhaConfirmacao}"  feedback="true" />
 
-<!--                    <p:outputLabel for="departamento" value="Departamento :"/>
-                    <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
-                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
-                    </p:selectOneMenu>-->
+                    <p:outputLabel value="Servidor:" id="output_servidor" />
+                    <p:selectOneRadio id="input_servidor" value="#{responsavelBean.responsavel.servidor}" >
+                        <f:selectItem id="radiobutton_sim" itemLabel="Sim" itemValue="true" />
+                        <f:selectItem id="radiobutton_nao" itemLabel="Não" itemValue="false" />
+                    </p:selectOneRadio>
+                    
+                    
+                        <p:outputLabel for="departamento" value="Departamento :"/>
+                        <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
+                            <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Chefe do departamento:" id="output_chefe" />
+                        <p:selectOneRadio id="input_chefe" value="#{responsavelBean.responsavel.lider}" >
+                            <f:selectItem itemLabel="Sim" itemValue="sim" />
+                            <f:selectItem itemLabel="Não" itemValue="nao" />
+                        </p:selectOneRadio>
+                        
 
                 </h:panelGrid>
                 <p:separator />
                 <p:toolbarGroup>
-                    <p:commandButton value="Salvar" action="#{participanteBean.salvar}" id="button_salvar" 
+                    <p:commandButton value="Salvar" action="#{responsavelBean.salvar}" id="button_salvar" 
                                      ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="true"/>
                 </p:toolbarGroup>
             </p:fieldset>

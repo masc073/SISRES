@@ -13,14 +13,12 @@ dominio\Processo_.class
 step_definitions\Dataset.class
 beans\ResponsavelBean.class
 dominio\Arquivo_.class
-beans\ParticipanteBean.class
 dominio\Arquivo.class
 dominio\EntidadeNegocio.class
 beans\ProcessoEditarBean.class
 dominio\EntidadeNegocio_.class
 dominio\AtividadeModelo.class
 servico\ResponsavelServico.class
-dominio\Participante.class
 dominio\Processo.class
 step_definitions\ProcessoSteps.class
 dominio\Departamento.class
@@ -28,7 +26,6 @@ servico\FeriadoServico.class
 servico\DepartamentoServico.class
 dominio\Requerimento_.class
 beans\AtividadeBean.class
-servico\ParticipanteServico.class
 dominio\Departamento_.class
 servico\RequerimentoServico.class
 servico\ProcessoServico.class
@@ -39,7 +36,6 @@ step_definitions\ResponsavelSteps.class
 util\LeitorPropriedades.class
 beans\ProcessoBean.class
 beans\DepartamentoBean.class
-dominio\Participante_.class
 dominio\Requerimento.class
 dominio\Responsavel_.class
 servico\Servico.class
