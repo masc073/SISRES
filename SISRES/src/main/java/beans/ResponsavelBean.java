@@ -47,6 +47,11 @@ public class ResponsavelBean implements Serializable
             responsavel.setNumeroAleatorio(encripta.Sorteia());
             senha = encripta.encriptar(senha, responsavel.getNumeroAleatorio());
             responsavel.setSenhaDigital(senha);
+            
+            if (!responsavel.isServidor()) {
+                responsavel.setDepartamento(null);
+                responsavel.setLider(false);
+            }
 
             try {
                 responsavelServico.salvar(responsavel);

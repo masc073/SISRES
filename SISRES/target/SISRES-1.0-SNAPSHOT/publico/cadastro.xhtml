@@ -2,16 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <script language="javaScript" type="text/javascript">
+            function alterar_visibilidade() {
 
+                var nao = document.getElementById("form:input_servidor:1").checked;
+
+                if (nao === true) {
+                    document.getElementById("form:output_departamento").style.visibility = "hidden";
+                    document.getElementById("form:departamento").style.visibility = "hidden";
+                    document.getElementById("form:output_chefe").style.visibility = "hidden";
+                    document.getElementById("form:input_chefe").style.visibility = "hidden";
+                } else
+                {
+                    document.getElementById("form:output_departamento").style.visibility = "visible";
+                    document.getElementById("form:departamento").style.visibility = "visible";
+                    document.getElementById("form:output_chefe").style.visibility = "visible";
+                    document.getElementById("form:input_chefe").style.visibility = "visible";
+
+                }
+            }
+        </script>
     </h:head>
     <h:body>
         <p:growl showDetail="false" globalOnly="true"  autoUpdate="true" />
-        <h:form>
-            <p:fieldset legend="Dados do Participante">
-                <h:panelGrid columns="2">
+        <h:form id="form">
+            <p:fieldset id="fieldset" legend="Dados do Responsável">
+                <h:panelGrid id="panel_grid" columns="2">
 
                     <p:outputLabel for="primeiroNome">Nome:</p:outputLabel>
                     <p:inputText id="primeiroNome" value="#{responsavelBean.responsavel.nome}"/>
@@ -26,29 +44,32 @@
                     <p:password id="value_confirmacao" value="#{responsavelBean.senhaConfirmacao}"  feedback="true" />
 
                     <p:outputLabel value="Servidor:" id="output_servidor" />
-                    <p:selectOneRadio id="input_servidor" value="#{responsavelBean.responsavel.servidor}" >
-                        <f:selectItem id="radiobutton_sim" itemLabel="Sim" itemValue="true" />
+                    <p:selectOneRadio id="input_servidor" onclick="alterar_visibilidade();" value="#{responsavelBean.responsavel.servidor}" >
+                        <f:selectItem id="radiobutton_sim"  itemLabel="Sim"  itemValue="true" />
                         <f:selectItem id="radiobutton_nao" itemLabel="Não" itemValue="false" />
                     </p:selectOneRadio>
-                    
-                    
-                        <p:outputLabel for="departamento" value="Departamento :"/>
-                        <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
-                            <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
-                        </p:selectOneMenu>
 
-                        <p:outputLabel value="Chefe do departamento:" id="output_chefe" />
-                        <p:selectOneRadio id="input_chefe" value="#{responsavelBean.responsavel.lider}" >
-                            <f:selectItem itemLabel="Sim" itemValue="sim" />
-                            <f:selectItem itemLabel="Não" itemValue="nao" />
-                        </p:selectOneRadio>
-                        
+
+                    <p:outputLabel id="output_departamento" style="visibility: hidden;" for="departamento" value="Departamento :"/>
+                    <p:selectOneMenu id="departamento" style="visibility: hidden;" converter="entidadeConverter" value="#{responsavelBean.responsavel.departamento}">
+                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Chefe do departamento:" style="visibility: hidden;" id="output_chefe" />
+                    <p:selectOneRadio id="input_chefe" style="visibility: hidden;" value="#{responsavelBean.responsavel.lider}" >
+                        <f:selectItem itemLabel="Sim" itemValue="sim" />
+                        <f:selectItem itemLabel="Não" itemValue="nao" />
+                    </p:selectOneRadio>
+
 
                 </h:panelGrid>
                 <p:separator />
                 <p:toolbarGroup>
                     <p:commandButton value="Salvar" action="#{responsavelBean.salvar}" id="button_salvar" 
                                      ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+
+                    <p:commandButton value="Voltar" id="button_voltar" 
+                                     ajax="false" update="@form" title="Voltar" icon="ui-icon-arrowreturnthick-1-w" validateClient="true"/>
                 </p:toolbarGroup>
             </p:fieldset>
         </h:form>

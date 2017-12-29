@@ -28,6 +28,7 @@ dominio\Requerimento_.class
 beans\AtividadeBean.class
 dominio\Departamento_.class
 servico\RequerimentoServico.class
+criptografia\Encripta.class
 servico\ProcessoServico.class
 dominio\Feriado.class
 beans\RequerimentoBean.class

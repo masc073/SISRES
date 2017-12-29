@@ -39,12 +39,12 @@ public class ResponsavelServico extends Servico
 
         if (responsavel.getId() == null)
         {
-            query = em.createQuery("select r from Responsavel r where r.nome = ?1", Responsavel.class);
-            query.setParameter(1, responsavel.getNome());
+            query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
+            query.setParameter(1, responsavel.getEmail());
         } else
         {
-            query = em.createQuery("select r from Responsavel r where r.nome = ?1 and r.id != ?2", Responsavel.class);
-            query.setParameter(1, responsavel.getNome());
+            query = em.createQuery("select r from Responsavel r where r.email = ?1 and r.id != ?2", Responsavel.class);
+            query.setParameter(1, responsavel.getEmail());
             query.setParameter(2, responsavel.getId());
         }
 
