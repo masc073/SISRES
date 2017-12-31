@@ -25,28 +25,32 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     @NotNull(message = "A senha deve ser preenchida.")
 //    @Size(min = 2, max = 14, message = "A senha deve conter entre 2 à 14 caracteres.")
     private String senhaDigital;
-    
+
     @NotNull(message = "O Email deve ser preenchido.")
     @Email(message = "Informar email válido!")
     private String email;
-    
-    @ManyToOne( fetch = FetchType.EAGER, optional = false)
-    @JoinColumn( name = "id_departamento", referencedColumnName = "id")
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_departamento", referencedColumnName = "id")
     private Departamento departamento;
-    
+
     private boolean servidor;
 
     private boolean aprovado;
-    
+
     @Column
     private boolean lider;
-    
+
     @Column(name = "numero_numeroAleatorio")
     private int numeroAleatorio;
-        
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id")
+    private Grupo grupo;
+
     public Responsavel()
     {
-        
+
     }
 
     public String getEmail()
@@ -114,7 +118,7 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     {
         this.senhaDigital = senhaDigital;
     }
-    
+
     public boolean isServidor()
     {
         return servidor;
@@ -124,7 +128,7 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     {
         this.servidor = servidor;
     }
-    
+
     public int getNumeroAleatorio()
     {
         return numeroAleatorio;
@@ -134,5 +138,14 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     {
         this.numeroAleatorio = numeroAleatorio;
     }
-    
+
+    public Grupo getGrupo()
+    {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo)
+    {
+        this.grupo = grupo;
+    }
 }

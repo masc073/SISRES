@@ -18,11 +18,10 @@ public class ResponsavelServico extends Servico
 
     public void salvar(Responsavel responsavel) throws ExcecaoNegocio
     {
-        if (chegaExistencia(responsavel) == false)
-        {
+        if (chegaExistencia(responsavel) == false) {
             em.persist(responsavel);
-        } else
-        {
+        }
+        else {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
@@ -33,16 +32,26 @@ public class ResponsavelServico extends Servico
         return em.createQuery("select r from Responsavel r", Responsavel.class).getResultList();
     }
 
+    public Responsavel getResponsavelByEmail(String email)
+    {
+        TypedQuery<Responsavel> query;
+        query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
+        query.setParameter(1, email);
+
+        Responsavel responsavel = query.getSingleResult();
+
+        return responsavel;
+    }
+
     public boolean chegaExistencia(Responsavel responsavel)
     {
         TypedQuery<Responsavel> query;
 
-        if (responsavel.getId() == null)
-        {
+        if (responsavel.getId() == null) {
             query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
             query.setParameter(1, responsavel.getEmail());
-        } else
-        {
+        }
+        else {
             query = em.createQuery("select r from Responsavel r where r.email = ?1 and r.id != ?2", Responsavel.class);
             query.setParameter(1, responsavel.getEmail());
             query.setParameter(2, responsavel.getId());
@@ -62,11 +71,10 @@ public class ResponsavelServico extends Servico
     public void atualizar(Responsavel responsavel) throws ExcecaoNegocio
     {
         em.flush();
-        if (chegaExistencia(responsavel) == false)
-        {
+        if (chegaExistencia(responsavel) == false) {
             em.merge(responsavel);
-        } else
-        {
+        }
+        else {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }

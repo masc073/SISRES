@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../template.xhtml">
+    <h:form id="feriado">
+        <p:fieldset legend="Cadastro de Feriados" style="margin-left: 3px; width: 900px;" >
+            <h:panelGrid columns="3" >
+                <p:outputLabel value="Nome:" id="output_nome" />
+                <p:inputText id="value_nome" value="#{feriadoBean.feriado.nome}" />
+                <p:message for="output_nome" id="messageNome" severity="error"/>
+
+                <p:outputLabel value="Data:" id="output_data" />
+                <p:calendar id="value_data" pattern="dd/MM/yyy" value="#{feriadoBean.feriado.data_do_feriado}" mode="inline"  />
+                <p:message for="output_data" id="messageData" severity="error"/>
+
+                <p:toolbarGroup>
+                    <p:commandButton value="Salvar" action="#{feriadoBean.salvar}" id="button_salvar" 
+                                     ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+                </p:toolbarGroup>
+            </h:panelGrid>
+
+            <!--</h:form>-->
+            <!--        </p:tab>
+                    <p:tab title="Feriados cadastrados" id="painelFeriadosCadastrados">-->
+            <!--<h:form id="formularioFeriado">-->
+            <p:dataTable rowKey="#{feriado.id}" id="table_feriado" editable="true"  var="feriado" value="#{feriadoBean.feriados}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
+
+                <f:facet name="header">Feriados</f:facet>
+                <p:ajax event="rowEdit" update="table_feriado" listener="#{feriadoBean.editar}" />
+                <p:column headerText="Nome">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{feriado.nome}" /></f:facet>
+                        <f:facet name="input"><p:inputText id="nome_output" value="#{feriado.nome}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Data">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText  value="#{feriado.data_do_feriado}" /></f:facet>
+                        <f:facet name="input"><p:calendar id="data_output" pattern="dd/MM/yyy"  value="#{feriado.data_do_feriado}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column style="width:20px">
+                    <p:rowEditor />
+                </p:column>
+                <p:column style="width:20px">
+                    <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_feriado" action="#{feriadoBean.remover(feriado)}" process="@this" >
+                        <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                    </p:commandLink>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

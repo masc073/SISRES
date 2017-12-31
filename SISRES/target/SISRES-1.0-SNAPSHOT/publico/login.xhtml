@@ -13,12 +13,12 @@
                     <h:panelGrid columns="1">
 
                         <!--<p:outputLabel value="E-mail: " for="username" />-->
-                        <p:inputText id="username"  placeholder="Email" style="width: 240px;"/>
+                        <p:inputText id="username"  placeholder="Email" style="width: 240px;" value="#{loginBean.username}"/>
 
                         <!--<p:outputLabel value="Senha: " for="senha" />-->
-                        <p:password id="senha" placeholder="Senha" style="width: 240px;"/>
+                        <p:password id="senha" placeholder="Senha" style="width: 240px;" value="#{loginBean.senha}"/>
 
-                        <p:commandButton value="Login" style="width: 250px;"/>
+                        <p:commandButton value="Login" style="width: 250px;" action="#{loginBean.efetuarLogin()}"/>
                         <p:outputLabel value="Ainda não é cadastrado?" style="font-size: small; " />
                         <p:link value="Cadastre-se!" style="font-size: small"/>
                         <!--<p:commandButton action="Cadastro?faces-redirect=true" immediate="true" value="Cadastrar" />-->

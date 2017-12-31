@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<glassfish-web-app error-url="/faces/publico/erro.xhtml">
+  <class-loader delegate="true"/>
+  <security-role-mapping>
+    <role-name>noivo</role-name>
+    <group-name>noivo</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>produtorDeMidia</role-name>
+    <group-name>produtorDeMidia</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>convidado</role-name>
+    <group-name>convidado</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>usuario</role-name>
+    <group-name>usuario</group-name>
+  </security-role-mapping>
+  <jsp-config>
+    <property name="keepgenerated" value="true">
+      <description>Keep a copy of the generated servlet class' java code.</description>
+    </property>
+  </jsp-config>
+</glassfish-web-app>

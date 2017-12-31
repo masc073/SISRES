@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../template.xhtml">
+    <h:form id="atividade">
+        <p:fieldset legend="Fila de Requerimentos" style="margin-left: 3px; width: 990px;" >
+            <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos}">
+
+                <f:facet name="header">Requerimentos</f:facet>
+                <p:column headerText="Solicitante">
+                    <h:outputText value="#{requerimento.matriculaAluno}" />
+                </p:column>
+                <p:column headerText="Processo">
+                    <h:outputText value="#{requerimento.processo.nome}" />
+                </p:column> 
+                <p:column headerText="Abertura">
+                    <h:outputText value="#{requerimento.dataDeInicioFormatada}" />
+                </p:column> 
+                <p:column headerText="Atividade atual">
+                    <h:outputText value="#{requerimento.estadoAtual.atividadeModelo.nome}" />
+                </p:column> 
+                <p:column style="width:40px">
+                    <p:commandButton icon="ui-icon-pencil" id="editar" title="Editar" action="#{requerimentoBean.redireciona_para_editar_atividades(requerimento)}"/> 
+                </p:column>
+<!--                <p:column style="width:40px">
+                    <p:commandButton icon="ui-icon-close" id="reprovar" title="Reprovar" /> 
+                </p:column>-->
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

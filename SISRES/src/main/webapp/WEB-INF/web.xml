@@ -33,4 +33,92 @@
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
+    
+    
+     <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>realm_sisres</realm-name>
+        <form-login-config>
+            <form-login-page>/faces/publico/login.xhtml</form-login-page>
+            <form-error-page>/faces/publico/login.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-constraint>
+        <display-name>Pg responsavel</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Responsavel Area</web-resource-name>
+            <description>Protected Responsavel Area</description>
+            <url-pattern>/faces/responsavel/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>            
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>responsavel</role-name>
+        </auth-constraint>  
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>              
+    </security-constraint> 
+    
+    <security-constraint>
+        <display-name>Pg administrador</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Administrador Area</web-resource-name>
+            <description>Protected Administrador Area</description>
+            <url-pattern>/faces/administrador/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>            
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>administrador</role-name>
+        </auth-constraint>  
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>              
+    </security-constraint> 
+    
+    <security-constraint>
+        <display-name>Pg servidor chefe</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Servidor Chefe Area</web-resource-name>
+            <description>Protected Administrador Area</description>
+            <url-pattern>/faces/servidor_chefe/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>            
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>servidor_chefe</role-name>
+        </auth-constraint>  
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>              
+    </security-constraint> 
+    
+       <security-role>
+        <role-name>servidor_chefe</role-name>
+    </security-role>
+    <security-role>
+        <role-name>responsavel</role-name>
+    </security-role>
+    <security-role>
+        <role-name>administrador</role-name>
+    </security-role>
 </web-app>
