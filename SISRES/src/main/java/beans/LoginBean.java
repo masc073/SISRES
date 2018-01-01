@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ import servico.GrupoServico;
 import servico.ResponsavelServico;
 
 @ManagedBean(name = "loginBean")
-@ViewScoped
+@RequestScoped
 public class LoginBean implements Serializable
 {
 
@@ -62,6 +63,12 @@ public class LoginBean implements Serializable
             return "sucesso";
         }
         catch (ServletException ex) {
+            
+            LOGGER.fine("Causa");
+            ex.getRootCause();
+            ex.getMessage();
+            
+            LOGGER.fine("Erro");
             ex.printStackTrace();
             return "falha";
         }

@@ -5,6 +5,8 @@ excecao\ExcecaoNegocio.class
 excecao\MensagemExcecao.class
 dominio\Atividade.class
 dominio\Responsavel.class
+servico\GrupoServico.class
+beans\LoginBean.class
 step_definitions\BrowserManager.class
 dominio\Atividade_.class
 dominio\Feriado_.class
@@ -23,12 +25,15 @@ dominio\Processo.class
 step_definitions\ProcessoSteps.class
 dominio\Departamento.class
 servico\FeriadoServico.class
+dominio\Grupo.class
+dominio\Grupo_.class
 servico\DepartamentoServico.class
 dominio\Requerimento_.class
 beans\AtividadeBean.class
 dominio\Departamento_.class
 servico\RequerimentoServico.class
 criptografia\Encripta.class
+beans\GrupoBean.class
 servico\ProcessoServico.class
 dominio\Feriado.class
 beans\RequerimentoBean.class

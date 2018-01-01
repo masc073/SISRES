@@ -6,13 +6,15 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import static javax.ejb.TransactionAttributeType.REQUIRED;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import static javax.ejb.TransactionManagementType.CONTAINER;
 import javax.persistence.TypedQuery;
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@TransactionManagement(TransactionManagementType.CONTAINER)
+@TransactionAttribute(REQUIRED)
+@TransactionManagement(CONTAINER)
 public class ResponsavelServico extends Servico
 {
 
