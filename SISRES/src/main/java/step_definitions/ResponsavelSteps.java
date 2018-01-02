@@ -15,19 +15,25 @@ public class ResponsavelSteps
 
     public ResponsavelSteps()
     {
-        if (DbUnitUtil.ultimo_executado != Dataset.Vazio)
-        {
-            DbUnitUtil.selecionaDataset(Dataset.Vazio);
+        if (DbUnitUtil.ultimo_executado != Dataset.Responsavel) {
+            DbUnitUtil.selecionaDataset(Dataset.Responsavel);
             DbUnitUtil.inserirDados();
         }
     }
 
     WebElement input_nome, button_check;
 
-    @Dado("^a tela inicial do responsavel aberta$")
+    @Dado("^a tela inicial do cadastro aberta$")
     public void a_tela_inicial_do_responsavel_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/responsavel/responsavel.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/publico/cadastro.xhtml");
+    }
+
+    @Quando("^o usuario informar o \"([^\"]*)\" , \"([^\"]*)\" ,  \"([^\"]*)\" , se e \"([^\"]*)\" \\. Caso seja tambem informar se e \"([^\"]*)\" e o \"([^\"]*)\"$")
+    public void o_usuario_informar_o_se_e_Caso_seja_tambem_informar_se_e_e_o(String nome, String email, String senha, String servidor, String chefe, String departamento) throws Throwable
+    {
+
+        
     }
 
     @Quando("^o administrador informar o \"([^\"]*)\" e a senha \"([^\"]*)\" do responsavel$")
@@ -46,14 +52,11 @@ public class ResponsavelSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(responsavel))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(responsavel)) {
                     button_edit = row.findElement(By.className("ui-row-editor-pencil"));
                     button_edit.click();
 
@@ -79,24 +82,19 @@ public class ResponsavelSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
+            for (WebElement column : columns) {
                 text_column = column.getText();
-                if (text_column.equals(responsavel))
-                {
+                if (text_column.equals(responsavel)) {
                     id = "responsavel:table_responsavel:" + contador + ":remove";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
 
-                    for (WebElement button : buttons)
-                    {
-                        if (button.getText().equals("Sim"))
-                        {
+                    for (WebElement button : buttons) {
+                        if (button.getText().equals("Sim")) {
                             button.click();
                             removeu = true;
                             break;
@@ -105,12 +103,10 @@ public class ResponsavelSteps
                     break;
                 }
             }
-            if (removeu == true)
-            {
+            if (removeu == true) {
                 break;
             }
-            if (!columns.isEmpty())
-            {
+            if (!columns.isEmpty()) {
                 ++contador;
             }
         }

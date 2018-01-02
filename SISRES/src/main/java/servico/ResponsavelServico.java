@@ -80,4 +80,12 @@ public class ResponsavelServico extends Servico
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
+    
+     
+    public List<Responsavel> listar_nao_aprovados_lider()
+    {
+        em.flush();
+        return em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = true ", Responsavel.class).getResultList();
+    }
+
 }

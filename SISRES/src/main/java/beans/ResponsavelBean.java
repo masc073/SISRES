@@ -27,6 +27,8 @@ public class ResponsavelBean implements Serializable
 
     private List<Responsavel> responsaveis = new ArrayList<>();
 
+    private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
+
     private Responsavel responsavel;
 
     String senhaConfirmacao;
@@ -47,7 +49,7 @@ public class ResponsavelBean implements Serializable
             responsavel.setNumeroAleatorio(encripta.Sorteia());
             senha = encripta.encriptar(senha, responsavel.getNumeroAleatorio());
             responsavel.setSenhaDigital(senha);
-            
+
             if (!responsavel.isServidor()) {
                 responsavel.setDepartamento(null);
                 responsavel.setLider(false);
@@ -167,4 +169,34 @@ public class ResponsavelBean implements Serializable
         this.senhaConfirmacao = senhaConfirmacao;
     }
 
+    public List<Responsavel> getLideres_nao_aprovados()
+    {
+        lideres_nao_aprovados = responsavelServico.listar_nao_aprovados_lider();
+        return lideres_nao_aprovados;
+    }
+
+    public void setLideres_nao_aprovados(List<Responsavel> responsaveis_nao_aprovados)
+    {
+        this.lideres_nao_aprovados = responsaveis_nao_aprovados;
+    }
+
+    public void Aprovar(Responsavel responsavel_atual)
+    {
+        responsavel_atual.setAprovado(true);
+        try {
+            responsavelServico.atualizar(responsavel_atual);
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável aprovado com Sucesso!");
+            listar();
+        }
+        catch (ExcecaoNegocio ex) {
+            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
+                MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
+                adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
+            }
+        }
+        listar();
+    }
 }

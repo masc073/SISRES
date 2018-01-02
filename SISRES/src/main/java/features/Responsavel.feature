@@ -3,39 +3,39 @@ Funcionalidade: Testar as operacoes basicas do responsavel
   O sistema deve prover o cadastro, alteracao e remocao do responsavel de forma correta.
 
   Esquema do Cenario: Realizar cadastro do responsavel
-    Dado a tela inicial do responsavel aberta
-    Quando o administrador informar o <nome> e a senha <senha> do responsavel
+    Dado a tela inicial do cadastro aberta
+    Quando o usuario informar o <nome> , <email> ,  <senha> , se e <servidor> . Caso seja tambem informar se e <chefe_de_departamento> e o <departamento>
     E confirmar a senha <senha>
     Entao deve ser exibida a mensagem "Responsável cadastrado com Sucesso!"
 
     Exemplos: 
-      | nome            | senha     |
-      | "Carlos Macedo" | "C2345M"  |
-      | "Renata Macia"  | "Ren9845" |
-      | "Joaquim Nunes" | "1221JM"  |
+      | nome            | senha     |  email                     | servidor | chefe_de_departamento  | departamento |
+      | "Carlos Macedo" | "C2345M"  | "carlos_macedo@gmail.com"  | "true"   | "true"                 | "Biblioteca" |
+      | "Renata Macia"  | "Ren9845" | "renata_macia@hotmail.com" | "false"  | ""                     | ""           |
+      | "Joaquim Nunes" | "1221JM"  | "joaquim_nunes@gmail.com"  | "true"   | "false"                | "DASE"       |
 
-  Esquema do Cenario: Atualizar o nome do responsavel
-    Dado a tela inicial do responsavel aberta
-    Quando o administrador selecionar o <responsavel> que deseja alterar
-    E alterar o seu <nome>
-    Entao deve ser exibida a mensagem "Responsável alterado com Sucesso!"
-
-    Exemplos: 
-      | responsavel     | nome                |
-      | "Renata Macia"  | "Marcia Cavalcanti" |
-      | "Joaquim Nunes" | "Fabio Martins"     |
-      | "Carlos Macedo" | "Antônio Vitor"     |
-
-  Esquema do Cenario: Remover responsavel
-    Dado a tela inicial do responsavel aberta
-    Quando o administrador selecionar o <responsavel> que deseja remover
-    Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"
-
-    Exemplos: 
-      | responsavel         |
-      | "Marcia Cavalcanti" |
-      | "Fabio Martins"     |
-      | "Antônio Vitor"     |
+#  Esquema do Cenario: Atualizar o nome do responsavel
+#    Dado a tela inicial do responsavel aberta
+#    Quando o administrador selecionar o <responsavel> que deseja alterar
+#    E alterar o seu <nome>
+#    Entao deve ser exibida a mensagem "Responsável alterado com Sucesso!"
+#
+#    Exemplos: 
+#      | responsavel     | nome                |
+#      | "Renata Macia"  | "Marcia Cavalcanti" |
+#      | "Joaquim Nunes" | "Fabio Martins"     |
+#      | "Carlos Macedo" | "Antônio Vitor"     |
+#
+#  Esquema do Cenario: Remover responsavel
+#    Dado a tela inicial do responsavel aberta
+#    Quando o administrador selecionar o <responsavel> que deseja remover
+#    Entao deve ser exibida a mensagem "Responsável removido com Sucesso!"
+#
+#    Exemplos: 
+#      | responsavel         |
+#      | "Marcia Cavalcanti" |
+#      | "Fabio Martins"     |
+#      | "Antônio Vitor"     |
 
 #  Quando tivermos a parte de logar ai será possível realizar a redefinição de senha do usuário atual.
 #  Esquema do Cenario: Redefinir Senha

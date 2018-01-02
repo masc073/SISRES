@@ -6,7 +6,7 @@
              xmlns:f="http://xmlns.jcp.org/jsf/core"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 
-             template="../template.xhtml">
+             template="../../template.xhtml">
     <h:form id="atividade">
         <p:fieldset legend="Requerimentos finalizados" style="margin-left: 3px; width: 990px;" >
             <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos_finalizados}">
@@ -24,12 +24,15 @@
                 <p:column headerText="Finalizado">
                     <h:outputText value="#{requerimento.dataDeFimFormatada}" />
                 </p:column>
-<!--                 <p:column style="width:40px">
-                    <p:commandButton icon="ui-icon-search" id="consultar" action="#{requerimentoBean.redireciona_para_exibir_requerimento(requerimento)}"/>
-                </p:column>-->
-<!--                <p:column style="width:40px">
-                    <p:commandButton icon="ui-icon-close" id="reprovar" title="Reprovar" /> 
-                </p:column>-->
+                <p:column style="width:40px">
+                    <p:commandButton icon="ui-icon-bookmark" id="arquivos_processo" action="#{requerimentoBean.redireciona_para_exibir_arquivos(requerimento)}"/> 
+                </p:column>
+                <!--                 <p:column style="width:40px">
+                                    <p:commandButton icon="ui-icon-search" id="consultar" action="#{requerimentoBean.redireciona_para_exibir_requerimento(requerimento)}"/>
+                                </p:column>-->
+                <!--                <p:column style="width:40px">
+                                    <p:commandButton icon="ui-icon-close" id="reprovar" title="Reprovar" /> 
+                                </p:column>-->
             </p:dataTable>
         </p:fieldset>
     </h:form>

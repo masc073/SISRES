@@ -35,22 +35,22 @@
     </filter-mapping>
     
     
-<!--    <login-config>
+    <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>Realm_sisres</realm-name>
         <form-login-config>
             <form-login-page>/faces/publico/login.xhtml</form-login-page>
             <form-error-page>/faces/publico/login.xhtml</form-error-page>
         </form-login-config>
-    </login-config>-->
-        <login-config>
+    </login-config>
+<!--    <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>fileRealm</realm-name>
         <form-login-config>
             <form-login-page>/faces/publico/login.xhtml</form-login-page>
             <form-error-page>/faces/publico/login.xhtml</form-error-page>
         </form-login-config>
-    </login-config>
+    </login-config>-->
     
     <security-constraint>
         <display-name>Pg servidor</display-name>
@@ -122,7 +122,7 @@
     </security-constraint> 
     
     
-        <security-constraint>
+    <security-constraint>
         <display-name>Pg Servidor Chefe</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Servidor Chefe Area</web-resource-name>

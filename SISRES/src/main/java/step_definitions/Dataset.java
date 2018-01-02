@@ -5,5 +5,6 @@ public enum Dataset
     Departamento,
     Vazio,
     Processo,
-    Requerimento
+    Requerimento,
+    Responsavel
 }

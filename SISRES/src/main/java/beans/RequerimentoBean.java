@@ -245,6 +245,19 @@ public class RequerimentoBean implements Serializable
 
         }
     }
+    
+     public void redireciona_para_exibir_arquivos(Requerimento requerimento_atual) throws ExcecaoNegocio
+    {
+        try
+        {
+            setRequerimento(requerimento_atual);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("exibirArquivosRequerimento.xhtml");
+
+        } catch (Exception e)
+        {
+        }
+
+    }
 
     private void adicionar_arquivo()
     {
@@ -353,9 +366,9 @@ public class RequerimentoBean implements Serializable
 
     public List<Requerimento> getRequerimentos_finalizados()
     {
-        if (requerimentos_finalizados.isEmpty()) {
+       // if (requerimentos_finalizados.isEmpty()) {
             requerimentos_finalizados = RequerimentoServico.listar_finalizados();
-        }
+       // }
         return requerimentos_finalizados;
     }
 

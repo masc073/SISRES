@@ -39,6 +39,10 @@ public class DbUnitUtil
                 XML_FILE = "dbUnitData/dataset_requerimento.xml";
                 ultimo_executado = Dataset.Requerimento;
                 break;
+              case Responsavel:
+                XML_FILE = "dbUnitData/dataset_responsavel.xml";
+                ultimo_executado = Dataset.Responsavel;
+                break;
         }
     }
 
