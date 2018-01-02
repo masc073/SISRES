@@ -1,0 +1,8 @@
+#surefire
+#Tue Jan 02 20:26:47 GFT 2018
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\natal\\Documents\\GitHub\\SistemaDeRequerimentoEstudantil\\SISRES
+file.encoding=UTF-8
+localRepository=C\:\\Users\\natal\\.m2\\repository
+basedir=C\:\\Users\\natal\\Documents\\GitHub\\SistemaDeRequerimentoEstudantil\\SISRES
+test=RunTests

@@ -32,8 +32,35 @@ public class ResponsavelSteps
     @Quando("^o usuario informar o \"([^\"]*)\" , \"([^\"]*)\" ,  \"([^\"]*)\" , se e \"([^\"]*)\" \\. Caso seja tambem informar se e \"([^\"]*)\" e o \"([^\"]*)\"$")
     public void o_usuario_informar_o_se_e_Caso_seja_tambem_informar_se_e_e_o(String nome, String email, String senha, String servidor, String chefe, String departamento) throws Throwable
     {
+        BrowserManager.driver.findElement(By.id("form:primeiroNome")).sendKeys(nome);
+        BrowserManager.driver.findElement(By.id("form:email")).sendKeys(email);
+        BrowserManager.driver.findElement(By.id("form:value_senha")).sendKeys(senha);
 
-        
+        List<WebElement> radioButtons = BrowserManager.driver.findElements(By.className(("ui-radiobutton")));
+
+        if (servidor.equals("true")) {
+            radioButtons.get(0).click();
+
+            if (!departamento.equals("")) {
+                List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
+
+                for (WebElement option : options) {
+                    if (option.getText().equals(departamento)) {
+                        option.click();
+                    }
+                }
+            }
+            if (chefe.equals("true")) {
+                radioButtons.get(2).click();
+            }
+            else {
+                radioButtons.get(3).click();
+            }
+
+        }
+        else {
+            radioButtons.get(1).click();
+        }
     }
 
     @Quando("^o administrador informar o \"([^\"]*)\" e a senha \"([^\"]*)\" do responsavel$")
@@ -115,8 +142,8 @@ public class ResponsavelSteps
     @Quando("^confirmar a senha \"([^\"]*)\"$")
     public void confirmar_a_senha(String senha) throws Throwable
     {
-        BrowserManager.driver.findElement(By.id("responsavel:value_confirmacao")).sendKeys(senha);
-        BrowserManager.driver.findElement(By.id("responsavel:button_salvar")).click();
+        BrowserManager.driver.findElement(By.id("form:value_confirmacao")).sendKeys(senha);
+        BrowserManager.driver.findElement(By.id("form:button_salvar")).click();
     }
 
     @Entao("^deve ser exibida a mensagem \"([^\"]*)\"$")
