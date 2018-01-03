@@ -37,7 +37,7 @@
     
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>Realm_sisres</realm-name>
+        <realm-name>Realm_Sisres</realm-name>
         <form-login-config>
             <form-login-page>/faces/publico/login.xhtml</form-login-page>
             <form-error-page>/faces/publico/login.xhtml</form-error-page>
