@@ -57,11 +57,18 @@ public class LoginBean implements Serializable
 
             //seta pessoa na sessão
             Responsavel responsavelLogado = responsavelServico.getResponsavelByEmail(username);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavelLogado);
 
-            LOGGER.fine("Logado: " + grupo);
+            if (responsavelLogado == null) {
+                adicionarMessagem(FacesMessage.SEVERITY_WARN, "Dados inválidos!");
+                return "";
+            }
+            else {
 
-            return "sucesso";
+                LOGGER.fine("Logado: " + grupo);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavelLogado);
+                return "sucesso";
+            }
+
         }
         catch (ServletException ex) {
 
@@ -70,10 +77,10 @@ public class LoginBean implements Serializable
             return "falha";
         }
     }
-    
+
     public void redirecionaParaCadastro() throws IOException
     {
-         FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
     }
 
     public String logout() throws ServletException

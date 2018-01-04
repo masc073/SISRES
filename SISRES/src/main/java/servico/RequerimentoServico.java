@@ -1,7 +1,9 @@
-
 package servico;
 
+import dominio.Atividade;
 import dominio.Requerimento;
+import dominio.Responsavel;
+import dominio.SituacaoAtividade;
 import excecao.ExcecaoNegocio;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -16,45 +18,57 @@ import javax.persistence.TypedQuery;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class RequerimentoServico extends Servico
 {
-    
+
     public void salvar(Requerimento Requerimento) throws ExcecaoNegocio
     {
-        if (chegaExistencia(Requerimento) == false)
-        {
+        if (chegaExistencia(Requerimento) == false) {
             em.persist(Requerimento);
-        } else
-        {
+        }
+        else {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-    public List<Requerimento> listar_finalizados()
+
+    public List<Requerimento> listar_finalizados(Responsavel usuario_logado)
     {
         em.flush();
+
+//        if (usuario_logado.isServidor()) {
+//            return em.createQuery("select f from Requerimento f where f.finalizado = true ", Requerimento.class).getResultList();
+//        }
+//        else {
         return em.createQuery("select f from Requerimento f where f.finalizado = true", Requerimento.class).getResultList();
+//        }
     }
 
-    public List<Requerimento> listar()
+    public List<Requerimento> listar(Responsavel usuarioLogado)
     {
+        TypedQuery<Requerimento> query;
         em.flush();
-        return em.createQuery("select f from Requerimento f where f.finalizado = false", Requerimento.class).getResultList();
+        // PARA USUÁRIO
+//        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);
+//        query.setParameter(1, usuarioLogado);
+
+// PARA SERVIDORES
+        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
+        query.setParameter(1, usuarioLogado.getDepartamento());
+
+        return query.getResultList();
     }
 
     public boolean chegaExistencia(Requerimento Requerimento)
     {
         TypedQuery<Requerimento> query;
-        
+
         // Quando adicionar a autorização checar o usuário também.
-        
         if (Requerimento.getId() == null) // Inserir
         {
             query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.matriculaAluno = ?2 and f.finalizado = false", Requerimento.class);
             query.setParameter(1, Requerimento.getProcesso());
             query.setParameter(2, Requerimento.getMatriculaAluno());
 
-        } 
-        else
-        {
+        }
+        else {
             query = em.createQuery("select f from Requerimento f where f.processo = ?1 and f.matriculaAluno = ?2 and f.id != ?3 and f.finalizado = false", Requerimento.class);
             query.setParameter(1, Requerimento.getProcesso());
             query.setParameter(2, Requerimento.getMatriculaAluno());
@@ -63,11 +77,10 @@ public class RequerimentoServico extends Servico
 
         List<Requerimento> Requerimentos = query.getResultList();
 
-        if (Requerimentos.isEmpty())
-        {
+        if (Requerimentos.isEmpty()) {
             return false;
-        } else
-        {
+        }
+        else {
             return true;
         }
     }
@@ -76,12 +89,11 @@ public class RequerimentoServico extends Servico
     {
         em.flush();
 
-        if (chegaExistencia(Requerimento) == false)
-        {
+        if (chegaExistencia(Requerimento) == false) {
             em.merge(Requerimento);
 
-        } else
-        {
+        }
+        else {
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
@@ -91,13 +103,13 @@ public class RequerimentoServico extends Servico
         Requerimento f = (Requerimento) em.find(Requerimento.class, Requerimento.getId());
         em.remove(f);
     }
-    
+
     public Requerimento getRequerimento(Long id)
     {
         TypedQuery<Requerimento> query;
         query = em.createQuery("select f from Requerimento f where f.id = ?1", Requerimento.class);
         query.setParameter(1, id);
-        
+
         return query.getSingleResult();
     }
 

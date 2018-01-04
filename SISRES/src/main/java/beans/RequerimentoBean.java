@@ -4,6 +4,7 @@ import dominio.Arquivo;
 import dominio.Atividade;
 import dominio.Processo;
 import dominio.Requerimento;
+import dominio.Responsavel;
 import dominio.SituacaoAtividade;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
@@ -63,8 +64,11 @@ public class RequerimentoBean implements Serializable
 
     public void salvar()
     {
+        Responsavel solicitante;
+        solicitante = getUsuarioLogado();
         try {
             Requerimento.criarAtividades(Requerimento.getProcesso().getAtividades());
+            Requerimento.setSolicitante(solicitante);
             atividade_atual = Requerimento.getAtividades().get(0);
             Requerimento.setDataDeInicio(new Date());
             RequerimentoServico.salvar(Requerimento);
@@ -86,18 +90,18 @@ public class RequerimentoBean implements Serializable
 
     public void listar()
     {
-        Requerimentos = RequerimentoServico.listar();
+        Requerimentos = RequerimentoServico.listar(getUsuarioLogado());
     }
 
     public void editarRequerimento(String mensagem, Requerimento requerimento, boolean com_messagem)
     {
         try {
             RequerimentoServico.atualizar(requerimento);
-            
+
             if (com_messagem) {
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, mensagem);
             }
-            
+
             listar();
         }
         catch (ExcecaoNegocio ex) {
@@ -136,6 +140,11 @@ public class RequerimentoBean implements Serializable
         listar();
     }
 
+    public Responsavel getUsuarioLogado()
+    {
+        return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");
+    }
+
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -155,7 +164,7 @@ public class RequerimentoBean implements Serializable
     public List<Requerimento> getRequerimentos()
     {
         if (Requerimentos.isEmpty()) {
-            Requerimentos = RequerimentoServico.listar();
+            Requerimentos = RequerimentoServico.listar(getUsuarioLogado());
         }
         return Requerimentos;
     }
@@ -198,7 +207,7 @@ public class RequerimentoBean implements Serializable
                 .getFlash().setKeepMessages(true);
 
         try {
-            
+
             FacesContext.getCurrentInstance().getExternalContext().redirect("atividade.xhtml?faces-redirect=true");
 
         }
@@ -230,7 +239,6 @@ public class RequerimentoBean implements Serializable
 //
 //        return percentual;
 //    }
-
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
 
@@ -245,16 +253,15 @@ public class RequerimentoBean implements Serializable
 
         }
     }
-    
-     public void redireciona_para_exibir_arquivos(Requerimento requerimento_atual) throws ExcecaoNegocio
+
+    public void redireciona_para_exibir_arquivos(Requerimento requerimento_atual) throws ExcecaoNegocio
     {
-        try
-        {
+        try {
             setRequerimento(requerimento_atual);
             FacesContext.getCurrentInstance().getExternalContext().redirect("exibirArquivosRequerimento.xhtml");
 
-        } catch (Exception e)
-        {
+        }
+        catch (Exception e) {
         }
 
     }
@@ -366,9 +373,8 @@ public class RequerimentoBean implements Serializable
 
     public List<Requerimento> getRequerimentos_finalizados()
     {
-       // if (requerimentos_finalizados.isEmpty()) {
-            requerimentos_finalizados = RequerimentoServico.listar_finalizados();
-       // }
+        requerimentos_finalizados = RequerimentoServico.listar_finalizados(getUsuarioLogado());
+
         return requerimentos_finalizados;
     }
 

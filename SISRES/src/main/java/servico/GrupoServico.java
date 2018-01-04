@@ -69,23 +69,29 @@ public class GrupoServico extends Servico
     {
         String grupoAtual = "nenhum";
         Responsavel responsavel = responsavel_servico.getResponsavelByEmail(email);
-        
-        if (responsavel.isServidor()) {
-            
-            if (responsavel.isLider()) {
-                grupoAtual = "servidor_chefe";
-            } 
-            else
-            {
-                grupoAtual = "servidor";
+
+        if (responsavel != null) {
+
+            if (responsavel.isServidor()) {
+
+                if (responsavel.isLider()) {
+                    grupoAtual = "servidor_chefe";
+                }
+                else {
+                    grupoAtual = "servidor";
+                }
+
             }
-            
-        } 
-        else
-        {
-            grupoAtual = "aluno";
+            else {
+                if (responsavel.isAdministrador()) {
+                    grupoAtual = "administrador";
+                }
+                else {
+                    grupoAtual = "aluno";
+                }
+            }
         }
-       
+
         return grupoAtual;
     }
 

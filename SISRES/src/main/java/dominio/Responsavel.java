@@ -37,6 +37,8 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     private boolean servidor;
 
     private boolean aprovado;
+    
+    private boolean administrador;
 
     @Column
     private boolean lider;
@@ -147,5 +149,15 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     public void setGrupo(Grupo grupo)
     {
         this.grupo = grupo;
+    }
+    
+    public boolean isAdministrador()
+    {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador)
+    {
+        this.administrador = administrador;
     }
 }
