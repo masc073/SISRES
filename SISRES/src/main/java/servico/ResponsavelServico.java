@@ -80,12 +80,25 @@ public class ResponsavelServico extends Servico
             throw new ExcecaoNegocio(ExcecaoNegocio.OBJETO_EXISTENTE);
         }
     }
-    
-     
+
     public List<Responsavel> listar_nao_aprovados_lider()
     {
         em.flush();
         return em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = true ", Responsavel.class).getResultList();
+    }
+
+    public List<Responsavel> listar_nao_aprovados(Responsavel usuario_logado)
+    {
+        em.flush();
+        TypedQuery<Responsavel> query;
+
+        query = em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = false and r.departamento = ?1 ", Responsavel.class);
+        query.setParameter(1, usuario_logado.getDepartamento());
+
+        List<Responsavel> responsaveis = query.getResultList();
+
+        return responsaveis;
+
     }
 
 }

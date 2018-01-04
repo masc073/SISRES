@@ -28,6 +28,8 @@ public class ResponsavelBean implements Serializable
     private List<Responsavel> responsaveis = new ArrayList<>();
 
     private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
+    
+    private List<Responsavel> participantes_do_deparamento = new ArrayList<>();
 
     private Responsavel responsavel;
 
@@ -41,6 +43,11 @@ public class ResponsavelBean implements Serializable
         encripta = new Encripta();
     }
 
+    public Responsavel getUsuarioLogado()
+    {
+      return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");      
+    }
+    
     public void salvar()
     {
         if (responsavel.getSenhaDigital().equals(senhaConfirmacao)) {
@@ -198,5 +205,20 @@ public class ResponsavelBean implements Serializable
             }
         }
         listar();
+    }
+    
+    public List<Responsavel> getParticipantes_do_deparamento()
+    {
+        Responsavel usuarioAtual;
+        
+        usuarioAtual = getUsuarioLogado();
+        
+        participantes_do_deparamento = responsavelServico.listar_nao_aprovados(usuarioAtual);
+        return participantes_do_deparamento;
+    }
+
+    public void setParticipantes_do_deparamento(List<Responsavel> participantes_do_deparamento)
+    {
+        this.participantes_do_deparamento = participantes_do_deparamento;
     }
 }

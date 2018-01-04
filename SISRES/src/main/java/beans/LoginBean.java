@@ -6,6 +6,7 @@
 package beans;
 
 import dominio.Responsavel;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,15 +64,16 @@ public class LoginBean implements Serializable
             return "sucesso";
         }
         catch (ServletException ex) {
-            
-            LOGGER.fine("Causa");
-            ex.getRootCause();
+
             ex.getMessage();
-            
-            LOGGER.fine("Erro");
-            ex.printStackTrace();
+
             return "falha";
         }
+    }
+    
+    public void redirecionaParaCadastro() throws IOException
+    {
+         FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
     }
 
     public String logout() throws ServletException

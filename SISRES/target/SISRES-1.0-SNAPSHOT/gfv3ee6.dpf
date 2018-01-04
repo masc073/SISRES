@@ -3,8 +3,12 @@
 <glassfish-web-app error-url="/faces/publico/erro.xhtml">
   <class-loader delegate="true"/>
   <security-role-mapping>
-    <role-name>responsavel</role-name>
-    <group-name>responsavel</group-name>
+    <role-name>aluno</role-name>
+    <group-name>aluno</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>servidor</role-name>
+    <group-name>servidor</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>administrador</role-name>

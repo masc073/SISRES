@@ -23,7 +23,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>template.xhtml</welcome-file>
+        <welcome-file>publico/login.xhtml</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
@@ -43,14 +43,6 @@
             <form-error-page>/faces/publico/login.xhtml</form-error-page>
         </form-login-config>
     </login-config>
-<!--    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>fileRealm</realm-name>
-        <form-login-config>
-            <form-login-page>/faces/publico/login.xhtml</form-login-page>
-            <form-error-page>/faces/publico/login.xhtml</form-error-page>
-        </form-login-config>
-    </login-config>-->
     
     <security-constraint>
         <display-name>Pg servidor</display-name>
@@ -144,6 +136,19 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
     </security-constraint> 
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/publico/erroPermissaoNegada.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/publico/erroInterno.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/publico/erro.xhtml</location>
+    </error-page>
     
     
     <security-role>

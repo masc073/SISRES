@@ -9,19 +9,15 @@
     <body>
         <h:body style="background-image: url(../imagens/a-pagina-de-abastecimento-lista-de-mensagens-marrom_1253-500.jpg);  background-size: 100%; background-repeat: no-repeat;">
             <h:form id="login">
-                <p:fieldset style=" position: absolute;left: 40%;top: 28%;width: 300px; height: 300px;" legend="Login" >
-                    <h:panelGrid columns="1">
+                <p:fieldset style=" position: absolute;left: 40%;top: 28%;width: 250px; height: 200px;" legend="Login" >
+                    <h:panelGrid  columns="1">
 
-                        <!--<p:outputLabel value="E-mail: " for="username" />-->
                         <p:inputText id="username"  placeholder="Email" style="width: 240px;" value="#{loginBean.username}"/>
 
-                        <!--<p:outputLabel value="Senha: " for="senha" />-->
                         <p:password id="senha" placeholder="Senha" style="width: 240px;" value="#{loginBean.senha}"/>
 
                         <p:commandButton value="Login" style="width: 250px;" action="#{loginBean.efetuarLogin()}"/>
-                        <p:outputLabel value="Ainda não é cadastrado?" style="font-size: small; " />
-                        <p:link value="Cadastre-se!" style="font-size: small"/>
-                        <!--<p:commandButton action="Cadastro?faces-redirect=true" immediate="true" value="Cadastrar" />-->
+                        <p:commandButton action="cadastro?faces-redirect=true" style="width: 250px;" immediate="true" value="Cadastre-se!" />
                     </h:panelGrid>
                 </p:fieldset>
             </h:form>    
