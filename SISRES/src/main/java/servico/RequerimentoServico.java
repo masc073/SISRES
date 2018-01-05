@@ -45,14 +45,29 @@ public class RequerimentoServico extends Servico
     {
         TypedQuery<Requerimento> query;
         em.flush();
+//        if (usuarioLogado.isServidor() == false) {
+//            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual. f.solicitante = ?1 ", Requerimento.class);
+//            query.setParameter(1, usuarioLogado);
+//        }
+//        else {
+
+        if (usuarioLogado.getDepartamento() != null || usuarioLogado.isAdministrador() == false) {
+
+            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
+            query.setParameter(1, usuarioLogado.getDepartamento());
+        }
+        else {
+            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);
+            query.setParameter(1, usuarioLogado);
+        }
+               
+
         // PARA USUÁRIO
 //        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);
 //        query.setParameter(1, usuarioLogado);
-
 // PARA SERVIDORES
-        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
-        query.setParameter(1, usuarioLogado.getDepartamento());
-
+//        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
+//        query.setParameter(1, usuarioLogado.getDepartamento());
         return query.getResultList();
     }
 

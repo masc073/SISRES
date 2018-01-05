@@ -66,6 +66,9 @@ public class LoginBean implements Serializable
 
                 LOGGER.fine("Logado: " + grupo);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavelLogado);
+                grupo = grupoServico.buscar_grupo_responsavel(username);
+                
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("grupoAtual", grupo);
                 return "sucesso";
             }
 
