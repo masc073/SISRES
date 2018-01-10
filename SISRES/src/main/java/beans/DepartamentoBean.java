@@ -17,6 +17,9 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.DepartamentoServico;
 
+/** Classe responsável pela comunicação do jsf com a camada de serviço com relação ao departamento.
+ * @author Natália Amâncio
+ */
 @ManagedBean(name = "departamentoBean")
 @ViewScoped
 public class DepartamentoBean implements Serializable
@@ -27,25 +30,23 @@ public class DepartamentoBean implements Serializable
     
     private List<Responsavel> participantes;
 
-//    private Responsavel responsavel_lider;
-
     private List<Departamento> departamentos = new ArrayList<>();
 
     private Departamento departamento;
 
+    /** Construtor padrão.
+     */
     public DepartamentoBean()
     {
         departamento = new Departamento();
-//        responsavel_lider = new Responsavel();
     }
 
+    /** Realiza a inserção do departamento no banco de dados.
+     */
     public void salvar()
     {
         try
         {
-//            responsavel_lider.setLider(true);
-//            participantes.add(responsavel_lider);
-//            departamento.setParticipantes(participantes);
             departamentoServico.salvar(departamento);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento cadastrado com Sucesso!");
         } catch (ExcecaoNegocio ex)
@@ -64,11 +65,17 @@ public class DepartamentoBean implements Serializable
         listar();
     }
 
+    /** Lista todos os departamentos que estão cadastrados no banco de dados.
+     */
     public void listar()
     {
         departamentos = departamentoServico.listar();
     }
 
+    /** Edita as informações referentes ao depatamento.
+     * @param event Evento vindo do datatable que contém o objeto de departamento que será alterado.
+     * @exception ExcecaoNegocio - Exceção lançada por não cumprir as regras de negócio.
+     */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         departamento = (Departamento) event.getObject();
@@ -95,6 +102,9 @@ public class DepartamentoBean implements Serializable
         listar();
     }
 
+    /** Remove departamento do banco de dados.
+     * @param departamento Departamento a ser removido.
+     */
     public void remover(Departamento departamento)
     {
         try
@@ -112,7 +122,11 @@ public class DepartamentoBean implements Serializable
         }
         listar();
     }
-
+    
+   /** Exibe mensagens para o usuário com relação ao departamento.
+     * @param mensagem  Mensagem que será exibida para o usuário
+     * @param severity  Define o tipo da mensagem.
+      */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();

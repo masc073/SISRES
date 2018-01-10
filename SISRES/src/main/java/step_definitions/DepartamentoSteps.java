@@ -28,7 +28,7 @@ public class DepartamentoSteps
     @Dado("^a tela inicial de departamentos aberta$")
     public void a_tela_inicial_de_departamentos_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/departamento/departamento.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/departamento/departamento.xhtml");
     }
 
     @Quando("^o administrador informar o nome \"([^\"]*)\" a sigla \"([^\"]*)\" e o responsavel \"([^\"]*)\"$")

@@ -136,7 +136,7 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
     </security-constraint> 
-    
+ <!--   
     <error-page>
         <error-code>403</error-code>
         <location>/publico/erroPermissaoNegada.xhtml</location>
@@ -148,7 +148,7 @@
     <error-page>
         <error-code>404</error-code>
         <location>/publico/erro.xhtml</location>
-    </error-page>
+    </error-page> -->
     
     
     <security-role>

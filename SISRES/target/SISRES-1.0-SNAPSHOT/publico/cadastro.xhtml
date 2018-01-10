@@ -44,14 +44,11 @@
                     <p:outputLabel value="Confirmação:" id="output_confirmacao" />
                     <p:password id="value_confirmacao" value="#{responsavelBean.senhaConfirmacao}"  feedback="true" />
 
-                    <!-- PROVISÓRIO -->
                     <p:outputLabel value="Administrador:" id="output_admin" />
                     <p:selectOneRadio   value="#{responsavelBean.responsavel.administrador}" >
                         <f:selectItem  itemLabel="Sim"  itemValue="true" />
                         <f:selectItem  itemLabel="Não" itemValue="false" />
                     </p:selectOneRadio>
-                    <!-- PROVISÓRIO -->
-                    
                     
                     <p:outputLabel value="Servidor:" id="output_servidor" />
                     <p:selectOneRadio id="input_servidor" onclick="alterar_visibilidade();" value="#{responsavelBean.responsavel.servidor}" >

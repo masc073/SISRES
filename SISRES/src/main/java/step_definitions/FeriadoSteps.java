@@ -33,11 +33,25 @@ public class FeriadoSteps
     }
 
     WebElement input_nome, input_data, button_check;
-
-    @Dado("^a tela inicial de feriados aberta$")
+//
+//    @Dado("^o usuario logado no sistema com email \"([^\"]*)\" e a senha \"([^\"]*)\"$")
+//    public void o_usuario_logado_no_sistema(String email, String senha)
+//    {
+//        BrowserManager.openFirefox("http://localhost:8080/SISRES/");
+//        
+//        BrowserManager.driver.findElement(By.id("login:username")).sendKeys(email);
+//        BrowserManager.driver.findElement(By.id("login:senha")).sendKeys(senha);
+//        
+//        BrowserManager.driver.findElement(By.id("login:login")).click();
+//        
+//    } 
+//          
+    
+    @Dado("^tela inicial de feriados aberta$")
     public void a_tela_de_cadastro_de_feriados_aberta()
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/feriado/feriado.xhtml");
+        
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/feriado/feriado.xhtml");
     }
 
     @Quando("^o administrador informar a \"([^\"]*)\" e o \"([^\"]*)\" do feriado$")

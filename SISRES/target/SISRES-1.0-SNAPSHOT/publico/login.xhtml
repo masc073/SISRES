@@ -16,7 +16,7 @@
 
                         <p:password id="senha" placeholder="Senha" style="width: 240px;" value="#{loginBean.senha}"/>
 
-                        <p:commandButton value="Login" style="width: 250px;" action="#{loginBean.efetuarLogin()}"/>
+                        <p:commandButton value="Login" id="login" style="width: 250px;" action="#{loginBean.efetuarLogin()}"/>
                         <p:commandButton action="cadastro?faces-redirect=true" style="width: 250px;" immediate="true" value="Cadastre-se!" />
                     </h:panelGrid>
                 </p:fieldset>
