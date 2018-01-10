@@ -17,8 +17,10 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.ProcessoServico;
 
+/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do processo.
+ * @author Natália Amâncio
+ */
 @ManagedBean(name = "processoBean")
-//@SessionScoped
 @ViewScoped
 public class ProcessoBean implements Serializable
 {
@@ -36,12 +38,16 @@ public class ProcessoBean implements Serializable
 
     private List<AtividadeModelo> atividades = new ArrayList<>();
 
+    /** Construtor padrão.
+     */
     public ProcessoBean()
     {
         atividade = new AtividadeModelo();
         processo = new Processo();
     }
 
+    /** Seta as atividades do processo e salva no banco de dados.
+     */
     public void salvar()
     {
         if (!atividades.isEmpty())
@@ -72,6 +78,10 @@ public class ProcessoBean implements Serializable
         listar();
     }
 
+    /**Edita as informações do processo e atualiza no banco de dados.
+     * @param event - Evento vindo do datatable
+     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de negócio.
+     */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         processo = (Processo) event.getObject();
@@ -96,6 +106,9 @@ public class ProcessoBean implements Serializable
         listar();
     }
 
+    /** Remove processo do banco de dados
+     * @param processo - Processo a ser removido do banco de dados.
+     */
     public void remover(Processo processo)
     {
         try
@@ -114,11 +127,16 @@ public class ProcessoBean implements Serializable
         listar();
     }
 
+    /** Lista todos os processos.
+     */
     public void listar()
     {
         processos = ProcessoServico.listar();
     }
 
+    /** Retorna o objeto ProcessoServico
+     * @return ProcessoServico - Permite o acesso aos métodos do ProcessoServico.
+     */
     public ProcessoServico getProcessoServico()
     {
         return ProcessoServico;

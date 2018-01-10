@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 import dominio.Responsavel;
@@ -23,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import servico.GrupoServico;
 import servico.ResponsavelServico;
 
+/** Classe responsável por realizar a comunicaçao da tela de login com a camada de serviço.
+ */
 @ManagedBean(name = "loginBean")
 @RequestScoped
 public class LoginBean implements Serializable
@@ -45,6 +42,8 @@ public class LoginBean implements Serializable
         LOGGER.setLevel(Level.FINEST);
     }
 
+    /* Realiza o login, chamando o realm.
+     */
     public String efetuarLogin()
     {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -81,11 +80,18 @@ public class LoginBean implements Serializable
         }
     }
 
+    /** Redireciona página para o cadastro de usuário.
+     * @throws IOException
+     */
     public void redirecionaParaCadastro() throws IOException
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
     }
 
+    /** Realiza o logout, encerrando a sessão do usuário.
+     * @throws  ServletException
+     * @return String - retorna para o página de login. Configurado no faces-config.xml
+     */
     public String logout() throws ServletException
     {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -98,28 +104,44 @@ public class LoginBean implements Serializable
         request.logout();
         return "sair";
     }
-
+    
+    /** Exibe mensagens para o usuário em relação do login.
+     * @param mensagem  Mensagem que será exibida para o usuário
+     * @param severity  Define o tipo da mensagem.
+      */
     protected void adicionarMessagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesMessage message = new FacesMessage(severity, mensagem, "");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
+    /** Retorna o email do usuário
+     * @return String - Email do login
+     */
     public String getUsername()
     {
         return username;
     }
 
+    /**Seta um email para o username.
+     * @param username Email do usuário.
+     */
     public void setUsername(String username)
     {
         this.username = username;
     }
 
+    /** Retorna senha do usuário
+     * @return String - Senha do usuário
+     */
     public String getSenha()
     {
         return senha;
     }
 
+    /**Seta valor na senha.
+     * @param senha
+     */
     public void setSenha(String senha)
     {
         this.senha = senha;
