@@ -17,6 +17,12 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.ProcessoServico;
 
+/**
+ * Classe responsável por realizar a comunicação do jsf do a camada de serviço
+ * do editar do processo.
+ *
+ * @author Natália Amâncio
+ */
 @ManagedBean(name = "processoeditarBean")
 @ViewScoped
 public class ProcessoEditarBean implements Serializable
@@ -42,6 +48,9 @@ public class ProcessoEditarBean implements Serializable
 
     }
 
+    /**
+     * Seta as atividades do processo e salva no banco de dados.
+     */
     public void salvar()
     {
         try {
@@ -87,6 +96,13 @@ public class ProcessoEditarBean implements Serializable
         listar();
     }
 
+    /**
+     * Edita as informações do processo e atualiza no banco de dados.
+     *
+     * @param event - Evento vindo do datatable
+     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de
+     * negócio.
+     */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         processo = (Processo) event.getObject();
@@ -109,6 +125,11 @@ public class ProcessoEditarBean implements Serializable
         listar();
     }
 
+    /**
+     * Remove processo do banco de dados
+     *
+     * @param processo - Processo a ser removido do banco de dados.
+     */
     public void remover(Processo processo)
     {
         try {
@@ -125,11 +146,20 @@ public class ProcessoEditarBean implements Serializable
         listar();
     }
 
+    /**
+     * Lista todos os processos.
+     */
     public void listar()
     {
         processos = ProcessoServico.listar();
     }
 
+    /**
+     * Retorna o objeto ProcessoServico
+     *
+     * @return ProcessoServico - Permite o acesso aos métodos do
+     * ProcessoServico.
+     */
     public ProcessoServico getProcessoServico()
     {
         return ProcessoServico;
@@ -164,12 +194,21 @@ public class ProcessoEditarBean implements Serializable
         this.processo = Processo;
     }
 
+    /**
+     * Exibe mensagens para o usuário em relação ao processo.
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, mensagem, null));
     }
 
+    /**
+     * Adiciona atividade ao fluxo do processo (Em memória).
+     */
     public void adicionarAtividadeNoProcesso()
     {
         boolean encontrou = false;
@@ -188,6 +227,11 @@ public class ProcessoEditarBean implements Serializable
         atividade = new AtividadeModelo();
     }
 
+    /**
+     * Remove atividade do fluxo do processo (Em memória).
+     *
+     * @param atividade - Atividade a ser removida.
+     */
     public void removerAtividadeDoProcesso(AtividadeModelo atividade)
     {
         for (int i = 0; i < this.atividades.size(); i++) {
@@ -199,8 +243,13 @@ public class ProcessoEditarBean implements Serializable
         }
     }
 
+    /**
+     * Altera atividade do fluxo do processo (Em memória).
+     *
+     * @param atividade - Atividade alterada.
+     */
     public void editarAtividadeLista(AtividadeModelo atividade)
-    {   
+    {
         atividade.setAnexarArquivo(return_anexarAquivo());
         for (int i = 0; i < this.atividades.size(); i++) {
             if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
@@ -223,7 +272,8 @@ public class ProcessoEditarBean implements Serializable
     {
         this.atividade = atividade;
     }
-
+    /** Retorna atividades do processo
+     */
     public List<AtividadeModelo> getAtividades()
     {
         Processo processo_aux;
@@ -261,7 +311,7 @@ public class ProcessoEditarBean implements Serializable
             return "Não";
         }
     }
-   
+
     public String getAnexarArquivo()
     {
         return anexarArquivo;

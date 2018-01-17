@@ -17,7 +17,10 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.ProcessoServico;
 
-/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do processo.
+/**
+ * Classe responsável por realizar a comunicação do jsf do a camada de serviço
+ * do processo.
+ *
  * @author Natália Amâncio
  */
 @ManagedBean(name = "processoBean")
@@ -33,12 +36,13 @@ public class ProcessoBean implements Serializable
     protected Processo processo;
 
     protected AtividadeModelo atividade;
-    
+
     protected String anexarArquivo;
 
     private List<AtividadeModelo> atividades = new ArrayList<>();
 
-    /** Construtor padrão.
+    /**
+     * Construtor padrão.
      */
     public ProcessoBean()
     {
@@ -46,59 +50,57 @@ public class ProcessoBean implements Serializable
         processo = new Processo();
     }
 
-    /** Seta as atividades do processo e salva no banco de dados.
+    /**
+     * Seta as atividades do processo e salva no banco de dados.
      */
     public void salvar()
     {
-        if (!atividades.isEmpty())
-        {
-            try
-            {
+        if (!atividades.isEmpty()) {
+            try {
                 processo.setAtividades(atividades);
                 ProcessoServico.salvar(processo);
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
-            } catch (ExcecaoNegocio ex)
-            {
+            }
+            catch (ExcecaoNegocio ex) {
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-            } catch (EJBException ex)
-            {
-                if (ex.getCause() instanceof ConstraintViolationException)
-                {
+            }
+            catch (EJBException ex) {
+                if (ex.getCause() instanceof ConstraintViolationException) {
                     MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
         }
-        else 
-        {
+        else {
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Devem ser adicionadas atividades ao processo!");
         }
         processo = new Processo();
         listar();
     }
 
-    /**Edita as informações do processo e atualiza no banco de dados.
+    /**
+     * Edita as informações do processo e atualiza no banco de dados.
+     *
      * @param event - Evento vindo do datatable
-     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de negócio.
+     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de
+     * negócio.
      */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         processo = (Processo) event.getObject();
         listar();
 
-        try
-        {
+        try {
             ProcessoServico.atualizar(processo);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo alterado com Sucesso!");
             listar();
-        } catch (ExcecaoNegocio ex)
-        {
+        }
+        catch (ExcecaoNegocio ex) {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -106,20 +108,20 @@ public class ProcessoBean implements Serializable
         listar();
     }
 
-    /** Remove processo do banco de dados
+    /**
+     * Remove processo do banco de dados
+     *
      * @param processo - Processo a ser removido do banco de dados.
      */
     public void remover(Processo processo)
     {
-        try
-        {
+        try {
             ProcessoServico.remover(processo);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo removido com Sucesso!");
 
-        } catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -127,21 +129,31 @@ public class ProcessoBean implements Serializable
         listar();
     }
 
-    /** Lista todos os processos.
+    /**
+     * Lista todos os processos.
      */
     public void listar()
     {
         processos = ProcessoServico.listar();
     }
 
-    /** Retorna o objeto ProcessoServico
-     * @return ProcessoServico - Permite o acesso aos métodos do ProcessoServico.
+    /**
+     * Retorna o objeto ProcessoServico
+     *
+     * @return ProcessoServico - Permite o acesso aos métodos do
+     * ProcessoServico.
      */
     public ProcessoServico getProcessoServico()
     {
         return ProcessoServico;
     }
 
+    /**
+     * Seta valor para o objeto ProcessoServico
+     *
+     * @param ProcessoServico - Permite o acesso aos métodos da Classe
+     * ProcessoServico
+     */
     public void setProcessoServico(ProcessoServico ProcessoServico)
     {
         this.ProcessoServico = ProcessoServico;
@@ -149,14 +161,16 @@ public class ProcessoBean implements Serializable
 
     public List<Processo> getProcessos()
     {
-        if (processos.isEmpty())
-        {
+        if (processos.isEmpty()) {
             processos = ProcessoServico.listar();
         }
 
         return processos;
     }
 
+    /**
+     * Seta valores para a lista de objetos do Processo
+     */
     public void setProcessos(List<Processo> Processos)
     {
         this.processos = Processos;
@@ -167,25 +181,37 @@ public class ProcessoBean implements Serializable
         return processo;
     }
 
+    /**
+     * Seta valor para Processo
+     *
+     * @param Processo
+     */
     public void setProcesso(Processo Processo)
     {
         this.processo = Processo;
     }
 
+    /**
+     * Exibe mensagens para o usuário em relação ao processo.
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, mensagem, null));
     }
 
+    /**
+     * Adiciona atividade ao fluxo do processo (Em memória).
+     */
     public void adicionarAtividadeNoProcesso()
     {
         boolean encontrou = false;
 
-        for (AtividadeModelo atividade_atual : this.atividades)
-        {
-            if (atividade_atual.getNome().equals(this.atividade.getNome()))
-            {
+        for (AtividadeModelo atividade_atual : this.atividades) {
+            if (atividade_atual.getNome().equals(this.atividade.getNome())) {
                 encontrou = true;
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Esse registro já existe, tente outro!");
                 break;
@@ -193,20 +219,22 @@ public class ProcessoBean implements Serializable
         }
 
         atividade.setAnexarArquivo(return_anexarAquivo());
-        
-        if (encontrou == false)
-        {
+
+        if (encontrou == false) {
             this.atividades.add(atividade);
         }
         atividade = new AtividadeModelo();
     }
 
+    /**
+     * Remove atividade do fluxo do processo (Em memória).
+     *
+     * @param atividade - Atividade a ser removida.
+     */
     public void removerAtividadeDoProcesso(AtividadeModelo atividade)
     {
-        for (int i = 0; i < this.atividades.size(); i++)
-        {
-            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
-            {
+        for (int i = 0; i < this.atividades.size(); i++) {
+            if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.remove(i);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade removida com Sucesso!");
                 break;
@@ -214,15 +242,17 @@ public class ProcessoBean implements Serializable
         }
     }
 
+    /**
+     * Altera atividade do fluxo do processo (Em memória).
+     * @param atividade - Atividade alterada.
+     */
     public void editarAtividadeLista(AtividadeModelo atividade)
     {
-        
+
         atividade.setAnexarArquivo(return_anexarAquivo());
-        
-        for (int i = 0; i < this.atividades.size(); i++)
-        {
-            if (this.atividades.get(i).getNome().equals(atividade.getNome()))
-            {
+
+        for (int i = 0; i < this.atividades.size(); i++) {
+            if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.get(i).setNome(atividade.getNome());
                 this.atividades.get(i).setDepartamento(atividade.getDepartamento());
                 this.atividades.get(i).setAnexarArquivo(atividade.isAnexarArquivo());
@@ -232,7 +262,7 @@ public class ProcessoBean implements Serializable
             }
         }
     }
-    
+
     public AtividadeModelo getAtividade()
     {
         return atividade;
@@ -253,20 +283,22 @@ public class ProcessoBean implements Serializable
         this.atividades = atividades;
     }
 
+    /** Redireciona pra tela de editar atividades.
+     * @param processo_atualizar - Processo que contém o fluxo de atividades que deseja ser alterado.
+     */
     public void redireciona_para_editar_atividades(Processo processo_atualizar) throws ExcecaoNegocio
     {
-        try
-        {
+        try {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().clear();
             FacesContext.getCurrentInstance().getExternalContext().getFlash().put("processo_atualizar", processo_atualizar);
             FacesContext.getCurrentInstance().getExternalContext().redirect("editarprocesso.xhtml");
 
-        } catch (Exception e)
-        {
+        }
+        catch (Exception e) {
         }
 
     }
-    
+
     public String getAnexarArquivo()
     {
         return anexarArquivo;
@@ -276,27 +308,23 @@ public class ProcessoBean implements Serializable
     {
         this.anexarArquivo = anexarArquivo;
     }
-    
+
     public boolean return_anexarAquivo()
     {
-        if (anexarArquivo.equals("sim")) 
-        {
+        if (anexarArquivo.equals("sim")) {
             return true;
         }
-        else 
-        {
+        else {
             return false;
         }
     }
-    
+
     public String visualizar_anexarAquivo(AtividadeModelo atividade_atual)
     {
-        if (atividade_atual.isAnexarArquivo()) 
-        {
+        if (atividade_atual.isAnexarArquivo()) {
             return "Sim";
         }
-        else 
-        {
+        else {
             return "Não";
         }
     }

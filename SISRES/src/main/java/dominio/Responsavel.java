@@ -3,6 +3,8 @@ package dominio;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,26 +24,21 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "O nome deve possuir apenas letras.")
     private String nome;
 
-    @NotNull(message = "A senha deve ser preenchida.")
-//    @Size(min = 2, max = 14, message = "A senha deve conter entre 2 à 14 caracteres.")
-    private String senhaDigital;
-
+    @validadores.ValidaEmail
     @NotNull(message = "O Email deve ser preenchido.")
     @Email(message = "Informar email válido!")
-    private String email;
+    private String email; // Validar se é gmail ou institucional.
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
-    private Departamento departamento;
+    private UnidadeOrganizacional unidadeOrganizacional;
 
-    private boolean servidor;
-
-    private boolean aprovado;
-    
-    private boolean administrador;
+//    @NotNull(message = "O título deve ser selecionado.")
+    @Enumerated(EnumType.STRING)
+    private Titulos titulo;
 
     @Column
-    private boolean lider;
+    private boolean aprovado;
 
     @Column(name = "numero_numeroAleatorio")
     private int numeroAleatorio;
@@ -65,14 +62,14 @@ public class Responsavel extends EntidadeNegocio implements Serializable
         this.email = email;
     }
 
-    public Departamento getDepartamento()
+    public UnidadeOrganizacional getUnidadeOrganizacional()
     {
-        return departamento;
+        return unidadeOrganizacional;
     }
 
-    public void setDepartamento(Departamento departamento)
+    public void setUnidadeOrganizacional(UnidadeOrganizacional unidadeOrganizacional)
     {
-        this.departamento = departamento;
+        this.unidadeOrganizacional = unidadeOrganizacional;
     }
 
     public boolean isAprovado()
@@ -85,22 +82,6 @@ public class Responsavel extends EntidadeNegocio implements Serializable
         this.aprovado = aprovado;
     }
 
-    public boolean isLider()
-    {
-        return lider;
-    }
-
-    public void setLider(boolean lider)
-    {
-        this.lider = lider;
-    }
-
-    public Responsavel(String nome, String senhaDigital)
-    {
-        this.nome = nome;
-        this.senhaDigital = senhaDigital;
-    }
-
     public String getNome()
     {
         return nome;
@@ -109,26 +90,6 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     public void setNome(String nome)
     {
         this.nome = nome;
-    }
-
-    public String getSenhaDigital()
-    {
-        return senhaDigital;
-    }
-
-    public void setSenhaDigital(String senhaDigital)
-    {
-        this.senhaDigital = senhaDigital;
-    }
-
-    public boolean isServidor()
-    {
-        return servidor;
-    }
-
-    public void setServidor(boolean servidor)
-    {
-        this.servidor = servidor;
     }
 
     public int getNumeroAleatorio()
@@ -150,14 +111,15 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     {
         this.grupo = grupo;
     }
-    
-    public boolean isAdministrador()
+
+    public Titulos getTitulo()
     {
-        return administrador;
+        return titulo;
     }
 
-    public void setAdministrador(boolean administrador)
+    public void setTitulo(Titulos titulo)
     {
-        this.administrador = administrador;
+        this.titulo = titulo;
     }
+
 }

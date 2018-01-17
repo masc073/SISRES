@@ -27,7 +27,7 @@ public class AtividadeModelo extends EntidadeNegocio implements Serializable
     @NotNull(message = "O departamento deve ser selecionado.")
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_departamento", referencedColumnName = "id")
-    private Departamento departamento;
+    private UnidadeOrganizacional departamento;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_processo", referencedColumnName = "id")
@@ -53,12 +53,12 @@ public class AtividadeModelo extends EntidadeNegocio implements Serializable
         this.nome = nome;
     }
 
-    public Departamento getDepartamento()
+    public UnidadeOrganizacional getDepartamento()
     {
         return departamento;
     }
 
-    public void setDepartamento(Departamento departamento)
+    public void setDepartamento(UnidadeOrganizacional departamento)
     {
         this.departamento = departamento;
     }

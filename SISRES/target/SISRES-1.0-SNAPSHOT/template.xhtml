@@ -48,8 +48,8 @@
                         <p:menuitem value="Processos" rendered="#{request.isUserInRole('administrador')}" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
                         <p:menuitem value="Responsáveis" rendered="#{request.isUserInRole('administrador')}" url="/responsavel/responsavel.xhtml" icon="ui-icon-person"/>
                         <p:menuitem value="Feriados" rendered="#{request.isUserInRole('administrador')}" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
-                        <p:menuitem value="Departamentos" rendered="#{request.isUserInRole('administrador')}" url="/administrador/departamento/departamento.xhtml" icon="ui-icon-contact"/>
-                        <p:menuitem value="Chefe Departamento" rendered="#{request.isUserInRole('administrador')}" url="/administrador/responsavel/aprovarResponsavel.xhtml" icon="ui-icon-person"/>
+                        <p:menuitem value="Unidade Organizacional" rendered="#{request.isUserInRole('administrador')}" url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
+                        <!--<p:menuitem value="Chefe Departamento" rendered="#{request.isUserInRole('administrador')}" url="/administrador/responsavel/aprovarResponsavel.xhtml" icon="ui-icon-person"/>-->
                        <p:menuitem class="submenu" icon="ui-icon-power" value="Sair" action="#{loginBean.logout()}"  immediate="true"/>
                     </p:submenu>
                 </p:menu>

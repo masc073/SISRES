@@ -72,24 +72,24 @@ public class GrupoServico extends Servico
 
         if (responsavel != null) {
 
-            if (responsavel.isServidor()) {
-
-                if (responsavel.isLider()) {
-                    grupoAtual = "servidor_chefe";
-                }
-                else {
-                    grupoAtual = "servidor";
-                }
-
-            }
-            else {
-                if (responsavel.isAdministrador()) {
-                    grupoAtual = "administrador";
-                }
-                else {
-                    grupoAtual = "aluno";
-                }
-            }
+//            if (responsavel.isServidor()) {
+//
+//                if (responsavel.isLider()) {
+//                    grupoAtual = "servidor_chefe";
+//                }
+//                else {
+//                    grupoAtual = "servidor";
+//                }
+//
+//            }
+//            else {
+//                if (responsavel.isAdministrador()) {
+//                    grupoAtual = "administrador";
+//                }
+//                else {
+//                    grupoAtual = "aluno";
+//                }
+//            }
         }
 
         return grupoAtual;

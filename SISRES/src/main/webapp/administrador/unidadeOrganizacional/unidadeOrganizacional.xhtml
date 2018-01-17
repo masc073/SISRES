@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../../template.xhtml">
+    <h:form id="unidadeOrganizacional">
+        <p:fieldset legend="Cadastro de Unidades Organizacionais">
+            <h:panelGrid columns="2" >
+
+                <p:outputLabel value="Nome:" id="output_nome" />
+                <p:inputText id="value_nome" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.nome}" />
+              
+                <p:outputLabel value="Sigla:" id="output_sigla" />
+                <p:inputText id="value_sigla" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.sigla}" />
+               
+                <p:outputLabel for="mae" value="Mãe :"/>
+                <p:selectOneMenu id="mae" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.mae}">
+                    <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"  />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="responsavel" value="Responsável :"/>
+                <p:selectOneMenu id="responsavel" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.responsavel}">
+                    <f:selectItems value="#{responsavelBean.responsaveis}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                </p:selectOneMenu>
+
+                <br/>
+                <p:toolbarGroup>
+                    <p:commandButton value="Salvar" action="#{unidadeOrganizacionalBean.salvar}" id="button_salvar" 
+                                     ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="true"/>
+                </p:toolbarGroup>
+            </h:panelGrid>
+
+            <p:dataTable id="tabela_unidadeOrganizacionals" editable="true"  var="unidadeOrganizacional" value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
+
+                <f:facet name="header">Unidades Organizacionais</f:facet>
+                <p:ajax event="rowEdit" update="tabela_unidadeOrganizacionals" listener="#{unidadeOrganizacionalBean.editar}" />
+                <p:column headerText="Nome">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.nome}" /></f:facet>
+                        <f:facet name="input"><p:inputText id="nome_output" value="#{unidadeOrganizacional.nome}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Sigla">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.sigla}" /></f:facet>
+                        <f:facet name="input"><p:inputText id="sigla_input" value="#{unidadeOrganizacional.sigla}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Mãe">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.mae.nome}" /></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu id="mae" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.mae}">
+                                <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"  />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Responsável">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.responsavel.nome}" /></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu converter="entidadeConverter" value="#{unidadeOrganizacional.responsavel}">
+                                <f:selectItems value="#{responsavelBean.responsaveis}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column style="width:20px">
+                    <p:rowEditor />
+                </p:column>
+                <p:column style="width:20px">
+                    <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="tabela_unidadeOrganizacionals" action="#{unidadeOrganizacionalBean.remover(unidadeOrganizacional)}" process="@this" >
+                        <p:confirm header="Confirmação" message="Tem certeza ?" icon="ui-icon-alert" />
+                    </p:commandLink>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>             
+</ui:decorate>

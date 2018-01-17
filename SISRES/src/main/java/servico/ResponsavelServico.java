@@ -28,6 +28,13 @@ public class ResponsavelServico extends Servico
         }
     }
 
+    public Long consultarIbByEmail(String email)
+    {
+        Long id = em.createNamedQuery("Responsavel.findIdByEmail", Long.class).setParameter("email", email).getSingleResult();
+
+        return id;
+    }
+
     public List<Responsavel> listar()
     {
         em.flush();
@@ -93,7 +100,7 @@ public class ResponsavelServico extends Servico
         TypedQuery<Responsavel> query;
 
         query = em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = false and r.departamento = ?1 ", Responsavel.class);
-        query.setParameter(1, usuario_logado.getDepartamento());
+        query.setParameter(1, usuario_logado.getUnidadeOrganizacional());
 
         List<Responsavel> responsaveis = query.getResultList();
 

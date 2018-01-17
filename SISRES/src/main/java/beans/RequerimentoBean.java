@@ -25,6 +25,9 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 import servico.RequerimentoServico;
 
+/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do requerimento.
+ * @author Natália Amâncio
+ */
 @ManagedBean(name = "requerimentoBean")
 @SessionScoped
 public class RequerimentoBean implements Serializable

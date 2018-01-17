@@ -40,7 +40,7 @@ public class Atividade extends EntidadeNegocio implements Serializable
     {
     }
 
-    public Atividade(SituacaoAtividade situacao, Departamento departamento)
+    public Atividade(SituacaoAtividade situacao, UnidadeOrganizacional departamento)
     {
         this.situacao = situacao;
     }

@@ -4,11 +4,20 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-         <title>SISRES</title>
+        <title>SISRES</title>
+        <meta name="google-signin-client_id" content="648373580314-tk04f76nc7ickcn53ma6dln763vji45f.apps.googleusercontent.com" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"></link>
+        <script src="https://apis.google.com/js/platform.js" async="defer" ></script>
+        <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="../js/loginGoogle.js"></script>
     </h:head>
     <body>
         <h:body style="background-image: url(../imagens/a-pagina-de-abastecimento-lista-de-mensagens-marrom_1253-500.jpg);  background-size: 100%; background-repeat: no-repeat;">
+            <h:form>
+                <p:remoteCommand name="login" actionListener="#{googleSign.loginGoogle}" />
+            </h:form>
             <h:form id="login">
+                <div class="g-signin2" data-onsuccess="onSignIn" ></div>
                 <p:fieldset style=" position: absolute;left: 40%;top: 28%;width: 250px; height: 200px;" legend="Login" >
                     <h:panelGrid  columns="1">
 
@@ -20,7 +29,7 @@
                         <p:commandButton action="cadastro?faces-redirect=true" style="width: 250px;" immediate="true" value="Cadastre-se!" />
                     </h:panelGrid>
                 </p:fieldset>
-            </h:form>    
+            </h:form>   
         </h:body>
     </body>
 </html>

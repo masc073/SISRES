@@ -1,7 +1,9 @@
 package beans;
 
 import criptografia.Encripta;
+import dominio.PerfilGoogle;
 import dominio.Responsavel;
+import dominio.Titulos;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
 import java.io.Serializable;
@@ -15,8 +17,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
+import servico.PerfilGoogleServico;
 import servico.ResponsavelServico;
 
+/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do responsável.
+ * @author Natália Amâncio
+ */
 @ManagedBean(name = "responsavelBean")
 @ViewScoped
 public class ResponsavelBean implements Serializable
@@ -24,12 +30,19 @@ public class ResponsavelBean implements Serializable
 
     @EJB
     private ResponsavelServico responsavelServico;
+    
+    @EJB
+    private PerfilGoogleServico googleServico;
+    
+    private PerfilGoogle perfilGoogle;
 
     private List<Responsavel> responsaveis = new ArrayList<>();
 
     private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
     
     private List<Responsavel> participantes_do_deparamento = new ArrayList<>();
+    
+    private Titulos[] titulos;
 
     private Responsavel responsavel;
 
@@ -50,17 +63,8 @@ public class ResponsavelBean implements Serializable
     
     public void salvar()
     {
-        if (responsavel.getSenhaDigital().equals(senhaConfirmacao)) {
-
-            String senha = responsavel.getSenhaDigital();
-            responsavel.setNumeroAleatorio(encripta.Sorteia());
-            senha = encripta.encriptar(senha, responsavel.getNumeroAleatorio());
-            responsavel.setSenhaDigital(senha);
-
-            if (!responsavel.isServidor()) {
-                responsavel.setDepartamento(null);
-                responsavel.setLider(false);
-            }
+        perfilGoogle.setUsuario(responsavel);
+        googleServico.persistePerfilGoogle(perfilGoogle);
 
             try {
                 responsavelServico.salvar(responsavel);
@@ -75,10 +79,10 @@ public class ResponsavelBean implements Serializable
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
-        }
-        else {
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Senhas diferentes!");
-        }
+//        }
+//        else {
+//            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Senhas diferentes!");
+//        }
 
         responsavel = new Responsavel();
         listar();
@@ -220,5 +224,31 @@ public class ResponsavelBean implements Serializable
     public void setParticipantes_do_deparamento(List<Responsavel> participantes_do_deparamento)
     {
         this.participantes_do_deparamento = participantes_do_deparamento;
+    }
+    
+    public Titulos[] getTitulos()
+    {
+        titulos = Titulos.values();
+        return titulos;
+    }
+    
+    public PerfilGoogle getPerfilGoogle()
+    {
+        return perfilGoogle;
+    }
+
+    public void setPerfilGoogle(PerfilGoogle perfilGoogle)
+    {
+        this.perfilGoogle = perfilGoogle;
+    }
+    
+    public PerfilGoogleServico getGoogleServico()
+    {
+        return googleServico;
+    }
+
+    public void setGoogleServico(PerfilGoogleServico googleServico)
+    {
+        this.googleServico = googleServico;
     }
 }

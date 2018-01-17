@@ -2,26 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>SISRES</title>
         <script language="javaScript" type="text/javascript">
             function alterar_visibilidade() {
 
-                var nao = document.getElementById("form:input_servidor:1").checked;
+                var label = document.getElementById("form:titulo_label").valueOf();
 
-                if (nao === true) {
-                    document.getElementById("form:output_departamento").style.visibility = "hidden";
-                    document.getElementById("form:departamento").style.visibility = "hidden";
-                    document.getElementById("form:output_chefe").style.visibility = "hidden";
-                    document.getElementById("form:input_chefe").style.visibility = "hidden";
+                if (#{responsavelBean.responsavel.titulo == 'Aluno' }) {
+//                    if (label === 'Aluno') {
+
+                    document.getElementById("form:output_unidade_organizacional").style.visibility = "hidden";
+                    document.getElementById("form:unidadeOrganizacional").style.visibility = "hidden";
+//                    }
                 } else
                 {
-                    document.getElementById("form:output_departamento").style.visibility = "visible";
-                    document.getElementById("form:departamento").style.visibility = "visible";
-                    document.getElementById("form:output_chefe").style.visibility = "visible";
-                    document.getElementById("form:input_chefe").style.visibility = "visible";
-
+                    document.getElementById("form:output_unidade_organizacional").style.visibility = "visible";
+                    document.getElementById("form:unidadeOrganizacional").style.visibility = "visible";
                 }
             }
         </script>
@@ -30,44 +29,33 @@
         <p:growl showDetail="false" globalOnly="true"  autoUpdate="true" />
         <h:form id="form">
             <p:fieldset id="fieldset" legend="Dados do Responsável">
-                <h:panelGrid id="panel_grid" columns="2">
+                <h:panelGrid id="panel_grid" columns="4">
 
                     <p:outputLabel for="primeiroNome">Nome:</p:outputLabel>
                     <p:inputText id="primeiroNome" value="#{responsavelBean.responsavel.nome}"/>
+                    <p:messages  for="primeiroNome" />
+                    <br/>
 
                     <p:outputLabel for="email">E-mail:</p:outputLabel>
                     <p:inputText id="email" value="#{responsavelBean.responsavel.email}"/>
+                    <p:button icon="ui-icon-alert" title="Informar email institucional. Caso não tenha favor informar algum gmail." disabled="true"/>
+                    <p:messages  for="email" />
 
-                    <p:outputLabel value="Senha:" id="output_senha" />
-                    <p:password id="value_senha" value="#{responsavelBean.responsavel.senhaDigital}" />
-
-                    <p:outputLabel value="Confirmação:" id="output_confirmacao" />
-                    <p:password id="value_confirmacao" value="#{responsavelBean.senhaConfirmacao}"  feedback="true" />
-
-                    <p:outputLabel value="Administrador:" id="output_admin" />
-                    <p:selectOneRadio   value="#{responsavelBean.responsavel.administrador}" >
-                        <f:selectItem  itemLabel="Sim"  itemValue="true" />
-                        <f:selectItem  itemLabel="Não" itemValue="false" />
-                    </p:selectOneRadio>
-                    
-                    <p:outputLabel value="Servidor:" id="output_servidor" />
-                    <p:selectOneRadio id="input_servidor" onclick="alterar_visibilidade();" value="#{responsavelBean.responsavel.servidor}" >
-                        <f:selectItem id="radiobutton_sim"  itemLabel="Sim"  itemValue="true" />
-                        <f:selectItem id="radiobutton_nao" itemLabel="Não" itemValue="false" />
-                    </p:selectOneRadio>
-
-
-                    <p:outputLabel id="output_departamento" style="visibility: hidden;" for="departamento" value="Departamento :"/>
-                    <p:selectOneMenu id="departamento" style="visibility: hidden;" converter="entidadeConverter" value="#{responsavelBean.responsavel.departamento}">
-                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                    <p:outputLabel for="titulo">Título:</p:outputLabel>
+                    <p:selectOneMenu onchange="alterar_visibilidade();" id="titulo" value="#{responsavelBean.responsavel.titulo}">
+                        <f:selectItems value="#{responsavelBean.titulos}" var="titulo" itemValue="#{titulo}" itemLabel="#{titulo}"  />
                     </p:selectOneMenu>
+                    <p:messages  for="titulo" />
+                    <br/>
 
-                    <p:outputLabel value="Chefe do departamento:" style="visibility: hidden;" id="output_chefe" />
-                    <p:selectOneRadio id="input_chefe" style="visibility: hidden;" value="#{responsavelBean.responsavel.lider}" >
-                        <f:selectItem itemLabel="Sim" itemValue="true" />
-                        <f:selectItem itemLabel="Não" itemValue="false"/>
-                    </p:selectOneRadio>
-
+ <!--<c:if test="#{responsavelBean.responsavel.titulo != 'Aluno' }" >-->
+                    <p:outputLabel id="output_unidade_organizacional" for="unidadeOrganizacional" value="Unidade Organizacional :"/>
+                    <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{responsavelBean.responsavel.unidadeOrganizacional}">
+                        <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
+                    </p:selectOneMenu>
+                    <p:messages  for="unidadeOrganizacional" />
+                    <br/>
+                    <!--</c:if>-->
 
                 </h:panelGrid>
                 <p:separator />
