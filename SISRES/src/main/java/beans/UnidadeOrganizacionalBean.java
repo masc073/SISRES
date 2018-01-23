@@ -2,6 +2,7 @@ package beans;
 
 import dominio.UnidadeOrganizacional;
 import dominio.Responsavel;
+import dominio.TiposUnidadesOrganizacionais;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
 import java.io.Serializable;
@@ -34,6 +35,8 @@ public class UnidadeOrganizacionalBean implements Serializable
 
     private UnidadeOrganizacional unidadeOrganizacional;
 
+    private TiposUnidadesOrganizacionais[] tipos; 
+    
     /** Construtor padrão.
      */
     public UnidadeOrganizacionalBean()
@@ -176,14 +179,10 @@ public class UnidadeOrganizacionalBean implements Serializable
     {
         this.participantes = participantes;
     }
-
-//    public Responsavel getResponsavel_lider()
-//    {
-//        return responsavel_lider;
-//    }
-//
-//    public void setResponsavel_lider(Responsavel responsavel_lider)
-//    {
-//        this.responsavel_lider = responsavel_lider;
-//    }
+    
+    public TiposUnidadesOrganizacionais[] getTipos()
+    {
+        tipos = TiposUnidadesOrganizacionais.values();
+        return tipos;
+    }
 }

@@ -1,35 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>SISRES</title>
+        <meta name="google-signin-scope" content="profile email"/>
         <meta name="google-signin-client_id" content="648373580314-tk04f76nc7ickcn53ma6dln763vji45f.apps.googleusercontent.com" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"></link>
         <script src="https://apis.google.com/js/platform.js" async="defer" ></script>
         <script src="https://apis.google.com/js/api:client.js"></script>
-        <script src="../js/loginGoogle.js"></script>
+        <script src="http://localhost:8080/SISRES/javascript/logingoogle.js"></script>
+<!--        <script>
+            function onSignIn(googleUser) {
+
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                console.log("Token: ");
+                console.log(googleUser.getAuthResponse().id_token);
+
+                var id_token = googleUser.getAuthResponse().id_token;
+
+                login([{name: 'idToken', value: id_token}]);
+//                window.location.href = 'template.xhtml';
+                return "sucesso";
+            }
+        </script>-->
     </h:head>
     <body>
         <h:body style="background-image: url(../imagens/a-pagina-de-abastecimento-lista-de-mensagens-marrom_1253-500.jpg);  background-size: 100%; background-repeat: no-repeat;">
             <h:form>
-                <p:remoteCommand name="login" actionListener="#{googleSign.loginGoogle}" />
+                <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
+                <p:remoteCommand name="login" actionListener="#{googleSign.loginGoogle()}" />
             </h:form>
             <h:form id="login">
                 <div class="g-signin2" data-onsuccess="onSignIn" ></div>
                 <p:fieldset style=" position: absolute;left: 40%;top: 28%;width: 250px; height: 200px;" legend="Login" >
                     <h:panelGrid  columns="1">
-
-                        <p:inputText id="username"  placeholder="Email" style="width: 240px;" value="#{loginBean.username}"/>
-
-                        <p:password id="senha" placeholder="Senha" style="width: 240px;" value="#{loginBean.senha}"/>
-
-                        <p:commandButton value="Login" id="login" style="width: 250px;" action="#{loginBean.efetuarLogin()}"/>
                         <p:commandButton action="cadastro?faces-redirect=true" style="width: 250px;" immediate="true" value="Cadastre-se!" />
                     </h:panelGrid>
                 </p:fieldset>
             </h:form>   
+<!--            <script>
+
+                function signOut() {
+                    console.log("Token: ");
+                    console.log(googleUser.getAuthResponse().id_token);
+                }
+
+            </script>-->
+            <!--<script src="../javascript/logingoogle.js"></script>-->
         </h:body>
     </body>
 </html>

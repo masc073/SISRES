@@ -1,16 +1,15 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -27,7 +26,11 @@ public class UnidadeOrganizacional extends EntidadeNegocio implements Serializab
     @Size(min = 2, max = 6, message = "A sigla deve conter entre 2 à 6 caracteres.")
     @Pattern(regexp = "[A-Za-zà-úÀ-Ú ]+", message = "A sigla deve possuir apenas letras.")
     private String sigla;
-
+    
+    @NotNull(message = "O Tipo da unidade organizacional deve ser selecionada.")
+    @Enumerated(EnumType.STRING)
+    private TiposUnidadesOrganizacionais tiposUnidadesOrganizacionais;
+    
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;
@@ -35,9 +38,6 @@ public class UnidadeOrganizacional extends EntidadeNegocio implements Serializab
     @OneToOne(fetch = FetchType.EAGER, optional = true, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_mae", referencedColumnName = "id")
     private UnidadeOrganizacional mae;
-
-//    @OneToMany(mappedBy = "unidadeOrganizacional", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<UnidadeOrganizacional> filhas;
 
     public UnidadeOrganizacional() {  }
 
@@ -80,15 +80,15 @@ public class UnidadeOrganizacional extends EntidadeNegocio implements Serializab
     {
         this.mae = mae;
     }
+    
+    public TiposUnidadesOrganizacionais getTiposUnidadesOrganizacionais()
+    {
+        return tiposUnidadesOrganizacionais;
+    }
 
-//    public List<UnidadeOrganizacional> getFilhas()
-//    {
-//        return filhas;
-//    }
-//
-//    public void setFilhas(List<UnidadeOrganizacional> filhas)
-//    {
-//        this.filhas = filhas;
-//    }
+    public void setTiposUnidadesOrganizacionais(TiposUnidadesOrganizacionais tiposUnidadesOrganizacionais)
+    {
+        this.tiposUnidadesOrganizacionais = tiposUnidadesOrganizacionais;
+    }
     
 }

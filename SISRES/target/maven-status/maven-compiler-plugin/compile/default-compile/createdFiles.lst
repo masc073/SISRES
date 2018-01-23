@@ -12,6 +12,7 @@ beans\LoginBean.class
 step_definitions\BrowserManager.class
 dominio\Atividade_.class
 dominio\Feriado_.class
+servico\PerfilGoogleServico.class
 step_definitions\DepartamentoSteps.class
 dominio\Processo_.class
 step_definitions\Dataset.class
@@ -30,6 +31,7 @@ servico\FeriadoServico.class
 dominio\Grupo.class
 validadores\ValidadorEmail.class
 dominio\Grupo_.class
+dominio\TiposUnidadesOrganizacionais.class
 dominio\Requerimento_.class
 beans\AtividadeBean.class
 beans\UnidadeOrganizacionalBean.class

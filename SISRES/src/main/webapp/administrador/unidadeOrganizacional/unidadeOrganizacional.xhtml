@@ -13,15 +13,20 @@
 
                 <p:outputLabel value="Nome:" id="output_nome" />
                 <p:inputText id="value_nome" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.nome}" />
-              
+
                 <p:outputLabel value="Sigla:" id="output_sigla" />
                 <p:inputText id="value_sigla" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.sigla}" />
-               
+
+                <p:outputLabel value="Tipo:" id="output_tipo" />
+                <p:selectOneMenu id="tipo" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.tiposUnidadesOrganizacionais}">
+                    <f:selectItems value="#{unidadeOrganizacionalBean.tipos}" var="tipo_atual" itemValue="#{tipo_atual}" itemLabel="#{tipo_atual}"  />
+                </p:selectOneMenu>
+
                 <p:outputLabel for="mae" value="Mãe :"/>
                 <p:selectOneMenu id="mae" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.mae}">
                     <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"  />
                 </p:selectOneMenu>
-                
+
                 <p:outputLabel for="responsavel" value="Responsável :"/>
                 <p:selectOneMenu id="responsavel" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.responsavel}">
                     <f:selectItems value="#{responsavelBean.responsaveis}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
@@ -66,6 +71,16 @@
                         <f:facet name="input">
                             <p:selectOneMenu converter="entidadeConverter" value="#{unidadeOrganizacional.responsavel}">
                                 <f:selectItems value="#{responsavelBean.responsaveis}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Tipo">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.tiposUnidadesOrganizacionais}" /></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu id="tipo" value="#{unidadeOrganizacional.tiposUnidadesOrganizacionais}">
+                                <f:selectItems value="#{unidadeOrganizacionalBean.tipos}" var="tipo_atual" itemValue="#{tipo_atual}" itemLabel="#{tipo_atual}"  />
                             </p:selectOneMenu>
                         </f:facet>
                     </p:cellEditor>

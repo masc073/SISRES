@@ -118,6 +118,11 @@ public class FeriadoBean implements Serializable
 
     /** Lista todos os feriados cadastrados no banco de dados.
      */
+    public void teste()
+    {
+        System.out.println("Testando!!!!");
+    }
+    
     public void listar()
     {
         feriados = feriadoServico.listar();

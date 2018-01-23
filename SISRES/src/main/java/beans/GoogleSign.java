@@ -15,12 +15,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import org.primefaces.context.RequestContext;
 import javax.ejb.EJB;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,19 +41,20 @@ public class GoogleSign implements Serializable
 
     private static final JacksonFactory jacksonFactory = new JacksonFactory();
 
-    @ManagedProperty("#{param.idToken}")
+    @ManagedProperty("#{idToken}")
     private String idToken;
 
-    @EJB
     private LoginBean loginBean;
 
-    public void loginGoogle() throws ServletException, IOException
+    public void loginGoogle()
     {
+        System.out.println("Toooken:" + idToken);
+        System.out.println("CHEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEI");
 
         RequestContext context = RequestContext.getCurrentInstance();
         FacesContext fc = FacesContext.getCurrentInstance();
         PerfilGoogle perfilGoogle;
-
+        
         Payload payload = verificarIntegridade(idToken);
 
         if (payload != null) {
@@ -64,6 +69,7 @@ public class GoogleSign implements Serializable
             perfilGoogle.setPicture((String) payload.get("picture"));
             perfilGoogle.setSubject(payload.getSubject());
             String email = payload.getEmail();
+            
             String nome = (String) payload.get("name");
 
             ExternalContext ec = fc.getExternalContext();
@@ -77,12 +83,33 @@ public class GoogleSign implements Serializable
             session.setAttribute("id", id);
 
             HttpServletRequest request = (HttpServletRequest) ec.getRequest();
-            request.login(email, perfilGoogle.getSubject());
-            ec.redirect("../comum/homepage.xhtml");
+            try {
+                request.login(email, perfilGoogle.getSubject());
+                ec.redirect("../comum/homepage.xhtml");
+            }
+            catch (ServletException ex) {
+                Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            catch (IOException ex) {
+                Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else {
             context.addCallbackParam("logou", "Utilize seu email instituncional");
         }
+    }
+
+    public String logout() throws ServletException
+    {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        request.logout();
+        return "sair";
     }
 
     private Payload verificarIntegridade(String idToken)
@@ -118,5 +145,15 @@ public class GoogleSign implements Serializable
     public void setIdToken(String idToken)
     {
         this.idToken = idToken;
+    }
+
+    public LoginBean getLoginBean()
+    {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean)
+    {
+        this.loginBean = loginBean;
     }
 }

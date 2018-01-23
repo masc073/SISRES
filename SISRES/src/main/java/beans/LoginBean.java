@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +22,10 @@ import servico.ResponsavelServico;
 /**
  * Classe responsável por realizar a comunicaçao da tela de login com a camada
  * de serviço.
+ *
  * @author Natália Amâncio
  */
 @ManagedBean(name = "loginBean")
-@RequestScoped
 public class LoginBean implements Serializable
 {
 
@@ -107,7 +108,7 @@ public class LoginBean implements Serializable
         if (session != null) {
             session.invalidate();
         }
-
+        session.invalidate();
         HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
         request.logout();
         return "sair";
@@ -168,9 +169,9 @@ public class LoginBean implements Serializable
     public Long consultarIbByEmail(String email)
     {
         Long retorno;
-        
+
         retorno = responsavelServico.consultarIbByEmail(username);
-        
+
         return retorno;
     }
 
