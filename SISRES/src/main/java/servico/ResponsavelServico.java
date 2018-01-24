@@ -10,6 +10,7 @@ import static javax.ejb.TransactionAttributeType.REQUIRED;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import static javax.ejb.TransactionManagementType.CONTAINER;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 @Stateless
@@ -28,13 +29,6 @@ public class ResponsavelServico extends Servico
         }
     }
 
-    public Long consultarIbByEmail(String email)
-    {
-        Long id = em.createNamedQuery("Responsavel.findIdByEmail", Long.class).setParameter("email", email).getSingleResult();
-
-        return id;
-    }
-
     public List<Responsavel> listar()
     {
         em.flush();
@@ -43,11 +37,17 @@ public class ResponsavelServico extends Servico
 
     public Responsavel getResponsavelByEmail(String email)
     {
+        Responsavel responsavel;
         TypedQuery<Responsavel> query;
-        query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
-        query.setParameter(1, email);
 
-        Responsavel responsavel = query.getSingleResult();
+        try {
+            query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
+            query.setParameter(1, email);
+            responsavel = query.getSingleResult();
+        }
+        catch (NoResultException e) {
+            responsavel = null;
+        }
 
         return responsavel;
     }
@@ -57,11 +57,14 @@ public class ResponsavelServico extends Servico
         TypedQuery<Responsavel> query;
 
         if (responsavel.getId() == null) {
-            query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class);
+            query = em.createQuery("select r from Responsavel r where r.email = ?1", Responsavel.class
+            );
             query.setParameter(1, responsavel.getEmail());
+
         }
         else {
-            query = em.createQuery("select r from Responsavel r where r.email = ?1 and r.id != ?2", Responsavel.class);
+            query = em.createQuery("select r from Responsavel r where r.email = ?1 and r.id != ?2", Responsavel.class
+            );
             query.setParameter(1, responsavel.getEmail());
             query.setParameter(2, responsavel.getId());
         }
@@ -73,7 +76,8 @@ public class ResponsavelServico extends Servico
 
     public void remover(Responsavel responsavel)
     {
-        Responsavel r = (Responsavel) em.find(Responsavel.class, responsavel.getId());
+        Responsavel r = (Responsavel) em.find(Responsavel.class,
+                 responsavel.getId());
         em.remove(r);
     }
 
@@ -91,7 +95,9 @@ public class ResponsavelServico extends Servico
     public List<Responsavel> listar_nao_aprovados_lider()
     {
         em.flush();
-        return em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = true ", Responsavel.class).getResultList();
+
+        return em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = true ", Responsavel.class
+        ).getResultList();
     }
 
     public List<Responsavel> listar_nao_aprovados(Responsavel usuario_logado)
@@ -99,7 +105,9 @@ public class ResponsavelServico extends Servico
         em.flush();
         TypedQuery<Responsavel> query;
 
-        query = em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = false and r.departamento = ?1 ", Responsavel.class);
+        query
+                = em.createQuery("select r from Responsavel r where r.aprovado = false and r.lider = false and r.departamento = ?1 ", Responsavel.class
+                );
         query.setParameter(1, usuario_logado.getUnidadeOrganizacional());
 
         List<Responsavel> responsaveis = query.getResultList();

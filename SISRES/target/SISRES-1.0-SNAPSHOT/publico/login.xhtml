@@ -9,49 +9,54 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"></link>
         <script src="https://apis.google.com/js/platform.js" async="defer" ></script>
         <script src="https://apis.google.com/js/api:client.js"></script>
-        <script src="http://localhost:8080/SISRES/javascript/logingoogle.js"></script>
-<!--        <script>
+        <!--<script src="http://localhost:8080/SISRES/javascript/logingoogle.js"></script>-->
+        <script>
             function onSignIn(googleUser) {
-
                 var profile = googleUser.getBasicProfile();
                 console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                 console.log('Name: ' + profile.getName());
                 console.log('Image URL: ' + profile.getImageUrl());
                 console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                console.log("Token: ");
-                console.log(googleUser.getAuthResponse().id_token);
 
                 var id_token = googleUser.getAuthResponse().id_token;
 
+                alert(id_token);
+
                 login([{name: 'idToken', value: id_token}]);
+
 //                window.location.href = 'template.xhtml';
-                return "sucesso";
             }
-        </script>-->
+
+        </script>
+        <!--        <script>
+                    function onSignIn(googleUser) {
+                        
+                        window.location.href = 'template.xhtml';
+        
+                        var profile = googleUser.getBasicProfile();
+                        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                        console.log('Name: ' + profile.getName());
+                        console.log('Image URL: ' + profile.getImageUrl());
+                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                        console.log("Token: ");
+                        console.log(googleUser.getAuthResponse().id_token);
+        
+                        var id_token = googleUser.getAuthResponse().id_token;
+                        
+                        alert(id_token);
+        
+                        login([{name: 'idToken', value: id_token}]);
+                        
+                    }
+                </script>-->
     </h:head>
     <body>
-        <h:body style="background-image: url(../imagens/a-pagina-de-abastecimento-lista-de-mensagens-marrom_1253-500.jpg);  background-size: 100%; background-repeat: no-repeat;">
-            <h:form>
-                <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
+        <h:body style="background-size: 100%; background-repeat: no-repeat;">
+            <h:form>  
+                <p:growl id="messages" showDetail="false" autoUpdate="true" />
+                <div class="g-signin2" onclick="login()" data-onsuccess="onSignIn"></div>
                 <p:remoteCommand name="login" actionListener="#{googleSign.loginGoogle()}" />
-            </h:form>
-            <h:form id="login">
-                <div class="g-signin2" data-onsuccess="onSignIn" ></div>
-                <p:fieldset style=" position: absolute;left: 40%;top: 28%;width: 250px; height: 200px;" legend="Login" >
-                    <h:panelGrid  columns="1">
-                        <p:commandButton action="cadastro?faces-redirect=true" style="width: 250px;" immediate="true" value="Cadastre-se!" />
-                    </h:panelGrid>
-                </p:fieldset>
-            </h:form>   
-<!--            <script>
-
-                function signOut() {
-                    console.log("Token: ");
-                    console.log(googleUser.getAuthResponse().id_token);
-                }
-
-            </script>-->
-            <!--<script src="../javascript/logingoogle.js"></script>-->
+            </h:form> 
         </h:body>
     </body>
 </html>

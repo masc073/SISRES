@@ -54,6 +54,7 @@ public class ResponsavelBean implements Serializable
     {
         responsavel = new Responsavel();
         encripta = new Encripta();
+        perfilGoogle = new PerfilGoogle();
     }
 
     public Responsavel getUsuarioLogado()

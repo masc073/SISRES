@@ -11,6 +11,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import dominio.PerfilGoogle;
+import dominio.Responsavel;
 import java.io.IOException;
 import java.io.Serializable;
 import java.security.GeneralSecurityException;
@@ -23,11 +24,13 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import org.primefaces.context.RequestContext;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import servico.ResponsavelServico;
 
 /**
  *
@@ -41,10 +44,13 @@ public class GoogleSign implements Serializable
 
     private static final JacksonFactory jacksonFactory = new JacksonFactory();
 
-    @ManagedProperty("#{idToken}")
+    @ManagedProperty("#{param.idToken}")
     private String idToken;
 
-    private LoginBean loginBean;
+    private String username;
+
+    @EJB
+    private ResponsavelServico responsavelServico;
 
     public void loginGoogle()
     {
@@ -54,14 +60,10 @@ public class GoogleSign implements Serializable
         RequestContext context = RequestContext.getCurrentInstance();
         FacesContext fc = FacesContext.getCurrentInstance();
         PerfilGoogle perfilGoogle;
-        
+
         Payload payload = verificarIntegridade(idToken);
 
         if (payload != null) {
-            System.out.println(payload.getHostedDomain());
-        }
-
-        if (payload != null && payload.getHostedDomain().equals("a.recife.ifpe.edu.br")) {
             perfilGoogle = new PerfilGoogle();
             perfilGoogle.setFamilyName((String) payload.get("family_name"));
             perfilGoogle.setGivenName((String) payload.get("given_name"));
@@ -69,33 +71,39 @@ public class GoogleSign implements Serializable
             perfilGoogle.setPicture((String) payload.get("picture"));
             perfilGoogle.setSubject(payload.getSubject());
             String email = payload.getEmail();
-            
+
+            setUsername(email);
+
             String nome = (String) payload.get("name");
 
             ExternalContext ec = fc.getExternalContext();
             HttpSession session = (HttpSession) ec.getSession(true);
 
-            Long id = loginBean.consultarIbByEmail(email);
+            Long id = consultarResponsavel(username);
 
-            session.setAttribute("perfilGoogle", perfilGoogle);
-            session.setAttribute("nome", nome);
-            session.setAttribute("email", email);
-            session.setAttribute("id", id);
+            if (id != null) {
 
-            HttpServletRequest request = (HttpServletRequest) ec.getRequest();
-            try {
-                request.login(email, perfilGoogle.getSubject());
-                ec.redirect("../comum/homepage.xhtml");
+                session.setAttribute("perfilGoogle", perfilGoogle);
+                session.setAttribute("nome", nome);
+                session.setAttribute("email", email);
+                session.setAttribute("id", id);
+
+                HttpServletRequest request = (HttpServletRequest) ec.getRequest();
+                try {
+//                    
+//                    System.out.println("Subject: " + perfilGoogle.getSubject());
+//                    request.login(email, perfilGoogle.getSubject());
+                    ec.redirect("template.xhtml");
+                }
+//                catch (ServletException ex) {
+//                    Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+                catch (IOException ex) {
+                    Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else {
+                adicionarMessagem(FacesMessage.SEVERITY_INFO, "Usuário não cadastrado no sistema. Favor cadastre-se!");
             }
-            catch (ServletException ex) {
-                Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            catch (IOException ex) {
-                Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            context.addCallbackParam("logou", "Utilize seu email instituncional");
         }
     }
 
@@ -136,6 +144,18 @@ public class GoogleSign implements Serializable
 
         return payload;
     }
+    
+     /**
+     * Exibe mensagens para o usuário em relação do login.
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
+    protected void adicionarMessagem(FacesMessage.Severity severity, String mensagem)
+    {
+        FacesMessage message = new FacesMessage(severity, mensagem, "");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public String getIdToken()
     {
@@ -147,13 +167,28 @@ public class GoogleSign implements Serializable
         this.idToken = idToken;
     }
 
-    public LoginBean getLoginBean()
+    public Long consultarResponsavel(String email)
     {
-        return loginBean;
+        Responsavel responsavel;
+        Long retorno;
+
+        responsavel = responsavelServico.getResponsavelByEmail(username);
+
+        if (responsavel != null) {
+            return responsavel.getId();
+        }
+        else {
+            return null;
+        }
     }
 
-    public void setLoginBean(LoginBean loginBean)
+    public String getUsername()
     {
-        this.loginBean = loginBean;
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

@@ -108,7 +108,6 @@ public class LoginBean implements Serializable
         if (session != null) {
             session.invalidate();
         }
-        session.invalidate();
         HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
         request.logout();
         return "sair";
@@ -165,14 +164,4 @@ public class LoginBean implements Serializable
     {
         this.senha = senha;
     }
-
-    public Long consultarIbByEmail(String email)
-    {
-        Long retorno;
-
-        retorno = responsavelServico.consultarIbByEmail(username);
-
-        return retorno;
-    }
-
 }
