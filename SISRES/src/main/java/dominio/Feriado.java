@@ -1,5 +1,7 @@
 package dominio;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
@@ -51,5 +53,16 @@ public class Feriado extends EntidadeNegocio
     public void setData_do_feriado(Date data_do_feriado)
     {
         this.data_do_feriado = data_do_feriado;
+    }
+    
+    public String getFeriadoFormatado() throws ParseException
+    {
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+        if (data_do_feriado != null) {
+            return fmt.format(data_do_feriado);
+        }
+        else {
+            return "Feriado não informado";
+        }
     }
 }

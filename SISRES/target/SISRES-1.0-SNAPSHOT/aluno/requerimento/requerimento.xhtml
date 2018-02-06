@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+             template="../../template.xhtml">
+    <h:form id="requerimento">
+        <p:fieldset legend="Novo Requerimento" style="margin-left: 3px; width: 990px;" >
+            <h:panelGrid columns="3" >
+
+                <p:outputLabel value="Matrícula:" id="output_matricula" />
+                <p:inputText id="value_matricula" value="#{requerimentoBean.requerimento.matriculaAluno}" />
+                <p:message for="output_matricula" id="messageMatricula" severity="error"/>
+
+                <p:outputLabel for="processo" value="Processo :"/>
+                <p:selectOneMenu id="processo" converter="entidadeConverter" value="#{requerimentoBean.requerimento.processo}">
+                    <f:selectItems value="#{processoBean.processos}" var="processo" itemValue="#{processo}" itemLabel="#{processo.nome}"  />
+                </p:selectOneMenu>
+                <br/>
+                <p:toolbarGroup>
+                    <p:commandButton value="Abrir" action="#{requerimentoBean.salvar}" id="button_salvar" 
+                                     ajax="false" update="@form" title="Abrir" icon="ui-icon-check" validateClient="true"/>
+                </p:toolbarGroup>
+            </h:panelGrid>
+
+            <!--</h:form>-->
+            <!--        </p:tab>
+                    <p:tab title="requerimentos cadastrados" id="painelrequerimentosCadastrados">-->
+            <!--<h:form id="formulariorequerimento">-->
+            <p:dataTable rowKey="#{requerimento.id}" id="table_requerimento" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
+
+                <f:facet name="header">Requerimentos</f:facet>
+                <p:ajax event="rowEdit" update="table_requerimento" listener="#{requerimentoBean.editar}" />
+                <p:column headerText="Matrícula">
+                    <h:outputText value="#{requerimento.matriculaAluno}" />
+                </p:column>
+                <p:column headerText="Processo">
+                    <h:outputText  value="#{requerimento.processo.nome}" />
+                </p:column>
+                <p:column headerText="Abertura">
+                    <h:outputText value="#{requerimento.dataDeInicioFormatada}"  />
+                </p:column>
+                <p:column style="width:40px">
+                    <p:commandButton icon="ui-icon-search" id="consultar" action="#{requerimentoBean.redireciona_para_exibir_requerimento(requerimento)}"/>
+                </p:column>
+                <p:column style="width:20px">
+                    <p:commandLink id="delete" styleClass="ui-icon ui-icon-trash" update="table_requerimento" action="#{requerimentoBean.remover(requerimento)}" process="@this" >
+                        <p:confirm header="Confirmação" message="Cancelar requerimento ?" icon="ui-icon-alert" />
+                    </p:commandLink>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"  icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

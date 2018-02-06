@@ -8,7 +8,7 @@
 
              template="../../template.xhtml">
     <h:form id="feriado">
-        <p:fieldset legend="Cadastro de Feriados" style="margin-left: 3px; width: 900px;" >
+        <p:fieldset legend="Cadastro de Feriados"  >
             <h:panelGrid columns="3" >
                 <p:outputLabel value="Nome:" id="output_nome" />
                 <p:inputText id="value_nome" value="#{feriadoBean.feriado.nome}" />
@@ -40,7 +40,7 @@
                 </p:column>
                 <p:column headerText="Data">
                     <p:cellEditor>
-                        <f:facet name="output"><h:outputText  value="#{feriado.data_do_feriado}" /></f:facet>
+                        <f:facet name="output"><h:outputText  value="#{feriado.feriadoFormatado}" /></f:facet>
                         <f:facet name="input"><p:calendar id="data_output" pattern="dd/MM/yyy"  value="#{feriado.data_do_feriado}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>

@@ -14,10 +14,6 @@
         <role-name>administrador</role-name>
         <group-name>administrador</group-name>
     </security-role-mapping>
-    <security-role-mapping>
-        <role-name>servidor_chefe</role-name>
-        <group-name>servidor_chefe</group-name>
-    </security-role-mapping>
     <jsp-config>
         <property name="keepgenerated" value="true">
             <description>Keep a copy of the generated servlet class' java code.</description>

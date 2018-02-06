@@ -51,7 +51,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         try
         {
             unidadeOrganizacionalServico.salvar(unidadeOrganizacional);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento cadastrado com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Organizacional cadastrada com Sucesso!");
         } catch (ExcecaoNegocio ex)
         {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
@@ -87,7 +87,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         try
         {
             unidadeOrganizacionalServico.atualizar(unidadeOrganizacional);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento alterado com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Orgenizacional alterada com Sucesso!");
             listar();
         } 
         catch (ExcecaoNegocio ex)
@@ -113,7 +113,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         try
         {
             unidadeOrganizacionalServico.remover(departamento);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Departamento removido com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Organizacional removida com Sucesso!");
 
         } catch (EJBException ex)
         {

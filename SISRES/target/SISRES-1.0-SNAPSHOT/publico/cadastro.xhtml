@@ -8,15 +8,14 @@
         <title>SISRES</title>
         <script language="javaScript" type="text/javascript">
             function alterar_visibilidade() {
-
-                var label = document.getElementById("form:titulo_label").valueOf();
-
-                if (#{responsavelBean.responsavel.titulo == 'Aluno' }) {
-//                    if (label === 'Aluno') {
-
+                
+                var label = document.getElementById("form:titulo_label").textContent;
+                
+                if (label === "Aluno") {
+             
                     document.getElementById("form:output_unidade_organizacional").style.visibility = "hidden";
                     document.getElementById("form:unidadeOrganizacional").style.visibility = "hidden";
-//                    }
+                    
                 } else
                 {
                     document.getElementById("form:output_unidade_organizacional").style.visibility = "visible";
@@ -26,8 +25,9 @@
         </script>
     </h:head>
     <h:body>
-        <p:growl showDetail="false" globalOnly="true"  autoUpdate="true" />
+
         <h:form id="form">
+            <p:growl id="messages" showDetail="false" autoUpdate="true" />
             <p:fieldset id="fieldset" legend="Dados do Responsável">
                 <h:panelGrid id="panel_grid" columns="4">
 
@@ -48,13 +48,13 @@
                     <p:messages  for="titulo" />
                     <br/>
 
- <!--<c:if test="#{responsavelBean.responsavel.titulo != 'Aluno' }" >-->
-                    <p:outputLabel id="output_unidade_organizacional" for="unidadeOrganizacional" value="Unidade Organizacional :"/>
-                    <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{responsavelBean.responsavel.unidadeOrganizacional}">
-                        <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
-                    </p:selectOneMenu>
-                    <p:messages  for="unidadeOrganizacional" />
-                    <br/>
+                    <!--<c:if test="#{responsavelBean.responsavel.titulo != 'Aluno' }" >-->
+                        <p:outputLabel id="output_unidade_organizacional" for="unidadeOrganizacional" value="Unidade Organizacional :"/>
+                        <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{responsavelBean.responsavel.unidadeOrganizacional}">
+                            <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
+                        </p:selectOneMenu>
+                        <p:messages  for="unidadeOrganizacional" />
+                        <br/>
                     <!--</c:if>-->
 
                 </h:panelGrid>

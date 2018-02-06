@@ -1,3 +1,5 @@
+/* global gapi */
+
 //jQuery(function () {
 //    jQuery.noConflict();
 //});
@@ -32,14 +34,21 @@ function attachSignin(element) {
 }
 
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
-    });
+    alert("Cheguei no signout!");
+//    auth2 = gapi.auth2.getAuthInstance();
+    if (auth2 !== null)
+    {
+        auth2.signOut().then(function () {
+            alert("Estou dentro do if do sign out!");
+            console.log('User signed out.');
+        });
+    }
+
+    window.location.href = "..";
 }
 
 function onSignIn(googleUser) {
-    
+
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
@@ -53,7 +62,7 @@ function onSignIn(googleUser) {
 //    }
 
     var id_token = googleUser.getAuthResponse().id_token;
-    
+
     alert(id_token);
 
     login([{name: 'param.idToken', value: id_token}]);

@@ -106,6 +106,7 @@ public class LoginBean implements Serializable
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         if (session != null) {
+            System.out.println("INVALIDEI!");
             session.invalidate();
         }
         HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();

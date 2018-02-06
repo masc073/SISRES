@@ -2,6 +2,7 @@ package servico;
 
 import dominio.Grupo;
 import dominio.Responsavel;
+import dominio.Titulos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -72,24 +73,16 @@ public class GrupoServico extends Servico
 
         if (responsavel != null) {
 
-//            if (responsavel.isServidor()) {
-//
-//                if (responsavel.isLider()) {
-//                    grupoAtual = "servidor_chefe";
-//                }
-//                else {
-//                    grupoAtual = "servidor";
-//                }
-//
-//            }
-//            else {
-//                if (responsavel.isAdministrador()) {
-//                    grupoAtual = "administrador";
-//                }
-//                else {
-//                    grupoAtual = "aluno";
-//                }
-//            }
+            switch (responsavel.getTitulo()) {
+
+                case Administrador:
+                    return "administrador";
+                case Aluno:
+                    return "aluno";
+                default:
+                    return "servidor";
+
+            }
         }
 
         return grupoAtual;

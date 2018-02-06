@@ -30,6 +30,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import servico.GrupoServico;
 import servico.ResponsavelServico;
 
 /**
@@ -52,15 +53,16 @@ public class GoogleSign implements Serializable
     @EJB
     private ResponsavelServico responsavelServico;
 
-    public void loginGoogle()
-    {
-        System.out.println("Toooken:" + idToken);
-        System.out.println("CHEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEI");
+    @EJB
+    private GrupoServico grupoServico;
 
+    public void loginGoogle() throws ServletException
+    {
         RequestContext context = RequestContext.getCurrentInstance();
         FacesContext fc = FacesContext.getCurrentInstance();
         PerfilGoogle perfilGoogle;
 
+//        if (idToken != null) {
         Payload payload = verificarIntegridade(idToken);
 
         if (payload != null) {
@@ -79,32 +81,40 @@ public class GoogleSign implements Serializable
             ExternalContext ec = fc.getExternalContext();
             HttpSession session = (HttpSession) ec.getSession(true);
 
-            Long id = consultarResponsavel(username);
+            Responsavel responsavel_atual = consultarResponsavel(username);
 
-            if (id != null) {
+            if (responsavel_atual != null) {
 
                 session.setAttribute("perfilGoogle", perfilGoogle);
                 session.setAttribute("nome", nome);
                 session.setAttribute("email", email);
-                session.setAttribute("id", id);
+                session.setAttribute("id", responsavel_atual.getId());
 
                 HttpServletRequest request = (HttpServletRequest) ec.getRequest();
                 try {
-//                    
-//                    System.out.println("Subject: " + perfilGoogle.getSubject());
-//                    request.login(email, perfilGoogle.getSubject());
+
+                    System.out.println("Subject: " + perfilGoogle.getSubject());
+                    request.login(email, perfilGoogle.getSubject());
+
+                    System.out.println("Usuário logado: " + responsavel_atual.getEmail());
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavel_atual);
+                    String grupo = grupoServico.buscar_grupo_responsavel(username);
+                    request.setAttribute("grupo", grupo);
+                    System.out.println("Grupo : " + grupo);
+//                    System.out.println("beans.GoogleSign.loginGoogle()" + request.);
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("grupoAtual", grupo);
                     ec.redirect("template.xhtml");
                 }
-//                catch (ServletException ex) {
-//                    Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
-//                }
                 catch (IOException ex) {
                     Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else {
+            }
+            else {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Usuário não cadastrado no sistema. Favor cadastre-se!");
+                logout();
             }
         }
+//        }
     }
 
     public String logout() throws ServletException
@@ -112,6 +122,7 @@ public class GoogleSign implements Serializable
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         if (session != null) {
+            System.out.println("INVALIDEEEEEEEEI!");
             session.invalidate();
         }
 
@@ -144,8 +155,8 @@ public class GoogleSign implements Serializable
 
         return payload;
     }
-    
-     /**
+
+    /**
      * Exibe mensagens para o usuário em relação do login.
      *
      * @param mensagem Mensagem que será exibida para o usuário
@@ -167,7 +178,7 @@ public class GoogleSign implements Serializable
         this.idToken = idToken;
     }
 
-    public Long consultarResponsavel(String email)
+    public Responsavel consultarResponsavel(String email)
     {
         Responsavel responsavel;
         Long retorno;
@@ -175,7 +186,7 @@ public class GoogleSign implements Serializable
         responsavel = responsavelServico.getResponsavelByEmail(username);
 
         if (responsavel != null) {
-            return responsavel.getId();
+            return responsavel;
         }
         else {
             return null;

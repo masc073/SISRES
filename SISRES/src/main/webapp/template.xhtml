@@ -31,8 +31,24 @@
         <meta name="google-signin-scope" content="profile email"/>
         <meta name="google-signin-client_id" content="648373580314-tk04f76nc7ickcn53ma6dln763vji45f.apps.googleusercontent.com" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"></link>
-        <script src="https://apis.google.com/js/platform.js" async="defer" ></script>
         <script src="https://apis.google.com/js/api:client.js"></script>
+        <script>
+            function signOut() {
+                alert("Cheguei");
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    alert("Cheguei");
+                    console.log('User signed out.');
+                });
+            }
+
+            function onLoad() {
+                gapi.load('auth2', function () {
+                    gapi.auth2.init();
+                });
+            }
+        </script>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async="defer" ></script>
     </h:head>
     <h:body style="background: rgb(242, 241, 241)">
         <p:panel id="panel" header="Sistema de Requerimento Estudantil">
@@ -40,21 +56,20 @@
             <h:form>  
                 <p:growl id="messages" showDetail="false" autoUpdate="true" />
 
-                <p:menu class="menu" style="width: 220px">
+                <p:menu class="menu" style="width: 250px">
                     <p:submenu class="submenu" icon="ui-icon-home" label="Início">
-                        <p:menuitem value="Meus Requerimentos" url="/responsavel/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-                        <p:menuitem value="Responsáveis" url="/servidor_chefe/aprovarResponsaveis.xhtml" icon="ui-icon-person"/>
-                        <p:menuitem value="Requerimentos" url="/responsavel/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
-                        <p:menuitem value="Histórico" url="/responsavel/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
-                        <p:menuitem class="submenu" icon="ui-icon-power" value="Sair" action="#{loginBean.logout()}"  immediate="true"/>
+                        <p:menuitem value="Meus Requerimentos" url="/aluno/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                        <p:menuitem value="Responsáveis" rendered="#{request.isUserInRole('administrador')}" url="/servidor_chefe/aprovarResponsaveis.xhtml" icon="ui-icon-person"/>
+                        <p:menuitem value="Requerimentos" rendered="#{request.isUserInRole('')}" url="/aluno/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
+                        <p:menuitem value="Histórico" rendered="#{request.isUserInRole('aluno')}" url="/aluno/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
                     </p:submenu>
                     <p:submenu class="submenu" label="Cadastros" icon="ui-icon-pencil" >
                         <p:menuitem value="Novo Processo" url="/administrador/processo/processo.xhtml" update="messages" icon="ui-icon-plusthick" />
                         <p:menuitem value="Processos" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
                         <p:menuitem value="Responsáveis" url="/responsavel/responsavel.xhtml" icon="ui-icon-person"/>
                         <p:menuitem value="Feriados" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
-                        <p:menuitem value="Unidade Organizacional"  url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
-                        <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair"  action="#{loginBean.logout()}" />
+                        <p:menuitem value="Unidade Organizacional" url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
+                        <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
                     </p:submenu>
                 </p:menu>
             </h:form>
@@ -62,74 +77,4 @@
             </ui:insert>
         </p:panel>
     </h:body>
-    <script>
-        function logout() {
-            gapi.auth2.getAuthInstance().disconnect();
-            location.reload();
-            console.log("Invalidei");
-        }
-    </script>
 </html>
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title></title>
-        <style type="text/css">
-            #logo {
-                width: 250px;
-                left: 30px;
-            }
-            .menu
-            {
-                float: left; width: 25%;  margin-top: 20px; margin-right: 10px;
-            }
-            #panel
-            {
-                border: none;
-                background: rgb(242, 241, 241);
-            }
-            #panel .ui-panel-titlebar
-            {
-                height: 40px;
-                text-align: center;
-                font-size: 150%;
-            }
-        </style>
-    </h:head>
-    <h:body style="background: rgb(242, 241, 241)">
-        <p:panel id="panel" header="Sistema de Requerimento Estudantil">
-
-                        <p:layout>
-                            <p:layoutUnit position="west" size="240" style="border: none;">
-            <h:form>  
-                <p:growl id="messages" showDetail="false" autoUpdate="true" />
-
-                <p:menu class="menu" style="width: 220px">
-                    <p:submenu class="submenu" icon="ui-icon-home" label="Início">
-                        <p:menuitem value="Meus Requerimentos"  actionListener="#{menuView.update}" url="/responsavel/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-                    </p:submenu>
-                    <p:submenu class="submenu" label="Cadastros" icon="ui-icon-pencil" >
-                        <p:menuitem value="Novo Processo" url="/administrador/processo/processo.xhtml" update="messages" icon="ui-icon-plusthick" />
-                        <p:menuitem value="Processos" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
-                        <p:menuitem value="Requerimentos" url="/responsavel/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
-                        <p:menuitem value="Responsáveis" url="/responsavel/responsavel.xhtml" icon="ui-icon-person"/>
-                        <p:menuitem value="Feriados" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
-                        <p:menuitem value="Departamentos" url="/administrador/departamento/departamento.xhtml" icon="ui-icon-contact"/>
-                        <p:menuitem value="Histórico" url="/responsavel/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
-                        <p:menuitem value="Chefe Departamento" url="/administrador/responsavel/aprovarResponsavel.xhtml" icon="ui-icon-person"/>
-                        <p:menuitem class="submenu" icon="ui-icon-power" value="Sair"/>
-                    </p:submenu>
-                </p:menu>
-            </h:form>
-                            </p:layoutUnit>   
-                            <p:layoutUnit position="center" size="420" style="border: none;">
-            <ui:insert id="conteudo">
-            </ui:insert>
-            </p:layoutUnit>
-            </p:layout>
-        </p:panel>
-    </h:body>
-</html>-->

@@ -24,6 +24,7 @@
 
                 <p:outputLabel for="mae" value="Mãe :"/>
                 <p:selectOneMenu id="mae" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.mae}">
+                    <f:selectItem itemValue="#{null}" itemLabel="-- Selecione --" />
                     <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"  />
                 </p:selectOneMenu>
 
@@ -59,7 +60,8 @@
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{unidadeOrganizacional.mae.nome}" /></f:facet>
                         <f:facet name="input">
-                            <p:selectOneMenu id="mae" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.mae}">
+                            <p:selectOneMenu  id="mae" converter="entidadeConverter" value="#{unidadeOrganizacional.mae}">
+                                <f:selectItem itemValue="#{null}" itemLabel="-- Selecione --" />
                                 <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"  />
                             </p:selectOneMenu>
                         </f:facet>
