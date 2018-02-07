@@ -53,8 +53,8 @@ public class RequerimentoServico extends Servico
 
 //        if (usuarioLogado.getDepartamento() != null || usuarioLogado.isAdministrador() == false) {
 
-            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
-            query.setParameter(1, usuarioLogado.getUnidadeOrganizacional());
+            query = em.createQuery("select f from Requerimento f where f.finalizado = false ", Requerimento.class);
+//            query.setParameter(1, usuarioLogado.getUnidadeOrganizacional());
 //        }
 //        else {
 //            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);

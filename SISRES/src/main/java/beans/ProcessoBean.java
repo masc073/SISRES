@@ -254,7 +254,7 @@ public class ProcessoBean implements Serializable
         for (int i = 0; i < this.atividades.size(); i++) {
             if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.get(i).setNome(atividade.getNome());
-                this.atividades.get(i).setDepartamento(atividade.getDepartamento());
+                this.atividades.get(i).setUnidade_organizacional(atividade.getUnidade_organizacional());
                 this.atividades.get(i).setAnexarArquivo(atividade.isAnexarArquivo());
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade alterada com Sucesso!");

@@ -20,14 +20,14 @@
                     <p:inputText id="value_nome_atividade" value="#{processoBean.atividade.nome}" />
 
                     <p:outputLabel value="Anexar Documento:" id="output_anexarArquivo" />
-                    <p:selectOneRadio id="input_anexarArquivo" value="#{processoBean.anexarArquivo}" >
+                    <p:selectOneRadio required="true" requiredMessage="Selecionar uma opção!" id="input_anexarArquivo" value="#{processoBean.anexarArquivo}" >
                         <f:selectItem id="radiobutton_sim" itemLabel="Sim" itemValue="sim" />
-                        <f:selectItem id="radiobutton_nao" itemLabel="Não" itemValue="nao" />
+                        <f:selectItem id="radiobutton_nao" itemLabel="Não" itemValue="nao"  />
                     </p:selectOneRadio>
 
-                    <p:outputLabel for="departamento" value="Departamento :"/>
-                    <p:selectOneMenu id="departamento" converter="entidadeConverter" value="#{processoBean.atividade.departamento}">
-                        <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                    <p:outputLabel for="unidadeOrganizacional" value="Unidade Organizacional :"/>
+                    <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{processoBean.atividade.unidade_organizacional}">
+                        <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
                     </p:selectOneMenu>
                 </h:panelGrid>
 
@@ -35,7 +35,7 @@
                                  ajax="false" title="Adicionar" icon="ui-icon-check" validateClient="form_atividades"/>
                 <br/>
                 <br/>
-                <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.atividades}">
+                <p:dataTable id="table_atividade" editable="true"  var="atividade" value="#{processoBean.atividades}" paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
 
                     <f:facet name="header">Atividades</f:facet>
                     <p:ajax event="rowEdit" update="table_atividade" listener="#{processoBean.editarAtividadeLista(atividade)}" />
@@ -56,12 +56,12 @@
                             </f:facet>
                         </p:cellEditor>
                     </p:column>
-                    <p:column headerText="Departamento">
+                    <p:column headerText="Unidade Organizacional">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{atividade.departamento.nome}" /></f:facet>
+                            <f:facet name="output"><h:outputText value="#{atividade.unidade_organizacional.nome}" /></f:facet>
                             <f:facet name="input">
-                                <p:selectOneMenu converter="entidadeConverter" value="#{atividade.departamento}">
-                                    <f:selectItems value="#{departamentoBean.departamentos}" var="departamento" itemValue="#{departamento}" itemLabel="#{departamento.nome}"  />
+                                <p:selectOneMenu id="input_unidadeOrganizacional" converter="entidadeConverter" value="#{atividade.unidade_organizacional}">
+                                    <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
                                 </p:selectOneMenu>
                             </f:facet>
                         </p:cellEditor>

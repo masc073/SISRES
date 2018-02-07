@@ -48,6 +48,7 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     @Column
     private boolean finalizado;
 
+    @NotNull
     @Column
     private String matriculaAluno;
 

@@ -254,7 +254,7 @@ public class ProcessoEditarBean implements Serializable
         for (int i = 0; i < this.atividades.size(); i++) {
             if (this.atividades.get(i).getNome().equals(atividade.getNome())) {
                 this.atividades.get(i).setNome(atividade.getNome());
-                this.atividades.get(i).setDepartamento(atividade.getDepartamento());
+                this.atividades.get(i).setUnidade_organizacional(atividade.getUnidade_organizacional());
                 this.atividades.get(i).setAnexarArquivo(atividade.isAnexarArquivo());
 
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Atividade alterada com Sucesso!");
@@ -272,7 +272,9 @@ public class ProcessoEditarBean implements Serializable
     {
         this.atividade = atividade;
     }
-    /** Retorna atividades do processo
+
+    /**
+     * Retorna atividades do processo
      */
     public List<AtividadeModelo> getAtividades()
     {
@@ -294,12 +296,15 @@ public class ProcessoEditarBean implements Serializable
 
     public boolean return_anexarAquivo()
     {
-        if (anexarArquivo.equals("sim")) {
-            return true;
+        if (anexarArquivo != null) {
+            if (anexarArquivo.equals("sim")) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public String visualizar_anexarAquivo(AtividadeModelo atividade_atual)

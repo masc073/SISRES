@@ -9,7 +9,7 @@
     
     <h:form id="atividade">
         <p:fieldset legend="Fila de Requerimentos" style="margin-left: 3px; width: 990px;" >
-            <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos}">
+            <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos}" paginator="true" rows="15" emptyMessage="Nenhum registro encontrado">
 
                 <f:facet name="header">Requerimentos</f:facet>
                 <p:column headerText="Solicitante">

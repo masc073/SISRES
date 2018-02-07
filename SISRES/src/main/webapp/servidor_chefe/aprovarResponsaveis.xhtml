@@ -8,14 +8,14 @@
 
              template="../template.xhtml">  
     <h:form id="requerimento">
-        <p:fieldset legend="Participantes do Departamento" style="margin-left: 3px; width: 990px;" >
+        <p:fieldset legend="Participantes da Unidade Organizacional" style="margin-left: 3px; width: 990px;" >
             <p:dataTable id="table_requerimento" editable="true"  var="responsavel" value="#{responsavelBean.participantes_do_deparamento}"  paginator="true" rows="5" emptyMessage="Nenhum registro encontrado">
 
-                <f:facet name="header">Requerimentos</f:facet>
+                <f:facet name="header">Responsáveis</f:facet>
                 <p:column headerText="Nome">
                     <h:outputText value="#{responsavel.nome}" />
                 </p:column>
-                <p:column headerText="Departamento">
+                <p:column headerText="Unidade Organizacional">
                     <h:outputText value="#{responsavel.unidadeOrganizacional.nome}" />
                 </p:column>
                 <p:column headerText="Email">

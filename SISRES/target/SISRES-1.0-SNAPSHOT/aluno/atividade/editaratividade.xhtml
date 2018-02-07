@@ -55,7 +55,8 @@
 
             <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != null }">
                 <ui:fragment rendered="#{requerimentoBean.atividade_proxima.descricao_erro != '' }">
-                    <div id="error" class="my-notify-error" style="width: 98%" >#{requerimentoBean.atividade_proxima.descricao_erro}</div>
+                    <div style="float: left; ">Observação da atividade reprovada: </div>
+                    <div id="error" class="my-notify-error" style="color: red;" >#{requerimentoBean.atividade_proxima.descricao_erro}</div>
                     <br/>
                 </ui:fragment>
             </ui:fragment>
