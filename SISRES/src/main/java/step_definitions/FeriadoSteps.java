@@ -225,25 +225,34 @@ public class FeriadoSteps
                 month = "December";
                 break;
         }
-
+        
+        lblYear = driver.findElement(By.className("ui-datepicker-year"));
+        String teste = lblYear.getText();
+        
         while (!year.equals(lblYear.getText()))
         {
             ano = Integer.parseInt(year);
+          
             ano_atual = Integer.parseInt(lblYear.getText());
 
             if (ano < ano_atual)
             {
+                btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
                 btnPrevious.click();
             } else
             {
+                btnNext = driver.findElement(By.xpath("//a[@title=\"Next\"]"));
                 btnNext.click();
             }
+             lblYear = driver.findElement(By.className("ui-datepicker-year"));
         }
 
+        lblMonth = driver.findElement(By.className("ui-datepicker-month"));
         mes_atual = lblMonth.getText();
 
         while (!mes_atual.equals("January"))
         {
+            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
             btnPrevious.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
             btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));

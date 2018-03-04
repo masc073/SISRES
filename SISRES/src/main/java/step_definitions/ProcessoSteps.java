@@ -33,7 +33,7 @@ public class ProcessoSteps
     @Dado("^a tela inicial cadastro de processos aberta$")
     public void a_tela_inicial_cadastro_de_processos_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/processo/processo.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/processo/processo.xhtml");
     }
 
     @Quando("^o administrador informar o nome \"([^\"]*)\" a duração em dias \"([^\"]*)\" o responsavel \"([^\"]*)\" e salvar$")
@@ -81,7 +81,7 @@ public class ProcessoSteps
 
             BrowserManager.driver.findElement(By.id("form_atividades:value_nome_atividade")).sendKeys(atividade_atual.get(0));
 
-            WebElement div_departamento = BrowserManager.driver.findElement(By.id("form_atividades:departamento"));
+            WebElement div_departamento = BrowserManager.driver.findElement(By.id("form_atividades:unidadeOrganizacional"));
             WebElement exibir_lista = div_departamento.findElement(By.tagName("span"));
             exibir_lista.click();
 
@@ -89,7 +89,7 @@ public class ProcessoSteps
 
             for (WebElement option : options) {
                 if (option.getText().equals(atividade_atual.get(1))) {
-                    option.click();
+                    option.click(); 
                 }
             }
 
@@ -110,7 +110,7 @@ public class ProcessoSteps
     @Dado("^a tela de listagem de processos aberta$")
     public void a_tela_de_listagem_de_processos_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/processo/listaprocessos.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/processo/listaprocessos.xhtml");
     }
 
     @Quando("^o administrador selecionar o registro \"([^\"]*)\" que deve alterar$")
@@ -280,7 +280,7 @@ public class ProcessoSteps
 
         for (List<String> atividade_atual : atividades_processo) {
             for (WebElement row : rows) {
-                List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
+                List<WebElement> columns = row.findElements(By.tagName("td"));
 
                 for (WebElement column : columns) {
                     if (column.getText().equals(atividade_atual.get(0))) {
@@ -308,11 +308,10 @@ public class ProcessoSteps
                                 option.click();
                             }
                         }
-                        button_check.click();
-                        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+                        
 
                         edit_responsavel = false;
-
+                        edit_anexar_arquivo = true;
                     }
                     else if (edit_anexar_arquivo == true) {
                         List<WebElement> radioButtons = row.findElements(By.className(("ui-radiobutton")));
@@ -323,6 +322,8 @@ public class ProcessoSteps
                         else {
                             radioButtons.get(1).click();
                         }
+                        button_check.click();
+                        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                         terminou = true;
                         break;
                     }

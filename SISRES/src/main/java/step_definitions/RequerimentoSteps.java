@@ -61,7 +61,7 @@ public class RequerimentoSteps
     @Dado("^a tela da fila de requerimentos aberta$")
     public void a_tela_da_fila_de_requerimentos_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/atividade/atividade.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/aluno/atividade/atividade.xhtml");
     }
 
     @Quando("^o responsavel selecionar o requerimento \"([^\"]*)\" que deseja dar andamento$")
@@ -89,7 +89,7 @@ public class RequerimentoSteps
     @Dado("^a tela inicial de requerimento aberta$")
     public void a_tela_inicial_de_requerimento_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/requerimento/requerimento.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/aluno/requerimento/requerimento.xhtml");
     }
 
     @Quando("^o aluno informar a matricula \"([^\"]*)\" o processo \"([^\"]*)\" e salvar$")

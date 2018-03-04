@@ -5,7 +5,7 @@ Funcionalidade: Realizar as operações básicas do departamento,
   Esquema do Cenario: Inserir Departamento
     Dado a tela inicial de departamentos aberta
     Quando o administrador informar o nome <nome> a sigla <sigla> e o responsavel <responsavel>
-    Entao deve ser exibida a mensagem para o departamento "Departamento cadastrado com Sucesso!"
+    Entao deve ser exibida a mensagem para o departamento "Unidade Organizacional cadastrada com Sucesso!"
 
     Exemplos: 
       | nome                                                 | sigla   | responsavel             |
@@ -28,7 +28,7 @@ Funcionalidade: Realizar as operações básicas do departamento,
     Dado a tela inicial de departamentos aberta
     Quando o administrador selecionar o registro <registro> que deseja alterar
     E o administrador informar o nome <nome> a sigla <sigla> e o responsavel <responsavel> para atualização
-    Entao deve ser exibida a mensagem para o departamento "Departamento alterado com Sucesso!"
+    Entao deve ser exibida a mensagem para o departamento "Unidade Organizacional alterada com Sucesso!"
 
     Exemplos: 
       | registro                                             | nome                         | sigla  | responsavel             |
@@ -39,7 +39,7 @@ Funcionalidade: Realizar as operações básicas do departamento,
   Esquema do Cenario: Remoção de departamentos
     Dado a tela inicial de departamentos aberta
     Quando o administrador deve selecionar o departamento <registro> que deseja remover
-    Entao deve ser exibida a mensagem para o departamento "Departamento removido com Sucesso!"
+    Entao deve ser exibida a mensagem para o departamento "Unidade Organizacional removida com Sucesso!"
 
     Exemplos: 
       | registro                                             |

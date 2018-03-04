@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="41" failures="0" name="RunTests" time="39.101" errors="16" skipped="7">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_151\jre\bin"/>
+    <property name="java.vm.version" value="25.151-b12"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="BR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="test" value="RunTests"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\natal\Documents\GitHub\SistemaDeRequerimentoEstudantil\SISRES"/>
+    <property name="java.runtime.version" value="1.8.0_151-b12"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_151\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\natal\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_151\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\Java\jdk1.8.0_151\bin;C:\Program Files\apache-maven-3.5.2\bin;;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Users\natal\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\natal"/>
+    <property name="user.timezone" value="America/Cayenne"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="natal"/>
+    <property name="java.class.path" value="C:\Program Files\NetBeans 8.2\java\maven\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_151\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=RunTests -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="pt"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_151"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_151\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_151\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_151\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_151\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\NetBeans 8.2\java\maven"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0.015">
+    <error message="Failed to instantiate class step_definitions.RequerimentoSteps" type="cucumber.runtime.CucumberException">cucumber.runtime.CucumberException: Failed to instantiate class step_definitions.RequerimentoSteps
+	at cucumber.runtime.java.DefaultJavaObjectFactory.cacheNewInstance(DefaultJavaObjectFactory.java:47)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.getInstance(DefaultJavaObjectFactory.java:33)
+	at cucumber.runtime.java.JavaStepDefinition.execute(JavaStepDefinition.java:38)
+	at cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)
+	at cucumber.runtime.Runtime.runStep(Runtime.java:300)
+	at cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)
+	at cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)
+	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:44)
+	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.ExamplesRunner.run(ExamplesRunner.java:59)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.ScenarioOutlineRunner.run(ScenarioOutlineRunner.java:53)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.cacheNewInstance(DefaultJavaObjectFactory.java:41)
+	... 56 more
+Caused by: java.lang.RuntimeException: atividademodelo.ID_DEPARTAMENTO -  (Non-uppercase input column: id_departamento) in ColumnNameToIndexes cache map. Note that the map&apos;s column names are NOT case sensitive.
+	at step_definitions.DbUnitUtil.inserirDados(DbUnitUtil.java:99)
+	at step_definitions.RequerimentoSteps.&lt;init&gt;(RequerimentoSteps.java:23)
+	... 61 more
+Caused by: org.dbunit.dataset.NoSuchColumnException: atividademodelo.ID_DEPARTAMENTO -  (Non-uppercase input column: id_departamento) in ColumnNameToIndexes cache map. Note that the map&apos;s column names are NOT case sensitive.
+	at org.dbunit.dataset.AbstractTableMetaData.getColumnIndex(AbstractTableMetaData.java:117)
+	at org.dbunit.operation.AbstractOperation.getOperationMetaData(AbstractOperation.java:89)
+	at org.dbunit.operation.AbstractBatchOperation.execute(AbstractBatchOperation.java:150)
+	at org.dbunit.operation.CompositeOperation.execute(CompositeOperation.java:79)
+	at step_definitions.DbUnitUtil.inserirDados(DbUnitUtil.java:95)
+	... 62 more
+</error>
+    <system-err>Sun Mar 04 01:02:14 GFT 2018 WARN: Establishing SSL connection without server&apos;s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn&apos;t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to &apos;false&apos;. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+</system-err>
+  </testcase>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" time="0.016">
+    <error message="Failed to instantiate class step_definitions.RequerimentoSteps" type="cucumber.runtime.CucumberException">cucumber.runtime.CucumberException: Failed to instantiate class step_definitions.RequerimentoSteps
+	at cucumber.runtime.java.DefaultJavaObjectFactory.cacheNewInstance(DefaultJavaObjectFactory.java:47)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.getInstance(DefaultJavaObjectFactory.java:33)
+	at cucumber.runtime.java.JavaStepDefinition.execute(JavaStepDefinition.java:38)
+	at cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)
+	at cucumber.runtime.Runtime.runStep(Runtime.java:300)
+	at cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)
+	at cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)
+	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:44)
+	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.ExamplesRunner.run(ExamplesRunner.java:59)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.ScenarioOutlineRunner.run(ScenarioOutlineRunner.java:53)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.cacheNewInstance(DefaultJavaObjectFactory.java:41)
+	... 56 more
+Caused by: java.lang.RuntimeException: atividademodelo.ID_DEPARTAMENTO -  (Non-uppercase input column: id_departamento) in ColumnNameToIndexes cache map. Note that the map&apos;s column names are NOT case sensitive.
+	at step_definitions.DbUnitUtil.inserirDados(DbUnitUtil.java:99)
+	at step_definitions.RequerimentoSteps.&lt;init&gt;(RequerimentoSteps.java:23)
+	... 61 more
+Caused by: org.dbunit.dataset.NoSuchColumnException: atividademodelo.ID_DEPARTAMENTO -  (Non-uppercase input column: id_departamento) in ColumnNameToIndexes cache map. Note that the map&apos;s column names are NOT case sensitive.
+	at org.dbunit.dataset.AbstractTableMetaData.getColumnIndex(AbstractTableMetaData.java:117)
+	at org.dbunit.operation.AbstractOperation.getOperationMetaData(AbstractOperation.java:89)
+	at org.dbunit.operation.AbstractBatchOperation.execute(AbstractBatchOperation.java:150)
+	at org.dbunit.operation.CompositeOperation.execute(CompositeOperation.java:79)
+	at step_definitions.DbUnitUtil.inserirDados(DbUnitUtil.java:95)
+	... 62 more
+</error>
+  </testcase>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno informar a matricula \&quot;20141Y6-RC0331\&quot; o processo \&quot;Comprovante de matricula\&quot; e salvar" time="0.017">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento aberto com Sucesso!\&quot;" time="0.017">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno informar a matricula \&quot;20141Y6-RC0331\&quot; o processo \&quot;Comprovante de matricula\&quot; e salvar" time="0"/>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Registro j\u00E1 cadastrado no sistema\u002C tente outro.\&quot;" time="0.001">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Registro já cadastrado no sistema, tente outro.&quot;(src/main/java/features/Requerimento.feature:17)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" name="| \&quot;20141Y6-RC0331\&quot; | \&quot;Comprovante de matricula\&quot; |" time="0.002">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Registro já cadastrado no sistema, tente outro.&quot;(src/main/java/features/Requerimento.feature:17)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja visualizar" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser redirecionado para outra tela com as informacoes do requerimento" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Informa\u00E7\u00F5es corretas\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0.001">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Informações corretas&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0.001">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Informações corretas&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Informa\u00E7\u00F5es corretas\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="E informar os seus dados da \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Reprovar\&quot;" time="0.001">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;O Aluno possui débito na biblioteca&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Reprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" time="0.001">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;O Aluno possui débito na biblioteca&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Reprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;O Aluno possui d\u00E9bito na biblioteca\&quot; |  | \&quot;Reprovar\&quot; | \&quot;Atividade reprovada!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade reprovada!\&quot;" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;D\u00E9bito quitado\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Débito quitado&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0.001">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Débito quitado&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;D\u00E9bito quitado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Comprovante de matr\u00EDcula gerado\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0.002">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Comprovante de matrícula gerado&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0.004">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Comprovante de matrícula gerado&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matr\u00EDcula gerado\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0.004">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Dado a tela da fila de requerimentos aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Quando o responsavel selecionar o requerimento \&quot;Comprovante de matricula\&quot; que deseja dar andamento" time="0"/>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="E informar os seus dados da \&quot;Comprovante recebido\&quot; \u002C anexar  caso necess\u00E1rio e realizar e clicar no botao \&quot;Aprovar\&quot;" time="0.002">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Comprovante recebido&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" time="0.002">
+    <error message="Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: #editar_atividade\:descricao
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=id, value=editar_atividade:descricao}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:402)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.informar_os_seus_dados_da_anexar_caso_necessário_e_realizar_e_clicar_no_botao(RequerimentoSteps.java:32)
+	at ✽.E informar os seus dados da &quot;Comprovante recebido&quot; , anexar  caso necessário e realizar e clicar no botao &quot;Aprovar&quot;(src/main/java/features/Requerimento.feature:35)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante recebido\&quot; |  | \&quot;Aprovar\&quot; | \&quot;Atividade conclu\u00EDda com sucesso!\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Atividade conclu\u00EDda com sucesso!\&quot;" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Dado a tela inicial de requerimento aberta" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Quando o aluno selecionar o \&quot;Comprovante de matricula\&quot; que deseja encerrar" time="0"/>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="Entao deve ser exibida a mensagem sobre o requerimento \&quot;Requerimento encerrado com Sucesso!\&quot;" time="0">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento encerrado com Sucesso!&quot;(src/main/java/features/Requerimento.feature:49)
+</error>
+  </testcase>
+  <testcase classname="| \&quot;Comprovante de matricula\&quot; |" name="| \&quot;Comprovante de matricula\&quot; |" time="0">
+    <error message="Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T15:28:36.4Z&apos;
+System info: host: &apos;DESKTOP-EQP80F8&apos;, ip: &apos;192.168.1.106&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_151&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.kyMtDfW9Ac3w, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=15860, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 4c919aff-d4bd-4786-bcaa-aa16d902b48a
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.RequerimentoSteps.deve_ser_exibida_a_mensagem_sobre_o_requerimento(RequerimentoSteps.java:119)
+	at ✽.Entao deve ser exibida a mensagem sobre o requerimento &quot;Requerimento encerrado com Sucesso!&quot;(src/main/java/features/Requerimento.feature:49)
+</error>
+  </testcase>
+</testsuite>

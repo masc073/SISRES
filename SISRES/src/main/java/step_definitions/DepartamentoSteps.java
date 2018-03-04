@@ -28,18 +28,18 @@ public class DepartamentoSteps
     @Dado("^a tela inicial de departamentos aberta$")
     public void a_tela_inicial_de_departamentos_aberta() throws Throwable
     {
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/departamento/departamento.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml");
     }
 
     @Quando("^o administrador informar o nome \"([^\"]*)\" a sigla \"([^\"]*)\" e o responsavel \"([^\"]*)\"$")
     public void o_administrador_informar_o_nome_a_sigla_e_o_responsavel(String nome, String sigla, String responsavel) throws Throwable
     {
-        BrowserManager.driver.findElement(By.id("departamento:value_nome")).sendKeys(nome);
-        BrowserManager.driver.findElement(By.id("departamento:value_sigla")).sendKeys(sigla);
+        BrowserManager.driver.findElement(By.id("unidadeOrganizacional:value_nome")).sendKeys(nome);
+        BrowserManager.driver.findElement(By.id("unidadeOrganizacional:value_sigla")).sendKeys(sigla);
 
-        WebElement combo_box = BrowserManager.driver.findElement(By.id("departamento:responsavel_input"));
+        WebElement combo_box = BrowserManager.driver.findElement(By.id("unidadeOrganizacional:responsavel_input"));
 
-        WebElement div_responsavel = BrowserManager.driver.findElement(By.id("departamento:responsavel"));
+        WebElement div_responsavel = BrowserManager.driver.findElement(By.id("unidadeOrganizacional:responsavel"));
         WebElement exibir_lista = div_responsavel.findElement(By.tagName("span"));
         exibir_lista.click();
 
@@ -53,7 +53,7 @@ public class DepartamentoSteps
             }
         }
 
-        WebElement button_salvar = BrowserManager.driver.findElement(By.id("departamento:button_salvar"));
+        WebElement button_salvar = BrowserManager.driver.findElement(By.id("unidadeOrganizacional:button_salvar"));
         button_salvar.click();
     }
 
@@ -63,7 +63,7 @@ public class DepartamentoSteps
         WebElement button_edit = null;
         boolean edit_sigla = false;
 
-        WebElement table = driver.findElement(By.id("departamento:tabela_departamentos_data"));
+        WebElement table = driver.findElement(By.id("unidadeOrganizacional:tabela_unidadeOrganizacionals_data"));
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
@@ -124,7 +124,7 @@ public class DepartamentoSteps
         String id;
         boolean removeu = false;
         
-        WebElement table = driver.findElement(By.id("departamento:tabela_departamentos_data"));
+        WebElement table = driver.findElement(By.id("unidadeOrganizacional:tabela_unidadeOrganizacionals_data"));
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
@@ -136,7 +136,7 @@ public class DepartamentoSteps
             {
                 if (column.getText().equals(departamento))
                 {
-                    id = "departamento:tabela_departamentos:" + contador + ":delete";
+                    id = "unidadeOrganizacional:tabela_unidadeOrganizacionals:" + contador + ":delete";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));

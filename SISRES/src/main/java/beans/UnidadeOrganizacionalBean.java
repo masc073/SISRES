@@ -87,7 +87,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         try
         {
             unidadeOrganizacionalServico.atualizar(unidadeOrganizacional);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Orgenizacional alterada com Sucesso!");
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Organizacional alterada com Sucesso!");
             listar();
         } 
         catch (ExcecaoNegocio ex)
