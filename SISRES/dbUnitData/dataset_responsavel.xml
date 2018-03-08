@@ -2,12 +2,12 @@
 <dataset>
     
     <!-- DEPARTAMENTOS -->
-    <departamento id="1" nome="Departamento de gestão de tecnologia da informação" sigla="DGTI"  />    
-    <departamento id="2" nome="Diretoria de extensão" sigla="DEX"   />
-    <departamento id="3" nome="Diretoria de ensino" sigla="DEN"   />    
-    <departamento id="4" nome="Assessoria de Comunicação" sigla="ASCOM"  />
-    <departamento id="5" nome="Setor de registro escolar do DASE" sigla="DASE"  />    
-    <departamento id="6" nome="Serviço Social - Psicologia" sigla="PSCICOL" />    
-    <departamento id="7" nome="Biblioteca" sigla="CBIBLIO"  />
+    <unidadeOrganizacional id="1" nome="Departamento de gestão de tecnologia da informação" sigla="DGTI"  />    
+    <unidadeOrganizacional id="2" nome="Diretoria de extensão" sigla="DEX"   />
+    <unidadeOrganizacional id="3" nome="Diretoria de ensino" sigla="DEN"   />    
+    <unidadeOrganizacional id="4" nome="Assessoria de Comunicação" sigla="ASCOM"  />
+    <unidadeOrganizacional id="5" nome="Setor de registro escolar do DASE" sigla="DASE"  />    
+    <unidadeOrganizacional id="6" nome="Serviço Social - Psicologia" sigla="PSCICOL" />    
+    <unidadeOrganizacional id="7" nome="Biblioteca" sigla="CBIBLIO"  />
 
 </dataset>

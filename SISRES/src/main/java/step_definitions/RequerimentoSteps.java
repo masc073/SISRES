@@ -114,7 +114,7 @@ public class RequerimentoSteps
     @Entao("^deve ser exibida a mensagem sobre o requerimento \"([^\"]*)\"$")
     public void deve_ser_exibida_a_mensagem_sobre_o_requerimento(String mensagemEsperada) throws Throwable
     {
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
        
         WebElement message_container = driver.findElement(By.className("ui-growl-title"));
 

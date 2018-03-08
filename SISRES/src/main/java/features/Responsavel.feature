@@ -4,15 +4,14 @@ Funcionalidade: Testar as operacoes basicas do responsavel
 
   Esquema do Cenario: Realizar cadastro do responsavel
     Dado a tela inicial do cadastro aberta
-    Quando o usuario informar o <nome> , <email> ,  <senha> , se e <servidor> . Caso seja tambem informar se e <chefe_de_departamento> e o <departamento>
-    E confirmar a senha <senha>
+    Quando o usuario informar o <nome> , <email> , <titulo> e <departamento>
     Entao deve ser exibida a mensagem "Responsável cadastrado com Sucesso!"
 
     Exemplos: 
-      | nome            | senha     |  email                     | servidor | chefe_de_departamento  | departamento                    |
-      | "Carlos Macedo" | "C2345M"  | "carlos_macedo@gmail.com"  | "true"   | "true"                 | "Biblioteca"                    |
-      | "Renata Macia"  | "Ren9845" | "renata_macia@hotmail.com" | "false"  | ""                     | ""                              |
-      | "Joaquim Nunes" | "1221JM"  | "joaquim_nunes@gmail.com"  | "true"   | "false"                | "Serviço Social - Psicologia"   |
+      | nome              |  email                     | titulo            | departamento                    |
+      | "Carlos Macedo"   | "carlos_macedo@gmail.com"  | "Professor"       | "Biblioteca"                    |
+      | "Renata Macia"    | "renata_macia@gmail.com"   | "Administrador"   | ""                              |
+      | "Joaquim Nunes"   | "joaquim_nunes@gmail.com"  | "diretor"         | "Serviço Social - Psicologia"   |
 
 #  Esquema do Cenario: Atualizar o nome do responsavel
 #    Dado a tela inicial do responsavel aberta
