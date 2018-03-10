@@ -1,4 +1,97 @@
 -------------------------------------------------------------------------------
 Test set: RunTests
 -------------------------------------------------------------------------------
-Tests run: 45, Failures: 0, Errors: 0, Skipped: 27, Time elapsed: 21.963 sec
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 44.753 sec
+<< FAILURE!
+Entao deve ser exibida a seguinte mensagem : \"Processo alterado com Sucesso!\"(| \"Comprovante de matricula\" | \"Solicitacao de Comprovante de matricula\" | \"5\" | \"Alex Santos Sousa\" |)  Time elapsed: 0.004 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.106', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.1hkWTXBHQwj5, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=14992, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 2f48afeb-dde2-4682-8f97-c269e84b78fa
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ProcessoSteps.deve_ser_exibida_a_seguinte_mensagem(ProcessoSteps.java:68)
+	at ?.Entao deve ser exibida a seguinte mensagem : "Processo alterado com Sucesso!"(src/main/java/features/Processo.feature:33)
+| \"Comprovante de matricula\" | \"Solicitacao de Comprovante de matricula\" | \"5\" | \"Alex Santos Sousa\" |  Time elapsed: 0.005 sec  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: Unable to locate element: .ui\-growl\-title
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.106', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.1hkWTXBHQwj5, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=14992, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 2f48afeb-dde2-4682-8f97-c269e84b78fa
+*** Element info: {Using=class name, value=ui-growl-title}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:442)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at step_definitions.ProcessoSteps.deve_ser_exibida_a_seguinte_mensagem(ProcessoSteps.java:68)
+	at ?.Entao deve ser exibida a seguinte mensagem : "Processo alterado com Sucesso!"(src/main/java/features/Processo.feature:33)
+E alterar as seguintes atividades:(| \"Solicitacao de Comprovante de matricula\" |)  Time elapsed: 0 sec  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: Element <span class="ui-icon ui-icon-triangle-1-s ui-c"> could not be scrolled into view
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.106', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.1hkWTXBHQwj5, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=14992, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 2f48afeb-dde2-4682-8f97-c269e84b78fa
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at step_definitions.ProcessoSteps.alterar_as_seguintes_atividades(ProcessoSteps.java:302)
+	at ?.E alterar as seguintes atividades:(src/main/java/features/Processo.feature:42)
+| \"Solicitacao de Comprovante de matricula\" |  Time elapsed: 0.001 sec  <<< ERROR!
+org.openqa.selenium.ElementNotInteractableException: Element <span class="ui-icon ui-icon-triangle-1-s ui-c"> could not be scrolled into view
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-EQP80F8', ip: '192.168.1.106', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\natal\AppData\Local\Temp\rust_mozprofile.1hkWTXBHQwj5, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, moz:accessibilityChecks=false, acceptInsecureCerts=true, browserVersion=58.0.1, platformVersion=10.0, moz:processID=14992, browserName=firefox, javascriptEnabled=true, platformName=XP, moz:webdriverClick=true}]
+Session ID: 2f48afeb-dde2-4682-8f97-c269e84b78fa
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at step_definitions.ProcessoSteps.alterar_as_seguintes_atividades(ProcessoSteps.java:302)
+	at ?.E alterar as seguintes atividades:(src/main/java/features/Processo.feature:42)

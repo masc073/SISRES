@@ -48,11 +48,11 @@ Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
     | "Solicitacao de Comprovante de matricula" | 
 
 
-  Esquema do Cenario: Remover processo
-    Dado a tela de listagem de processos aberta
-    Quando o administrador selecionar o registro <registro> que deseja remover 
-    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
-
-    Exemplos: 
-      | registro                                  | 
-      | "Solicitacao de Comprovante de matricula" | 
+#  Esquema do Cenario: Remover processo
+#    Dado a tela de listagem de processos aberta
+#    Quando o administrador selecionar o registro <registro> que deseja remover 
+#    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
+#
+#    Exemplos: 
+#      | registro                                  | 
+#      | "Solicitacao de Comprovante de matricula" | 

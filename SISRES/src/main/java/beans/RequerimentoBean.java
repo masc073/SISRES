@@ -2,16 +2,21 @@ package beans;
 
 import dominio.Arquivo;
 import dominio.Atividade;
+import dominio.Feriado;
 import dominio.Processo;
 import dominio.Requerimento;
 import dominio.Responsavel;
 import dominio.SituacaoAtividade;
 import excecao.ExcecaoNegocio;
 import excecao.MensagemExcecao;
+import gherkin.lexer.Ca;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -23,9 +28,13 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
+import servico.FeriadoServico;
 import servico.RequerimentoServico;
 
-/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do requerimento.
+/**
+ * Classe responsável por realizar a comunicação do jsf do a camada de serviço
+ * do requerimento.
+ *
  * @author Natália Amâncio
  */
 @ManagedBean(name = "requerimentoBean")
@@ -35,6 +44,9 @@ public class RequerimentoBean implements Serializable
 
     @EJB
     private RequerimentoServico RequerimentoServico;
+
+    @EJB
+    private FeriadoServico FeriadoServico;
 
     private Atividade atividade_atual;
 
@@ -94,6 +106,7 @@ public class RequerimentoBean implements Serializable
     public void listar()
     {
         Requerimentos = RequerimentoServico.listar(getUsuarioLogado());
+        validaPrazos();
     }
 
     public void editarRequerimento(String mensagem, Requerimento requerimento, boolean com_messagem)
@@ -168,6 +181,7 @@ public class RequerimentoBean implements Serializable
     {
         if (Requerimentos.isEmpty()) {
             Requerimentos = RequerimentoServico.listar(getUsuarioLogado());
+            validaPrazos();
         }
         return Requerimentos;
     }
@@ -197,6 +211,51 @@ public class RequerimentoBean implements Serializable
         setAtividade_atual(Requerimento.getEstadoAtual());
         this.Requerimento = Requerimento;
         preenche_lista_arquivos();
+    }
+
+    public void validaPrazos()
+    {
+
+        String outro_dia, dia_hoje;
+        Date inicio, hoje, dia_atual;
+        int qtd_de_dias, dia, contador_dias_uteis = 0;
+        GregorianCalendar cal = new GregorianCalendar();
+        GregorianCalendar cal_auxiliar = new GregorianCalendar();
+        List<Feriado> feriados;
+        hoje = new Date();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        feriados = FeriadoServico.listar();
+
+        for (Requerimento requerimento_atual : Requerimentos) {
+
+            inicio = requerimento_atual.getDataDeInicio();
+            qtd_de_dias = requerimento_atual.getProcesso().getDuracaoMaximaEmDias();
+            contador_dias_uteis = qtd_de_dias;
+            cal.setTime(inicio);
+            dia_atual = inicio;
+            cal_auxiliar.setTime(hoje);
+
+            dia_hoje = dataFormatada.format(hoje);
+            outro_dia = dataFormatada.format(cal.getTime());
+            
+            while (!dia_hoje.equals(outro_dia)) {
+
+                dia = cal.get(Calendar.DAY_OF_WEEK);
+                cal.add(Calendar.DATE, 1);
+                outro_dia = dataFormatada.format(cal.getTime());
+
+                if (dia != 1 && dia != 7) {
+                    --contador_dias_uteis;
+                }
+            }
+
+            if (contador_dias_uteis == qtd_de_dias || contador_dias_uteis < 0) {
+                System.err.println("Ultrapassou data!!!");
+                requerimento_atual.setAtrasado(true);
+            }
+            contador_dias_uteis = 0;
+        }
+
     }
 
     public void redireciona_para_lista_requerimento(String mensagem) throws IOException
@@ -232,16 +291,6 @@ public class RequerimentoBean implements Serializable
 
     }
 
-//    public float geraPercentual()
-//    {
-//
-//        int posicao = Requerimento.getProcesso().getAtividades().indexOf(Requerimento.getEstadoAtual());
-//        int totalDeAtividades = Requerimento.getProcesso().getAtividades().size();
-//
-//        float percentual = (posicao * 100) / totalDeAtividades;
-//
-//        return percentual;
-//    }
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
 

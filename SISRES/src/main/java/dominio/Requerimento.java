@@ -52,6 +52,8 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     @Column
     private String matriculaAluno;
 
+    boolean atrasado;
+
     public Requerimento()
     {
 
@@ -177,4 +179,15 @@ public class Requerimento extends EntidadeNegocio implements Serializable
             this.atividades.add(atividade_atual);
         }
     }
+
+    public boolean isAtrasado()
+    {
+        return atrasado;
+    }
+
+    public void setAtrasado(boolean atrasado)
+    {
+        this.atrasado = atrasado;
+    }
+
 }
