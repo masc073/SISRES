@@ -37,7 +37,7 @@
     
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>Realm_Sisres</realm-name>
+        <realm-name>saltRealm</realm-name>
         <form-login-config>
             <form-login-page>/faces/publico/login.xhtml</form-login-page>
             <form-error-page>/faces/publico/login.xhtml</form-error-page>
@@ -112,7 +112,7 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
     </security-constraint> 
-    
+<!--    
     
     <security-constraint>
         <display-name>Pg Servidor Chefe</display-name>
@@ -135,7 +135,7 @@
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
-    </security-constraint> 
+    </security-constraint> -->
  <!--   
     <error-page>
         <error-code>403</error-code>
@@ -150,10 +150,10 @@
         <location>/publico/erro.xhtml</location>
     </error-page> -->
     
-    
+<!--    
     <security-role>
         <role-name>servidor_chefe</role-name>
-    </security-role>
+    </security-role>-->
     <security-role>
         <role-name>aluno</role-name>
     </security-role>

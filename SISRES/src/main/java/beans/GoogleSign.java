@@ -93,7 +93,9 @@ public class GoogleSign implements Serializable
                 HttpServletRequest request = (HttpServletRequest) ec.getRequest();
                 try {
 
-                    System.out.println("Subject: " + perfilGoogle.getSubject());
+                    System.out.println("Subject: " + perfilGoogle.getSubject());      
+                    System.out.println("Email: " + email);
+
                     request.login(email, perfilGoogle.getSubject());
 
                     System.out.println("Usuário logado: " + responsavel_atual.getEmail());
@@ -101,7 +103,7 @@ public class GoogleSign implements Serializable
                     String grupo = grupoServico.buscar_grupo_responsavel(username);
                     request.setAttribute("grupo", grupo);
                     System.out.println("Grupo : " + grupo);
-                    request.login(username, "");
+//                    request.login(username, "");
 //                    System.out.println("beans.GoogleSign.loginGoogle()" + request.);
 //                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("grupoAtual", grupo);
                     ec.redirect("template.xhtml");
