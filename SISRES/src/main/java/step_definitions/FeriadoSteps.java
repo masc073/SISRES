@@ -33,19 +33,6 @@ public class FeriadoSteps
     }
 
     WebElement input_nome, input_data, button_check;
-//
-//    @Dado("^o usuario logado no sistema com email \"([^\"]*)\" e a senha \"([^\"]*)\"$")
-//    public void o_usuario_logado_no_sistema(String email, String senha)
-//    {
-//        BrowserManager.openFirefox("http://localhost:8080/SISRES/");
-//        
-//        BrowserManager.driver.findElement(By.id("login:username")).sendKeys(email);
-//        BrowserManager.driver.findElement(By.id("login:senha")).sendKeys(senha);
-//        
-//        BrowserManager.driver.findElement(By.id("login:login")).click();
-//        
-//    } 
-//          
     
     @Dado("^tela inicial de feriados aberta$")
     public void a_tela_de_cadastro_de_feriados_aberta()
@@ -181,48 +168,48 @@ public class FeriadoSteps
         int ano, ano_atual;
         String mes_atual, dia_atual;
 
-        WebElement btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
-        WebElement btnNext = driver.findElement(By.xpath("//a[@title=\"Next\"]"));
+        WebElement btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
+        WebElement btnNext = driver.findElement(By.xpath("//a[@title=\"Próximo\"]"));
         WebElement lblYear = driver.findElement(By.className("ui-datepicker-year"));
         WebElement lblMonth = driver.findElement(By.className("ui-datepicker-month"));
 
         switch (month)
         {
             case "01":
-                month = "January";
+                month = "Janeiro";
                 break;
             case "02":
-                month = "February";
+                month = "Fevereiro";
                 break;
             case "03":
-                month = "March";
+                month = "Março";
                 break;
             case "04":
-                month = "April";
+                month = "Abril";
                 break;
             case "05":
-                month = "May";
+                month = "Maio";
                 break;
             case "06":
-                month = "June";
+                month = "Junho";
                 break;
             case "07":
-                month = "July";
+                month = "Julho";
                 break;
             case "08":
-                month = "August";
+                month = "Agosto";
                 break;
             case "09":
-                month = "September";
+                month = "Setembro";
                 break;
             case "10":
-                month = "October";
+                month = "Outubro";
                 break;
             case "11":
-                month = "November";
+                month = "Novembro";
                 break;
             case "12":
-                month = "December";
+                month = "Dezembro";
                 break;
         }
         
@@ -237,11 +224,11 @@ public class FeriadoSteps
 
             if (ano < ano_atual)
             {
-                btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
+                btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
                 btnPrevious.click();
             } else
             {
-                btnNext = driver.findElement(By.xpath("//a[@title=\"Next\"]"));
+                btnNext = driver.findElement(By.xpath("//a[@title=\"Próximo\"]"));
                 btnNext.click();
             }
              lblYear = driver.findElement(By.className("ui-datepicker-year"));
@@ -250,18 +237,18 @@ public class FeriadoSteps
         lblMonth = driver.findElement(By.className("ui-datepicker-month"));
         mes_atual = lblMonth.getText();
 
-        while (!mes_atual.equals("January"))
+        while (!mes_atual.equals("Janeiro"))
         {
-            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
+            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
             btnPrevious.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
-            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Prev\"]"));
+            btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
             mes_atual = lblMonth.getText();
         }
 
         while (!month.equals(mes_atual))
         {
-            btnNext = driver.findElement(By.xpath("//a[@title=\"Next\"]"));
+            btnNext = driver.findElement(By.xpath("//a[@title=\"Próximo\"]"));
             btnNext.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
             mes_atual = lblMonth.getText();

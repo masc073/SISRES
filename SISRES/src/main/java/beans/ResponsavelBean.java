@@ -71,13 +71,15 @@ public class ResponsavelBean implements Serializable
     
     public void salvar()
     {
-        perfilGoogle.setUsuario(responsavel);
+//        perfilGoogle.setUsuario(responsavel);
 //        googleServico.persistePerfilGoogle(perfilGoogle);
-        atribuiGrupo();
+        
 
             try {
                 
-                responsavelServico.salvar(responsavel);
+                atribuiGrupo();
+                
+//                responsavelServico.salvar(responsavel);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável cadastrado com Sucesso!");
             }
             catch (ExcecaoNegocio ex) {
