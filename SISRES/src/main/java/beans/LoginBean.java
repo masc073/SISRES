@@ -37,9 +37,6 @@ public class LoginBean implements Serializable
     @NotBlank
     String senha;
 
-    @EJB
-    private GrupoServico grupoServico;
-
     private static final Logger LOGGER = Logger.getGlobal();
 
     static {
@@ -56,7 +53,7 @@ public class LoginBean implements Serializable
             request.login(username, senha); //chama indiretamente o codigo authent user  
 //chama indiretamente o codigo authent user  
 
-            String grupo = grupoServico.buscar_grupo_responsavel(username);
+            String grupo = responsavelServico.buscar_grupo_responsavel(username);
 
             //seta pessoa na sessão
             Responsavel responsavelLogado = responsavelServico.getResponsavelByEmail(username);
@@ -69,9 +66,6 @@ public class LoginBean implements Serializable
 
                 LOGGER.fine("Logado: " + grupo);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavelLogado);
-                grupo = grupoServico.buscar_grupo_responsavel(username);
-
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("grupoAtual", grupo);
                 return "sucesso";
             }
 

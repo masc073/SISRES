@@ -1,6 +1,7 @@
 package beans;
 
 import criptografia.Encripta;
+import dominio.Grupo;
 import dominio.PerfilGoogle;
 import dominio.Responsavel;
 import dominio.Titulos;
@@ -17,6 +18,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
+import servico.GrupoServico;
 import servico.PerfilGoogleServico;
 import servico.ResponsavelServico;
 
@@ -34,9 +36,14 @@ public class ResponsavelBean implements Serializable
     @EJB
     private PerfilGoogleServico googleServico;
     
+    @EJB
+    private GrupoServico grupoServico;
+    
     private PerfilGoogle perfilGoogle;
 
     private List<Responsavel> responsaveis = new ArrayList<>();
+    
+//    private List<Grupo> grupos = new ArrayList<Grupo>();
 
     private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
     
@@ -65,7 +72,8 @@ public class ResponsavelBean implements Serializable
     public void salvar()
     {
         perfilGoogle.setUsuario(responsavel);
-        googleServico.persistePerfilGoogle(perfilGoogle);
+//        googleServico.persistePerfilGoogle(perfilGoogle);
+        atribuiGrupo();
 
             try {
                 
@@ -81,15 +89,31 @@ public class ResponsavelBean implements Serializable
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
-//        }
-//        else {
-//            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Senhas diferentes!");
-//        }
 
         responsavel = new Responsavel();
         listar();
     }
-
+    
+    public void atribuiGrupo()
+    {
+    
+        switch(responsavel.getTitulo())
+        {
+            case Administrador:
+                grupoServico.teste();
+                grupoServico.associarAdministrador(responsavel);
+                break;
+            case Aluno:
+                grupoServico.teste();
+                grupoServico.associarAluno(responsavel);
+                break;
+            default:
+                grupoServico.teste();
+                grupoServico.associarServidor(responsavel);
+                break; 
+        }
+    }
+    
     public void listar()
     {
         responsaveis = responsavelServico.listar();

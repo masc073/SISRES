@@ -51,6 +51,28 @@ public class ResponsavelServico extends Servico
 
         return responsavel;
     }
+    
+     public String buscar_grupo_responsavel(String email)
+    {
+        String grupoAtual = "nenhum";
+        Responsavel responsavel = getResponsavelByEmail(email);
+
+        if (responsavel != null) {
+
+            switch (responsavel.getTitulo()) {
+
+                case Administrador:
+                    return "administrador";
+                case Aluno:
+                    return "aluno";
+                default:
+                    return "servidor";
+
+            }
+        }
+
+        return grupoAtual;
+    }
 
     public boolean chegaExistencia(Responsavel responsavel)
     {

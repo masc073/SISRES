@@ -53,9 +53,6 @@ public class GoogleSign implements Serializable
     @EJB
     private ResponsavelServico responsavelServico;
 
-    @EJB
-    private GrupoServico grupoServico;
-
     public void loginGoogle() throws ServletException
     {
         RequestContext context = RequestContext.getCurrentInstance();
@@ -100,8 +97,8 @@ public class GoogleSign implements Serializable
 
                     System.out.println("Usuário logado: " + responsavel_atual.getEmail());
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavel_atual);
-                    String grupo = grupoServico.buscar_grupo_responsavel(username);
-                    request.setAttribute("grupo", grupo);
+                    String grupo = responsavelServico.buscar_grupo_responsavel(username);
+//                    request.setAttribute("grupo", grupo);
                     System.out.println("Grupo : " + grupo);
 //                    request.login(username, "");
 //                    System.out.println("beans.GoogleSign.loginGoogle()" + request.);
@@ -143,6 +140,7 @@ public class GoogleSign implements Serializable
         Payload payload = null;
 
         try {
+            System.out.println("Tokeeeeeeeeen : " +  idToken);
             GoogleIdToken googleIdToken = verifier.verify(idToken);
             if (idToken != null) {
                 payload = googleIdToken.getPayload();

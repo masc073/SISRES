@@ -44,7 +44,7 @@
         </form-login-config>
     </login-config>
     
-    <security-constraint>
+<!--    <security-constraint>
         <display-name>Pg servidor</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Servidor Area</web-resource-name>
@@ -65,9 +65,28 @@
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
-    </security-constraint> 
+    </security-constraint> -->
     
     <security-constraint>
+    <display-name>Pg servidor</display-name>
+    <web-resource-collection>
+        <web-resource-name>Protected Servidor Area</web-resource-name>
+        <description/>
+        <url-pattern>/faces/servidor/*</url-pattern>
+        <http-method>POST</http-method>
+        <http-method>HEAD</http-method>
+        <http-method>PUT</http-method>
+        <http-method>OPTIONS</http-method>
+        <http-method>TRACE</http-method>
+        <http-method>DELETE</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <description/>
+        <role-name>servidor</role-name>
+     </auth-constraint>
+</security-constraint>
+    
+<!--    <security-constraint>
         <display-name>Pg administrador</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Administrador Area</web-resource-name>
@@ -88,9 +107,38 @@
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
-    </security-constraint> 
+    </security-constraint> -->
     
-    <security-constraint>
+        <security-constraint>
+    <display-name>Pg administrador</display-name>
+    <web-resource-collection>
+        <web-resource-name>Protected Administrador Area</web-resource-name>
+        <description/>
+        <url-pattern>/faces/administrador/*</url-pattern>
+        <http-method>POST</http-method>
+        <http-method>HEAD</http-method>
+        <http-method>PUT</http-method>
+        <http-method>OPTIONS</http-method>
+        <http-method>TRACE</http-method>
+        <http-method>DELETE</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <description/>
+        <role-name>administrador</role-name>
+     </auth-constraint>
+</security-constraint>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!--    <security-constraint>
         <display-name>Pg aluno</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Aluno Area</web-resource-name>
@@ -111,7 +159,40 @@
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
-    </security-constraint> 
+    </security-constraint> -->
+    
+        <security-constraint>
+    <display-name>Pg aluno</display-name>
+    <web-resource-collection>
+        <web-resource-name>Protected Aluno Area</web-resource-name>
+        <description/>
+        <url-pattern>/faces/aluno/*</url-pattern>
+        <http-method>POST</http-method>
+        <http-method>HEAD</http-method>
+        <http-method>PUT</http-method>
+        <http-method>OPTIONS</http-method>
+        <http-method>TRACE</http-method>
+        <http-method>DELETE</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <description/>
+        <role-name>aluno</role-name>
+     </auth-constraint>
+</security-constraint>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <!--    
     
     <security-constraint>
@@ -136,7 +217,7 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>              
     </security-constraint> -->
- <!--   
+    <!--   
     <error-page>
         <error-code>403</error-code>
         <location>/publico/erroPermissaoNegada.xhtml</location>
@@ -150,7 +231,7 @@
         <location>/publico/erro.xhtml</location>
     </error-page> -->
     
-<!--    
+    <!--    
     <security-role>
         <role-name>servidor_chefe</role-name>
     </security-role>-->

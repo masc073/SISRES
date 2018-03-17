@@ -1,6 +1,7 @@
 validadores\ValidaEmail.class
 step_definitions\DbUnitUtil.class
 converter\EntidadeConverter.class
+servico\ResponsavelServico$1.class
 dominio\PerfilGoogle_.class
 dominio\PerfilGoogle.class
 servico\AtividadeServico.class
@@ -36,7 +37,6 @@ dominio\TiposUnidadesOrganizacionais.class
 dominio\Requerimento_.class
 beans\AtividadeBean.class
 beans\UnidadeOrganizacionalBean.class
-servico\GrupoServico$1.class
 servico\RequerimentoServico.class
 criptografia\Encripta.class
 beans\GrupoBean.class
@@ -50,6 +50,7 @@ step_definitions\RequerimentoSteps.class
 step_definitions\ResponsavelSteps.class
 util\LeitorPropriedades.class
 beans\ProcessoBean.class
+beans\ResponsavelBean$1.class
 dominio\Requerimento.class
 dominio\Responsavel_.class
 servico\Servico.class

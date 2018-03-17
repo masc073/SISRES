@@ -57,16 +57,17 @@
                 <p:growl id="messages" showDetail="false" autoUpdate="true" />
 
                 <p:menu class="menu" style="width: 250px">
-                    <p:submenu class="submenu" icon="ui-icon-home" label="Início">
-                        <p:menuitem value="Meus Requerimentos" url="/aluno/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-                        <p:menuitem value="Requerimentos"  url="/aluno/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
-                        <p:menuitem value="Histórico" url="/aluno/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
+                    <p:submenu class="submenu" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" icon="ui-icon-home" label="Início">
+                        <p:menuitem value="Meus Requerimentos" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/aluno/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                        <p:menuitem value="Requerimentos" rendered="#{request.isUserInRole('aluno')}"  url="/aluno/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
+                        <p:menuitem value="Histórico" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/aluno/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
+                        <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
                     </p:submenu>
-                    <p:submenu class="submenu" label="Cadastros" icon="ui-icon-pencil" >
-                        <p:menuitem value="Novo Processo" url="/administrador/processo/processo.xhtml" update="messages" icon="ui-icon-plusthick" />
-                        <p:menuitem value="Processos" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
-                        <p:menuitem value="Feriados" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
-                        <p:menuitem value="Unidade Organizacional" url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
+                    <p:submenu class="submenu" rendered="#{request.isUserInRole('administrador')}" label="Cadastros" icon="ui-icon-pencil" >
+                        <p:menuitem value="Novo Processo" rendered="#{request.isUserInRole('administrador')}" url="/administrador/processo/processo.xhtml" update="messages" icon="ui-icon-plusthick" />
+                        <p:menuitem value="Processos" rendered="#{request.isUserInRole('administrador')}" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
+                        <p:menuitem value="Feriados" rendered="#{request.isUserInRole('administrador')}" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
+                        <p:menuitem value="Unidade Organizacional" rendered="#{request.isUserInRole('administrador')}" url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
                         <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
                     </p:submenu>
                 </p:menu>
