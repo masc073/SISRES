@@ -72,6 +72,9 @@ public class ProcessoEditarBean implements Serializable
         listar();
     }
 
+    /**
+     * Edita as atividades do processo
+     */
     public void editarAtividades() throws ExcecaoNegocio
     {
         if (!processo.getAtividades().isEmpty()) {
@@ -165,11 +168,17 @@ public class ProcessoEditarBean implements Serializable
         return ProcessoServico;
     }
 
+    /**
+     * Seta uma instância para o objeto processoServico
+     */
     public void setProcessoServico(ProcessoServico ProcessoServico)
     {
         this.ProcessoServico = ProcessoServico;
     }
 
+    /**
+     * Retorna lista de processos
+     */
     public List<Processo> getProcessos()
     {
         return processos;

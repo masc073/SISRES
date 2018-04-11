@@ -16,10 +16,12 @@ import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.FeriadoServico;
 
-/** Classe responsável por realizar a comunicação entre o jsf e a camada de serviço com relação ao feriado.
+/**
+ * Classe responsável por realizar a comunicação entre o jsf e a camada de
+ * serviço com relação ao feriado.
+ *
  * @author Natália Amâncio
  */
-
 @ManagedBean(name = "feriadoBean")
 @ViewScoped
 public class FeriadoBean implements Serializable
@@ -28,34 +30,38 @@ public class FeriadoBean implements Serializable
     @EJB
     private FeriadoServico feriadoServico;
 
+    /**
+     * Lista dos feriados cadastrados no banco.
+     */
     protected List<Feriado> feriados = new ArrayList<>();
 
+    /**
+     * Feriado que está sendo manipulado no momento.
+     */
     protected Feriado feriado;
 
-    /** Construtor padrão.
+    /**
+     * Construtor padrão.
      */
     public FeriadoBean()
     {
         feriado = new Feriado();
     }
 
-    /** Salva feriado no banco de dados.
+    /**
+     * Salva feriado no banco de dados.
      */
     public void salvar()
     {
-        try
-        {
+        try {
             feriadoServico.salvar(feriado);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Feriado cadastrado com Sucesso!");
-        } 
-        catch (ExcecaoNegocio ex)
-        {
+        }
+        catch (ExcecaoNegocio ex) {
             adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } 
-        catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -64,51 +70,30 @@ public class FeriadoBean implements Serializable
         feriado = new Feriado();
         listar();
     }
-    /** Edita as informações do feriado e atualiza no banco de dados.
-     * @param event Evento vindo do datatable com o objeto feriado para ser atualizado.
-     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de negócio.
+
+    /**
+     * Edita as informações do feriado e atualiza no banco de dados.
+     *
+     * @param event Evento vindo do datatable com o objeto feriado para ser
+     * atualizado.
+     * @throws ExcecaoNegocio - Exceção lançada por não cumprir as regras de
+     * negócio.
      */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         feriado = (Feriado) event.getObject();
         listar();
 
-        try
-        {
+        try {
             feriadoServico.atualizar(feriado);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Feriado alterado com Sucesso!");
             listar();
-        } 
-        catch (ExcecaoNegocio ex)
-        {
-            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-        } 
-        catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
-                MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
-                adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
-            }
         }
-        listar();
-    }
- 
-    /** Remover feriado
-     * @param feriado feriado a ser removido.
-     */
-    public void remover(Feriado feriado) 
-    {
-        try
-        {
-            feriadoServico.remover(feriado);
-            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Feriado removido com Sucesso!");
-            
-        } 
-        catch (EJBException ex)
-        {
-            if (ex.getCause() instanceof ConstraintViolationException)
-            {
+        catch (ExcecaoNegocio ex) {
+            adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
                 MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
                 adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
             }
@@ -116,46 +101,73 @@ public class FeriadoBean implements Serializable
         listar();
     }
 
-    /** Lista todos os feriados cadastrados no banco de dados.
+    /**
+     * Remover feriado
+     *
+     * @param feriado feriado a ser removido.
      */
-    public void teste()
+    public void remover(Feriado feriado)
     {
-        System.out.println("Testando!!!!");
+        try {
+            feriadoServico.remover(feriado);
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Feriado removido com Sucesso!");
+
+        }
+        catch (EJBException ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
+                MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
+                adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
+            }
+        }
+        listar();
     }
-    
+
+    /**
+     * Lista todos os feriados cadastrados no banco de dados.
+     */
     public void listar()
     {
         feriados = feriadoServico.listar();
     }
 
-    /** Retorna objeto FeriadoServico
-     * @return feriadoServico - Objeto que permite acessar todos os métodos da classe FeriadoServico.
+    /**
+     * Retorna objeto FeriadoServico
+     *
+     * @return feriadoServico - Objeto que permite acessar todos os métodos da
+     * classe FeriadoServico.
      */
     public FeriadoServico getFeriadoServico()
     {
         return feriadoServico;
     }
 
-    /** Seta instância de feriadoServido para objeto da classe.
-     * @param feriadoServico 
+    /**
+     * Seta instância de feriadoServido para objeto da classe.
+     *
+     * @param feriadoServico
      */
     public void setFeriadoServico(FeriadoServico feriadoServico)
     {
         this.feriadoServico = feriadoServico;
     }
 
-    /** Retorna lista de feriados
+    /**
+     * Retorna lista de feriados
+     *
      * @return feriados
      */
     public List<Feriado> getFeriados()
     {
-        if (feriados.isEmpty())
+        if (feriados.isEmpty()) {
             feriados = feriadoServico.listar();
-        
+        }
+
         return feriados;
     }
 
-    /** Atribui uma lista de feriados.
+    /**
+     * Atribui uma lista de feriados.
+     *
      * @param feriados lista de feriados
      */
     public void setFeriados(List<Feriado> feriados)
@@ -163,7 +175,9 @@ public class FeriadoBean implements Serializable
         this.feriados = feriados;
     }
 
-    /** Retorna objeto Feriado
+    /**
+     * Retorna objeto Feriado
+     *
      * @return Feriado
      */
     public Feriado getFeriado()
@@ -171,18 +185,22 @@ public class FeriadoBean implements Serializable
         return feriado;
     }
 
-    /** Seta instância de feriado
-     * @param feriado 
+    /**
+     * Seta instância de feriado
+     *
+     * @param feriado
      */
     public void setFeriado(Feriado feriado)
     {
         this.feriado = feriado;
     }
-    
-   /** Exibe mensagens para o usuário com relação ao feriado
-     * @param mensagem  Mensagem que será exibida para o usuário
-     * @param severity  Define o tipo da mensagem.
-      */
+
+    /**
+     * Exibe mensagens para o usuário com relação ao feriado
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();

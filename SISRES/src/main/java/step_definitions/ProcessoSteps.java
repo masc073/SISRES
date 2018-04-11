@@ -16,10 +16,14 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import static step_definitions.BrowserManager.driver;
-
+/**
+ * Responsável por realizar o passo a passo da execução dos testes com o cucumber com relação ao processo.
+ * @author Natália
+ */
 public class ProcessoSteps
 {
-
+    /** Construtor Padrão
+     */
     public ProcessoSteps()
     {
         if (DbUnitUtil.ultimo_executado != Dataset.Processo) {

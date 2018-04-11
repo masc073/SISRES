@@ -9,10 +9,14 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import static step_definitions.BrowserManager.driver;
-
+/**
+ * Responsável por realizar o passo a passo da execução dos testes com o cucumber com relação ao Responsável.
+ * @author Natália
+ */
 public class ResponsavelSteps
 {
-
+    /** Construtor Padrão
+     */
     public ResponsavelSteps()
     {
         if (DbUnitUtil.ultimo_executado != Dataset.Responsavel) {
@@ -31,7 +35,7 @@ public class ResponsavelSteps
     }
 
     @Quando("^o usuario informar o \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" e \"([^\"]*)\"$")
-    public void o_usuario_informar_o_e(String nome, String email, String titulo, String departamento) throws Throwable
+    public void o_usuario_informar_o_e(String nome, String email, String titulo, String unidade_organizacional) throws Throwable
     {
         BrowserManager.driver.findElement(By.id("form:primeiroNome")).sendKeys(nome);
         BrowserManager.driver.findElement(By.id("form:email")).sendKeys(email);
@@ -48,7 +52,7 @@ public class ResponsavelSteps
             }
         }
 
-        if (!departamento.isEmpty()) {
+        if (!unidade_organizacional.isEmpty()) {
 
             WebElement div_unidadeOrganizacional = BrowserManager.driver.findElement(By.id("form:unidadeOrganizacional"));
             exibir_lista = div_unidadeOrganizacional.findElement(By.tagName("span"));
@@ -57,7 +61,7 @@ public class ResponsavelSteps
             options = BrowserManager.driver.findElements(By.tagName("li"));
 
             for (WebElement option : options) {
-                if (option.getText().equals(departamento)) {
+                if (option.getText().equals(unidade_organizacional)) {
                     option.click();
                 }
             }
@@ -68,7 +72,7 @@ public class ResponsavelSteps
     }
 
     @Quando("^o usuario informar o \"([^\"]*)\" , \"([^\"]*)\"  se e \"([^\"]*)\" \\. Caso seja tambem informar se e \"([^\"]*)\" e o \"([^\"]*)\"$")
-    public void o_usuario_informar_o_se_e_Caso_seja_tambem_informar_se_e_e_o(String nome, String email, String servidor, String chefe, String departamento) throws Throwable
+    public void o_usuario_informar_o_se_e_Caso_seja_tambem_informar_se_e_e_o(String nome, String email, String servidor, String chefe, String unidade_organizacional) throws Throwable
     {
         BrowserManager.driver.findElement(By.id("form:primeiroNome")).sendKeys(nome);
         BrowserManager.driver.findElement(By.id("form:email")).sendKeys(email);
@@ -77,26 +81,15 @@ public class ResponsavelSteps
 
 //        if (servidor.equals("true")) {
 //            radioButtons.get(0).click();
-        if (!departamento.equals("")) {
+        if (!unidade_organizacional.equals("")) {
             List<WebElement> options = BrowserManager.driver.findElements(By.tagName("li"));
 
             for (WebElement option : options) {
-                if (option.getText().equals(departamento)) {
+                if (option.getText().equals(unidade_organizacional)) {
                     option.click();
                 }
             }
         }
-//            if (chefe.equals("true")) {
-//                radioButtons.get(2).click();
-//            }
-//            else {
-//                radioButtons.get(3).click();
-//            }
-//
-//        }
-//        else {
-//            radioButtons.get(1).click();
-//        }
     }
 
     @Quando("^o administrador informar o \"([^\"]*)\" e a senha \"([^\"]*)\" do responsavel$")

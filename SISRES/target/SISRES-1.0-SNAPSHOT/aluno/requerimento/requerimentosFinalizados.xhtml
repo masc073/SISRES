@@ -9,7 +9,7 @@
              template="../../template.xhtml">
     <h:form id="atividade">
         <p:fieldset legend="Requerimentos finalizados" style="margin-left: 3px; width: 990px;" >
-            <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos_finalizados}">
+            <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos_finalizados}" emptyMessage="Nenhum registro encontrado">
 
                 <f:facet name="header">Requerimentos</f:facet>
                 <p:column headerText="Solicitante">

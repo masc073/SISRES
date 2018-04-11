@@ -77,6 +77,9 @@ public class RequerimentoBean implements Serializable
 
     }
 
+    /**
+     * Realiza a abertura de um novo requerimento.
+     */
     public void salvar()
     {
         Responsavel solicitante;
@@ -103,12 +106,18 @@ public class RequerimentoBean implements Serializable
         Requerimento = new Requerimento();
     }
 
+    /**
+     * Lista todos os requerimentos por usuário.
+     */
     public void listar()
     {
         Requerimentos = RequerimentoServico.listar(getUsuarioLogado());
         validaPrazos();
     }
 
+    /**
+     * Permite atualização das informações do requerimento.
+     */
     public void editarRequerimento(String mensagem, Requerimento requerimento, boolean com_messagem)
     {
         try {
@@ -132,6 +141,12 @@ public class RequerimentoBean implements Serializable
         Requerimento = new Requerimento();
     }
 
+    /**
+     * Método chamado ao selecionar um requerimento para edição na tela.
+     *
+     * @param event
+     * @exception ExcecaoNegocio
+     */
     public void editar(RowEditEvent event) throws ExcecaoNegocio
     {
         Requerimento = (Requerimento) event.getObject();
@@ -140,6 +155,11 @@ public class RequerimentoBean implements Serializable
         listar();
     }
 
+    /**
+     * Cancela requerimento.
+     *
+     * @param requerimento
+     */
     public void remover(Requerimento requerimento)
     {
         try {
@@ -161,6 +181,12 @@ public class RequerimentoBean implements Serializable
         return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");
     }
 
+    /**
+     * Exibe mensagens para o usuário em relação ao requerimento.
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -213,51 +239,73 @@ public class RequerimentoBean implements Serializable
         preenche_lista_arquivos();
     }
 
+    /**
+     * Realiza a validação do prazo do requerimento, levando em consideração dos
+     * feriados cadastrados no SIRES Estes não serão considerados dias úteis.
+     */
     public void validaPrazos()
     {
-
-        String outro_dia, dia_hoje;
-        Date inicio, hoje, dia_atual;
-        int qtd_de_dias, dia, contador_dias_uteis = 0;
-        GregorianCalendar cal = new GregorianCalendar();
-        GregorianCalendar cal_auxiliar = new GregorianCalendar();
         List<Feriado> feriados;
-        hoje = new Date();
+        Date inicio, hoje;
+        boolean feriado = false;
+        int dia, qtd_dias_cont = 0;
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        GregorianCalendar cal = new GregorianCalendar();
+        String inicio_formatado, hoje_formatado, feriado_formatado;
+
         feriados = FeriadoServico.listar();
+        hoje = new Date();
+        cal.setTime(hoje);
+        cal.add(Calendar.DATE, 1);
 
         for (Requerimento requerimento_atual : Requerimentos) {
-
             inicio = requerimento_atual.getDataDeInicio();
-            qtd_de_dias = requerimento_atual.getProcesso().getDuracaoMaximaEmDias();
-            contador_dias_uteis = qtd_de_dias;
-            cal.setTime(inicio);
-            dia_atual = inicio;
-            cal_auxiliar.setTime(hoje);
 
-            dia_hoje = dataFormatada.format(hoje);
-            outro_dia = dataFormatada.format(cal.getTime());
-            
-            while (!dia_hoje.equals(outro_dia)) {
+            hoje_formatado = dataFormatada.format(hoje);
+            inicio_formatado = dataFormatada.format(inicio);
+           
+            if (!inicio_formatado.equals(hoje_formatado) || qtd_dias_cont != 0) {
 
-                dia = cal.get(Calendar.DAY_OF_WEEK);
-                cal.add(Calendar.DATE, 1);
-                outro_dia = dataFormatada.format(cal.getTime());
+                hoje = cal.getTime();
+                hoje_formatado = dataFormatada.format(hoje);
+                cal.setTime(inicio);
 
-                if (dia != 1 && dia != 7) {
-                    --contador_dias_uteis;
+                while (!inicio_formatado.equals(hoje_formatado)) {
+                    for (Feriado feriado_atual : feriados) {
+                        
+                        feriado_formatado = dataFormatada.format(feriado_atual.getData_do_feriado());
+                        if (feriado_formatado.equals(inicio_formatado)) {
+                            feriado = true;
+                            break;
+                        }
+                    }
+
+                    dia = cal.get(Calendar.DAY_OF_WEEK);
+                    cal.add(Calendar.DATE, 1);
+                    inicio_formatado = dataFormatada.format(cal.getTime());
+
+                    if ((dia != 1 && dia != 7) && feriado == false) {
+                        ++qtd_dias_cont;
+                    }
+
+                    feriado = false;
                 }
-            }
 
-            if (contador_dias_uteis == qtd_de_dias || contador_dias_uteis < 0) {
-                System.err.println("Ultrapassou data!!!");
-                requerimento_atual.setAtrasado(true);
+                if (qtd_dias_cont > requerimento_atual.getProcesso().getDuracaoMaximaEmDias()) {
+                    requerimento_atual.setAtrasado(true);
+                }
+                qtd_dias_cont = 0;
+                hoje = new Date();
             }
-            contador_dias_uteis = 0;
         }
-
     }
 
+    /**
+     * Redireciona para a tela de listagem de requerimentos.
+     *
+     * @param mensagem
+     * @exception IOException
+     */
     public void redireciona_para_lista_requerimento(String mensagem) throws IOException
     {
 
@@ -278,6 +326,11 @@ public class RequerimentoBean implements Serializable
 
     }
 
+    /**
+     * Redirecicona para a tela de exibição do requerimento
+     *
+     * @param requerimento_exibir Requerimento que deve ser exibido
+     */
     public void redireciona_para_exibir_requerimento(Requerimento requerimento_exibir)
     {
 
@@ -291,6 +344,10 @@ public class RequerimentoBean implements Serializable
 
     }
 
+    /**
+     * Redireciona para a tela de edição das atividades
+     *
+     */
     public void redireciona_para_editar_atividades(Requerimento requerimento_atualizar) throws ExcecaoNegocio
     {
 
@@ -306,6 +363,12 @@ public class RequerimentoBean implements Serializable
         }
     }
 
+    /**
+     * Redireciona para a tela de exibição dos arquivos do requerimento atual
+     *
+     * @param requerimento_atual
+     * @exception ExcecaoNegocio
+     */
     public void redireciona_para_exibir_arquivos(Requerimento requerimento_atual) throws ExcecaoNegocio
     {
         try {
@@ -318,6 +381,9 @@ public class RequerimentoBean implements Serializable
 
     }
 
+    /**
+     * Vincula o arquivo na atividade atual do requerimento.
+     */
     private void adicionar_arquivo()
     {
         Arquivo arquivoDigital = atividade_atual.criarArquivo();
@@ -340,6 +406,9 @@ public class RequerimentoBean implements Serializable
         }
     }
 
+    /**
+     * Realiza a aprovação das atividades do requerimento.
+     */
     public void aprovando_atividade()
     {
 
@@ -372,10 +441,13 @@ public class RequerimentoBean implements Serializable
 
     }
 
+    /**
+     * Gerencia a aprovação das atividades e a validação dos arquivos.
+     */
     public void aprovarAtividade() throws IOException
     {
 
-        if (atividade_atual.getAtividadeModelo().isAnexarArquivo() == true) {
+        if (atividade_atual.getAtividademodelo().isAnexarArquivo() == true) {
 
             if (!arquivo.getContentType().equals("application/pdf")) {
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Deve ser anexado um arquivo PDF! ");
@@ -393,6 +465,11 @@ public class RequerimentoBean implements Serializable
         }
     }
 
+    /**
+     * Realiza a reprovação da atividade do requerimento.
+     *
+     * @exception IOException
+     */
     public void reprovarAtividade() throws IOException
     {
         Atividade proxima_atividade;
@@ -423,6 +500,11 @@ public class RequerimentoBean implements Serializable
         }
     }
 
+    /**
+     * Retorna a lista de todos os requerimentows que foram encerrados para
+     * aquele usuário.
+     *
+     */
     public List<Requerimento> getRequerimentos_finalizados()
     {
         requerimentos_finalizados = RequerimentoServico.listar_finalizados(getUsuarioLogado());
@@ -466,6 +548,9 @@ public class RequerimentoBean implements Serializable
         return atividade_anterior;
     }
 
+    /**
+     * Seta o valor da atividade que foi realizada anteriormente da atual.
+     */
     public void setAtividade_anterior()
     {
         if (Requerimento.getAtividades() != null) {
@@ -503,6 +588,9 @@ public class RequerimentoBean implements Serializable
         this.arquivos = arquivos;
     }
 
+    /**
+     * Seta o valor da atividade que será realizada posteriormente a atual.
+     */
     public void setAtividade_proxima()
     {
         int qtd_atividades;
@@ -515,11 +603,9 @@ public class RequerimentoBean implements Serializable
                 int posicao = Requerimento.getAtividades().indexOf(atividade_atual);
                 if (posicao < qtd_atividades - 1) {
                     this.atividade_proxima = Requerimento.getAtividades().get(posicao + 1);
-                    System.out.println("Posição da próxima: " + posicao + 1);
                 }
                 else {
                     this.atividade_proxima = atividade_atual;
-                    System.out.println("Posição da próxima: " + posicao);
                 }
             }
         }

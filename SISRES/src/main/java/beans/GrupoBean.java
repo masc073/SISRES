@@ -21,7 +21,13 @@ public class GrupoBean implements Serializable
 
     @EJB
     private GrupoServico grupoServico;
+    
+    /** Lista de grupos cadastrados no banco de dados.
+     */
     public List<Grupo> grupos;
+    
+    /** Grupo que está sendo manipulado no momento.
+     */
     public Grupo grupo;
 
     /** Construtor padrão.

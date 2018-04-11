@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/** Define o Responsável
+ * @author Natália Amâncio
+ */
 @Entity
 @SequenceGenerator(name = "RESPONSAVEL_SEQUENCE", sequenceName = "RESPONSAVEL_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class Responsavel extends EntidadeNegocio implements Serializable
@@ -40,83 +43,108 @@ public class Responsavel extends EntidadeNegocio implements Serializable
     @Column
     private boolean aprovado;
 
-    @Column(name = "numero_numeroAleatorio")
-    private int numeroAleatorio;
-
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_grupo", referencedColumnName = "id")
     private Grupo grupo;
 
+     /** Construtor Padrão
+     */  
     public Responsavel()
     {
 
     }
 
+    /** Retorna Email do Responsável
+     * @return String Email do Responsável
+     */
     public String getEmail()
     {
         return email;
     }
-
+    
+    /** Atribui Email do Responsável
+     * @param email Email do Responsável
+     */
     public void setEmail(String email)
     {
         this.email = email;
     }
 
+    /** Retorna a unidade organizacional do Responsável
+     * @return UnidadeOrganizacional Unidade Organizacional do Responsável
+     */
     public UnidadeOrganizacional getUnidadeOrganizacional()
     {
         return unidadeOrganizacional;
     }
-
+    
+    /** Atribui a unidade organizacional do Responsável
+     * @param unidadeOrganizacional Unidade Organizacional do Responsável
+     */
     public void setUnidadeOrganizacional(UnidadeOrganizacional unidadeOrganizacional)
     {
         this.unidadeOrganizacional = unidadeOrganizacional;
     }
-
+    
+     /** Retorna se a responsável foi aprovado ou não.
+     * @return boolean - True ( Aprovado ) - False ( Reprovado )
+     */
     public boolean isAprovado()
     {
         return aprovado;
     }
-
+    
+     /** Define se a responsável foi aprovado ou não.
+     * @param aprovado - True ( Aprovado ) - False ( Reprovado )
+     */
     public void setAprovado(boolean aprovado)
     {
         this.aprovado = aprovado;
     }
-
+    
+    /** Retorna nome do responsável
+     * @return String Nome do responsável
+     */
     public String getNome()
     {
         return nome;
     }
-
+    
+    /** Atribui um nome ao responsável
+     * @param nome Nome do responsável
+     */
     public void setNome(String nome)
     {
         this.nome = nome;
     }
 
-    public int getNumeroAleatorio()
-    {
-        return numeroAleatorio;
-    }
-
-    public void setNumeroAleatorio(int numeroAleatorio)
-    {
-        this.numeroAleatorio = numeroAleatorio;
-    }
-
+    /** Retorna o grupo do responsável.
+     * @return Grupo Grupo do responsável.
+     */
     public Grupo getGrupo()
     {
         return grupo;
     }
-
+    
+    /** Atribui o grupo do responsável.
+     * @param grupo Grupo do responsável.
+     */
     public void setGrupo(Grupo grupo)
     {
         this.grupo = grupo;
     }
 
+    /** Retorna o titulo do responsável, ou seja, se ele é  Coordenador,  Diretor, Servidor, Professor, Administrador ou Aluno.
+     * @return Titulos Titulo do responsável
+     */
     public Titulos getTitulo()
     {
         return titulo;
     }
 
+    /** Defineo título do responsável
+     * @param titulo Título do responsável
+     */
     public void setTitulo(Titulos titulo)
     {
         this.titulo = titulo;

@@ -2,6 +2,12 @@ package excecao;
 
 import javax.ejb.ApplicationException;
 
+/**
+ * Exceções de acordo com a regra de negócio do SISRES.
+ *
+ * @author Natália Amâncio
+ */
+
 @ApplicationException(rollback = true)
 public class ExcecaoNegocio extends Exception
 {
@@ -10,7 +16,8 @@ public class ExcecaoNegocio extends Exception
     public static final String OBJETO_EXISTENTE = "excecao.ExcecaoNegocio.objetoExistente";    
     public static final String OBJETO_ASSOCIADO = "excecao.ExcecaoNegocio.objetoAssociado";
 
-    
+    /** Construtor Padrão
+     */
     public ExcecaoNegocio(String chave)
     {
         this.chave = chave;

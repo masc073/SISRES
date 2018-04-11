@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+/** Define a Unidade Organizacional da Instituição, que pode ser : Diretoria, Coordenadoria ou Departamento.
+ * @author Natália Amâncio
+ */
+
 @Entity
 @SequenceGenerator(name = "DEPARTAMENTO_SEQUENCE", sequenceName = "DEPARTAMENTO_SEQUENCE", allocationSize = 1, initialValue = 1)
 public class UnidadeOrganizacional extends EntidadeNegocio implements Serializable
@@ -39,53 +43,85 @@ public class UnidadeOrganizacional extends EntidadeNegocio implements Serializab
     @JoinColumn(name = "id_mae", referencedColumnName = "id")
     private UnidadeOrganizacional mae;
 
+    /** Construtor Padrão
+     */
     public UnidadeOrganizacional() {  }
 
+    /** Retorna nome da unidade organizacional
+     * @return String Nome da unidade organizacional
+     */
     public String getNome()
     {
         return nome;
     }
 
+    /** Atribui um nome da unidade organizacional
+     * @param nome Nome da unidade organizacional
+     */
     public void setNome(String nome)
     {
         this.nome = nome;
     }
 
+    /** Retorna a sigla da Unidade Organizacional
+     * @return String Sigla da unidade organizacional
+     */
     public String getSigla()
     {
         return sigla;
     }
-
+    
+    /** Atribui a sigla da Unidade Organizacional
+     * @param sigla Sigla da unidade organizacional
+     */
     public void setSigla(String sigla)
     {
         this.sigla = sigla;
     }
 
+    /** Retorna o responsável pela unidade organizacional
+     * @return Responsavel Responsável pela unidade organizacional
+     */
     public Responsavel getResponsavel()
     {
         return responsavel;
     }
 
+    /** Define o responsável pela unidade organizacional
+     * @param responsavel Responsável pela unidade organizacional
+     */
     public void setResponsavel(Responsavel responsavel)
     {
         this.responsavel = responsavel;
     }
     
+    /** Retorna a unidade organizacional diretamente superior a esta.
+     * @return UnidadeOrganizacional Unidade organizacional diretamente superior a esta.
+     */
     public UnidadeOrganizacional getMae()
     {
         return mae;
     }
-
+    
+    /** Atribui a unidade organizacional diretamente superior a esta.
+     * @param mae Unidade organizacional diretamente superior a esta.
+     */
     public void setMae(UnidadeOrganizacional mae)
     {
         this.mae = mae;
     }
     
+    /** Retorna o tipo da unidade organizacional, que pode ser: Diretoria, Coordenadoria ou Departamento.
+     * @return TiposUnidadesOrganizacionais Tipo da Unidade Organizacional 
+     */
     public TiposUnidadesOrganizacionais getTiposUnidadesOrganizacionais()
     {
         return tiposUnidadesOrganizacionais;
     }
 
+     /** Atribui o tipo da unidade organizacional, que pode ser: Diretoria, Coordenadoria ou Departamento.
+     * @param tiposUnidadesOrganizacionais Tipo da Unidade Organizacional 
+     */
     public void setTiposUnidadesOrganizacionais(TiposUnidadesOrganizacionais tiposUnidadesOrganizacionais)
     {
         this.tiposUnidadesOrganizacionais = tiposUnidadesOrganizacionais;

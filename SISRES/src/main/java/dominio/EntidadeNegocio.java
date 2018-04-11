@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/** Super classe básica para todo objeto
+ * @author Natália Amâncio
+ */
+
 @MappedSuperclass
 public class EntidadeNegocio implements Serializable
 {

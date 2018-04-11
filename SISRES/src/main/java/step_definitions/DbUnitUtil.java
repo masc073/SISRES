@@ -13,12 +13,20 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 
+/**
+ * Classe responsável por adicionar dados no banco de dados para a realização dos testes.
+ *
+ * @author Natália Amâncio
+ */
 public class DbUnitUtil
 {
 
     private static String XML_FILE = "dbUnitData/dataset_vazio.xml";
     public static Dataset ultimo_executado;
 
+    /** Seleciona o dataset que será executado.
+     * @param dataset 
+     */
     public static void selecionaDataset(Dataset dataset)
     {
         switch (dataset)
@@ -46,6 +54,8 @@ public class DbUnitUtil
         }
     }
 
+    /** Reseta banco de dados.
+     */
     public static void limpaBase(Connection connection)
     {
         try
@@ -56,7 +66,7 @@ public class DbUnitUtil
            
             sql = "DELETE FROM processo";
             stmt.executeUpdate(sql);
-            sql = "DELETE FROM departamento";
+            sql = "DELETE FROM unidadeorganizacional";
             stmt.executeUpdate(sql);
             sql = "DELETE FROM atividade";
             stmt.executeUpdate(sql);
@@ -72,6 +82,8 @@ public class DbUnitUtil
         }
     }
 
+    /** Insere os dados no banco de dados.
+     */
     @SuppressWarnings("UseSpecificCatch")
     public static void inserirDados()
     {

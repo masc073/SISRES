@@ -4,14 +4,15 @@ Funcionalidade: Testar as operacoes basicas do responsavel
 
   Esquema do Cenario: Realizar cadastro do responsavel
     Dado a tela inicial do cadastro aberta
-    Quando o usuario informar o <nome> , <email> , <titulo> e <departamento>
+    Quando o usuario informar o <nome> , <email> , <titulo> e <unidade_organizacional>
     Entao deve ser exibida a mensagem "Responsável cadastrado com Sucesso!"
 
     Exemplos: 
-      | nome              |  email                     | titulo            | departamento                    |
+      | nome              |  email                     | titulo            | unidade_organizacional          |
       | "Carlos Macedo"   | "carlos_macedo@gmail.com"  | "Professor"       | "Biblioteca"                    |
       | "Renata Macia"    | "renata_macia@gmail.com"   | "Administrador"   | ""                              |
       | "Joaquim Nunes"   | "joaquim_nunes@gmail.com"  | "diretor"         | "Serviço Social - Psicologia"   |
+      | "Administrador"   | "ifpeadm01@gmail.com"      | "Administrador"   | ""                              |
 
 #  Esquema do Cenario: Atualizar o nome do responsavel
 #    Dado a tela inicial do responsavel aberta
@@ -36,15 +37,3 @@ Funcionalidade: Testar as operacoes basicas do responsavel
 #      | "Fabio Martins"     |
 #      | "Antônio Vitor"     |
 
-#  Quando tivermos a parte de logar ai será possível realizar a redefinição de senha do usuário atual.
-#  Esquema do Cenario: Redefinir Senha
-#    Dado a tela de redefinição de senha
-#    Quando o responsável informar sua <senha_atual> e a <nova_senha>
-#    E confirmar a nova senha <nova_senha>
-#    Entao deve ser exibida a mensagem "Senha Redefinida com Sucesso!"
-#
-#    Exemplos: 
-#      | senha_atual | senha_nova  |
-#      | "C2345M"    | "oxasf123"  |
-#      | "Ren9845"   | "jw134335n" |
-#      | "1221JM"    | "mc1617299" |

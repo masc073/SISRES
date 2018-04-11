@@ -6,7 +6,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
+/** Classe responsável por converter os objetos trabalhados do JSF para o bean
+ * @author Natália Amâncio
+ */
 @FacesConverter(value = "entidadeConverter")
 public class EntidadeConverter implements Converter {
 

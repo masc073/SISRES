@@ -244,6 +244,7 @@ public class ProcessoBean implements Serializable
 
     /**
      * Altera atividade do fluxo do processo (Em memória).
+     *
      * @param atividade - Atividade alterada.
      */
     public void editarAtividadeLista(AtividadeModelo atividade)
@@ -283,8 +284,12 @@ public class ProcessoBean implements Serializable
         this.atividades = atividades;
     }
 
-    /** Redireciona pra tela de editar atividades.
-     * @param processo_atualizar - Processo que contém o fluxo de atividades que deseja ser alterado.
+    /**
+     * Redireciona pra tela de editar atividades.
+     *
+     * @param processo_atualizar - Processo que contém o fluxo de atividades que
+     * deseja ser alterado.
+     * @exception ExcecaoNegocio
      */
     public void redireciona_para_editar_atividades(Processo processo_atualizar) throws ExcecaoNegocio
     {
@@ -319,6 +324,10 @@ public class ProcessoBean implements Serializable
         }
     }
 
+    /** Retorna a variaável anexarArquivo como String para ser exibido na tela : Sim ou não.
+     * @param atividade_atual
+     * @return String
+     */
     public String visualizar_anexarAquivo(AtividadeModelo atividade_atual)
     {
         if (atividade_atual.isAnexarArquivo()) {

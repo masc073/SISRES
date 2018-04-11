@@ -10,12 +10,17 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import static step_definitions.BrowserManager.driver;
-
+/**
+ * Responsável por realizar o passo a passo da execução dos testes com o cucumber com relação ao Requerimento.
+ * @author Natália
+ */
 public class RequerimentoSteps
 {
 
     String requerimento;
-
+    
+    /** Construtor Padrão
+     */
     public RequerimentoSteps()
     {
         if (DbUnitUtil.ultimo_executado != Dataset.Requerimento) {

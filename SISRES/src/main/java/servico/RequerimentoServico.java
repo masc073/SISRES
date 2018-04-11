@@ -11,14 +11,24 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
+/**
+ * Responsável por realizar as salvar, atualizar, listar e remover o requerimento no banco de dados.
+ *
+ * @author Natália Amâncio
+ */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class RequerimentoServico extends Servico
 {
 
+    /** Salva o requerimento no banco de dados.
+     * @param Requerimento Requerimento que será adicionado no banco de dados.
+     * @exception ExcecaoNegocio Lançada caso o objeto já exista no banco de dados
+     */
     public void salvar(Requerimento Requerimento) throws ExcecaoNegocio
     {
         if (chegaExistencia(Requerimento) == false) {
@@ -29,6 +39,10 @@ public class RequerimentoServico extends Servico
         }
     }
 
+    /** Retorna a lista de todos os requerimentos finalizados
+     * @param usuario_logado
+     * @return List<Requerimento>
+     */
     public List<Requerimento> listar_finalizados(Responsavel usuario_logado)
     {
         em.flush();
@@ -41,36 +55,24 @@ public class RequerimentoServico extends Servico
 //        }
     }
 
+    /** Lista todos os requerimentos abertos para o usuário logado
+     * @return List<Requerimento> Lista de requerimentos
+     * @param usuarioLogado
+     */
     public List<Requerimento> listar(Responsavel usuarioLogado)
     {
         TypedQuery<Requerimento> query;
         em.flush();
-//        if (usuarioLogado.isServidor() == false) {
-//            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual. f.solicitante = ?1 ", Requerimento.class);
-//            query.setParameter(1, usuarioLogado);
-//        }
-//        else {
 
-//        if (usuarioLogado.getDepartamento() != null || usuarioLogado.isAdministrador() == false) {
-
-            query = em.createQuery("select f from Requerimento f where f.finalizado = false ", Requerimento.class);
-//            query.setParameter(1, usuarioLogado.getUnidadeOrganizacional());
-//        }
-//        else {
-//            query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);
-//            query.setParameter(1, usuarioLogado);
-//        }
-               
-
-        // PARA USUÁRIO
-//        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.solicitante = ?1 ", Requerimento.class);
-//        query.setParameter(1, usuarioLogado);
-// PARA SERVIDORES
-//        query = em.createQuery("select f from Requerimento f where f.finalizado = false and f.estadoAtual.atividademodelo.departamento = ?1 ", Requerimento.class);
-//        query.setParameter(1, usuarioLogado.getDepartamento());
+        query = em.createQuery("select f from Requerimento f where f.finalizado = false AND f.estadoAtual.atividademodelo.unidade_organizacional.responsavel.email = ?1 ", Requerimento.class);
+        query.setParameter(1, usuarioLogado.getEmail());
         return query.getResultList();
     }
 
+    /** Verifica se o requerimento já existe no banco de dados.
+     * @param Requerimento 
+     * @return boolean True ou False.
+     */
     public boolean chegaExistencia(Requerimento Requerimento)
     {
         TypedQuery<Requerimento> query;
@@ -100,6 +102,10 @@ public class RequerimentoServico extends Servico
         }
     }
 
+    /** Atualiza informações do Requerimento no banco de dados.
+     * @exception  ExcecaoNegocio
+     * @param  Requerimento
+     */
     public void atualizar(Requerimento Requerimento) throws ExcecaoNegocio
     {
         em.flush();
@@ -113,12 +119,19 @@ public class RequerimentoServico extends Servico
         }
     }
 
+    /** Remove Requerimento do banco de dados
+     * @param Requerimento Requerimento a ser removida
+     */
     public void remover(Requerimento Requerimento)
     {
         Requerimento f = (Requerimento) em.find(Requerimento.class, Requerimento.getId());
         em.remove(f);
     }
 
+    /** Retorna requerimento pelo id
+     * @param id
+     * @return Requerimento
+     */
     public Requerimento getRequerimento(Long id)
     {
         TypedQuery<Requerimento> query;

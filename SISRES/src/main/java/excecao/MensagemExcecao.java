@@ -5,6 +5,12 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import util.LeitorPropriedades;
 
+/**
+ * Define as mensagens de exceções que são exibidas para o usuário
+ *
+ * @author Natália Amâncio
+ */
+
 public class MensagemExcecao
 {
     protected Throwable excecao;
@@ -13,6 +19,8 @@ public class MensagemExcecao
         "Exception.properties", "Mensagens.properties"
     });
 
+    /** Construtor Padrão
+     */
     public MensagemExcecao(Throwable excecao)
     {
         this.excecao = excecao;

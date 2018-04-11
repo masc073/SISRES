@@ -44,7 +44,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         unidadeOrganizacional = new UnidadeOrganizacional();
     }
 
-    /** Realiza a inserção do unidadeOrganizacional no banco de dados.
+    /** Realiza a inserção da Unidade Organizacional no banco de dados.
      */
     public void salvar()
     {
@@ -68,14 +68,14 @@ public class UnidadeOrganizacionalBean implements Serializable
         listar();
     }
 
-    /** Lista todos os unidadesOrganizacionais que estão cadastrados no banco de dados.
+    /** Lista todas as Unidades Organizacionais que estão cadastradas no banco de dados.
      */
     public void listar()
     {
         unidadesOrganizacionais = unidadeOrganizacionalServico.listar();
     }
 
-    /** Edita as informações referentes ao depatamento.
+    /** Edita as informações referentes a Unidade Orgenizacional.
      * @param event Evento vindo do datatable que contém o objeto de unidadeOrganizacional que será alterado.
      * @exception ExcecaoNegocio - Exceção lançada por não cumprir as regras de negócio.
      */
@@ -105,14 +105,14 @@ public class UnidadeOrganizacionalBean implements Serializable
         listar();
     }
 
-    /** Remove unidadeOrganizacional do banco de dados.
-     * @param departamento UnidadeOrganizacional a ser removido.
+    /** Remove Unidade Organizacional do banco de dados.
+     * @param unidade_organizacional UnidadeOrganizacional a ser removido.
      */
-    public void remover(UnidadeOrganizacional departamento)
+    public void remover(UnidadeOrganizacional unidade_organizacional)
     {
         try
         {
-            unidadeOrganizacionalServico.remover(departamento);
+            unidadeOrganizacionalServico.remover(unidade_organizacional);
             adicionarMensagem(FacesMessage.SEVERITY_INFO, "Unidade Organizacional removida com Sucesso!");
 
         } catch (EJBException ex)
@@ -126,7 +126,7 @@ public class UnidadeOrganizacionalBean implements Serializable
         listar();
     }
     
-   /** Exibe mensagens para o usuário com relação ao unidadeOrganizacional.
+   /** Exibe mensagens para o usuário com relação a Unidade Organizacional.
      * @param mensagem  Mensagem que será exibida para o usuário
      * @param severity  Define o tipo da mensagem.
       */

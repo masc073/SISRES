@@ -14,31 +14,80 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import junit.framework.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import static step_definitions.BrowserManager.driver;
 
 /**
+ * Responsável por realizar o passo a passo da execução dos testes com o
+ * cucumber com relaçã ao feriado.
  *
  * @author Natália
  */
 public class FeriadoSteps
 {
 
+    /**
+     * Construtor Padrão
+     */
     public FeriadoSteps()
     {
-        if (DbUnitUtil.ultimo_executado != Dataset.Vazio)
-        {
+        if (DbUnitUtil.ultimo_executado != Dataset.Vazio) {
             DbUnitUtil.selecionaDataset(Dataset.Vazio);
             DbUnitUtil.inserirDados();
         }
     }
 
     WebElement input_nome, input_data, button_check;
-    
-    @Dado("^tela inicial de feriados aberta$")
-    public void a_tela_de_cadastro_de_feriados_aberta()
+    Boolean usuario_logado = false;
+
+    @Dado("^o administrador logado e tela inicial de feriados aberta$")
+    public void o_adminitrador_a_tela_de_cadastro_de_feriados_aberta()
     {
-        
-        BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/feriado/feriado.xhtml");
+        BrowserManager.openFirefox("http://localhost:8080/SISRES");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        String url = driver.getCurrentUrl();
+
+        if (driver.getCurrentUrl().equals("http://localhost:8080/SISRES/")) {
+
+            driver.findElement(By.className("abcRioButtonContentWrapper")).click();
+
+            for (String winHandle : driver.getWindowHandles()) {
+                driver.switchTo().window(winHandle);
+            }
+
+            driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+
+            WebElement email_phone = driver.findElement(By.xpath("//input[@id='identifierId']"));
+            email_phone.sendKeys("ifpeadm01@gmail.com");
+            driver.findElement(By.id("identifierNext")).click();
+            WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
+            WebDriverWait wait = new WebDriverWait(driver, 20);
+            wait.until(ExpectedConditions.elementToBeClickable(password));
+            password.sendKeys("administrador01");
+            driver.findElement(By.id("passwordNext")).click();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+            for (String winHandle : driver.getWindowHandles()) {;
+                driver.switchTo().window(winHandle);
+            }
+            
+            
+            driver.findElement(By.xpath("//a[@href=\'/SISRES/administrador/feriado/feriado.xhtml\']")).click();
+//            List<WebElement> menu = driver.findElements(By.xpath("//a[@href=\"/SISRES/administrador/feriado/feriado.xhtml\"]"));
+//      
+//            for (WebElement option : menu) {
+//
+//                if (option.getText().equals("Feriados")) {
+//                    option.click();
+//                    break;
+//                }
+//            }
+        }
+        else {
+            BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/feriado/feriado.xhtml");
+        }
     }
 
     @Quando("^o administrador informar a \"([^\"]*)\" e o \"([^\"]*)\" do feriado$")
@@ -77,14 +126,11 @@ public class FeriadoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(nome))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(nome)) {
                     edit_data = true;
                     button_edit = row.findElement(By.className("ui-row-editor-pencil"));
                     button_edit.click();
@@ -95,8 +141,8 @@ public class FeriadoSteps
                     WebElement div_nome = column.findElement(By.className("ui-cell-editor-input"));
                     input_nome = div_nome.findElement(By.tagName("input"));
 
-                } else if (edit_data == true)
-                {
+                }
+                else if (edit_data == true) {
 
                     WebElement div_data = column.findElement(By.className("ui-cell-editor-input"));
                     input_data = div_data.findElement(By.tagName("input"));
@@ -130,23 +176,18 @@ public class FeriadoSteps
 
         List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (WebElement row : rows)
-        {
+        for (WebElement row : rows) {
             List<WebElement> columns = row.findElements(By.className("ui-editable-column"));
 
-            for (WebElement column : columns)
-            {
-                if (column.getText().equals(registro))
-                {
+            for (WebElement column : columns) {
+                if (column.getText().equals(registro)) {
                     id = "feriado:table_feriado:" + contador + ":delete";
                     WebElement link_remove = row.findElement(By.id(id));
                     link_remove.click();
                     List<WebElement> buttons = driver.findElements(By.tagName("button"));
 
-                    for (WebElement button : buttons)
-                    {
-                        if (button.getText().equals("Sim"))
-                        {
+                    for (WebElement button : buttons) {
+                        if (button.getText().equals("Sim")) {
                             button.click();
                             removeu = true;
                             break;
@@ -155,8 +196,7 @@ public class FeriadoSteps
                     break;
                 }
             }
-            if (removeu == true)
-            {
+            if (removeu == true) {
                 break;
             }
             ++contador;
@@ -173,8 +213,7 @@ public class FeriadoSteps
         WebElement lblYear = driver.findElement(By.className("ui-datepicker-year"));
         WebElement lblMonth = driver.findElement(By.className("ui-datepicker-month"));
 
-        switch (month)
-        {
+        switch (month) {
             case "01":
                 month = "Janeiro";
                 break;
@@ -212,33 +251,30 @@ public class FeriadoSteps
                 month = "Dezembro";
                 break;
         }
-        
+
         lblYear = driver.findElement(By.className("ui-datepicker-year"));
         String teste = lblYear.getText();
-        
-        while (!year.equals(lblYear.getText()))
-        {
+
+        while (!year.equals(lblYear.getText())) {
             ano = Integer.parseInt(year);
-          
+
             ano_atual = Integer.parseInt(lblYear.getText());
 
-            if (ano < ano_atual)
-            {
+            if (ano < ano_atual) {
                 btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
                 btnPrevious.click();
-            } else
-            {
+            }
+            else {
                 btnNext = driver.findElement(By.xpath("//a[@title=\"Próximo\"]"));
                 btnNext.click();
             }
-             lblYear = driver.findElement(By.className("ui-datepicker-year"));
+            lblYear = driver.findElement(By.className("ui-datepicker-year"));
         }
 
         lblMonth = driver.findElement(By.className("ui-datepicker-month"));
         mes_atual = lblMonth.getText();
 
-        while (!mes_atual.equals("Janeiro"))
-        {
+        while (!mes_atual.equals("Janeiro")) {
             btnPrevious = driver.findElement(By.xpath("//a[@title=\"Anterior\"]"));
             btnPrevious.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
@@ -246,8 +282,7 @@ public class FeriadoSteps
             mes_atual = lblMonth.getText();
         }
 
-        while (!month.equals(mes_atual))
-        {
+        while (!month.equals(mes_atual)) {
             btnNext = driver.findElement(By.xpath("//a[@title=\"Próximo\"]"));
             btnNext.click();
             lblMonth = driver.findElement(By.className("ui-datepicker-month"));
@@ -257,12 +292,10 @@ public class FeriadoSteps
         WebElement dateWidget = driver.findElement(By.className("ui-datepicker-calendar"));
         List<WebElement> dias = dateWidget.findElements(By.tagName("td"));
 
-        for (WebElement cell : dias)
-        {
+        for (WebElement cell : dias) {
             dia_atual = cell.getText();
 
-            if (dia_atual.equals(day))
-            {
+            if (dia_atual.equals(day)) {
                 cell.click();
                 break;
             }

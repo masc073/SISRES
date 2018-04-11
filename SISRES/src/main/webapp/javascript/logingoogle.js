@@ -34,13 +34,11 @@ function attachSignin(element) {
 }
 
 function signOut() {
-    alert("Cheguei no signout!");
 //    auth2 = gapi.auth2.getAuthInstance();
     if (auth2 !== null)
     {
         auth2.signOut().then(function () {
-            alert("Estou dentro do if do sign out!");
-            console.log('User signed out.');
+           console.log('User signed out.');
         });
     }
 
@@ -62,8 +60,6 @@ function onSignIn(googleUser) {
 //    }
 
     var id_token = googleUser.getAuthResponse().id_token;
-
-    alert(id_token);
 
     login([{name: 'param.idToken', value: id_token}]);
 }

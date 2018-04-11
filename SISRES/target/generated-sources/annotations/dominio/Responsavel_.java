@@ -7,7 +7,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-03-17T09:47:49")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-04-10T23:36:20")
 @StaticMetamodel(Responsavel.class)
 public class Responsavel_ extends EntidadeNegocio_ {
 
@@ -17,6 +17,5 @@ public class Responsavel_ extends EntidadeNegocio_ {
     public static volatile SingularAttribute<Responsavel, Titulos> titulo;
     public static volatile SingularAttribute<Responsavel, String> nome;
     public static volatile SingularAttribute<Responsavel, String> email;
-    public static volatile SingularAttribute<Responsavel, Integer> numeroAleatorio;
 
 }

@@ -9,6 +9,8 @@ public class LeitorPropriedades
 {
     private Properties propriedades;
 
+    /** Construtor Padrão
+     */
     public LeitorPropriedades(String[] nomesArquivo)
     {
         propriedades = new Properties();

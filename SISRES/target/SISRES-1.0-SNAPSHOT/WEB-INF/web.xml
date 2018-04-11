@@ -15,7 +15,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>  
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -39,185 +39,80 @@
         <auth-method>FORM</auth-method>
         <realm-name>saltRealm</realm-name>
         <form-login-config>
-            <form-login-page>/faces/publico/login.xhtml</form-login-page>
-            <form-error-page>/faces/publico/login.xhtml</form-error-page>
+            <form-login-page>/publico/login.xhtml</form-login-page>
+            <form-error-page>/publico/login.xhtml</form-error-page>
         </form-login-config>
     </login-config>
-    
-<!--    <security-constraint>
+        
+    <security-constraint>
         <display-name>Pg servidor</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Servidor Area</web-resource-name>
-            <description>Protected Servidor Area</description>
-            <url-pattern>/faces/servidor/*</url-pattern>
-            <http-method>GET</http-method>
+            <description/>
+            <url-pattern>/servidor/*</url-pattern>
             <http-method>POST</http-method>
+            <http-method>GET</http-method>
             <http-method>HEAD</http-method>
             <http-method>PUT</http-method>
             <http-method>OPTIONS</http-method>
             <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>            
+            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>servidor</role-name>
-        </auth-constraint>  
-        <user-data-constraint>
+        </auth-constraint>
+<!--        <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>              
-    </security-constraint> -->
-    
+        </user-data-constraint>  -->
+    </security-constraint>
+
     <security-constraint>
-    <display-name>Pg servidor</display-name>
-    <web-resource-collection>
-        <web-resource-name>Protected Servidor Area</web-resource-name>
-        <description/>
-        <url-pattern>/faces/servidor/*</url-pattern>
-        <http-method>POST</http-method>
-        <http-method>HEAD</http-method>
-        <http-method>PUT</http-method>
-        <http-method>OPTIONS</http-method>
-        <http-method>TRACE</http-method>
-        <http-method>DELETE</http-method>
-    </web-resource-collection>
-    <auth-constraint>
-        <description/>
-        <role-name>servidor</role-name>
-     </auth-constraint>
-</security-constraint>
-    
-<!--    <security-constraint>
         <display-name>Pg administrador</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Administrador Area</web-resource-name>
-            <description>Protected Administrador Area</description>
-            <url-pattern>/faces/administrador/*</url-pattern>
-            <http-method>GET</http-method>
+            <description/>
+            <url-pattern>/administrador/*</url-pattern>
             <http-method>POST</http-method>
+            <http-method>GET</http-method>
             <http-method>HEAD</http-method>
             <http-method>PUT</http-method>
             <http-method>OPTIONS</http-method>
             <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>            
+            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>administrador</role-name>
-        </auth-constraint>  
-        <user-data-constraint>
+        </auth-constraint>
+<!--        <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>              
-    </security-constraint> -->
-    
-        <security-constraint>
-    <display-name>Pg administrador</display-name>
-    <web-resource-collection>
-        <web-resource-name>Protected Administrador Area</web-resource-name>
-        <description/>
-        <url-pattern>/faces/administrador/*</url-pattern>
-        <http-method>POST</http-method>
-        <http-method>HEAD</http-method>
-        <http-method>PUT</http-method>
-        <http-method>OPTIONS</http-method>
-        <http-method>TRACE</http-method>
-        <http-method>DELETE</http-method>
-    </web-resource-collection>
-    <auth-constraint>
-        <description/>
-        <role-name>administrador</role-name>
-     </auth-constraint>
-</security-constraint>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<!--    <security-constraint>
+        </user-data-constraint>  -->
+    </security-constraint>
+
+    <security-constraint>
         <display-name>Pg aluno</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Aluno Area</web-resource-name>
-            <description>Protected Aluno Area</description>
-            <url-pattern>/faces/aluno/*</url-pattern>
-            <http-method>GET</http-method>
+            <description/>
+            <url-pattern>/aluno/*</url-pattern>
             <http-method>POST</http-method>
+            <http-method>GET</http-method>
             <http-method>HEAD</http-method>
             <http-method>PUT</http-method>
             <http-method>OPTIONS</http-method>
             <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>            
+            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>aluno</role-name>
-        </auth-constraint>  
-        <user-data-constraint>
+        </auth-constraint>
+<!--        <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>              
-    </security-constraint> -->
-    
-        <security-constraint>
-    <display-name>Pg aluno</display-name>
-    <web-resource-collection>
-        <web-resource-name>Protected Aluno Area</web-resource-name>
-        <description/>
-        <url-pattern>/faces/aluno/*</url-pattern>
-        <http-method>POST</http-method>
-        <http-method>HEAD</http-method>
-        <http-method>PUT</http-method>
-        <http-method>OPTIONS</http-method>
-        <http-method>TRACE</http-method>
-        <http-method>DELETE</http-method>
-    </web-resource-collection>
-    <auth-constraint>
-        <description/>
-        <role-name>aluno</role-name>
-     </auth-constraint>
-</security-constraint>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<!--    
-    
-    <security-constraint>
-        <display-name>Pg Servidor Chefe</display-name>
-        <web-resource-collection>
-            <web-resource-name>Protected Servidor Chefe Area</web-resource-name>
-            <description>Protected Servidor Chefe Area</description>
-            <url-pattern>/faces/aluno/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-            <http-method>HEAD</http-method>
-            <http-method>PUT</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>            
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>servidor_chefe</role-name>
-        </auth-constraint>  
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>              
-    </security-constraint> -->
-    <!--   
+        </user-data-constraint>  -->
+    </security-constraint>
+
     <error-page>
         <error-code>403</error-code>
         <location>/publico/erroPermissaoNegada.xhtml</location>
@@ -229,12 +124,8 @@
     <error-page>
         <error-code>404</error-code>
         <location>/publico/erro.xhtml</location>
-    </error-page> -->
+    </error-page>
     
-    <!--    
-    <security-role>
-        <role-name>servidor_chefe</role-name>
-    </security-role>-->
     <security-role>
         <role-name>aluno</role-name>
     </security-role>

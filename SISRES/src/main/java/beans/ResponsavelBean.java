@@ -1,8 +1,5 @@
 package beans;
 
-import criptografia.Encripta;
-import dominio.Grupo;
-import dominio.PerfilGoogle;
 import dominio.Responsavel;
 import dominio.Titulos;
 import excecao.ExcecaoNegocio;
@@ -19,7 +16,6 @@ import javax.faces.context.FacesContext;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.event.RowEditEvent;
 import servico.GrupoServico;
-import servico.PerfilGoogleServico;
 import servico.ResponsavelServico;
 
 /** Classe responsável por realizar a comunicação do jsf do a camada de serviço do responsável.
@@ -34,17 +30,10 @@ public class ResponsavelBean implements Serializable
     private ResponsavelServico responsavelServico;
     
     @EJB
-    private PerfilGoogleServico googleServico;
-    
-    @EJB
     private GrupoServico grupoServico;
-    
-    private PerfilGoogle perfilGoogle;
 
     private List<Responsavel> responsaveis = new ArrayList<>();
-    
-//    private List<Grupo> grupos = new ArrayList<Grupo>();
-
+ 
     private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
     
     private List<Responsavel> participantes_do_deparamento = new ArrayList<>();
@@ -55,13 +44,9 @@ public class ResponsavelBean implements Serializable
 
     String senhaConfirmacao;
 
-    Encripta encripta;
-
     public ResponsavelBean()
     {
         responsavel = new Responsavel();
-        encripta = new Encripta();
-        perfilGoogle = new PerfilGoogle();
     }
 
     public Responsavel getUsuarioLogado()
@@ -69,17 +54,15 @@ public class ResponsavelBean implements Serializable
       return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");      
     }
     
+    /** Realiza a inserção do responsável no banco de dados.
+     */
     public void salvar()
     {
-//        perfilGoogle.setUsuario(responsavel);
-//        googleServico.persistePerfilGoogle(perfilGoogle);
-        
 
             try {
                 
                 atribuiGrupo();
-                
-//                responsavelServico.salvar(responsavel);
+                responsavelServico.salvar(responsavel);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável cadastrado com Sucesso!");
             }
             catch (ExcecaoNegocio ex) {
@@ -96,26 +79,30 @@ public class ResponsavelBean implements Serializable
         listar();
     }
     
+    /** Realiza a atribuição do grupo do responsável.
+     */
     public void atribuiGrupo()
     {
     
         switch(responsavel.getTitulo())
         {
             case Administrador:
-                grupoServico.teste();
-                grupoServico.associarAdministrador(responsavel);
+                
+                responsavel = grupoServico.associarAdministrador(responsavel);
                 break;
             case Aluno:
-                grupoServico.teste();
-                grupoServico.associarAluno(responsavel);
+                
+                responsavel = grupoServico.associarAluno(responsavel);
                 break;
             default:
-                grupoServico.teste();
-                grupoServico.associarServidor(responsavel);
+                
+                responsavel = grupoServico.associarServidor(responsavel);
                 break; 
         }
     }
     
+    /** Lista todos os responsáveis.
+     */
     public void listar()
     {
         responsaveis = responsavelServico.listar();
@@ -143,6 +130,8 @@ public class ResponsavelBean implements Serializable
         listar();
     }
 
+    /**Realiza a remoção do responsável.
+     */
     public void remover(Responsavel responsavel)
     {
         try {
@@ -159,6 +148,12 @@ public class ResponsavelBean implements Serializable
         listar();
     }
 
+    /**
+     * Exibe mensagens para o usuário em relação ao responsável.
+     *
+     * @param mensagem Mensagem que será exibida para o usuário
+     * @param severity Define o tipo da mensagem.
+     */
     protected void adicionarMensagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -259,24 +254,5 @@ public class ResponsavelBean implements Serializable
         titulos = Titulos.values();
         return titulos;
     }
-    
-    public PerfilGoogle getPerfilGoogle()
-    {
-        return perfilGoogle;
-    }
 
-    public void setPerfilGoogle(PerfilGoogle perfilGoogle)
-    {
-        this.perfilGoogle = perfilGoogle;
-    }
-    
-    public PerfilGoogleServico getGoogleServico()
-    {
-        return googleServico;
-    }
-
-    public void setGoogleServico(PerfilGoogleServico googleServico)
-    {
-        this.googleServico = googleServico;
-    }
 }
