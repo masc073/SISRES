@@ -8,23 +8,33 @@
         <title>SISRES</title>
         <script language="javaScript" type="text/javascript">
             function alterar_visibilidade() {
-                
+
                 var label = document.getElementById("form:titulo_label").textContent;
-                
+
                 if (label === "Aluno") {
-             
+
                     document.getElementById("form:output_unidade_organizacional").style.visibility = "hidden";
                     document.getElementById("form:unidadeOrganizacional").style.visibility = "hidden";
-                    
-                } else
-                {
+                    document.getElementById("form:matricula").style.visibility = "visible";
+                    document.getElementById("form:matricula_input").style.visibility = "visible";
+
+                } else if (label === 'Administrador') {
+
+                    document.getElementById("form:output_unidade_organizacional").style.visibility = "hidden";
+                    document.getElementById("form:unidadeOrganizacional").style.visibility = "hidden";
+                    document.getElementById("form:matricula").style.visibility = "hidden";
+                    document.getElementById("form:matricula_input").style.visibility = "hidden";
+                } else {
                     document.getElementById("form:output_unidade_organizacional").style.visibility = "visible";
                     document.getElementById("form:unidadeOrganizacional").style.visibility = "visible";
+
+                    document.getElementById("form:matricula").style.visibility = "hidden";
+                    document.getElementById("form:matricula_input").style.visibility = "hidden";
                 }
             }
         </script>
     </h:head>
-    <h:body>
+    <h:body onload="alterar_visibilidade()">
 
         <h:form id="form">
             <p:growl id="messages" showDetail="false" autoUpdate="true" />
@@ -42,20 +52,23 @@
                     <p:messages  for="email" />
 
                     <p:outputLabel for="titulo">Título:</p:outputLabel>
-                    <p:selectOneMenu onchange="alterar_visibilidade();" id="titulo" value="#{responsavelBean.responsavel.titulo}">
+                    <p:selectOneMenu onchange="alterar_visibilidade();" id="titulo" value="#{responsavelBean.responsavel.titulo}" >
                         <f:selectItems value="#{responsavelBean.titulos}" var="titulo" itemValue="#{titulo}" itemLabel="#{titulo}"  />
                     </p:selectOneMenu>
                     <p:messages  for="titulo" />
                     <br/>
 
-                    <!--<c:if test="#{responsavelBean.responsavel.titulo != 'Aluno' }" >-->
-                        <p:outputLabel id="output_unidade_organizacional" for="unidadeOrganizacional" value="Unidade Organizacional :"/>
-                        <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{responsavelBean.responsavel.unidadeOrganizacional}">
-                            <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
-                        </p:selectOneMenu>
-                        <p:messages  for="unidadeOrganizacional" />
-                        <br/>
-                    <!--</c:if>-->
+                    <p:outputLabel id="output_unidade_organizacional" for="unidadeOrganizacional" value="Unidade Organizacional :"/>
+                    <p:selectOneMenu id="unidadeOrganizacional" converter="entidadeConverter" value="#{responsavelBean.responsavel.unidadeOrganizacional}">
+                        <f:selectItems value="#{unidadeOrganizacionalBean.unidadesOrganizacionais}" var="unidadeOrganizacional" itemValue="#{unidadeOrganizacional}" itemLabel="#{unidadeOrganizacional.nome}"  />
+                    </p:selectOneMenu>
+                    <p:messages  for="unidadeOrganizacional" />
+                    <br/>
+
+                    <p:outputLabel id='matricula' for="matricula_input">Matrícula: </p:outputLabel>
+                    <p:inputText id="matricula_input" value="#{responsavelBean.responsavel.matricula}"/>
+                    <p:messages  for="matricula_input"/>
+                    <br/>
 
                 </h:panelGrid>
                 <p:separator />

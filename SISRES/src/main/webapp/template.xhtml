@@ -34,12 +34,8 @@
         <script src="https://apis.google.com/js/api:client.js"></script>
         <script>
             function signOut() {
-                alert("Cheguei");
                 var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                    alert("Cheguei");
-                    console.log('User signed out.');
-                });
+                auth2.signOut();
             }
 
             function onLoad() {
@@ -58,9 +54,9 @@
 
                 <p:menu class="menu" style="width: 250px">
                     <p:submenu class="submenu" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" icon="ui-icon-home" label="Início">
-                        <p:menuitem value="Meus Requerimentos" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/aluno/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-                        <p:menuitem value="Requerimentos" rendered="#{request.isUserInRole('aluno')}"  url="/aluno/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
-                        <p:menuitem value="Histórico" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/aluno/requerimento/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
+                        <p:menuitem value="Meus Requerimentos" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/comum/atividade/atividade.xhtml"  update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                        <p:menuitem value="Requerimentos" rendered="#{request.isUserInRole('aluno')}"  url="/comum/requerimento/requerimento.xhtml" update="messages" icon="ui-icon-document" />
+                        <p:menuitem value="Histórico" rendered="#{request.isUserInRole('aluno') || request.isUserInRole('servidor')}" url="/comum/atividade/requerimentosFinalizados.xhtml" icon="ui-icon-folder-collapsed"/>
                         <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
                     </p:submenu>
                     <p:submenu class="submenu" rendered="#{request.isUserInRole('administrador')}" label="Cadastros" icon="ui-icon-pencil" >

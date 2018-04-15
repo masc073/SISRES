@@ -42,6 +42,9 @@ public class Responsavel extends EntidadeNegocio implements Serializable
 
     @Column
     private boolean aprovado;
+    
+    @Column
+    private String matricula;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_grupo", referencedColumnName = "id")
@@ -142,12 +145,28 @@ public class Responsavel extends EntidadeNegocio implements Serializable
         return titulo;
     }
 
-    /** Defineo título do responsável
+    /** Define o título do responsável
      * @param titulo Título do responsável
      */
     public void setTitulo(Titulos titulo)
     {
         this.titulo = titulo;
+    }
+    
+    /** Retorna a Matrícula, caso o responsável seja um aluno.
+     * @return String Matrícula.
+     */
+    public String getMatricula()
+    {
+        return matricula;
+    }
+
+    /** Atribui a Matrícula, caso o responsável seja um aluno.
+     * @param matricula Matrícula.
+     */
+    public void setMatricula(String matricula)
+    {
+        this.matricula = matricula;
     }
 
 }

@@ -31,7 +31,7 @@
                         <f:facet name="output"><h:outputText value="#{processo.responsavel.nome}" /></f:facet>
                         <f:facet name="input">
                             <p:selectOneMenu converter="entidadeConverter" value="#{processo.responsavel}">
-                                <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                                <f:selectItems value="#{responsavelBean.servidores}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
                             </p:selectOneMenu>
                         </f:facet>
                     </p:cellEditor>

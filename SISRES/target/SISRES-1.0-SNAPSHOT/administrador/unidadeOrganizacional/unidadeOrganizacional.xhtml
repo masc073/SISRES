@@ -30,7 +30,7 @@
 
                 <p:outputLabel for="responsavel" value="Responsável :"/>
                 <p:selectOneMenu id="responsavel" converter="entidadeConverter" value="#{unidadeOrganizacionalBean.unidadeOrganizacional.responsavel}">
-                    <f:selectItems value="#{responsavelBean.responsaveis}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                    <f:selectItems value="#{responsavelBean.servidores}" noSelectionValue="true" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
                 </p:selectOneMenu>
 
                 <br/>

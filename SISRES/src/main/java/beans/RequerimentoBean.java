@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
@@ -58,6 +59,8 @@ public class RequerimentoBean implements Serializable
 
     private List<Requerimento> requerimentos_finalizados = new ArrayList<>();
 
+    private List<Requerimento> fila_requerimentos = new ArrayList<>();
+
     private List<Arquivo> arquivos = new ArrayList<>();
 
     private Requerimento Requerimento;
@@ -68,12 +71,15 @@ public class RequerimentoBean implements Serializable
 
     private StreamedContent conteudo_arquivo;
 
+    Responsavel solicitante;
+
     public RequerimentoBean()
     {
         Requerimento = new Requerimento();
         atividade_atual = new Atividade();
         atividade_anterior = new Atividade();
         arquivos = new ArrayList<>();
+        solicitante = getUsuarioLogado();
 
     }
 
@@ -82,11 +88,11 @@ public class RequerimentoBean implements Serializable
      */
     public void salvar()
     {
-        Responsavel solicitante;
-        solicitante = getUsuarioLogado();
+
         try {
             Requerimento.criarAtividades(Requerimento.getProcesso().getAtividades());
             Requerimento.setSolicitante(solicitante);
+            Requerimento.setNumero(gera_numero_aleatorio());
             atividade_atual = Requerimento.getAtividades().get(0);
             Requerimento.setDataDeInicio(new Date());
             RequerimentoServico.salvar(Requerimento);
@@ -104,6 +110,29 @@ public class RequerimentoBean implements Serializable
 
         listar();
         Requerimento = new Requerimento();
+    }
+
+    public int gera_numero_aleatorio()
+    {
+        boolean igual = false;
+        int numero;
+        Random gerador = new Random();
+
+        numero = gerador.nextInt(100000);
+
+        do {
+            igual = false;
+            for (Requerimento requerimento_atual : Requerimentos) {
+                if (requerimento_atual.getNumero() == numero) {
+                    igual = true;
+                    numero = gerador.nextInt(100000);
+                    break;
+                }
+            }
+        }
+        while (igual == true);
+
+        return numero;
     }
 
     /**
@@ -263,7 +292,7 @@ public class RequerimentoBean implements Serializable
 
             hoje_formatado = dataFormatada.format(hoje);
             inicio_formatado = dataFormatada.format(inicio);
-           
+
             if (!inicio_formatado.equals(hoje_formatado) || qtd_dias_cont != 0) {
 
                 hoje = cal.getTime();
@@ -272,7 +301,7 @@ public class RequerimentoBean implements Serializable
 
                 while (!inicio_formatado.equals(hoje_formatado)) {
                     for (Feriado feriado_atual : feriados) {
-                        
+
                         feriado_formatado = dataFormatada.format(feriado_atual.getData_do_feriado());
                         if (feriado_formatado.equals(inicio_formatado)) {
                             feriado = true;
@@ -610,4 +639,26 @@ public class RequerimentoBean implements Serializable
             }
         }
     }
+
+    public Responsavel getSolicitante()
+    {
+        return solicitante;
+    }
+
+    public void setSolicitante(Responsavel solicitante)
+    {
+        this.solicitante = solicitante;
+    }
+
+    public List<Requerimento> getFila_requerimentos()
+    {
+        fila_requerimentos = RequerimentoServico.fila_requerimentos(getUsuarioLogado());
+        return fila_requerimentos;
+    }
+
+    public void setFila_requerimentos(List<Requerimento> fila_requerimentos)
+    {
+        this.fila_requerimentos = fila_requerimentos;
+    }
+
 }

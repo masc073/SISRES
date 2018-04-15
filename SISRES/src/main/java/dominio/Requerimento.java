@@ -51,10 +51,9 @@ public class Requerimento extends EntidadeNegocio implements Serializable
 
     @Column
     private boolean finalizado;
-
-    @NotNull
+    
     @Column
-    private String matriculaAluno;
+    private int numero;
 
     boolean atrasado;
 
@@ -189,22 +188,6 @@ public class Requerimento extends EntidadeNegocio implements Serializable
         this.finalizado = finalizado;
     }
     
-    /** Retorna a matrícula do aluno
-     * @return String matrícula do aluno
-     */
-    public String getMatriculaAluno()
-    {
-        return matriculaAluno;
-    }
-
-    /** Atribui a matrícula do aluno
-     * @param matriculaAluno matrícula do aluno
-     */
-    public void setMatriculaAluno(String matriculaAluno)
-    {
-        this.matriculaAluno = matriculaAluno;
-    }
-    
     /** Retorna atividades do requerimento
      * @return List<Atividade> Atividades que define o requerimento
      */
@@ -257,6 +240,16 @@ public class Requerimento extends EntidadeNegocio implements Serializable
     public void setAtrasado(boolean atrasado)
     {
         this.atrasado = atrasado;
+    }
+
+    public int getNumero()
+    {
+        return numero;
+    }
+
+    public void setNumero(int numero)
+    {
+        this.numero = numero;
     }
 
 }

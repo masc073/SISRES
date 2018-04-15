@@ -90,7 +90,7 @@ public class GoogleSign implements Serializable
 //                    System.out.print("Teste: " + request.);
                     
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavel_atual);
-                    ec.redirect("template.xhtml");
+                    ec.redirect("/SISRES/template.xhtml");
                 }
                 catch (IOException ex) {
                     Logger.getLogger(GoogleSign.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,7 +118,7 @@ public class GoogleSign implements Serializable
         request.logout();
         System.out.println("Invalidando Sessão");
         
-//        FacesContext.getCurrentInstance().getExternalContext().redirect("/SISRES/publico/login.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/SISRES/publico/login.xhtml");
         return "sair";
     }
 

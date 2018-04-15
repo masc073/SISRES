@@ -18,7 +18,10 @@ import org.primefaces.event.RowEditEvent;
 import servico.GrupoServico;
 import servico.ResponsavelServico;
 
-/** Classe responsável por realizar a comunicação do jsf do a camada de serviço do responsável.
+/**
+ * Classe responsável por realizar a comunicação do jsf do a camada de serviço
+ * do responsável.
+ *
  * @author Natália Amâncio
  */
 @ManagedBean(name = "responsavelBean")
@@ -28,16 +31,18 @@ public class ResponsavelBean implements Serializable
 
     @EJB
     private ResponsavelServico responsavelServico;
-    
+
     @EJB
     private GrupoServico grupoServico;
 
     private List<Responsavel> responsaveis = new ArrayList<>();
- 
+    
+    private List<Responsavel> servidores = new ArrayList<>();
+
     private List<Responsavel> lideres_nao_aprovados = new ArrayList<>();
-    
+
     private List<Responsavel> participantes_do_deparamento = new ArrayList<>();
-    
+
     private Titulos[] titulos;
 
     private Responsavel responsavel;
@@ -51,16 +56,20 @@ public class ResponsavelBean implements Serializable
 
     public Responsavel getUsuarioLogado()
     {
-      return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");      
+        return (Responsavel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLogado");
     }
-    
-    /** Realiza a inserção do responsável no banco de dados.
+
+    /**
+     * Realiza a inserção do responsável no banco de dados.
      */
     public void salvar()
     {
-
+        if (responsavel.getTitulo().equals(Titulos.Aluno) && responsavel.getMatricula().isEmpty()) {
+            adicionarMensagem(FacesMessage.SEVERITY_INFO, "Informar a matrícula do aluno!");
+        }
+        else {
             try {
-                
+
                 atribuiGrupo();
                 responsavelServico.salvar(responsavel);
                 adicionarMensagem(FacesMessage.SEVERITY_INFO, "Responsável cadastrado com Sucesso!");
@@ -74,34 +83,36 @@ public class ResponsavelBean implements Serializable
                     adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
                 }
             }
+        }
 
         responsavel = new Responsavel();
         listar();
     }
-    
-    /** Realiza a atribuição do grupo do responsável.
+
+    /**
+     * Realiza a atribuição do grupo do responsável.
      */
     public void atribuiGrupo()
     {
-    
-        switch(responsavel.getTitulo())
-        {
+
+        switch (responsavel.getTitulo()) {
             case Administrador:
-                
+
                 responsavel = grupoServico.associarAdministrador(responsavel);
                 break;
             case Aluno:
-                
+
                 responsavel = grupoServico.associarAluno(responsavel);
                 break;
             default:
-                
+
                 responsavel = grupoServico.associarServidor(responsavel);
-                break; 
+                break;
         }
     }
-    
-    /** Lista todos os responsáveis.
+
+    /**
+     * Lista todos os responsáveis.
      */
     public void listar()
     {
@@ -130,7 +141,8 @@ public class ResponsavelBean implements Serializable
         listar();
     }
 
-    /**Realiza a remoção do responsável.
+    /**
+     * Realiza a remoção do responsável.
      */
     public void remover(Responsavel responsavel)
     {
@@ -233,13 +245,13 @@ public class ResponsavelBean implements Serializable
         }
         listar();
     }
-    
+
     public List<Responsavel> getParticipantes_do_deparamento()
     {
         Responsavel usuarioAtual;
-        
+
         usuarioAtual = getUsuarioLogado();
-        
+
         participantes_do_deparamento = responsavelServico.listar_nao_aprovados(usuarioAtual);
         return participantes_do_deparamento;
     }
@@ -248,11 +260,24 @@ public class ResponsavelBean implements Serializable
     {
         this.participantes_do_deparamento = participantes_do_deparamento;
     }
-    
+
     public Titulos[] getTitulos()
     {
         titulos = Titulos.values();
         return titulos;
     }
+    
+    public List<Responsavel> getServidores()
+    {
+        if (servidores.isEmpty()) {
+            servidores =  responsavelServico.listar_servidores();
+        }
+        return servidores;
+    }
 
+    public void setServidores(List<Responsavel> servidores)
+    {
+        this.servidores = servidores;
+    }
+    
 }

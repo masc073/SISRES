@@ -35,6 +35,7 @@ public class UnidadeOrganizacional extends EntidadeNegocio implements Serializab
     @Enumerated(EnumType.STRING)
     private TiposUnidadesOrganizacionais tiposUnidadesOrganizacionais;
     
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_responsavel", referencedColumnName = "id")
     private Responsavel responsavel;

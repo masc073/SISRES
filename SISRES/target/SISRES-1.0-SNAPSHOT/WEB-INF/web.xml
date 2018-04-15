@@ -49,7 +49,7 @@
         <web-resource-collection>
             <web-resource-name>Protected Servidor Area</web-resource-name>
             <description/>
-            <url-pattern>/servidor/*</url-pattern>
+            <url-pattern>/comum/atividade/*</url-pattern>
             <http-method>POST</http-method>
             <http-method>GET</http-method>
             <http-method>HEAD</http-method>
@@ -95,7 +95,7 @@
         <web-resource-collection>
             <web-resource-name>Protected Aluno Area</web-resource-name>
             <description/>
-            <url-pattern>/aluno/*</url-pattern>
+            <url-pattern>/comum/atividade/*</url-pattern>
             <http-method>POST</http-method>
             <http-method>GET</http-method>
             <http-method>HEAD</http-method>

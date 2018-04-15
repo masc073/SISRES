@@ -1,6 +1,7 @@
 package servico;
 
 import dominio.Responsavel;
+import dominio.Titulos;
 import excecao.ExcecaoNegocio;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -143,5 +144,20 @@ public class ResponsavelServico extends Servico
         return responsaveis;
 
     }
+    
+    public List<Responsavel> listar_servidores()
+    {
+        em.flush();
+        TypedQuery<Responsavel> query;
 
+        query = em.createQuery("select r from Responsavel r where r.titulo != ?1 AND r.titulo != ?2  ", Responsavel.class );
+        query.setParameter(1, Titulos.Administrador);        
+        query.setParameter(2, Titulos.Aluno);
+
+        List<Responsavel> responsaveis = query.getResultList();
+
+        return responsaveis;
+
+    }
+    
 }

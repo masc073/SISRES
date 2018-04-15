@@ -56,20 +56,26 @@ public class ProcessoBean implements Serializable
     public void salvar()
     {
         if (!atividades.isEmpty()) {
-            try {
-                processo.setAtividades(atividades);
-                ProcessoServico.salvar(processo);
+            if (processo.getDuracaoMaximaEmDias() != 0) {
 
-                adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
-            }
-            catch (ExcecaoNegocio ex) {
-                adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
-            }
-            catch (EJBException ex) {
-                if (ex.getCause() instanceof ConstraintViolationException) {
-                    MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
-                    adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
+                try {
+                    processo.setAtividades(atividades);
+                    ProcessoServico.salvar(processo);
+
+                    adicionarMensagem(FacesMessage.SEVERITY_INFO, "Processo cadastrado com Sucesso!");
                 }
+                catch (ExcecaoNegocio ex) {
+                    adicionarMensagem(FacesMessage.SEVERITY_WARN, ex.getMessage());
+                }
+                catch (EJBException ex) {
+                    if (ex.getCause() instanceof ConstraintViolationException) {
+                        MensagemExcecao mensagemExcecao = new MensagemExcecao(ex.getCause());
+                        adicionarMensagem(FacesMessage.SEVERITY_WARN, mensagemExcecao.getMensagem());
+                    }
+                }
+            }
+            else {
+                adicionarMensagem(FacesMessage.SEVERITY_ERROR, "A duração do processo tem quer ser maior que 0.");
             }
         }
         else {
@@ -324,7 +330,10 @@ public class ProcessoBean implements Serializable
         }
     }
 
-    /** Retorna a variaável anexarArquivo como String para ser exibido na tela : Sim ou não.
+    /**
+     * Retorna a variaável anexarArquivo como String para ser exibido na tela :
+     * Sim ou não.
+     *
      * @param atividade_atual
      * @return String
      */

@@ -8,8 +8,7 @@
 
              template="../../template.xhtml">
 
-
-    <p:fieldset legend="Novo Processo">
+    <p:fieldset legend="Novo Processo" >
         <br/>
         <h:form id="form_atividades">
             <p:fieldset legend="Fluxo do Processo" >
@@ -94,11 +93,11 @@
                     <p:inputText id="value_nome" value="#{processoBean.processo.nome}" label="nome"/>
 
                     <h:outputText value="Duração em dias: " />
-                    <p:spinner id="value_duracao_input" min="1" value="#{processoBean.processo.duracaoMaximaEmDias}"/>
+                    <p:spinner id="value_duracao_input" min="1"  value="#{processoBean.processo.duracaoMaximaEmDias}"/>
 
                     <p:outputLabel for="responsavel_processo" value="Responsável :"/>
                     <p:selectOneMenu id="responsavel_processo" converter="entidadeConverter" value="#{processoBean.processo.responsavel}">
-                        <f:selectItems value="#{responsavelBean.responsaveis}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
+                        <f:selectItems value="#{responsavelBean.servidores}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"  />
                     </p:selectOneMenu>
 
                 </h:panelGrid>
