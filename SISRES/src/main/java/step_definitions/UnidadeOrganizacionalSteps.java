@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import static step_definitions.BrowserManager.driver;
 /**
  * Responsável por realizar o passo a passo da execução dos testes com o cucumber com relação a Unidade Organizacional.
@@ -27,8 +29,51 @@ public class UnidadeOrganizacionalSteps
         {
             DbUnitUtil.selecionaDataset(Dataset.Departamento);
             DbUnitUtil.inserirDados();
+            loga_usuario();
         }
     }
+    
+        public void loga_usuario()
+    {
+        BrowserManager.openFirefox("http://localhost:8080/SISRES");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        String url = driver.getCurrentUrl();
+
+        if (driver.getCurrentUrl().equals("http://localhost:8080/SISRES/")) {
+
+            driver.findElement(By.className("abcRioButtonContentWrapper")).click();
+            
+            driver.switchTo().window("");
+            driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+            
+            for (String winHandle : driver.getWindowHandles()) {
+                driver.switchTo().window(winHandle);
+            }
+            
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            if (!driver.getCurrentUrl().equals("http://localhost:8080/SISRES/template.xhtml")) {
+
+                WebElement email_phone = driver.findElement(By.xpath("//input[@id='identifierId']"));
+                email_phone.sendKeys("ifpeadm01@gmail.com");
+                driver.findElement(By.id("identifierNext")).click();
+                WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
+                WebDriverWait wait = new WebDriverWait(driver, 20);
+                wait.until(ExpectedConditions.elementToBeClickable(password));
+                password.sendKeys("administrador01");
+                driver.findElement(By.id("passwordNext")).click();
+
+                driver.switchTo().window("");
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+                driver.switchTo().window(driver.getWindowHandle());
+            }
+
+            driver.findElement(By.xpath("//a[@href=\'/SISRES/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml\']")).click();
+        }
+    }
+
 
     @Dado("^a tela inicial de Unidades Organizacionais aberta$")
     public void a_tela_inicial_de_unidades_organizacionais_aberta() throws Throwable

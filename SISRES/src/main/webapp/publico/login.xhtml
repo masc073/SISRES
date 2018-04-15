@@ -25,15 +25,15 @@
 
         </script>
     </h:head>
-    <body style=" background-image: url('/SISRES/imagens/folhas.png');  background-size: 100%; background-repeat: no-repeat;">
+    <body style=" background-image: url('/SISRES/imagens/livros.png');  background-size: 60%; background-repeat: no-repeat;">
         <h:body >
             <h:form>  
-                <div style="width:300px; height:180px; position:absolute; top:50%; left:50%; margin-top:-50px;
-                     margin-left:-50px;">
-                    <h3>Sistema de Requerimento Estudantil</h3>
+                <div style="width:400px; height:180px; position:absolute; top:40%; left:70%; margin-top:-20px;
+                     margin-left:-50px; align-content: center; align-items: center;">
+                    <h2 style="margin-left: -100px;">Sistema de Requerimento Estudantil</h2>
                     <p:growl id="messages" showDetail="false" autoUpdate="true" />
                     <div style="width: 180px" class="g-signin2" onclick="login()" data-onsuccess="onSignIn"></div>
-                    <p:remoteCommand name="login" actionListener="#{googleSign.loginGoogle()}" />
+                    <p:remoteCommand  name="login" actionListener="#{googleSign.loginGoogle()}" />
                     <p:commandButton style="width: 180px; margin-top: 5px;" action="cadastro?faces-redirect=true" immediate="true" value="Cadastre-se!" />
                 </div>
             </h:form> 

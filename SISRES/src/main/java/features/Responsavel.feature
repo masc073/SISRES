@@ -12,7 +12,6 @@ Funcionalidade: Testar as operacoes basicas do responsavel
       | "Carlos Macedo"   | "carlos_macedo@gmail.com"  | "Professor"       | "Biblioteca"                    |
       | "Renata Macia"    | "renata_macia@gmail.com"   | "Administrador"   | ""                              |
       | "Joaquim Nunes"   | "joaquim_nunes@gmail.com"  | "diretor"         | "Serviço Social - Psicologia"   |
-      | "Administrador"   | "ifpeadm01@gmail.com"      | "Administrador"   | ""                              |
 
 #  Esquema do Cenario: Atualizar o nome do responsavel
 #    Dado a tela inicial do responsavel aberta

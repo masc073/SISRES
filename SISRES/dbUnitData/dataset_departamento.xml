@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <responsavel id="1" nome="Livia Costa Carvalho"  />
-    <responsavel id="2" nome="Erick Lima Barros"  />
-    <responsavel id="3" nome="Alex Santos Sousa"  />
-    <responsavel id="4" nome="Maria Cunha Pinto"  />
-    <responsavel id="5" nome="Bruno Oliveira Castro"  />
+    <responsavel id="1" nome="Livia Costa Carvalho" titulo="Servidor" />
+    <responsavel id="2" nome="Erick Lima Barros" titulo="Servidor" />
+    <responsavel id="3" nome="Alex Santos Sousa" titulo="Servidor" />
+    <responsavel id="4" nome="Maria Cunha Pinto" titulo="Servidor" />
+    <responsavel id="5" nome="Bruno Oliveira Castro" titulo="Servidor" />
+    <responsavel id="6" email="ifpeadm01@gmail.com" nome="Administrador" titulo="Administrador" id_grupo="2"  />
 </dataset>

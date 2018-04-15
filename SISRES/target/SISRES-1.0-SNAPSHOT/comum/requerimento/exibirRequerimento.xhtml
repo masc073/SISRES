@@ -11,6 +11,9 @@
         <p:fieldset legend="Requerimento" style="margin-left: 3px; width: 990px;" >
 
             <h:panelGrid columns="2" style="float: left;" cellspacing="10px;" >
+                
+                <p:outputLabel value="Número" for="numero" style="font-weight: bold;"/>
+                <p:outputLabel id="numero" value="#{requerimentoBean.requerimento.numero}" />
 
                 <p:outputLabel value="Matrícula:" for="matricula" style="font-weight: bold;"/>
                 <p:outputLabel id="matricula" value="#{requerimentoBean.requerimento.solicitante.matricula}" />

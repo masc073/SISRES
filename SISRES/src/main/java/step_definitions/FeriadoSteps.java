@@ -20,7 +20,7 @@ import static step_definitions.BrowserManager.driver;
 
 /**
  * Responsável por realizar o passo a passo da execução dos testes com o
- * cucumber com relaçã ao feriado.
+ * cucumber com relação ao feriado.
  *
  * @author Natália
  */
@@ -35,14 +35,15 @@ public class FeriadoSteps
         if (DbUnitUtil.ultimo_executado != Dataset.Vazio) {
             DbUnitUtil.selecionaDataset(Dataset.Vazio);
             DbUnitUtil.inserirDados();
+            loga_usuario();
         }
     }
 
     WebElement input_nome, input_data, button_check;
     Boolean usuario_logado = false;
-
-    @Dado("^o administrador logado e tela inicial de feriados aberta$")
-    public void o_adminitrador_a_tela_de_cadastro_de_feriados_aberta()
+    
+    
+    public void loga_usuario()
     {
         BrowserManager.openFirefox("http://localhost:8080/SISRES");
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -52,42 +53,41 @@ public class FeriadoSteps
         if (driver.getCurrentUrl().equals("http://localhost:8080/SISRES/")) {
 
             driver.findElement(By.className("abcRioButtonContentWrapper")).click();
-
+            
+            driver.switchTo().window("");
+            driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+            
             for (String winHandle : driver.getWindowHandles()) {
                 driver.switchTo().window(winHandle);
             }
+            
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-            driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+            if (!driver.getCurrentUrl().equals("http://localhost:8080/SISRES/template.xhtml")) {
 
-            WebElement email_phone = driver.findElement(By.xpath("//input[@id='identifierId']"));
-            email_phone.sendKeys("ifpeadm01@gmail.com");
-            driver.findElement(By.id("identifierNext")).click();
-            WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-            WebDriverWait wait = new WebDriverWait(driver, 20);
-            wait.until(ExpectedConditions.elementToBeClickable(password));
-            password.sendKeys("administrador01");
-            driver.findElement(By.id("passwordNext")).click();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                WebElement email_phone = driver.findElement(By.xpath("//input[@id='identifierId']"));
+                email_phone.sendKeys("ifpeadm01@gmail.com");
+                driver.findElement(By.id("identifierNext")).click();
+                WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
+                WebDriverWait wait = new WebDriverWait(driver, 20);
+                wait.until(ExpectedConditions.elementToBeClickable(password));
+                password.sendKeys("administrador01");
+                driver.findElement(By.id("passwordNext")).click();
 
-            for (String winHandle : driver.getWindowHandles()) {;
-                driver.switchTo().window(winHandle);
+                driver.switchTo().window("");
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+                driver.switchTo().window(driver.getWindowHandle());
             }
-            
-            
+
             driver.findElement(By.xpath("//a[@href=\'/SISRES/administrador/feriado/feriado.xhtml\']")).click();
-//            List<WebElement> menu = driver.findElements(By.xpath("//a[@href=\"/SISRES/administrador/feriado/feriado.xhtml\"]"));
-//      
-//            for (WebElement option : menu) {
-//
-//                if (option.getText().equals("Feriados")) {
-//                    option.click();
-//                    break;
-//                }
-//            }
         }
-        else {
-            BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/feriado/feriado.xhtml");
-        }
+    }
+
+    @Dado("^tela inicial de feriados aberta$")
+    public void o_adminitrador_a_tela_de_cadastro_de_feriados_aberta()
+    {
+         BrowserManager.openFirefox("http://localhost:8080/SISRES/administrador/feriado/feriado.xhtml");
     }
 
     @Quando("^o administrador informar a \"([^\"]*)\" e o \"([^\"]*)\" do feriado$")

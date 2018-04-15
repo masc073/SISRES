@@ -32,10 +32,11 @@ import javax.servlet.http.HttpSession;
 import servico.GrupoServico;
 import servico.ResponsavelServico;
 
-/** Classe responsável por realizar o login do Google.
+/**
+ * Classe responsável por realizar o login do Google.
+ *
  * @author Natália Amâncio
  */
-
 @ManagedBean(name = "googleSign")
 public class GoogleSign implements Serializable
 {
@@ -52,7 +53,9 @@ public class GoogleSign implements Serializable
     @EJB
     private ResponsavelServico responsavelServico;
 
-    /** Realiza a comunicação com o Google, para realizar o login do usuário.
+    /**
+     * Realiza a comunicação com o Google, para realizar o login do usuário.
+     *
      * @exception ServletException
      */
     public void loginGoogle() throws ServletException, IOException
@@ -68,14 +71,14 @@ public class GoogleSign implements Serializable
 
             setUsername(email);
 
-            String nome = (String) payload.get("name");
-
-            ExternalContext ec = fc.getExternalContext();
-            HttpSession session = (HttpSession) ec.getSession(true);
-
             Responsavel responsavel_atual = consultarResponsavel(username);
 
             if (responsavel_atual != null) {
+
+                String nome = (String) payload.get("name");
+
+                ExternalContext ec = fc.getExternalContext();
+                HttpSession session = (HttpSession) ec.getSession(true);
 
                 session.setAttribute("nome", nome);
                 session.setAttribute("email", email);
@@ -83,12 +86,12 @@ public class GoogleSign implements Serializable
 
                 HttpServletRequest request = (HttpServletRequest) ec.getRequest();
                 try {
-    
+
                     System.out.println("Email: " + email);
 
                     request.login(email, payload.getSubject());
 //                    System.out.print("Teste: " + request.);
-                    
+
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLogado", responsavel_atual);
                     ec.redirect("/SISRES/template.xhtml");
                 }
@@ -98,13 +101,14 @@ public class GoogleSign implements Serializable
             }
             else {
                 adicionarMessagem(FacesMessage.SEVERITY_INFO, "Usuário não cadastrado no sistema. Favor cadastre-se!");
-                logout();
+//                logout();
             }
         }
 //        }
     }
 
-    /** Realiza o logout do usuário, invalidando o seu token.
+    /**
+     * Realiza o logout do usuário, invalidando o seu token.
      */
     public String logout() throws ServletException, IOException
     {
@@ -117,12 +121,14 @@ public class GoogleSign implements Serializable
         HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
         request.logout();
         System.out.println("Invalidando Sessão");
-        
+
         FacesContext.getCurrentInstance().getExternalContext().redirect("/SISRES/publico/login.xhtml");
         return "sair";
     }
 
-    /** Valida a integridade do Token recebido.
+    /**
+     * Valida a integridade do Token recebido.
+     *
      * @param idToken Token recebido após login do google.
      */
     private Payload verificarIntegridade(String idToken)
@@ -134,7 +140,7 @@ public class GoogleSign implements Serializable
         Payload payload = null;
 
         try {
-            System.out.println("Tokeeeeeeeeen : " +  idToken);
+            System.out.println("Tokeeeeeeeeen : " + idToken);
             GoogleIdToken googleIdToken = verifier.verify(idToken);
             if (idToken != null) {
                 payload = googleIdToken.getPayload();
@@ -163,22 +169,25 @@ public class GoogleSign implements Serializable
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    
-    /** Retorna o IdToken
+    /**
+     * Retorna o IdToken
      */
     public String getIdToken()
     {
         return idToken;
     }
 
-    /** Seta valor para o idToken
+    /**
+     * Seta valor para o idToken
      */
     public void setIdToken(String idToken)
     {
         this.idToken = idToken;
     }
 
-    /** Busca responsável por email.
+    /**
+     * Busca responsável por email.
+     *
      * @param email Email do usuário.
      */
     public Responsavel consultarResponsavel(String email)
@@ -196,14 +205,16 @@ public class GoogleSign implements Serializable
         }
     }
 
-    /** Retorna o nome do usuário
+    /**
+     * Retorna o nome do usuário
      */
     public String getUsername()
     {
         return username;
     }
 
-    /** Seta o nome do usuário
+    /**
+     * Seta o nome do usuário
      */
     public void setUsername(String username)
     {

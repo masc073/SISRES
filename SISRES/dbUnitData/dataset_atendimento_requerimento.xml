@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    
+     <!-- RESPONSÁVEIS -->
+    <responsavel id="1" nome="Lavinia Barbosa Goncalves" titulo="Servidor" />
+    <responsavel id="2" nome="Nicole Goncalves Castro" titulo="Servidor" />
+    <responsavel id="3" nome="Beatrice Araujo Gomes" titulo="Servidor" />
+    <responsavel id="4" nome="Murilo Carvalho Barros" titulo="Servidor" />
+    <responsavel id="5" nome="André Costa Azevedo" email="ifpeservidor@gmail.com" titulo="Servidor" id_grupo="1" />
+    <responsavel id="6" nome="Livia Costa Carvalho" titulo="Servidor"/>
+    <responsavel id="7" nome="Erick Lima Barros" email="ifpeadm01@gmail.com" titulo="Servidor" id_grupo="1" />
+    <responsavel id="8" nome="Alex Santos Sousa" titulo="Servidor" />
+    <responsavel id="9" nome="Aluno" titulo="Aluno" matricula = "2014Y6-RC0331" email = "ifpealuno@gmail.com" id_grupo = "0" />
+    
+    <!-- DEPARTAMENTOS -->
+     <unidadeOrganizacional id="1" nome="Departamento de gestão de tecnologia da informação" sigla="DGTI" id_responsavel="1" />    
+     <unidadeOrganizacional id="2" nome="Diretoria de extensão" sigla="DEX" id_responsavel="2"  />
+     <unidadeOrganizacional id="3" nome="Diretoria de ensino" sigla="DEN" id_responsavel="3"  />    
+     <unidadeOrganizacional id="4" nome="Assessoria de Comunicação" sigla="ASCOM" id_responsavel="4"  />
+     <unidadeOrganizacional id="5" nome="Setor de registro escolar do DASE" sigla="DASE" id_responsavel="5"  />    
+     <unidadeOrganizacional id="6" nome="Serviço Social - Psicologia" sigla="PSCICOL" id_responsavel="6"  />    
+     <unidadeOrganizacional id="7" nome="Biblioteca" sigla="CBIBLIO" id_responsavel="5"  />
+     
+     <!-- PROCESSO -->
+     <processo id="1" nome="Comprovante de matricula" duracaomaximaemdias="2" id_responsavel="2" />
+     
+     <!-- MODELO DE ATIVIDADES -->
+     <atividademodelo id="1" nome="Valida informacoes" ANEXARARQUIVO="false" id_processo="1"  id_unidadeOrganizacional="5"/>
+     <atividademodelo id="2" nome="Requisita aprovacao da biblioteca" ANEXARARQUIVO="false" id_processo="1" id_unidadeOrganizacional="7"/>
+     <atividademodelo id="3" nome="Gera documento" ANEXARARQUIVO="false" id_processo="1" id_unidadeOrganizacional="5"/>
+     
+    <requerimento id="1" numero="1234" datadeinicio="2001-09-28 22:00:00" id_processo="1" id_solicitante="9" />
+     
+     <atividade id="1" situacao="Andamento" atividademodelo="1" id_requerimento="1"/>
+     <atividade id="2" situacao="EmEspera" atividademodelo="2" id_requerimento="1"/>
+     <atividade id="3" situacao="EmEspera" atividademodelo="3" id_requerimento="1"/>
+     
+</dataset>

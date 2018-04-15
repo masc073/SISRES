@@ -34,6 +34,9 @@
 
                 <f:facet name="header">Requerimentos</f:facet>
                 <p:ajax event="rowEdit" update="table_requerimento" listener="#{requerimentoBean.editar}" />
+                <p:column headerText="Número">
+                    <h:outputText  value="#{requerimento.numero}" />
+                </p:column>
                 <p:column headerText="Processo">
                     <h:outputText  value="#{requerimento.processo.nome}" />
                 </p:column>

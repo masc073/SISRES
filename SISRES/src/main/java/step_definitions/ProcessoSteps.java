@@ -15,24 +15,73 @@ import java.util.concurrent.TimeUnit;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import static step_definitions.BrowserManager.driver;
+
 /**
- * Responsável por realizar o passo a passo da execução dos testes com o cucumber com relação ao processo.
+ * Responsável por realizar o passo a passo da execução dos testes com o
+ * cucumber com relação ao processo.
+ *
  * @author Natália
  */
 public class ProcessoSteps
 {
-    /** Construtor Padrão
+
+    /**
+     * Construtor Padrão
      */
     public ProcessoSteps()
     {
         if (DbUnitUtil.ultimo_executado != Dataset.Processo) {
             DbUnitUtil.selecionaDataset(Dataset.Processo);
             DbUnitUtil.inserirDados();
+            loga_usuario();
         }
     }
 
     WebElement input_nome, button_check, input_duracao, input_responsavel;
+
+    public void loga_usuario()
+    {
+        BrowserManager.openFirefox("http://localhost:8080/SISRES");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        String url = driver.getCurrentUrl();
+
+        if (driver.getCurrentUrl().equals("http://localhost:8080/SISRES/")) {
+
+            driver.findElement(By.className("abcRioButtonContentWrapper")).click();
+
+            driver.switchTo().window("");
+            driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+
+            for (String winHandle : driver.getWindowHandles()) {
+                driver.switchTo().window(winHandle);
+            }
+
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            if (!driver.getCurrentUrl().equals("http://localhost:8080/SISRES/template.xhtml")) {
+
+                WebElement email_phone = driver.findElement(By.xpath("//input[@id='identifierId']"));
+                email_phone.sendKeys("ifpeadm01@gmail.com");
+                driver.findElement(By.id("identifierNext")).click();
+                WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
+                WebDriverWait wait = new WebDriverWait(driver, 20);
+                wait.until(ExpectedConditions.elementToBeClickable(password));
+                password.sendKeys("administrador01");
+                driver.findElement(By.id("passwordNext")).click();
+
+                driver.switchTo().window("");
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+                driver.switchTo().window(driver.getWindowHandle());
+            }
+
+            driver.findElement(By.xpath("//a[@href=\'/SISRES/administrador/processo/processo.xhtml\']")).click();
+        }
+    }
 
     @Dado("^a tela inicial cadastro de processos aberta$")
     public void a_tela_inicial_cadastro_de_processos_aberta() throws Throwable
@@ -47,7 +96,7 @@ public class ProcessoSteps
         BrowserManager.driver.findElement(By.id("processo:value_nome")).sendKeys(nome);
         WebElement duracao_em_dias = BrowserManager.driver.findElement(By.id("processo:value_duracao_input_input"));
 
-        duracao_em_dias.clear();
+        duracao_em_dias.sendKeys("");
         duracao_em_dias.sendKeys(duracao);
 
         WebElement div_responsavel = BrowserManager.driver.findElement(By.id("processo:responsavel_processo"));
@@ -93,7 +142,7 @@ public class ProcessoSteps
 
             for (WebElement option : options) {
                 if (option.getText().equals(atividade_atual.get(1))) {
-                    option.click(); 
+                    option.click();
                 }
             }
 
@@ -202,7 +251,7 @@ public class ProcessoSteps
                 }
                 else if (edit_duracao == true) {
                     WebElement div_data = column.findElement(By.className("ui-cell-editor-input"));
-                    input_duracao = div_data.findElement(By.tagName("input"));
+                    input_duracao = div_data.findElement(By.id("processo:table_processo:0:value_duracao_input"));
                     edit_duracao = false;
                     edit_responsavel = true;
                 }
@@ -219,11 +268,19 @@ public class ProcessoSteps
     @Quando("^informar o \"([^\"]*)\" a duracao \"([^\"]*)\" e o \"([^\"]*)\" para atualização$")
     public void informar_o_a_duracao_e_o_para_atualização(String nome, String duracao, String responsavel) throws Throwable
     {
+        
+        int valor;
         input_nome.clear();
         input_nome.sendKeys(nome);
+        
+        List<WebElement> options_a = input_duracao.findElements(By.tagName("a"));
+        
+         options_a.get(0).click();   
+         options_a.get(0).click();
+         options_a.get(0).click();
 
-        input_duracao.clear();
-        input_duracao.sendKeys(duracao);
+//        input_duracao.sendKeys("");
+//        input_duracao.sendKeys(duracao);
 
         WebElement exibir_lista = input_responsavel.findElement(By.tagName("span"));
         exibir_lista.click();
@@ -312,7 +369,6 @@ public class ProcessoSteps
                                 option.click();
                             }
                         }
-                        
 
                         edit_responsavel = false;
                         edit_anexar_arquivo = true;

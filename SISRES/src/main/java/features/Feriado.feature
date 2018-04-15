@@ -3,7 +3,7 @@ Funcionalidade: Cadastrar, alterar e remover feriados no sistema.
   Que irão simbolizar os dias não úteis durante o execução de algum processo.
 
   Esquema do Cenario: Inserção de feriados
-    Dado o administrador logado e tela inicial de feriados aberta
+    Dado tela inicial de feriados aberta
     Quando o administrador informar a <data> e o <nome> do feriado
     Entao deve ser exibida a mensagem para o feriado "Feriado cadastrado com Sucesso!"
 

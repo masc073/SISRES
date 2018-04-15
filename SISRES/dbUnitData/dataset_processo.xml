@@ -2,15 +2,16 @@
 <dataset>
     
     <!-- RESPONSÁVEIS -->
-    <responsavel id="1" nome="Lavinia Barbosa Goncalves" />
-    <responsavel id="2" nome="Nicole Goncalves Castro" />
-    <responsavel id="3" nome="Beatrice Araujo Gomes" />
-    <responsavel id="4" nome="Murilo Carvalho Barros" />
-    <responsavel id="5" nome="André Costa Azevedo"/>
-    <responsavel id="6" nome="Livia Costa Carvalho" />
-    <responsavel id="7" nome="Erick Lima Barros" />
-    <responsavel id="8" nome="Alex Santos Sousa" />
-    
+    <responsavel id="1" nome="Lavinia Barbosa Goncalves" titulo="Servidor"  />
+    <responsavel id="2" nome="Nicole Goncalves Castro" titulo="Servidor"  />
+    <responsavel id="3" nome="Beatrice Araujo Gomes"  titulo="Servidor" />
+    <responsavel id="4" nome="Murilo Carvalho Barros" titulo="Servidor"  />
+    <responsavel id="5" nome="André Costa Azevedo" titulo="Servidor" />
+    <responsavel id="6" nome="Livia Costa Carvalho" titulo="Servidor"  />
+    <responsavel id="7" nome="Erick Lima Barros"  titulo="Servidor" />
+    <responsavel id="8" nome="Alex Santos Sousa"  titulo="Servidor" />
+    <responsavel id="9" email="ifpeadm01@gmail.com" nome="Administrador" titulo="Administrador" id_grupo="2"  />
+        
     <!-- UNIDADES ORGANIZACIONAIS -->
      <unidadeorganizacional id="1" nome="Departamento de gestão de tecnologia da informação" sigla="DGTI" id_responsavel="1" />    
      <unidadeorganizacional id="2" nome="Diretoria de extensão" sigla="DEX" id_responsavel="2"  />

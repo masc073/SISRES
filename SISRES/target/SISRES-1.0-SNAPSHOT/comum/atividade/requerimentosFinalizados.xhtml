@@ -12,6 +12,9 @@
             <p:dataTable id="table_atividade" editable="true"  var="requerimento" value="#{requerimentoBean.requerimentos_finalizados}" emptyMessage="Nenhum registro encontrado">
 
                 <f:facet name="header">Requerimentos</f:facet>
+                <p:column headerText="Número">
+                    <h:outputText value="#{requerimento.numero}" />
+                </p:column>
                 <p:column headerText="Solicitante">
                     <h:outputText value="#{requerimento.solicitante.matricula}" />
                 </p:column>

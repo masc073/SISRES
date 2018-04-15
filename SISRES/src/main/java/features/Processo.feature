@@ -2,16 +2,16 @@
 Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
   relacionadas.
 
-#    Esquema do Cenario: Tentar inserir um processo sem atividades.
-#      Dado a tela inicial cadastro de processos aberta
-#      Quando o administrador informar o nome <nome> a duração em dias <duracao> o responsavel <responsavel> e salvar
-#      Entao deve ser exibida a seguinte mensagem : "Devem ser adicionadas atividades ao processo!"
-#  
-#      Exemplos:
-#        | nome                                      | duracao | responsavel             |
-#        | "Solicitacao de comprovante de matricula" | "2"     | "Erick Lima Barros"     |
-#
-#
+    Esquema do Cenario: Tentar inserir um processo sem atividades.
+      Dado a tela inicial cadastro de processos aberta
+      Quando o administrador informar o nome <nome> a duração em dias <duracao> o responsavel <responsavel> e salvar
+      Entao deve ser exibida a seguinte mensagem : "Devem ser adicionadas atividades ao processo!"
+  
+      Exemplos:
+        | nome                                      | duracao | responsavel             |
+        | "Solicitacao de comprovante de matricula" | "2"     | "Erick Lima Barros"     |
+
+
   Esquema do Cenario: Inserir processo
     Dado a tela inicial cadastro de processos aberta
     Quando o administrador definir o fluxo do processo com as seguintes  atividades:
@@ -48,11 +48,11 @@ Funcionalidade: Cadastrar, alterar e excluir os processos e atividades
     | "Solicitacao de Comprovante de matricula" | 
 
 
-#  Esquema do Cenario: Remover processo
-#    Dado a tela de listagem de processos aberta
-#    Quando o administrador selecionar o registro <registro> que deseja remover 
-#    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
-#
-#    Exemplos: 
-#      | registro                                  | 
-#      | "Solicitacao de Comprovante de matricula" | 
+  Esquema do Cenario: Remover processo
+    Dado a tela de listagem de processos aberta
+    Quando o administrador selecionar o registro <registro> que deseja remover 
+    Entao deve ser exibida a seguinte mensagem : "Processo removido com Sucesso!"
+
+    Exemplos: 
+      | registro                                  | 
+      | "Solicitacao de Comprovante de matricula" | 

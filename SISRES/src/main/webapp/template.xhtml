@@ -49,7 +49,7 @@
     <h:body style="background: rgb(242, 241, 241)">
         <p:panel id="panel" header="Sistema de Requerimento Estudantil">
 
-            <h:form>  
+            <h:form  id="form">  
                 <p:growl id="messages" showDetail="false" autoUpdate="true" />
 
                 <p:menu class="menu" style="width: 250px">
@@ -64,7 +64,7 @@
                         <p:menuitem value="Processos" rendered="#{request.isUserInRole('administrador')}" url="/administrador/processo/listaprocessos.xhtml" update="messages" icon="ui-icon-note" />
                         <p:menuitem value="Feriados" rendered="#{request.isUserInRole('administrador')}" url="/administrador/feriado/feriado.xhtml" icon="ui-icon-calendar"/>
                         <p:menuitem value="Unidade Organizacional" rendered="#{request.isUserInRole('administrador')}" url="/administrador/unidadeOrganizacional/unidadeOrganizacional.xhtml" icon="ui-icon-contact"/>
-                        <p:menuitem class="sign-out" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
+                        <p:menuitem class="sign-out" id="sair" icon="ui-icon-power" value="Sair" onclick="signOut()" action="#{googleSign.logout()}"/>
                     </p:submenu>
                 </p:menu>
             </h:form>

@@ -6,5 +6,6 @@ public enum Dataset
     Vazio,
     Processo,
     Requerimento,
-    Responsavel
+    Responsavel,
+    Atendimento_requerimento    
 }
