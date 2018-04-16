@@ -12,6 +12,7 @@ step_definitions\BrowserManager.class
 dominio\Atividade_.class
 dominio\Feriado_.class
 dominio\Processo_.class
+step_definitions\Atendimento_requerimentoSteps.class
 step_definitions\Dataset.class
 beans\ResponsavelBean.class
 dominio\Arquivo_.class

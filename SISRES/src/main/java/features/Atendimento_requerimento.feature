@@ -12,4 +12,5 @@ Esquema do Cenario: Realizar fluxo do requerimento
       | "Informações corretas"                |                | "Aprovar"  |  "Atividade concluída com sucesso!"     |   
       | "O Aluno possui débito na biblioteca" |                | "Reprovar" |  "Atividade reprovada!"                 |
       | "Débito quitado"                      |                | "Aprovar"  |  "Atividade concluída com sucesso!"     |
+      | "Ok!"                                 |                | "Aprovar"  |  "Atividade concluída com sucesso!"     |
       | "Comprovante de matrícula gerado"     |                | "Aprovar"  |  "Atividade concluída com sucesso!"     |

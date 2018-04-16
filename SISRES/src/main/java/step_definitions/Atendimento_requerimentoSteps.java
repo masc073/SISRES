@@ -28,7 +28,7 @@ public class Atendimento_requerimentoSteps
     {
         if (DbUnitUtil.ultimo_executado != Dataset.Atendimento_requerimento) {
             DbUnitUtil.selecionaDataset(Dataset.Atendimento_requerimento);
-            DbUnitUtil.inserirDados();
+//            DbUnitUtil.inserirDados();
             loga_usuario("ifpeservidor@gmail.com", "servidor01", "/SISRES/comum/atividade/atividade.xhtml");
         }
     }
